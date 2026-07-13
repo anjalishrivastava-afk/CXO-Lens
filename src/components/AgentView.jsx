@@ -64,11 +64,13 @@ export default function AgentView() {
             <div className="kpi-label">Customer Mood</div>
             <div className="mood-bar">
               <div
-                className="mood-seg"
+                className="mood-seg chart-hover"
+                data-tooltip={`Happy · ${D.moodHappy}%`}
                 style={{ width: `${D.moodHappy}%`, background: 'var(--green)' }}
               />
               <div
-                className="mood-seg"
+                className="mood-seg chart-hover"
+                data-tooltip={`Neutral · ${100 - D.moodHappy - D.moodUnhappy}%`}
                 style={{
                   width: `${100 - D.moodHappy - D.moodUnhappy}%`,
                   background: 'var(--yellow)',
@@ -76,7 +78,8 @@ export default function AgentView() {
                 }}
               />
               <div
-                className="mood-seg"
+                className="mood-seg chart-hover"
+                data-tooltip={`Unhappy · ${D.moodUnhappy}%`}
                 style={{ width: `${D.moodUnhappy}%`, background: 'var(--red)', animationDelay: '.2s' }}
               />
             </div>

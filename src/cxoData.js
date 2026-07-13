@@ -25,7 +25,7 @@ const DOW_BASE = [
   { label: 'Sat', volume: 7950, negativePct: 9.8, positivePct: 22.0 },
   { label: 'Sun', volume: 7818, negativePct: 9.4, positivePct: 22.7 },
 ];
-const DOW_WEEK_FACTORS = [1.22, 1.15, 1.09, 1.04, 1.0, 0.86];
+const DOW_WEEK_FACTORS = [1.22, 1.15, 1.09, 1.04, 1.0, 0.86, 0.81];
 
 export const sentimentByDowByWeek = DOW_WEEK_FACTORS.map((factor) =>
   DOW_BASE.map((d) => ({
@@ -36,12 +36,17 @@ export const sentimentByDowByWeek = DOW_WEEK_FACTORS.map((factor) =>
   }))
 );
 
+// Doc §6.4: Day of Week is a single aggregate over the whole fortnight
+// (grouped by dow), not a per-week series — so the bar coloring lines up with
+// the fixed DOW finding (Wed/Thu elevated negativity).
+export const sentimentByDow = DOW_BASE;
+
 const QUALITY_BASE = [
   { sentiment: 'Positive', avgScore: 82.4 },
   { sentiment: 'Neutral', avgScore: 77.1 },
   { sentiment: 'Negative', avgScore: 68.9 },
 ];
-const QUALITY_WEEK_FACTORS = [0.93, 0.95, 0.97, 0.98, 0.99, 1.0];
+const QUALITY_WEEK_FACTORS = [0.93, 0.95, 0.97, 0.98, 0.99, 1.0, 1.02];
 
 export const qualityBySentimentByWeek = QUALITY_WEEK_FACTORS.map((factor) =>
   QUALITY_BASE.map((q) => ({ sentiment: q.sentiment, avgScore: Math.round(q.avgScore * factor * 10) / 10 }))
@@ -64,16 +69,19 @@ export const cxoData = {
       id: 'key_insight_1',
       title: 'Wednesday Negativity Spike at 12.3%',
       detail: 'Wednesday shows 12.3% negative sentiment vs a 10.8% weekly average — the highest of any day.',
+      tone: 'negative',
     },
     {
       id: 'key_insight_2',
       title: 'Cross-sell Pitch: Highest Risk Intent',
       detail: '14.6% negative sentiment across 9,120 cross-sell calls, well above the org baseline.',
+      tone: 'negative',
     },
     {
       id: 'key_insight_3',
       title: 'Call Closing Quality: Only 62.1% Pass Rate',
       detail: 'Lowest KPI in the Call Handling group, and the main drag on that group’s score.',
+      tone: 'negative',
     },
   ],
 
@@ -87,8 +95,9 @@ export const cxoData = {
     { label: 'Jun 9–15', positive: 5720, neutral: 16800, negative: 3550 },
     { label: 'Jun 16–22', positive: 5850, neutral: 17100, negative: 3600 },
     { label: 'Jun 23–29', positive: 5932, neutral: 16723, negative: 2965 },
+    { label: 'Jun 30–Jul 6', positive: 6110, neutral: 16480, negative: 2740 },
   ],
-  findingWeekly: 'Negative sentiment declined from 3,600 in Jun 16–22 to 2,965 in Jun 23–29 (-17.6%) — the fortnight is trending in the right direction.',
+  findingWeekly: 'Negative sentiment share declined from 13.6% in Jun 16–22 to 10.8% in Jun 30–Jul 6 — the third straight week of improvement.',
 
   findingDow: 'Wednesday and Thursday show elevated negativity at 12.3% and 11.7% — both above the 11.5% risk threshold.',
 
@@ -100,16 +109,19 @@ export const cxoData = {
       id: 'intent_callout_1',
       title: 'Order Placement: Volume Leader',
       detail: '14,200 calls, 5.8% negative — the highest-volume intent stays low-risk.',
+      tone: 'positive',
     },
     {
       id: 'intent_callout_2',
       title: 'Advisory Services: Best Sentiment',
       detail: '51.3% positive with only 3.9% negative, the strongest sentiment profile of any intent.',
+      tone: 'positive',
     },
     {
       id: 'intent_callout_3',
       title: 'Complaint Resolution: Highest Risk',
       detail: '22.1% negative across 4,900 calls — nearly 4x the org baseline.',
+      tone: 'negative',
     },
   ],
 

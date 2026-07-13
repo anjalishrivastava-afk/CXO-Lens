@@ -41,8 +41,8 @@ export default function ScoreDistribution({ dist, avgVal }) {
                 {count}
               </div>
               <div
-                className="dist-bar"
-                title={`${count} agents in ${RANGES[i].replace('–', '-')} band`}
+                className="dist-bar chart-hover"
+                data-tooltip={`${count} agent${count === 1 ? '' : 's'} in ${RANGES[i]} band`}
                 style={{
                   height: `${Math.round((count / max) * 118)}px`,
                   background: COLORS[i],

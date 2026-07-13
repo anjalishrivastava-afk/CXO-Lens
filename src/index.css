@@ -23,6 +23,7 @@
   --red: #c1655f;
   --red-text: #a04e49;
   --red-bg: #f5e9e8;
+  --red-border: rgba(193, 101, 95, 0.4);
 
   --yellow: #c9a53f;
   --yellow-text: #8f7128;
@@ -226,6 +227,15 @@ select {
   margin: 0 auto;
 }
 
+/* Custom Reports sits on its own 8px grey gutter (#F1F1F1) with a plain
+   white 6px-radius card inside — per Figma node 0:10361/0:10362 — rather
+   than the 16px-inset, bordered .panel used by the rest of the app. */
+.main.main--flush {
+  padding: 8px;
+  max-width: none;
+  background: var(--bg);
+}
+
 .panel {
   background: var(--white);
   border: 1px solid var(--border);
@@ -233,6 +243,11 @@ select {
   overflow: hidden;
   width: 100%;
   height: 100%;
+}
+
+.panel.panel--flush {
+  border: none;
+  border-radius: 6px;
 }
 
 .panel-titlebar {
@@ -409,7 +424,10 @@ select {
 }
 
 .content {
-  padding: 16px;
+  /* Matches Custom Reports' .custom-reports-report-scroll padding, so all
+     three sections (AI Insights, CXO Lens, Custom Reports) share the same
+     inner content inset. */
+  padding: 12px 16px;
 }
 
 .sections {
@@ -619,12 +637,64 @@ select {
   display: flex;
   height: 8px;
   border-radius: 4px;
-  overflow: hidden;
+  /* No overflow: hidden here — segments round their own outer corners
+     instead, so each segment's hover tooltip isn't clipped by the bar. */
 }
 
 .mood-seg {
   transform-origin: left;
   animation: fillBar 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+.mood-seg:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.mood-seg:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+/* Plain-language read-out of the sentiment split, shown directly under the
+   composition bar (positive = happy, negative = unhappy). */
+.mood-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 14px;
+}
+
+.mood-summary-happy,
+.mood-summary-unhappy {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.mood-summary-happy {
+  color: var(--green-text);
+}
+
+.mood-summary-unhappy {
+  color: var(--red-text);
+}
+
+/* Stretch both cards in this row to the same (tallest) height so they align. */
+.chart-card-grid--stretch {
+  align-items: stretch;
+}
+
+/* Match the taller Quality Score × Sentiment card in the same grid row so the
+   two cards line up; center the content within the extra vertical space. */
+.section-card.composition-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.composition-card .section-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .mood-labels {
@@ -854,6 +924,45 @@ select {
   visibility: visible;
 }
 
+/* Same instant-tooltip mechanism as .tooltip-anchor, but centered above the
+   element instead of right-aligned — fits bars/segments/points in a chart
+   better than the right-edge-anchored variant used for toolbar icons. Also
+   nudges the shape itself (brightness + slight lift) so it's obvious which
+   one you're pointing at. */
+.chart-hover {
+  position: relative;
+  transition: filter 0.1s, transform 0.1s;
+}
+
+.chart-hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #26282c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.chart-hover:hover {
+  filter: brightness(0.92);
+}
+
+.chart-hover:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .improve-detail {
   padding: 0 16px 16px;
 }
@@ -997,138 +1106,6 @@ select {
   background: var(--red-bg);
 }
 
-.feedback-done {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-}
-
-.feedback-share-btn {
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.feedback-share-btn:hover {
-  border-color: var(--accent-light-border);
-  color: var(--accent);
-}
-
-.feedback-popover {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  width: 260px;
-  background: #1c1c22;
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-  z-index: 70;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.feedback-popover-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.55);
-  padding: 2px 4px 0;
-}
-
-.feedback-popover-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.feedback-popover-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 8px;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.feedback-popover-option:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.feedback-popover-option.selected {
-  background: var(--accent);
-}
-
-.feedback-checkbox {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  flex: none;
-  position: relative;
-}
-
-.feedback-popover-option.selected .feedback-checkbox {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.feedback-popover-option.selected .feedback-checkbox::after {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border-radius: 2px;
-  background: #fff;
-}
-
-.feedback-other-text {
-  width: 100%;
-  resize: vertical;
-  min-height: 50px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  font-size: 12px;
-  font-family: inherit;
-  padding: 8px;
-}
-
-.feedback-other-text::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.feedback-other-text:focus {
-  outline: none;
-  border-color: var(--accent-light-border);
-}
-
-.feedback-submit-btn {
-  padding: 9px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-}
-
-.feedback-submit-btn:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
 .say-this-text {
   font-size: 13px;
   line-height: 1.55;
@@ -1150,6 +1127,12 @@ select {
   justify-content: space-between;
   gap: 10px;
   cursor: pointer;
+}
+
+/* Static chart cards (no expand/collapse) shouldn't hint at being clickable. */
+.chart-card-header {
+  cursor: default;
+  align-items: flex-start;
 }
 
 .section-card-title {
@@ -1446,12 +1429,102 @@ select {
   color: var(--text);
 }
 
+/* Day-of-Week negativity chart (bars scaled by negative %, with a risk line) */
+/* The DOW card lives in a grid row that stretches to match the taller Weekly
+   Sentiment Trend card. Make the card a flex column so the plot can grow to
+   fill that height, letting the bars fill vertically instead of leaving a gap. */
+.section-card.dow-card {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.dow-card .section-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dow-plot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex: 1;
+  min-height: 156px;
+  padding: 0 4px;
+}
+
+.dow-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  height: 100%;
+}
+
+.dow-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dow-bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transform-origin: bottom;
+  animation: growBar 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  transition: filter 0.15s;
+}
+
+.dow-bar:hover {
+  filter: brightness(1.12);
+}
+
+.dow-threshold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1.5px dashed var(--red);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.dow-legend-line {
+  width: 18px;
+  border-top: 2px dashed var(--red);
+  flex: none;
+}
+
+.dow-axis {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 4px 0;
+}
+
+.dow-day {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
 /* rank tables */
 
 .rank-tables-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 12px;
+}
+
+/* Chart cards size to their own content instead of stretching to match the
+   tallest sibling — avoids empty whitespace under the shorter chart. */
+.chart-card-grid {
+  align-items: start;
 }
 
 .rank-table-card {
@@ -1927,9 +2000,29 @@ select {
 }
 
 .weekly-chart-svg {
+  display: block;
   width: 100%;
-  height: 170px;
+  height: auto;
   overflow: visible;
+}
+
+/* SimpleLineChart's points still rely on a native <title> tooltip — this just
+   gives an instant visual cue that they're hoverable before it appears. */
+.weekly-chart-svg circle:hover {
+  opacity: 0.75;
+}
+
+.weekly-chart-tooltip {
+  width: fit-content;
+  margin: 0 auto;
+  background: #26282c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .weekly-chart-label {
@@ -1946,6 +2039,16 @@ select {
   stroke: var(--border);
   stroke-width: 1;
   stroke-dasharray: 3 3;
+}
+
+.weekly-chart-grid {
+  stroke: var(--bg);
+  stroke-width: 1;
+}
+
+.weekly-chart-axis {
+  font-size: 9px;
+  fill: var(--text-muted);
 }
 
 .chart-toolbar {
@@ -1995,6 +2098,16 @@ select {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex: none;
+}
+
+.week-pager-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  text-align: center;
+  min-width: 80px;
 }
 
 .week-pager-btn {
@@ -2054,16 +2167,18 @@ select {
   background: var(--accent-light-bg);
 }
 
-.weekly-bar-cluster {
+.weekly-stack-bar {
   display: flex;
-  align-items: flex-end;
-  gap: 3px;
+  flex-direction: column;
+  width: 28px;
   height: 118px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-.weekly-mini-bar {
-  width: 9px;
-  border-radius: 2px 2px 0 0;
+.weekly-stack-seg {
+  width: 100%;
+  transition: height 0.3s ease;
 }
 
 .weekly-bar-label {
@@ -2098,16 +2213,40 @@ select {
   font-weight: 600;
 }
 
-.week-detail-delta {
+.week-detail-stat-group {
   display: flex;
   align-items: center;
-  gap: 3px;
-  font-weight: 600;
-  margin-left: auto;
+  gap: 6px;
 }
 
-.week-detail-delta .msr {
-  font-size: 14px;
+.week-trend-arrow {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.week-trend-arrow.good {
+  color: var(--green-text);
+}
+
+.week-trend-arrow.bad {
+  color: var(--red-text);
+}
+
+.week-trend-arrow.neutral {
+  color: var(--text-secondary);
+}
+
+.week-trend-arrow .msr {
+  font-size: 13px;
+}
+
+.week-trend-flat {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
 }
 
 .call-list-rows {
@@ -2274,7 +2413,7 @@ select {
 }
 
 .history-status.ready {
-  background: rgba(6, 147, 81, 0.1);
+  background: var(--green-bg);
   color: var(--green-text);
 }
 
@@ -2286,4 +2425,948 @@ select {
 .history-status.failed {
   background: var(--red-bg);
   color: var(--red-text);
+}
+
+.history-status.empty {
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+/* ---------- Sidebar nav (wired) ---------- */
+
+.sidebar-icon.clickable {
+  cursor: pointer;
+}
+
+.sidebar-icon.clickable:hover {
+  color: var(--accent);
+  background: var(--accent-light-bg);
+}
+
+.sidebar-icon {
+  position: relative;
+}
+
+.sidebar-admin-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+/* Custom Reports gets a "featured" AI treatment in the rail: a filled sparkle
+   glyph in the primary color, no background chip. */
+.sidebar-icon.featured {
+  color: var(--accent);
+}
+
+.sidebar-icon.featured .msr {
+  font-variation-settings: 'FILL' 1;
+}
+
+.sidebar-icon.featured:hover,
+.sidebar-icon.featured.active {
+  color: var(--accent);
+  background: var(--accent-light-bg);
+}
+
+/* ---------- CXO Lens ---------- */
+
+.cxo-lens {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cxo-lens-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  width: fit-content;
+  flex-wrap: wrap;
+}
+
+.cxo-lens-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+}
+
+.cxo-lens-pill .msr {
+  font-size: 15px;
+}
+
+.cxo-lens-pill:hover {
+  color: var(--accent);
+  background: var(--accent-light-bg);
+}
+
+.cxo-lens-pill.active {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+}
+
+.cxo-lens-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.cxo-lens-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cxo-lens-header-actions {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  flex: none;
+}
+
+.cxo-lens-info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+}
+
+.cxo-lens-info-btn:hover {
+  background: var(--accent-light-bg);
+  color: var(--accent);
+}
+
+.cxo-lens-info-btn .msr {
+  font-size: 18px;
+}
+
+/* Matches the Custom Reports "New Report" button: white surface, hairline
+   border, dark label — not a filled accent pill. */
+.cxo-lens-history-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text-body);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.cxo-lens-history-btn:hover {
+  background: var(--accent-light-bg);
+  border-color: var(--accent-light-border);
+  color: var(--accent-dark);
+}
+
+.cxo-lens-history-btn .msr {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Narrative cards vs computed data cards — colored by the insight's own
+   `tone` field (positive/warning/negative) so the card color reflects what
+   the data actually says, not just which section it's in. Falls back to
+   the neutral accent tint (same token as AI Insights' .info-card.focus)
+   when an insight has no tone. */
+.cxo-lens .narrative-card {
+  background: var(--accent-light-bg) !important;
+  border-color: var(--accent-light-border) !important;
+}
+
+.cxo-lens .narrative-card.tone-positive {
+  background: var(--green-bg) !important;
+  border-color: var(--green-border) !important;
+}
+
+.cxo-lens .narrative-card.tone-warning {
+  background: var(--yellow-bg) !important;
+  border-color: var(--yellow-border) !important;
+}
+
+.cxo-lens .narrative-card.tone-negative {
+  background: var(--red-bg) !important;
+  border-color: var(--red-border) !important;
+}
+
+/* Heading stays a plain, neutral color — the card's background/border tint
+   alone communicates tone, so the title doesn't also need to shout in
+   red/yellow/green (avoids the "AI Narrative" label ever feeling repetitive
+   with the surrounding color/wording). */
+.cxo-lens .narrative-card .info-card-kpi,
+.cxo-lens .narrative-card .info-card-title {
+  color: var(--text) !important;
+}
+
+.cxo-lens .kpi-card,
+.cxo-lens .rank-table-card,
+.cxo-lens .section-card {
+  background: var(--white);
+}
+
+.cxo-lens .improve-detail-text {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Empty / loading / error states */
+.cxo-lens-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  min-height: 280px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.cxo-lens-state-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+}
+
+.cxo-lens-state-icon-wrap .msr {
+  font-size: 26px;
+  color: var(--text-secondary);
+}
+
+.cxo-lens-state--error .cxo-lens-state-icon-wrap {
+  background: var(--red-bg);
+  border-color: var(--red-border);
+}
+
+.cxo-lens-state--error .cxo-lens-state-icon-wrap .msr {
+  color: var(--red-text);
+}
+
+.cxo-lens-state--info .cxo-lens-state-icon-wrap {
+  background: var(--accent-light-bg);
+  border-color: var(--accent-light-border);
+}
+
+/* History sub-view */
+.cxo-lens-history {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cxo-lens-history-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cxo-lens-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--white);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.cxo-lens-back-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.cxo-lens-back-btn .msr {
+  font-size: 16px;
+}
+
+/* Phase 2 placeholder — hidden, documented in data attribute */
+.cxo-lens-phase2-note {
+  display: none;
+}
+
+/* ---------- Custom Reports ---------- */
+/* Same panel chrome as every other section (.panel/.panel-titlebar in
+   App.jsx) — this is just a two-pane body inside that shared panel, using
+   the app's existing color tokens rather than one-off values. */
+
+.custom-reports-app {
+  display: flex;
+  gap: 10px;
+  height: calc(100vh - 134px);
+  min-height: 480px;
+}
+
+.custom-reports-nav {
+  width: 240px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 0 0;
+  background: rgba(57, 73, 171, 0.04);
+  overflow: hidden;
+  transition: width 0.18s ease, opacity 0.18s ease, padding 0.18s ease;
+}
+
+.custom-reports-nav.collapsed {
+  width: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-reports-new-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 16px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text-body);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+
+.custom-reports-new-btn:hover {
+  background: var(--accent-light-bg);
+  border-color: var(--accent-light-border);
+  color: var(--accent-dark);
+}
+
+.custom-reports-new-btn:active {
+  background: var(--accent-light-border);
+}
+
+.custom-reports-new-btn .msr {
+  font-size: 16px;
+  line-height: 1;
+  flex: none;
+}
+
+.custom-reports-nav-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 16px;
+  padding: 7px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.custom-reports-nav-search .msr {
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.custom-reports-nav-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+}
+
+.custom-reports-nav-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 8px 12px;
+}
+
+.custom-reports-nav-group {
+  margin-bottom: 2px;
+}
+
+.custom-reports-nav-group-label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--text-secondary);
+  padding: 6px 8px 2px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.custom-reports-nav-group-chevron {
+  font-size: 15px;
+  flex: none;
+  transition: transform 0.15s ease;
+}
+
+.custom-reports-nav-group-chevron.expanded {
+  transform: rotate(90deg);
+}
+
+.custom-reports-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 8px;
+  border: none;
+  background: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.custom-reports-nav-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.custom-reports-nav-item.active {
+  background: var(--accent-light-bg);
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.custom-reports-nav-item .msr {
+  font-size: 15px;
+  flex: none;
+  color: var(--text-muted);
+}
+
+.custom-reports-nav-item.active .msr {
+  color: var(--accent);
+}
+
+.custom-reports-nav-item.pending-generating .msr {
+  color: var(--yellow-text);
+}
+
+.custom-reports-nav-item.pending-failed .msr {
+  color: var(--red-text);
+}
+
+.custom-reports-nav-item-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-reports-nav-empty {
+  padding: 12px 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Main panel */
+
+.custom-reports-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.custom-reports-main-topbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px 0;
+}
+
+.custom-reports-panel-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.custom-reports-panel-toggle:hover {
+  background: var(--accent-light-bg);
+  border-color: var(--accent-light-border);
+  color: var(--accent-dark);
+}
+
+.custom-reports-panel-toggle .msr {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.custom-reports-landing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 20px;
+  overflow-y: auto;
+  /* A single repeating tile of the grid pattern, so it spans edge-to-edge
+     with small squares and no visible seam — two independently-faded
+     copies overlapping (each with its own radial fade) misaligned at the
+     boundary and doubled up in opacity, which showed as a hard seam. */
+  background-color: #fdfdfd;
+  background-image: url('./assets/custom-reports-bg-pattern.svg');
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-size: 42% auto;
+}
+
+.custom-reports-landing-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.custom-reports-landing-footer {
+  flex: none;
+  margin-top: 12px;
+}
+
+.custom-reports-landing-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(57, 79, 182, 0.3);
+}
+
+.custom-reports-landing-icon .msr {
+  font-size: 24px;
+}
+
+/* Composer — wraps the Signal ChatInputBox component (see Figma "Message
+   Composer" instance) so it sits at a sensible width in both the centered
+   empty state and the pinned bottom bar of an active report. */
+
+.custom-reports-composer {
+  width: 100%;
+  max-width: 640px;
+}
+
+/* Custom Reports has no @-mentions, so hide ChatInputBox's built-in mention
+   button and inject an "Enhance prompt" (wand) button in its place. */
+.custom-reports-composer [aria-label='Mention'] {
+  display: none !important;
+}
+
+.custom-reports-enhance-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.custom-reports-enhance-btn:hover:not(:disabled) {
+  background: var(--accent-light-bg);
+  border-color: var(--accent-light-border);
+  color: var(--accent-dark);
+}
+
+.custom-reports-enhance-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.custom-reports-enhance-btn .msr {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.custom-reports-enhance-btn .MuiCircularProgress-root {
+  color: var(--accent);
+}
+
+.custom-reports-composer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.custom-reports-composer.compact {
+  max-width: none;
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-reports-suggested-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.custom-reports-suggested-btn {
+  border-radius: 20px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  background: var(--white) !important;
+}
+
+.custom-reports-suggested-btn.green {
+  border-color: var(--green-border) !important;
+  color: var(--green-text) !important;
+}
+
+.custom-reports-suggested-btn.green:hover {
+  background: var(--green-bg) !important;
+}
+
+.custom-reports-suggested-btn.blue {
+  border-color: var(--accent-light-border) !important;
+  color: var(--accent-dark) !important;
+}
+
+.custom-reports-suggested-btn.blue:hover {
+  background: var(--accent-light-bg) !important;
+}
+
+.custom-reports-suggested-btn.yellow {
+  border-color: var(--yellow-border) !important;
+  color: var(--yellow-text) !important;
+}
+
+.custom-reports-suggested-btn.yellow:hover {
+  background: var(--yellow-bg) !important;
+}
+
+/* Report / generating / failed states inside the chat-style main panel */
+
+.custom-reports-report-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+}
+
+/* Figma's assistant transcript (Thinking bubble, report bubble) is a fixed
+   ~684px column, not a full-bleed panel — keeps messages readable like a
+   chat thread instead of stretching them across the whole canvas. */
+.custom-reports-transcript {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Report bubble — Figma's "Bubbles" assistant-message card (node 0:10492)
+   uses a much lighter hairline (#F1F1F1) + soft elevation shadow instead of
+   the app's standard `.section-card` border, so it reads as a chat bubble
+   rather than a heavy dashboard panel. */
+.custom-reports-report-card {
+  border: 1px solid #f1f1f1;
+  box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.06), 0px 2px 4px -2px rgba(16, 24, 40, 0.04);
+  padding: 16px;
+}
+
+.custom-reports-generating,
+.custom-reports-failed {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 10px;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+}
+
+.custom-reports-failed {
+  border-color: var(--red-border, var(--border-light));
+  background: var(--red-bg);
+}
+
+.custom-reports-generating-spinner {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-light-border);
+  border-top-color: var(--accent);
+  animation: crSpin 0.8s linear infinite;
+  flex: none;
+}
+
+@keyframes crSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-reports-failed > .msr {
+  font-size: 24px;
+  color: var(--red-text);
+  flex: none;
+}
+
+.custom-reports-generating-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.custom-reports-generating-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.custom-reports-failed .generate-btn {
+  margin-left: auto;
+}
+
+/* "Thinking" transcript — user prompt bubble + collapsible reasoning card
+   (Figma nodes 0:9946 → 0:10448). */
+
+.custom-reports-thinking-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.custom-reports-chat-bubble-row {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 15%;
+}
+
+.custom-reports-chat-bubble {
+  max-width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px 2px 12px 12px;
+  background: var(--accent-light-bg);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.custom-reports-thinking-card {
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.custom-reports-thinking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.custom-reports-thinking-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-reports-thinking-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex: none;
+  color: var(--accent);
+}
+
+.custom-reports-thinking-dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.3;
+  animation: crDotPulse 1.2s ease-in-out infinite;
+}
+
+.custom-reports-thinking-dots span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.custom-reports-thinking-dots span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.custom-reports-thinking-dots span:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+@keyframes crDotPulse {
+  0%, 80%, 100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.custom-reports-thinking-chevron {
+  font-size: 18px;
+  color: var(--text-secondary);
+  transition: transform 0.15s ease;
+}
+
+.custom-reports-thinking-chevron.expanded {
+  transform: rotate(180deg);
+}
+
+.custom-reports-thinking-steps {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+  border-top: 1px solid var(--border-light);
+}
+
+.custom-reports-thinking-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border-light);
+  animation: crFadeIn 0.25s ease;
+}
+
+.custom-reports-thinking-step:last-child {
+  border-bottom: none;
+}
+
+.custom-reports-thinking-step-text {
+  flex: 1;
+  font-weight: 500;
+}
+
+.custom-reports-thinking-step-icon {
+  font-size: 16px;
+  flex: none;
+}
+
+.custom-reports-thinking-step-icon.done {
+  color: var(--green);
+}
+
+.custom-reports-thinking-step-chevron {
+  font-size: 18px;
+  color: var(--text-muted, var(--text-secondary));
+  flex: none;
+}
+
+.custom-reports-thinking-step .MuiCircularProgress-root {
+  color: var(--accent);
+}
+
+@keyframes crFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

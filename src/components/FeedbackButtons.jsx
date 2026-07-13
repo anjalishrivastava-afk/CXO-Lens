@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { Box, Button, Checkbox, EnhancedTextField, Popover, Typography, useToast } from '@exotel-npm-dev/signal-design-system';
 import Icon from './Icon';
 import { trackInsightFeedback } from '../analytics';
 
@@ -22,36 +23,24 @@ export default function FeedbackButtons({ view, section, insightId }) {
   const [reasons, setReasons] = useState([]);
   const [otherText, setOtherText] = useState('');
   const rootRef = useRef(null);
-
-  useEffect(() => {
-    if (!panelOpen) return;
-    const handleClick = (e) => {
-      if (rootRef.current && !rootRef.current.contains(e.target)) setPanelOpen(false);
-    };
-    const handleKey = (e) => {
-      if (e.key === 'Escape') setPanelOpen(false);
-    };
-    document.addEventListener('mousedown', handleClick);
-    document.addEventListener('keydown', handleKey);
-    return () => {
-      document.removeEventListener('mousedown', handleClick);
-      document.removeEventListener('keydown', handleKey);
-    };
-  }, [panelOpen]);
+  const { showSuccess } = useToast();
 
   const reasonOptions = vote === 'down' ? DOWN_REASONS : UP_REASONS;
   const otherLabel = vote === 'down' ? 'Other issue' : 'Other';
   const hasOther = reasons.includes(otherLabel);
 
   const castVote = (v) => {
-    setVote(v);
+    // Clicking the already-active vote undoes it; clicking the other one switches to it.
+    const next = vote === v ? null : v;
+    setVote(next);
     setReasons([]);
     setOtherText('');
-    if (v === 'down') {
+    if (next === 'down') {
       setPanelOpen(true);
     } else {
       setPanelOpen(false);
-      trackInsightFeedback({ view, section, insightId, vote: v });
+      trackInsightFeedback({ view, section, insightId, vote: next });
+      if (next) showSuccess('Thanks for the feedback!', { autoHideDuration: 3000 });
     }
   };
 
@@ -62,22 +51,12 @@ export default function FeedbackButtons({ view, section, insightId }) {
   const handleSubmit = () => {
     trackInsightFeedback({ view, section, insightId, vote, reasons, detail: otherText.trim() || undefined });
     setPanelOpen(false);
+    showSuccess('Thanks for the feedback!', { autoHideDuration: 3000 });
   };
-
-  if (vote && !panelOpen) {
-    return (
-      <div className="feedback-done">
-        <span>Thanks for your feedback!</span>
-        <button className="feedback-share-btn" onClick={() => setPanelOpen(true)}>
-          Share details
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="feedback-buttons" ref={rootRef}>
-      <span className="tooltip-anchor" data-tooltip="Helpful">
+      <span className="tooltip-anchor" data-tooltip={vote === 'up' ? 'Undo' : 'Helpful'}>
         <button
           className={`feedback-btn${vote === 'up' ? ' active-up' : ''}`}
           onClick={() => castVote('up')}
@@ -87,7 +66,7 @@ export default function FeedbackButtons({ view, section, insightId }) {
           <Icon name="thumb_up" />
         </button>
       </span>
-      <span className="tooltip-anchor" data-tooltip="Not helpful">
+      <span className="tooltip-anchor" data-tooltip={vote === 'down' ? 'Undo' : 'Not helpful'}>
         <button
           className={`feedback-btn${vote === 'down' ? ' active-down' : ''}`}
           onClick={() => castVote('down')}
@@ -97,37 +76,70 @@ export default function FeedbackButtons({ view, section, insightId }) {
           <Icon name="thumb_down" />
         </button>
       </span>
+      {vote && (
+        <span className="tooltip-anchor" data-tooltip="Share more details">
+          <button
+            className="feedback-btn"
+            onClick={() => setPanelOpen((o) => !o)}
+            aria-label="Share more feedback details"
+            aria-pressed={panelOpen}
+          >
+            <Icon name="edit_note" />
+          </button>
+        </span>
+      )}
 
-      {panelOpen && (
-        <div className="feedback-popover">
-          <div className="feedback-popover-title">{vote === 'down' ? 'What went wrong?' : 'What worked well?'}</div>
-          <div className="feedback-popover-list">
+      <Popover
+        open={panelOpen}
+        anchorEl={rootRef.current}
+        onClose={() => setPanelOpen(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        slotProps={{ paper: { sx: { mt: 1, width: 280, borderRadius: 2 } } }}
+      >
+        <Box sx={{ p: 2 }}>
+          <Typography variant="label2" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
+            {vote === 'down' ? 'What went wrong?' : 'What worked well?'}
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             {reasonOptions.map((r) => (
-              <div
+              <Box
                 key={r}
-                className={`feedback-popover-option${reasons.includes(r) ? ' selected' : ''}`}
-                onClick={() => toggleReason(r)}
+                component="label"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  pr: 1,
+                  borderRadius: 1.5,
+                  cursor: 'pointer',
+                  '&:hover': { bgcolor: 'action.hover' },
+                }}
               >
-                <span>{r}</span>
-                <span className="feedback-checkbox" />
-              </div>
+                <Checkbox size="small" checked={reasons.includes(r)} onChange={() => toggleReason(r)} />
+                <Typography variant="body2">{r}</Typography>
+              </Box>
             ))}
-          </div>
+          </Box>
           {hasOther && (
-            <textarea
-              className="feedback-other-text"
+            <EnhancedTextField
+              showLabel={false}
               placeholder="Tell us more…"
               value={otherText}
               onChange={(e) => setOtherText(e.target.value)}
+              multiline
               rows={2}
+              fullWidth
+              size="small"
               autoFocus
+              sx={{ mt: 1 }}
             />
           )}
-          <button className="feedback-submit-btn" onClick={handleSubmit}>
+          <Button variant="contained" color="primary" fullWidth onClick={handleSubmit} sx={{ mt: 1.5 }}>
             Submit
-          </button>
-        </div>
-      )}
+          </Button>
+        </Box>
+      </Popover>
     </div>
   );
 }

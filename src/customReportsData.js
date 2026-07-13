@@ -23,7 +23,73 @@ function buildTrend(period, baseScore, baseCalls) {
   }));
 }
 
+// Reference "now" for bucketing history into Today / Previous 7 Days /
+// Previous 30 Days / Older — kept fixed (rather than `new Date()`) so the
+// grouping is deterministic for this prototype regardless of the machine's
+// real clock.
+export const HISTORY_NOW = new Date('2026-07-13T16:00:00');
+
+// Quick-start prompts shown on the empty/landing state, mirroring the
+// "Automate your work with custom agents" cards pattern — clicking one just
+// fills the composer, it does not auto-generate.
+export const SUGGESTED_PROMPTS = [
+  {
+    id: 'weekly_pitch',
+    icon: 'campaign',
+    color: 'green',
+    title: 'Weekly Pitch Quality',
+    description: 'Track pitch effectiveness and cross-sell attempts week over week.',
+    prompt: 'Show weekly pitch quality trends and flag any teams below target.',
+    period: 'WEEKLY',
+  },
+  {
+    id: 'compliance_scan',
+    icon: 'verified_user',
+    color: 'blue',
+    title: 'Compliance Risk Scan',
+    description: 'Surface disclosure gaps and script-adherence issues org-wide.',
+    prompt: 'Scan for compliance and disclosure risks across all teams this month.',
+    period: 'MONTHLY',
+  },
+  {
+    id: 'team_compare',
+    icon: 'groups',
+    color: 'yellow',
+    title: 'Team Comparison',
+    description: 'Compare quality scores and KPI pass rates across teams.',
+    prompt: 'Compare quality scores across teams and highlight the biggest gaps.',
+    period: 'MONTHLY',
+  },
+];
+
 export const seedHistory = [
+  {
+    id: 'rpt_7',
+    prompt: 'Show agents with declining scores this week',
+    period: 'WEEKLY',
+    status: 'READY',
+    createdAt: '2026-07-13 10:30',
+    report: {
+      exec: 'Weekly view shows 42 agents with a 3+ point score decline vs the prior week, concentrated in two teams.',
+      highlights: [
+        { title: '42 Agents Declining 3+ Points', detail: 'Roughly 3.7% of the active roster, up from 28 agents last week.' },
+        { title: 'Two Teams Account for 70%', detail: 'H0172 and H0231 drive most of the decline — worth a targeted huddle.' },
+        { title: 'Call Closing Quality Is the Common Thread', detail: 'Declining agents fail this KPI 2.1x more often than stable agents.' },
+      ],
+      stats: { totalCalls: 13980, totalAgents: 1146, avgScore: 75.1, scoreDelta: -0.8 },
+      trend: buildTrend('WEEKLY', 75.1, 13980),
+      topAgents: [{ agent: 'A014', score: 93.4, calls: 22 }],
+      bottomAgents: [
+        { agent: 'A502', score: 44.2, calls: 14 },
+        { agent: 'A611', score: 46.9, calls: 11 },
+      ],
+      strategic: 'The concentration in two teams suggests a local coaching or staffing issue rather than an org-wide quality regression.',
+      coaching: [
+        { title: 'Closing Quality Huddle', text: 'Run a 15-minute drill on call-closing scripts with H0172 and H0231.' },
+        { title: 'Pair Declining Agents with Top Performers', text: 'Shadow sessions for the 42 flagged agents over the next week.' },
+      ],
+    },
+  },
   {
     id: 'rpt_1',
     prompt: 'Compare pitch quality across teams and highlight training gaps',
@@ -80,7 +146,114 @@ export const seedHistory = [
       ],
     },
   },
+  {
+    id: 'rpt_4',
+    prompt: 'Why did complaint resolution scores drop this week?',
+    period: 'WEEKLY',
+    status: 'FAILED',
+    createdAt: '2026-07-09 14:22',
+  },
+  {
+    id: 'rpt_5',
+    prompt: 'Summarize InvestRight app pitch adoption trend',
+    period: 'MONTHLY',
+    status: 'READY',
+    createdAt: '2026-06-20 10:00',
+    report: {
+      exec: 'InvestRight App Pitch adoption climbed from 24.1% to 28.4% over the month, still the lowest-passing KPI org-wide.',
+      highlights: [
+        { title: 'Adoption Up 4.3pp Month-over-Month', detail: 'Steady improvement, but still well below the 50% target.' },
+        { title: 'Top Branches Lead by 2x', detail: 'Bengaluru and Chennai branches pitch at 2x the org average.' },
+        { title: 'Script Awareness Is the Blocker', detail: 'Agent surveys point to unfamiliarity with the pitch script, not reluctance.' },
+      ],
+      stats: { totalCalls: 56210, totalAgents: 1146, avgScore: 75.8, scoreDelta: 0.9 },
+      trend: buildTrend('MONTHLY', 75.8, 56210),
+      topAgents: [{ agent: 'A203', score: 91.6, calls: 58 }],
+      bottomAgents: [{ agent: 'A845', score: 48.9, calls: 17 }],
+      strategic: 'A short refresher module on the InvestRight script, rolled out org-wide, is likely to move this KPI faster than continued organic adoption.',
+      coaching: [
+        { title: 'InvestRight Refresher Module', text: 'Roll out a 10-minute script walkthrough to all agents below 25% pitch rate.' },
+        { title: 'Branch Playbook Sharing', text: 'Have Bengaluru/Chennai leads share their pitch framing with lagging branches.' },
+      ],
+    },
+  },
+  {
+    id: 'rpt_6',
+    prompt: 'Compare gender-based sentiment across branches',
+    period: 'MONTHLY',
+    status: 'READY',
+    createdAt: '2026-05-15 09:00',
+    report: {
+      exec: 'Male callers show 12.8% negative sentiment vs 8.9% for female callers — a 3.9pp gap consistent across most branches.',
+      highlights: [
+        { title: '3.9pp Sentiment Gap by Gender', detail: 'Consistent across 11 of 14 branches analysed.' },
+        { title: 'Mumbai Andheri Widest Gap', detail: '6.1pp gap, the largest of any branch this month.' },
+        { title: 'Gap Narrows on Advisory Calls', detail: 'Advisory Services intent shows only a 1.2pp gap — the smallest of any intent.' },
+      ],
+      stats: { totalCalls: 58618, totalAgents: 1146, avgScore: 76.0, scoreDelta: 0.2 },
+      trend: buildTrend('MONTHLY', 76.0, 58618),
+      topAgents: [{ agent: 'A118', score: 92.1, calls: 47 }],
+      bottomAgents: [{ agent: 'A930', score: 46.5, calls: 13 }],
+      strategic: 'The narrower gap on Advisory calls suggests tone/empathy training used there could transfer well to higher-gap intents.',
+      coaching: [
+        { title: 'Advisory-Style Empathy Training', text: 'Adapt the Advisory Services tone playbook for Account Closure and Complaint Resolution agents.' },
+      ],
+    },
+  },
 ];
+
+// Live "reasoning trace" shown inside the collapsible Thinking card while a
+// report is generating (Figma nodes 0:9946 → 0:10448 reveal these one at a
+// time as the assistant "thinks").
+export const THINKING_STEPS = [
+  'Querying call transcripts and QA scorecards for the selected period...',
+  'Running trend and anomaly detection across agents and teams...',
+  'Cross-referencing KPI pass rates against historical benchmarks...',
+  'Synthesizing findings into a narrative report...',
+];
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Buckets history entries into Today / Previous 7 Days / Previous 30 Days /
+ * Older, mirroring the recency grouping used by chat-style "Agent" history
+ * panels. `'just now'` entries (freshly generated in this session) always
+ * land in Today.
+ */
+export function groupHistoryByRecency(history, now = HISTORY_NOW) {
+  const groups = { today: [], last7: [], last30: [], older: [] };
+  for (const entry of history) {
+    if (entry.createdAt === 'just now') {
+      groups.today.push(entry);
+      continue;
+    }
+    const diffDays = (now - new Date(entry.createdAt.replace(' ', 'T'))) / DAY_MS;
+    if (diffDays < 1) groups.today.push(entry);
+    else if (diffDays < 7) groups.last7.push(entry);
+    else if (diffDays < 30) groups.last30.push(entry);
+    else groups.older.push(entry);
+  }
+  return groups;
+}
+
+export const THINKING_STEP_INTERVAL_MS = 550;
+
+// Mock "Enhance prompt" transform (wand icon in the composer) — client-side
+// stand-in for an LLM prompt-rewrite call, deterministic on prompt length so
+// the same input always enhances the same way in this prototype.
+const ENHANCE_SUFFIXES = [
+  'Break the analysis down by team, call out the top 3 outliers, and end with one concrete coaching recommendation.',
+  'Compare this against the prior period, highlight statistically significant shifts, and flag any teams that need immediate attention.',
+  'Include supporting call volume and sample size for each finding, and note any data gaps or caveats.',
+];
+
+export function enhancePrompt(text) {
+  const trimmed = text.trim();
+  if (!trimmed) return trimmed;
+  const clean = trimmed.replace(/[.?!]+$/, '');
+  const suffix = ENHANCE_SUFFIXES[clean.length % ENHANCE_SUFFIXES.length];
+  return `${clean}. ${suffix}`;
+}
 
 export function generateMockReport(prompt, period) {
   const id = `rpt_${nextId++}`;

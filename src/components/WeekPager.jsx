@@ -8,6 +8,7 @@ export default function WeekPager({ label, index, total, onChange, prevTooltip =
           <Icon name="chevron_left" />
         </button>
       </span>
+      <span className="week-pager-label">{label}</span>
       <span className="tooltip-anchor" data-tooltip={nextTooltip}>
         <button
           className="week-pager-btn"
