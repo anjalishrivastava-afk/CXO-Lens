@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
 import Icon from './Icon';
+import FeedbackButtons from './FeedbackButtons';
 import { agentData as D } from '../data';
+
+const VIEW = 'agent';
 
 export default function AgentView() {
   const [expanded, setExpanded] = useState(null);
@@ -22,9 +25,12 @@ export default function AgentView() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div className="top-cards-row">
         <div className="info-card priority">
-          <div className="info-card-heading-row">
-            <Icon name="target" />
-            <span className="info-card-title">Today's Priority</span>
+          <div className="info-card-heading-row" style={{ justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="target" />
+              <span className="info-card-title">Today's Priority</span>
+            </span>
+            <FeedbackButtons view={VIEW} section="priority" insightId="agent_priority" />
           </div>
           <div className="info-card-text">{D.priorityText}</div>
         </div>
@@ -90,7 +96,10 @@ export default function AgentView() {
       <div>
         <div className="section-heading">Good Job</div>
         <div className="good-job-card">
-          <div className="good-job-title">{D.goodJob.title}</div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="good-job-title">{D.goodJob.title}</div>
+            <FeedbackButtons view={VIEW} section="good_job" insightId="agent_good_job" />
+          </div>
           <div className="good-job-value-row">
             <span className="good-job-pct">{D.goodJob.pct}</span>
             <span className="good-job-team">{D.goodJob.team}</span>

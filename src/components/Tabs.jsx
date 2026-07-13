@@ -4,6 +4,8 @@ const TAB_DEFS = [
   { key: 'org', label: 'Org Insights', role: 'ADMIN', icon: 'apartment' },
   { key: 'team', label: 'Team Insights', role: 'TEAM', icon: 'groups' },
   { key: 'agent', label: 'Agent Insights', role: 'AGENT', icon: 'person' },
+  { key: 'cxo', label: 'CXO Insights', role: 'ADMIN', icon: 'monitoring' },
+  { key: 'custom', label: 'Custom Reports', role: 'ADMIN', icon: 'history_edu' },
 ];
 
 export default function Tabs({ view, onChange }) {

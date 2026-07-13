@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Icon from './Icon';
 import CollapsibleSection from './CollapsibleSection';
 import ScoreDistribution from './ScoreDistribution';
+import FeedbackButtons from './FeedbackButtons';
 import { dataByView } from '../data';
 
 const CARD_COLOR = {
@@ -54,16 +55,22 @@ export default function OverviewView({ view, onOpenAgent }) {
           </div>
         )}
         <div className="info-card priority">
-          <div className="info-card-heading-row">
-            <Icon name="target" />
-            <span className="info-card-title">{D.priorityTitle}</span>
+          <div className="info-card-heading-row" style={{ justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="target" />
+              <span className="info-card-title">{D.priorityTitle}</span>
+            </span>
+            <FeedbackButtons view={view} section="priority" insightId={`${view}_priority`} />
           </div>
           <div className="info-card-text">{D.priorityText}</div>
         </div>
         <div className="info-card strength">
-          <div className="info-card-heading-row">
-            <Icon name="verified" />
-            <span className="info-card-title">{D.strengthTitle}</span>
+          <div className="info-card-heading-row" style={{ justifyContent: 'space-between' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="verified" />
+              <span className="info-card-title">{D.strengthTitle}</span>
+            </span>
+            <FeedbackButtons view={view} section="strength" insightId={`${view}_strength`} />
           </div>
           <div className="info-card-text">{D.strengthText}</div>
         </div>
@@ -203,10 +210,11 @@ export default function OverviewView({ view, onOpenAgent }) {
           {D.coaching.map((c) => (
             <div key={c.n} className="coaching-row">
               <div className="coaching-num">{c.n}</div>
-              <div>
+              <div style={{ flex: 1 }}>
                 <div className="coaching-title">{c.title}</div>
                 <div className="coaching-text">{c.text}</div>
               </div>
+              <FeedbackButtons view={view} section="coaching_list" insightId={`${view}_coach_${c.n}`} />
             </div>
           ))}
         </div>

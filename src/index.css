@@ -272,6 +272,7 @@ select {
 .tabs {
   display: flex;
   gap: 4px;
+  flex-wrap: wrap;
 }
 
 .tab-btn {
@@ -957,6 +958,44 @@ select {
   color: #fff;
 }
 
+.feedback-buttons {
+  display: inline-flex;
+  gap: 2px;
+  flex: none;
+}
+
+.feedback-btn {
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.feedback-btn .msr {
+  font-size: 15px;
+}
+
+.feedback-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text-secondary);
+}
+
+.feedback-btn.active-up {
+  color: var(--green-text);
+  background: rgba(6, 147, 81, 0.1);
+}
+
+.feedback-btn.active-down {
+  color: var(--red-text);
+  background: var(--red-bg);
+}
+
 .say-this-text {
   font-size: 13px;
   line-height: 1.55;
@@ -1613,4 +1652,223 @@ select {
   font-size: 12px;
   line-height: 1.5;
   color: var(--text-secondary);
+}
+
+/* ---------- CXO Insights ---------- */
+
+.cxo-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cxo-meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-dark);
+  background: var(--accent-light-bg);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.cxo-meta-chip.muted {
+  color: var(--text-secondary);
+  background: var(--bg);
+}
+
+.cxo-meta-chip .msr {
+  font-size: 14px;
+}
+
+.weekly-chart-svg {
+  width: 100%;
+  height: 170px;
+  overflow: visible;
+}
+
+.weekly-chart-label {
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+
+.call-list-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.call-list-row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.call-list-row:first-child {
+  border-top: none;
+}
+
+.call-list-score {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.call-list-score.red {
+  color: var(--red-text);
+}
+
+.call-list-score.green {
+  color: var(--green-text);
+}
+
+.call-list-branch {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.call-list-duration {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.call-list-listen {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-secondary);
+}
+
+.call-list-listen .msr {
+  font-size: 14px;
+}
+
+.call-list-listen:hover {
+  border-color: var(--accent-light-border);
+  color: var(--accent);
+}
+
+/* ---------- Custom Reports ---------- */
+
+.custom-prompt-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 64px;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.custom-prompt-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.custom-prompt-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.generate-btn .msr {
+  font-size: 16px;
+}
+
+.generate-btn:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.generate-btn:not(:disabled):hover {
+  background: var(--accent-dark);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-row {
+  padding: 10px 8px;
+  border-top: 1px solid var(--border-light);
+  border-radius: 6px;
+}
+
+.history-row:first-child {
+  border-top: none;
+}
+
+.history-row:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.history-prompt {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.history-row.selected .history-prompt {
+  color: var(--accent);
+}
+
+.history-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.history-status {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.history-status.ready {
+  background: rgba(6, 147, 81, 0.1);
+  color: var(--green-text);
+}
+
+.history-status.generating {
+  background: var(--yellow-chip);
+  color: var(--yellow-text);
+}
+
+.history-status.failed {
+  background: var(--red-bg);
+  color: var(--red-text);
 }

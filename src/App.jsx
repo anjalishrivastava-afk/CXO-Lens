@@ -5,6 +5,10 @@ import Tabs from './components/Tabs';
 import FilterBar from './components/FilterBar';
 import AgentView from './components/AgentView';
 import OverviewView from './components/OverviewView';
+import CxoInsightsView from './components/CxoInsightsView';
+import CustomReportsView from './components/CustomReportsView';
+
+const FILTER_BAR_VIEWS = ['org', 'team', 'agent'];
 
 export default function App() {
   const [view, setViewState] = useState('agent');
@@ -41,21 +45,22 @@ export default function App() {
               </div>
             </div>
 
-            <FilterBar
-              view={view}
-              period={period}
-              onPeriodChange={setPeriod}
-              selector={selector}
-              onSelectorChange={setSelector}
-            />
+            {FILTER_BAR_VIEWS.includes(view) && (
+              <FilterBar
+                view={view}
+                period={period}
+                onPeriodChange={setPeriod}
+                selector={selector}
+                onSelectorChange={setSelector}
+              />
+            )}
 
             <div className="content">
               <div className="sections">
-                {view === 'agent' ? (
-                  <AgentView />
-                ) : (
-                  <OverviewView view={view} onOpenAgent={openAgent} />
-                )}
+                {view === 'agent' && <AgentView />}
+                {(view === 'team' || view === 'org') && <OverviewView view={view} onOpenAgent={openAgent} />}
+                {view === 'cxo' && <CxoInsightsView />}
+                {view === 'custom' && <CustomReportsView />}
                 <div className="footer-note">AI-generated summary. May contain errors.</div>
               </div>
             </div>
