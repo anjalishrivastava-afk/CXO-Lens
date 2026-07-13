@@ -698,7 +698,6 @@ select {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #fff;
-  overflow: hidden;
 }
 
 .improve-row {
@@ -708,6 +707,19 @@ select {
 
 .improve-row:first-child {
   border-top: none;
+  border-radius: 8px 8px 0 0;
+}
+
+.improve-row:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.improve-row:first-child .improve-header {
+  border-radius: 8px 8px 0 0;
+}
+
+.improve-row:last-child .improve-header {
+  border-radius: 0 0 8px 8px;
 }
 
 .improve-row.expanded {
