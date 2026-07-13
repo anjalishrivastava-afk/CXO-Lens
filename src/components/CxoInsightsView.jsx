@@ -376,23 +376,25 @@ export default function CxoInsightsView() {
         </div>
       </div>
 
-      <CollapsibleSection
-        title="Weekly Sentiment Trend"
-        subtitle={D.findingWeekly}
-        open={isOpen('weekly')}
-        onToggle={() => toggle('weekly')}
-      >
-        <WeeklySentimentChart series={D.weeklySentimentSeries} />
-      </CollapsibleSection>
+      <div className="rank-tables-grid">
+        <CollapsibleSection
+          title="Weekly Sentiment Trend"
+          subtitle={D.findingWeekly}
+          open={isOpen('weekly')}
+          onToggle={() => toggle('weekly')}
+        >
+          <WeeklySentimentChart series={D.weeklySentimentSeries} />
+        </CollapsibleSection>
 
-      <CollapsibleSection
-        title="Sentiment by Day of Week"
-        subtitle={D.findingDow}
-        open={isOpen('dow')}
-        onToggle={() => toggle('dow')}
-      >
-        <DowChart weeks={sentimentByDowByWeek} weekLabels={weekLabels} />
-      </CollapsibleSection>
+        <CollapsibleSection
+          title="Sentiment by Day of Week"
+          subtitle={D.findingDow}
+          open={isOpen('dow')}
+          onToggle={() => toggle('dow')}
+        >
+          <DowChart weeks={sentimentByDowByWeek} weekLabels={weekLabels} />
+        </CollapsibleSection>
+      </div>
 
       <div className="rank-tables-grid">
         <CollapsibleSection
