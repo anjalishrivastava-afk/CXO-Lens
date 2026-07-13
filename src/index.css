@@ -809,6 +809,38 @@ select {
   transform: rotate(180deg);
 }
 
+/* instant hover tooltip (expand/collapse) */
+
+.tooltip-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip-anchor::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  background: #26282c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: none;
+  z-index: 50;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-anchor:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .improve-detail {
   padding: 0 16px 16px;
 }
@@ -934,12 +966,6 @@ select {
   justify-content: space-between;
   gap: 10px;
   cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.15s;
-}
-
-.section-card-header:hover {
-  background: rgba(0, 0, 0, 0.04);
 }
 
 .section-card-title {

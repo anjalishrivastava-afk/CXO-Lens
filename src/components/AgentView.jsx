@@ -114,7 +114,6 @@ export default function AgentView() {
                 <div
                   className="improve-header"
                   onClick={() => setExpanded(isExpanded ? null : i)}
-                  title={isExpanded ? 'Collapse' : 'Expand'}
                 >
                   <div className="improve-name-row">
                     <span className="improve-dot" style={{ background: below ? 'var(--red)' : 'var(--green)' }} />
@@ -136,7 +135,9 @@ export default function AgentView() {
                     <span className={`improve-badge ${below ? 'below' : 'above'}`}>
                       {diff}% {below ? 'below' : 'above'} team avg
                     </span>
-                    <Icon name="expand_more" className={`improve-chevron${isExpanded ? ' open' : ''}`} />
+                    <span className="tooltip-anchor" data-tooltip={isExpanded ? 'Collapse' : 'Expand'}>
+                      <Icon name="expand_more" className={`improve-chevron${isExpanded ? ' open' : ''}`} />
+                    </span>
                   </div>
                 </div>
                 {isExpanded && (
