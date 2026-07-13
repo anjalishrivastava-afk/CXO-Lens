@@ -114,6 +114,7 @@ export default function AgentView() {
                 <div
                   className="improve-header"
                   onClick={() => setExpanded(isExpanded ? null : i)}
+                  title={isExpanded ? 'Collapse' : 'Expand'}
                 >
                   <div className="improve-name-row">
                     <span className="improve-dot" style={{ background: below ? 'var(--red)' : 'var(--green)' }} />

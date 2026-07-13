@@ -934,6 +934,12 @@ select {
   justify-content: space-between;
   gap: 10px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.section-card-header:hover {
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .section-card-title {
