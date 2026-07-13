@@ -2,6 +2,17 @@
 // (HLD/LLD §10.1) and the sample callback (§18.6). Numbers are self-consistent
 // mock data, not pulled live from ClickHouse.
 
+// Past fortnightly report periods (mirrors GET /reports/cxo_insights/history
+// in the LLD §4.6). Only the current period has full mock data behind it —
+// picking an older one swaps the displayed period/refresh label, same as the
+// existing (also cosmetic-only) period buttons in the Org/Team/Agent tabs.
+export const fortnightPeriods = [
+  { id: 'current', label: 'Jun 16 – Jun 30, 2026', refreshedAt: null, nextRefreshAt: 'Jul 1, 2026' },
+  { id: 'p1', label: 'Jun 1 – Jun 15, 2026', refreshedAt: 'Jun 16, 2026', nextRefreshAt: null },
+  { id: 'p2', label: 'May 16 – May 31, 2026', refreshedAt: 'Jun 1, 2026', nextRefreshAt: null },
+  { id: 'p3', label: 'May 1 – May 15, 2026', refreshedAt: 'May 16, 2026', nextRefreshAt: null },
+];
+
 export const cxoData = {
   dashboardType: 'cxo',
   periodType: 'FORTNIGHTLY',

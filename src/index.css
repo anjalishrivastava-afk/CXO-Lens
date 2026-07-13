@@ -1684,6 +1684,115 @@ select {
   font-size: 14px;
 }
 
+/* Signal design system tokens, copied from signal-fig/fig-tokens.css in the
+   original handoff bundle (no live Figma access) — namespaced so they don't
+   collide with this app's own --accent/--text-secondary/etc. tokens. */
+:root {
+  --signal-primary: rgb(57, 79, 182);
+  --signal-primary-hover-bg: rgba(57, 79, 182, 0.04);
+  --signal-primary-focus-ring: rgba(57, 79, 182, 0.3);
+  --signal-input-border: rgba(0, 0, 0, 0.23);
+  --signal-input-border-hover: rgb(0, 0, 0);
+  --signal-divider: rgba(0, 0, 0, 0.12);
+  --signal-action-hover: rgba(26, 26, 26, 0.04);
+  --signal-action-selected: rgba(26, 26, 26, 0.08);
+  --signal-text-secondary: rgba(0, 0, 0, 0.6);
+  --signal-text-primary: rgb(26, 26, 26);
+  --signal-radius-md: 8px;
+  --signal-neutral-50: rgb(248, 248, 248);
+}
+
+.signal-date-filter {
+  position: relative;
+}
+
+.signal-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--signal-input-border);
+  border-radius: var(--signal-radius-md);
+  background: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--signal-text-primary);
+  cursor: pointer;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+
+.signal-filter-btn .msr {
+  font-size: 15px;
+  color: var(--signal-text-secondary);
+}
+
+.signal-filter-btn:hover {
+  border-color: var(--signal-input-border-hover);
+}
+
+.signal-filter-btn.open {
+  border-color: var(--signal-primary);
+  box-shadow: 0 0 0 3px var(--signal-primary-focus-ring);
+}
+
+.signal-filter-chevron {
+  transition: transform 0.15s;
+}
+
+.signal-filter-chevron.open {
+  transform: rotate(180deg);
+}
+
+.signal-filter-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 240px;
+  background: #fff;
+  border: 1px solid var(--signal-divider);
+  border-radius: var(--signal-radius-md);
+  box-shadow: 0 4px 16px rgba(10, 13, 18, 0.14);
+  z-index: 30;
+  padding: 6px;
+}
+
+.signal-filter-menu-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--signal-text-secondary);
+  padding: 6px 10px 4px;
+}
+
+.signal-filter-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--signal-text-primary);
+  cursor: pointer;
+}
+
+.signal-filter-option:hover {
+  background: var(--signal-action-hover);
+}
+
+.signal-filter-option.selected {
+  background: var(--signal-action-selected);
+  color: var(--signal-primary);
+  font-weight: 600;
+}
+
+.signal-filter-option .msr {
+  font-size: 16px;
+  color: var(--signal-primary);
+}
+
 .weekly-chart-svg {
   width: 100%;
   height: 170px;

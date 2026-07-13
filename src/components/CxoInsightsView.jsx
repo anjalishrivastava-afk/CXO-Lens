@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Icon from './Icon';
 import FeedbackButtons from './FeedbackButtons';
 import CollapsibleSection from './CollapsibleSection';
-import { cxoData as D, formatDuration } from '../cxoData';
+import SignalDateFilter from './SignalDateFilter';
+import { cxoData as D, formatDuration, fortnightPeriods } from '../cxoData';
 
 const VIEW = 'cxo';
 
@@ -256,8 +257,11 @@ function CallList({ title, rows, tone }) {
 export default function CxoInsightsView() {
   const [expandedIntent, setExpandedIntent] = useState(null);
   const [distOpen, setDistOpen] = useState({});
+  const [periodId, setPeriodId] = useState('current');
   const toggle = (key) => setDistOpen((s) => ({ ...s, [key]: !s[key] }));
   const isOpen = (key) => !distOpen[key];
+
+  const selectedPeriod = fortnightPeriods.find((p) => p.id === periodId) || fortnightPeriods[0];
 
   const composition = [
     { key: 'positivePct', color: 'var(--green)' },
@@ -270,12 +274,19 @@ export default function CxoInsightsView() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div className="cxo-meta-bar">
         <span className="cxo-meta-chip">
-          <Icon name="event_repeat" /> Fortnightly · {D.displayPeriod}
+          <Icon name="event_repeat" /> Fortnightly
         </span>
+        <SignalDateFilter selectedId={periodId} onChange={setPeriodId} />
         <span className="cxo-meta-chip muted">
-          <Icon name="schedule" /> Next refresh {D.nextRefreshAt}
+          <Icon name="schedule" />
+          {selectedPeriod.nextRefreshAt ? `Next refresh ${selectedPeriod.nextRefreshAt}` : `Refreshed ${selectedPeriod.refreshedAt}`}
         </span>
         <span className="tab-badge admin">ADMIN ONLY</span>
+        {periodId !== 'current' && (
+          <span className="cxo-meta-chip muted">
+            <Icon name="info" /> Historical period — this prototype shows the same illustrative dataset for every period
+          </span>
+        )}
       </div>
 
       <div>
