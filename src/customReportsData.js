@@ -4,6 +4,25 @@
 
 let nextId = 100;
 
+// Mock period-over-period trend behind each report, so its detail view can
+// use the same chart-type toggle + prev/next pager pattern as CXO Insights.
+const TREND_LABELS = {
+  DAILY: ['Jul 8', 'Jul 9', 'Jul 10', 'Jul 11', 'Jul 12', 'Jul 13'],
+  WEEKLY: ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6'],
+  MONTHLY: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+};
+const SCORE_DELTAS = [-2.4, -1.1, -0.3, 0.6, 1.2, 0];
+const CALL_FACTORS = [0.78, 0.85, 0.9, 0.95, 1.02, 1.0];
+
+function buildTrend(period, baseScore, baseCalls) {
+  const labels = TREND_LABELS[period] || TREND_LABELS.MONTHLY;
+  return labels.map((label, i) => ({
+    label,
+    score: Math.round((baseScore + SCORE_DELTAS[i]) * 10) / 10,
+    calls: Math.round(baseCalls * CALL_FACTORS[i]),
+  }));
+}
+
 export const seedHistory = [
   {
     id: 'rpt_1',
@@ -19,6 +38,7 @@ export const seedHistory = [
         { title: 'Negative Sentiment Correlates with Pitches', detail: '14.2% negative on cross-sell vs 9.8% baseline.' },
       ],
       stats: { totalCalls: 58618, totalAgents: 1146, avgScore: 76.2, scoreDelta: -0.5 },
+      trend: buildTrend('MONTHLY', 76.2, 58618),
       topAgents: [
         { agent: 'A001', score: 95.2, calls: 82 },
         { agent: 'A014', score: 93.7, calls: 64 },
@@ -50,6 +70,7 @@ export const seedHistory = [
         { title: 'Empathy KPI Pass Rate Down', detail: 'Expressive Empathy/Apology fell to 61% org-wide.' },
       ],
       stats: { totalCalls: 14022, totalAgents: 1146, avgScore: 74.8, scoreDelta: -1.2 },
+      trend: buildTrend('WEEKLY', 74.8, 14022),
       topAgents: [{ agent: 'A014', score: 94.1, calls: 19 }],
       bottomAgents: [{ agent: 'A612', score: 41.3, calls: 8 }],
       strategic: 'The pattern points to a process gap in complaint handling rather than a broad quality regression.',
@@ -77,6 +98,7 @@ export function generateMockReport(prompt, period) {
         { title: 'Volume Concentrated in Top Intents', detail: 'The top 3 intents account for over 55% of interactions.' },
       ],
       stats: { totalCalls: 12480, totalAgents: 1146, avgScore: 75.4, scoreDelta: 0.4 },
+      trend: buildTrend(period, 75.4, 12480),
       topAgents: [{ agent: 'A014', score: 92.8, calls: 41 }],
       bottomAgents: [{ agent: 'A733', score: 49.6, calls: 9 }],
       strategic: 'This is a mock report generated client-side for prototyping — wire this up to the real Lumina /v1/reports/prompted endpoint to replace it with a live answer.',

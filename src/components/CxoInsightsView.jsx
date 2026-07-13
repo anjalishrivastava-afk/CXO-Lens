@@ -3,7 +3,16 @@ import Icon from './Icon';
 import FeedbackButtons from './FeedbackButtons';
 import CollapsibleSection from './CollapsibleSection';
 import SignalDateFilter from './SignalDateFilter';
-import { cxoData as D, formatDuration, fortnightPeriods } from '../cxoData';
+import WeekPager from './WeekPager';
+import ChartTypeToggle from './ChartTypeToggle';
+import SimpleLineChart from './SimpleLineChart';
+import {
+  cxoData as D,
+  formatDuration,
+  fortnightPeriods,
+  sentimentByDowByWeek,
+  qualityBySentimentByWeek,
+} from '../cxoData';
 
 const VIEW = 'cxo';
 
@@ -118,45 +127,8 @@ function WeeklySentimentChart({ series }) {
   return (
     <div>
       <div className="chart-toolbar">
-        <div className="chart-type-toggle">
-          <span className="tooltip-anchor" data-tooltip="Line chart">
-            <button
-              className={`chart-toggle-btn${graphType === 'line' ? ' active' : ''}`}
-              onClick={() => setGraphType('line')}
-            >
-              <Icon name="show_chart" />
-            </button>
-          </span>
-          <span className="tooltip-anchor" data-tooltip="Bar chart">
-            <button
-              className={`chart-toggle-btn${graphType === 'bar' ? ' active' : ''}`}
-              onClick={() => setGraphType('bar')}
-            >
-              <Icon name="bar_chart" />
-            </button>
-          </span>
-        </div>
-        <div className="week-pager">
-          <span className="tooltip-anchor" data-tooltip="Previous week">
-            <button
-              className="week-pager-btn"
-              disabled={selectedIdx === 0}
-              onClick={() => setSelectedIdx((i) => Math.max(0, i - 1))}
-            >
-              <Icon name="chevron_left" />
-            </button>
-          </span>
-          <span className="week-pager-label">{series[selectedIdx].label}</span>
-          <span className="tooltip-anchor" data-tooltip="Next week">
-            <button
-              className="week-pager-btn"
-              disabled={selectedIdx === series.length - 1}
-              onClick={() => setSelectedIdx((i) => Math.min(series.length - 1, i + 1))}
-            >
-              <Icon name="chevron_right" />
-            </button>
-          </span>
-        </div>
+        <ChartTypeToggle value={graphType} onChange={setGraphType} />
+        <WeekPager label={selectedWeek.label} index={selectedIdx} total={series.length} onChange={setSelectedIdx} />
       </div>
 
       {graphType === 'line' ? (
@@ -197,43 +169,107 @@ function WeeklySentimentChart({ series }) {
   );
 }
 
-function DowChart({ rows }) {
+function DowChart({ weeks, weekLabels }) {
+  const [graphType, setGraphType] = useState('bar');
+  const [selectedIdx, setSelectedIdx] = useState(weeks.length - 1);
+  const rows = weeks[selectedIdx];
   const max = Math.max(...rows.map((r) => r.volume)) || 1;
   const colorFor = (pct) => (pct >= 11.5 ? 'var(--red)' : pct >= 11.0 ? 'var(--yellow)' : 'var(--green)');
+
   return (
-    <div className="dist-grid" style={{ gridTemplateColumns: `repeat(${rows.length}, 1fr)` }}>
-      {rows.map((r) => (
-        <div key={r.label} className="dist-col">
-          <div className="dist-share">{r.negativePct}%</div>
-          <div
-            className="dist-bar"
-            title={`${r.label}: ${r.volume.toLocaleString()} calls, ${r.negativePct}% negative`}
-            style={{ height: `${Math.round((r.volume / max) * 118)}px`, background: colorFor(r.negativePct) }}
-          />
-          <div className="dist-range">{r.label}</div>
+    <div>
+      <div className="chart-toolbar">
+        <ChartTypeToggle value={graphType} onChange={setGraphType} />
+        <WeekPager label={weekLabels[selectedIdx]} index={selectedIdx} total={weeks.length} onChange={setSelectedIdx} />
+      </div>
+      {graphType === 'bar' ? (
+        <div className="dist-grid" style={{ gridTemplateColumns: `repeat(${rows.length}, 1fr)` }}>
+          {rows.map((r) => (
+            <div key={r.label} className="dist-col">
+              <div className="dist-share">{r.negativePct}%</div>
+              <div
+                className="dist-bar"
+                title={`${r.label}: ${r.volume.toLocaleString()} calls, ${r.negativePct}% negative`}
+                style={{ height: `${Math.round((r.volume / max) * 118)}px`, background: colorFor(r.negativePct) }}
+              />
+              <div className="dist-range">{r.label}</div>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : (
+        <SimpleLineChart
+          points={rows.map((r) => ({ label: r.label, value: r.negativePct, color: colorFor(r.negativePct) }))}
+        />
+      )}
     </div>
   );
 }
 
-function QualityBySentimentChart({ rows }) {
+function QualityBySentimentChart({ weeks, weekLabels }) {
+  const [graphType, setGraphType] = useState('bar');
+  const [selectedIdx, setSelectedIdx] = useState(weeks.length - 1);
+  const rows = weeks[selectedIdx];
   const colorMap = { Positive: 'var(--green)', Neutral: 'var(--yellow)', Negative: 'var(--red)' };
   const max = Math.max(...rows.map((r) => r.avgScore)) || 1;
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      {rows.map((r) => (
-        <div key={r.sentiment} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ width: 70, fontSize: 12, color: 'var(--text-secondary)' }}>{r.sentiment}</span>
-          <div className="weak-bar-track" style={{ flex: 1, width: 'auto' }}>
-            <div
-              className="weak-bar-fill"
-              style={{ width: `${(r.avgScore / max) * 100}%`, background: colorMap[r.sentiment] }}
-            />
-          </div>
-          <span style={{ width: 42, textAlign: 'right', fontSize: 13, fontWeight: 600 }}>{r.avgScore}</span>
+    <div>
+      <div className="chart-toolbar">
+        <ChartTypeToggle value={graphType} onChange={setGraphType} />
+        <WeekPager label={weekLabels[selectedIdx]} index={selectedIdx} total={weeks.length} onChange={setSelectedIdx} />
+      </div>
+      {graphType === 'bar' ? (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {rows.map((r) => (
+            <div key={r.sentiment} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ width: 70, fontSize: 12, color: 'var(--text-secondary)' }}>{r.sentiment}</span>
+              <div className="weak-bar-track" style={{ flex: 1, width: 'auto' }}>
+                <div
+                  className="weak-bar-fill"
+                  style={{ width: `${(r.avgScore / max) * 100}%`, background: colorMap[r.sentiment] }}
+                />
+              </div>
+              <span style={{ width: 42, textAlign: 'right', fontSize: 13, fontWeight: 600 }}>{r.avgScore}</span>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : (
+        <SimpleLineChart
+          points={rows.map((r) => ({ label: r.sentiment, value: r.avgScore, color: colorMap[r.sentiment] }))}
+        />
+      )}
+    </div>
+  );
+}
+
+function CompositionChart({ weeklySeries }) {
+  const [selectedIdx, setSelectedIdx] = useState(weeklySeries.length - 1);
+  const week = weeklySeries[selectedIdx];
+  const total = week.positive + week.neutral + week.negative;
+  const segments = [
+    { key: 'positive', color: 'var(--green)' },
+    { key: 'neutral', color: 'var(--yellow)' },
+    { key: 'negative', color: 'var(--red)' },
+  ];
+
+  return (
+    <div>
+      <div className="chart-toolbar" style={{ justifyContent: 'flex-end' }}>
+        <WeekPager label={week.label} index={selectedIdx} total={weeklySeries.length} onChange={setSelectedIdx} />
+      </div>
+      <div className="mood-bar" style={{ height: 14 }}>
+        {segments.map((s) => (
+          <div key={s.key} className="mood-seg" style={{ width: `${(week[s.key] / total) * 100}%`, background: s.color }} />
+        ))}
+      </div>
+      <div className="dist-legend" style={{ marginTop: 10, paddingTop: 10 }}>
+        {segments.map((s) => (
+          <div key={s.key} className="dist-legend-item">
+            <span className="dist-legend-dot" style={{ background: s.color }} />
+            <span className="dist-legend-count">{Math.round((week[s.key] / total) * 1000) / 10}%</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -269,13 +305,7 @@ export default function CxoInsightsView() {
   const isOpen = (key) => !distOpen[key];
 
   const selectedPeriod = fortnightPeriods.find((p) => p.id === periodId) || fortnightPeriods[0];
-
-  const composition = [
-    { key: 'positivePct', color: 'var(--green)' },
-    { key: 'neutralPct', color: 'var(--yellow)' },
-    { key: 'negativePct', color: 'var(--red)' },
-    { key: 'otherPct', color: 'var(--text-muted)' },
-  ];
+  const weekLabels = D.weeklySentimentSeries.map((w) => w.label);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -361,7 +391,7 @@ export default function CxoInsightsView() {
         open={isOpen('dow')}
         onToggle={() => toggle('dow')}
       >
-        <DowChart rows={D.sentimentByDow} />
+        <DowChart weeks={sentimentByDowByWeek} weekLabels={weekLabels} />
       </CollapsibleSection>
 
       <div className="rank-tables-grid">
@@ -371,7 +401,7 @@ export default function CxoInsightsView() {
           open={isOpen('quality')}
           onToggle={() => toggle('quality')}
         >
-          <QualityBySentimentChart rows={D.qualityBySentiment} />
+          <QualityBySentimentChart weeks={qualityBySentimentByWeek} weekLabels={weekLabels} />
         </CollapsibleSection>
         <CollapsibleSection
           title="Sentiment Composition"
@@ -379,23 +409,7 @@ export default function CxoInsightsView() {
           open={isOpen('composition')}
           onToggle={() => toggle('composition')}
         >
-          <div className="mood-bar" style={{ height: 14 }}>
-            {composition.map((c) => (
-              <div
-                key={c.key}
-                className="mood-seg"
-                style={{ width: `${D.sentimentSummary[c.key]}%`, background: c.color }}
-              />
-            ))}
-          </div>
-          <div className="dist-legend" style={{ marginTop: 10, paddingTop: 10 }}>
-            {composition.map((c) => (
-              <div key={c.key} className="dist-legend-item">
-                <span className="dist-legend-dot" style={{ background: c.color }} />
-                <span className="dist-legend-count">{D.sentimentSummary[c.key]}%</span>
-              </div>
-            ))}
-          </div>
+          <CompositionChart weeklySeries={D.weeklySentimentSeries} />
         </CollapsibleSection>
       </div>
 

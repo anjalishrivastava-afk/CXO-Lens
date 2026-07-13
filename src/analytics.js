@@ -14,12 +14,14 @@ export function trackEvent(eventName, properties) {
   console.info('[analytics:stub] Amplitude SDK not found on window — would have tracked:', eventName, properties);
 }
 
-export function trackInsightFeedback({ view, section, insightId, vote }) {
+export function trackInsightFeedback({ view, section, insightId, vote, reasons, detail }) {
   trackEvent('AI Insight Feedback', {
     view,
     section,
     insight_id: insightId,
     vote,
+    reasons: reasons && reasons.length ? reasons : undefined,
+    detail: detail || undefined,
     source: 'ai_insights_dashboard',
   });
 }

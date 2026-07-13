@@ -13,6 +13,40 @@ export const fortnightPeriods = [
   { id: 'p3', label: 'May 1 – May 15, 2026', refreshedAt: 'May 16, 2026', nextRefreshAt: null },
 ];
 
+// Per-week variants of the DOW and quality-by-sentiment charts, so the same
+// prev/next week pager used on Weekly Sentiment Trend also works there. The
+// last entry (index 5) matches the values previously hardcoded as "current".
+const DOW_BASE = [
+  { label: 'Mon', volume: 8700, negativePct: 10.2, positivePct: 21.4 },
+  { label: 'Tue', volume: 8550, negativePct: 10.6, positivePct: 20.9 },
+  { label: 'Wed', volume: 8900, negativePct: 12.3, positivePct: 18.1 },
+  { label: 'Thu', volume: 8400, negativePct: 11.7, positivePct: 18.8 },
+  { label: 'Fri', volume: 8300, negativePct: 11.1, positivePct: 19.6 },
+  { label: 'Sat', volume: 7950, negativePct: 9.8, positivePct: 22.0 },
+  { label: 'Sun', volume: 7818, negativePct: 9.4, positivePct: 22.7 },
+];
+const DOW_WEEK_FACTORS = [1.22, 1.15, 1.09, 1.04, 1.0, 0.86];
+
+export const sentimentByDowByWeek = DOW_WEEK_FACTORS.map((factor) =>
+  DOW_BASE.map((d) => ({
+    label: d.label,
+    volume: d.volume,
+    negativePct: Math.round(d.negativePct * factor * 10) / 10,
+    positivePct: Math.round(d.positivePct * (2 - factor) * 10) / 10,
+  }))
+);
+
+const QUALITY_BASE = [
+  { sentiment: 'Positive', avgScore: 82.4 },
+  { sentiment: 'Neutral', avgScore: 77.1 },
+  { sentiment: 'Negative', avgScore: 68.9 },
+];
+const QUALITY_WEEK_FACTORS = [0.93, 0.95, 0.97, 0.98, 0.99, 1.0];
+
+export const qualityBySentimentByWeek = QUALITY_WEEK_FACTORS.map((factor) =>
+  QUALITY_BASE.map((q) => ({ sentiment: q.sentiment, avgScore: Math.round(q.avgScore * factor * 10) / 10 }))
+);
+
 export const cxoData = {
   dashboardType: 'cxo',
   periodType: 'FORTNIGHTLY',
@@ -56,22 +90,8 @@ export const cxoData = {
   ],
   findingWeekly: 'Negative sentiment declined from 3,600 in Jun 16–22 to 2,965 in Jun 23–29 (-17.6%) — the fortnight is trending in the right direction.',
 
-  sentimentByDow: [
-    { label: 'Mon', volume: 8700, negativePct: 10.2, positivePct: 21.4 },
-    { label: 'Tue', volume: 8550, negativePct: 10.6, positivePct: 20.9 },
-    { label: 'Wed', volume: 8900, negativePct: 12.3, positivePct: 18.1 },
-    { label: 'Thu', volume: 8400, negativePct: 11.7, positivePct: 18.8 },
-    { label: 'Fri', volume: 8300, negativePct: 11.1, positivePct: 19.6 },
-    { label: 'Sat', volume: 7950, negativePct: 9.8, positivePct: 22.0 },
-    { label: 'Sun', volume: 7818, negativePct: 9.4, positivePct: 22.7 },
-  ],
   findingDow: 'Wednesday and Thursday show elevated negativity at 12.3% and 11.7% — both above the 11.5% risk threshold.',
 
-  qualityBySentiment: [
-    { sentiment: 'Positive', avgScore: 82.4 },
-    { sentiment: 'Neutral', avgScore: 77.1 },
-    { sentiment: 'Negative', avgScore: 68.9 },
-  ],
   findingQuality: '13.5-point gap between positive (82.4) and negative (68.9) calls — the widest quality divergence this fortnight.',
   findingComposition: 'Neutral remains the dominant sentiment at 57.7% of all interactions, consistent with the prior fortnight.',
 

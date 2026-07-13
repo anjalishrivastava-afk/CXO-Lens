@@ -1,10 +1,68 @@
 import { useState } from 'react';
 import Icon from './Icon';
 import FeedbackButtons from './FeedbackButtons';
+import WeekPager from './WeekPager';
+import ChartTypeToggle from './ChartTypeToggle';
+import SimpleLineChart from './SimpleLineChart';
 import { seedHistory, generateMockReport } from '../customReportsData';
 
 const VIEW = 'custom';
 const PERIODS = ['DAILY', 'WEEKLY', 'MONTHLY'];
+
+function scoreColor(score) {
+  return score >= 80 ? 'var(--green)' : score >= 60 ? 'var(--yellow)' : 'var(--red)';
+}
+
+function ReportTrendChart({ trend, period }) {
+  const [graphType, setGraphType] = useState('line');
+  const [selectedIdx, setSelectedIdx] = useState(trend.length - 1);
+  const point = trend[selectedIdx];
+  const max = Math.max(...trend.map((p) => p.score)) || 1;
+
+  return (
+    <div className="section-card" style={{ marginBottom: 16 }}>
+      <div className="section-card-title" style={{ marginBottom: 2 }}>Score & Volume Trend</div>
+      <div className="section-card-sub" style={{ marginBottom: 10 }}>Avg quality score across recent {period.toLowerCase()} periods.</div>
+      <div className="chart-toolbar">
+        <ChartTypeToggle value={graphType} onChange={setGraphType} />
+        <WeekPager
+          label={point.label}
+          index={selectedIdx}
+          total={trend.length}
+          onChange={setSelectedIdx}
+          prevTooltip="Previous period"
+          nextTooltip="Next period"
+        />
+      </div>
+      {graphType === 'line' ? (
+        <SimpleLineChart points={trend.map((p) => ({ label: p.label, value: p.score, color: scoreColor(p.score) }))} />
+      ) : (
+        <div className="dist-grid" style={{ gridTemplateColumns: `repeat(${trend.length}, 1fr)` }}>
+          {trend.map((p) => (
+            <div key={p.label} className="dist-col">
+              <div className="dist-share">{p.score}%</div>
+              <div
+                className="dist-bar"
+                title={`${p.label}: ${p.score}% avg score, ${p.calls.toLocaleString()} calls`}
+                style={{ height: `${Math.round((p.score / max) * 118)}px`, background: scoreColor(p.score) }}
+              />
+              <div className="dist-range">{p.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="week-detail-panel">
+        <span className="week-detail-label">{point.label}</span>
+        <span className="week-detail-stat" style={{ color: scoreColor(point.score) }}>
+          Avg score {point.score}%
+        </span>
+        <span className="week-detail-stat" style={{ color: 'var(--text-secondary)' }}>
+          {point.calls.toLocaleString()} calls
+        </span>
+      </div>
+    </div>
+  );
+}
 
 function StatusBadge({ status }) {
   if (status === 'GENERATING') {
@@ -65,6 +123,8 @@ function ReportDetail({ entry }) {
           </div>
         </div>
       </div>
+
+      {report.trend && <ReportTrendChart trend={report.trend} period={entry.period} />}
 
       <div className="rank-tables-grid" style={{ marginBottom: 16 }}>
         <div className="rank-table-card">
