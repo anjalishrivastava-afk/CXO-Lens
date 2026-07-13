@@ -6,7 +6,13 @@ import { cxoData as D, formatDuration } from '../cxoData';
 
 const VIEW = 'cxo';
 
-function WeeklySentimentChart({ series }) {
+const SENTIMENT_LINES = [
+  { key: 'positive', color: 'var(--green)', label: 'Positive' },
+  { key: 'neutral', color: 'var(--yellow)', label: 'Neutral' },
+  { key: 'negative', color: 'var(--red)', label: 'Negative' },
+];
+
+function WeeklyLineChart({ series, selectedIdx, onSelect }) {
   const width = 560;
   const height = 170;
   const padTop = 12;
@@ -17,41 +23,162 @@ function WeeklySentimentChart({ series }) {
   const y = (v) => padTop + (1 - v / max) * (height - padTop - padBottom);
   const x = (i) => padX + i * stepX;
 
-  const lines = [
-    { key: 'positive', color: 'var(--green)', label: 'Positive' },
-    { key: 'neutral', color: 'var(--yellow)', label: 'Neutral' },
-    { key: 'negative', color: 'var(--red)', label: 'Negative' },
-  ];
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`} className="weekly-chart-svg">
+      {selectedIdx != null && (
+        <line
+          x1={x(selectedIdx)}
+          x2={x(selectedIdx)}
+          y1={padTop}
+          y2={height - padBottom}
+          className="weekly-chart-guide"
+        />
+      )}
+      {SENTIMENT_LINES.map((line) => (
+        <polyline
+          key={line.key}
+          points={series.map((w, i) => `${x(i)},${y(w[line.key])}`).join(' ')}
+          fill="none"
+          stroke={line.color}
+          strokeWidth="2.5"
+        />
+      ))}
+      {SENTIMENT_LINES.map((line) =>
+        series.map((w, i) => (
+          <circle
+            key={`${line.key}-${i}`}
+            cx={x(i)}
+            cy={y(w[line.key])}
+            r={selectedIdx === i ? 6 : 4}
+            fill={line.color}
+            stroke={selectedIdx === i ? '#fff' : 'none'}
+            strokeWidth={selectedIdx === i ? 1.5 : 0}
+            style={{ cursor: 'pointer' }}
+            onClick={() => onSelect(i)}
+          >
+            <title>
+              {line.label} · {w.label}: {w[line.key].toLocaleString()}
+            </title>
+          </circle>
+        ))
+      )}
+      {series.map((w, i) => (
+        <text
+          key={w.label}
+          x={x(i)}
+          y={height - 8}
+          textAnchor="middle"
+          className={`weekly-chart-label${selectedIdx === i ? ' selected' : ''}`}
+          style={{ cursor: 'pointer' }}
+          onClick={() => onSelect(i)}
+        >
+          {w.label}
+        </text>
+      ))}
+    </svg>
+  );
+}
+
+function WeeklyBarChart({ series, selectedIdx, onSelect }) {
+  const max = Math.max(...series.flatMap((w) => [w.positive, w.neutral, w.negative])) || 1;
+  return (
+    <div className="weekly-bar-chart">
+      {series.map((w, i) => (
+        <div
+          key={w.label}
+          className={`weekly-bar-group${selectedIdx === i ? ' selected' : ''}`}
+          onClick={() => onSelect(i)}
+        >
+          <div className="weekly-bar-cluster">
+            {SENTIMENT_LINES.map((line) => (
+              <div
+                key={line.key}
+                className="weekly-mini-bar"
+                title={`${line.label} · ${w.label}: ${w[line.key].toLocaleString()}`}
+                style={{ height: `${Math.round((w[line.key] / max) * 118)}px`, background: line.color }}
+              />
+            ))}
+          </div>
+          <div className="weekly-bar-label">{w.label}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function WeeklySentimentChart({ series }) {
+  const [graphType, setGraphType] = useState('line');
+  const [selectedIdx, setSelectedIdx] = useState(series.length - 1);
+
+  const selectedWeek = series[selectedIdx];
+  const prevWeek = selectedIdx > 0 ? series[selectedIdx - 1] : null;
+  const negDelta = prevWeek ? selectedWeek.negative - prevWeek.negative : null;
 
   return (
     <div>
-      <svg viewBox={`0 0 ${width} ${height}`} className="weekly-chart-svg">
-        {lines.map((line) => (
-          <polyline
-            key={line.key}
-            points={series.map((w, i) => `${x(i)},${y(w[line.key])}`).join(' ')}
-            fill="none"
-            stroke={line.color}
-            strokeWidth="2.5"
-          />
-        ))}
-        {lines.map((line) =>
-          series.map((w, i) => (
-            <circle key={`${line.key}-${i}`} cx={x(i)} cy={y(w[line.key])} r="4" fill={line.color}>
-              <title>
-                {line.label} · {w.label}: {w[line.key].toLocaleString()}
-              </title>
-            </circle>
-          ))
+      <div className="chart-toolbar">
+        <div className="chart-type-toggle">
+          <span className="tooltip-anchor" data-tooltip="Line chart">
+            <button
+              className={`chart-toggle-btn${graphType === 'line' ? ' active' : ''}`}
+              onClick={() => setGraphType('line')}
+            >
+              <Icon name="show_chart" />
+            </button>
+          </span>
+          <span className="tooltip-anchor" data-tooltip="Bar chart">
+            <button
+              className={`chart-toggle-btn${graphType === 'bar' ? ' active' : ''}`}
+              onClick={() => setGraphType('bar')}
+            >
+              <Icon name="bar_chart" />
+            </button>
+          </span>
+        </div>
+        <div className="chart-week-select">
+          <label htmlFor="cxo-week-select">Week</label>
+          <select
+            id="cxo-week-select"
+            value={selectedIdx}
+            onChange={(e) => setSelectedIdx(Number(e.target.value))}
+          >
+            {series.map((w, i) => (
+              <option key={w.label} value={i}>
+                {w.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {graphType === 'line' ? (
+        <WeeklyLineChart series={series} selectedIdx={selectedIdx} onSelect={setSelectedIdx} />
+      ) : (
+        <WeeklyBarChart series={series} selectedIdx={selectedIdx} onSelect={setSelectedIdx} />
+      )}
+
+      <div className="week-detail-panel">
+        <span className="week-detail-label">{selectedWeek.label}</span>
+        <span className="week-detail-stat" style={{ color: 'var(--green-text)' }}>
+          Positive {selectedWeek.positive.toLocaleString()}
+        </span>
+        <span className="week-detail-stat" style={{ color: 'var(--yellow-text)' }}>
+          Neutral {selectedWeek.neutral.toLocaleString()}
+        </span>
+        <span className="week-detail-stat" style={{ color: 'var(--red-text)' }}>
+          Negative {selectedWeek.negative.toLocaleString()}
+        </span>
+        {negDelta != null && (
+          <span className={`week-detail-delta ${negDelta <= 0 ? 'up' : 'down'}`}>
+            <Icon name={negDelta <= 0 ? 'arrow_downward' : 'arrow_upward'} />
+            {negDelta <= 0 ? '' : '+'}
+            {negDelta.toLocaleString()} negative vs prev week
+          </span>
         )}
-        {series.map((w, i) => (
-          <text key={w.label} x={x(i)} y={height - 8} textAnchor="middle" className="weekly-chart-label">
-            {w.label.split(' (')[0]}
-          </text>
-        ))}
-      </svg>
+      </div>
+
       <div className="dist-legend" style={{ marginTop: 4, paddingTop: 10 }}>
-        {lines.map((line) => (
+        {SENTIMENT_LINES.map((line) => (
           <div key={line.key} className="dist-legend-item">
             <span className="dist-legend-dot" style={{ background: line.color }} />
             <span className="dist-legend-label">{line.label}</span>

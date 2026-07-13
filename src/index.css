@@ -1695,6 +1695,168 @@ select {
   fill: var(--text-muted);
 }
 
+.weekly-chart-label.selected {
+  fill: var(--accent);
+  font-weight: 600;
+}
+
+.weekly-chart-guide {
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.chart-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.chart-type-toggle {
+  display: flex;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.chart-toggle-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.chart-toggle-btn .msr {
+  font-size: 16px;
+}
+
+.chart-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.chart-toggle-btn.active {
+  background: var(--accent-light-bg);
+  color: var(--accent);
+}
+
+.chart-week-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-week-select label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.chart-week-select select {
+  padding: 5px 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  background: #fff;
+  cursor: pointer;
+}
+
+.weekly-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  height: 170px;
+  padding-bottom: 8px;
+}
+
+.weekly-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+.weekly-bar-group:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.weekly-bar-group.selected {
+  background: var(--accent-light-bg);
+}
+
+.weekly-bar-cluster {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 118px;
+}
+
+.weekly-mini-bar {
+  width: 9px;
+  border-radius: 2px 2px 0 0;
+}
+
+.weekly-bar-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.weekly-bar-group.selected .weekly-bar-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.week-detail-panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--bg);
+  font-size: 12px;
+}
+
+.week-detail-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.week-detail-stat {
+  font-weight: 600;
+}
+
+.week-detail-delta {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.week-detail-delta .msr {
+  font-size: 14px;
+}
+
 .call-list-rows {
   display: flex;
   flex-direction: column;

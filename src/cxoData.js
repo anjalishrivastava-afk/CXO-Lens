@@ -32,11 +32,18 @@ export const cxoData = {
     },
   ],
 
+  // Last 6 weeks (3 fortnights) so the trend chart and week-picker have
+  // something meaningful to show — the current CXO report's own fortnight
+  // is the last two entries (Jun 16–22, Jun 23–29).
   weeklySentimentSeries: [
-    { label: 'Week 1 (Jun 16–22)', positive: 5850, neutral: 17100, negative: 3600 },
-    { label: 'Week 2 (Jun 23–30)', positive: 5932, neutral: 16723, negative: 2965 },
+    { label: 'May 19–25', positive: 5200, neutral: 15800, negative: 4100 },
+    { label: 'May 26–Jun 1', positive: 5450, neutral: 16100, negative: 3850 },
+    { label: 'Jun 2–8', positive: 5600, neutral: 16400, negative: 3700 },
+    { label: 'Jun 9–15', positive: 5720, neutral: 16800, negative: 3550 },
+    { label: 'Jun 16–22', positive: 5850, neutral: 17100, negative: 3600 },
+    { label: 'Jun 23–29', positive: 5932, neutral: 16723, negative: 2965 },
   ],
-  findingWeekly: 'Negative sentiment declined from 3,600 in Week 1 to 2,965 in Week 2 (-17.6%) — the fortnight is trending in the right direction.',
+  findingWeekly: 'Negative sentiment declined from 3,600 in Jun 16–22 to 2,965 in Jun 23–29 (-17.6%) — the fortnight is trending in the right direction.',
 
   sentimentByDow: [
     { label: 'Mon', volume: 8700, negativePct: 10.2, positivePct: 21.4 },
