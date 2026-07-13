@@ -136,19 +136,26 @@ function WeeklySentimentChart({ series }) {
             </button>
           </span>
         </div>
-        <div className="chart-week-select">
-          <label htmlFor="cxo-week-select">Week</label>
-          <select
-            id="cxo-week-select"
-            value={selectedIdx}
-            onChange={(e) => setSelectedIdx(Number(e.target.value))}
-          >
-            {series.map((w, i) => (
-              <option key={w.label} value={i}>
-                {w.label}
-              </option>
-            ))}
-          </select>
+        <div className="week-pager">
+          <span className="tooltip-anchor" data-tooltip="Previous week">
+            <button
+              className="week-pager-btn"
+              disabled={selectedIdx === 0}
+              onClick={() => setSelectedIdx((i) => Math.max(0, i - 1))}
+            >
+              <Icon name="chevron_left" />
+            </button>
+          </span>
+          <span className="week-pager-label">{series[selectedIdx].label}</span>
+          <span className="tooltip-anchor" data-tooltip="Next week">
+            <button
+              className="week-pager-btn"
+              disabled={selectedIdx === series.length - 1}
+              onClick={() => setSelectedIdx((i) => Math.min(series.length - 1, i + 1))}
+            >
+              <Icon name="chevron_right" />
+            </button>
+          </span>
         </div>
       </div>
 

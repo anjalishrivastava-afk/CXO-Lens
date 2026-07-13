@@ -1858,26 +1858,45 @@ select {
   color: var(--accent);
 }
 
-.chart-week-select {
+.week-pager {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.chart-week-select label {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-.chart-week-select select {
-  padding: 5px 10px;
-  border: 1px solid #bdbdbd;
+.week-pager-btn {
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text);
   background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
   cursor: pointer;
+}
+
+.week-pager-btn .msr {
+  font-size: 17px;
+}
+
+.week-pager-btn:hover:not(:disabled) {
+  border-color: var(--accent-light-border);
+  color: var(--accent);
+}
+
+.week-pager-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.week-pager-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 100px;
+  text-align: center;
 }
 
 .weekly-bar-chart {
