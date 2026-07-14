@@ -496,6 +496,66 @@ async function fetchAnalysisDetail(token, accountId, analysisId) {
   return res.json();
 }
 
+function profileLookupMaps(profiles) {
+  const byId = new Map(profiles.map((p) => [p.id, p]));
+  const idByName = new Map(profiles.map((p) => [p.name, p.id]));
+  return { byId, idByName };
+}
+
+function analysisRecordFromRow(row, profileId, profileName, direction, matchType) {
+  const score = normScoreFromRow(row);
+  const { aiPct, qaPct, scoreDrop } = scorePercents(row);
+  const disputeOpen = row.dispute_details?.open_disputes_count ?? 0;
+  const disputeTotal = row.dispute_details?.total_disputes_count ?? 0;
+  const date = new Date(row.created_at || row.metadata?.call_end_time);
+
+  return {
+    profileId,
+    profileName,
+    score,
+    date,
+    direction,
+    analysisId: row.analysis_id,
+    interactionId: row.interaction_id,
+    aiScore: row.total_ai_score,
+    qaScore: row.total_qa_score,
+    aiPct,
+    qaPct,
+    scoreDrop,
+    disputeOpen,
+    disputeTotal,
+    disputed: disputeTotal > 0 || disputeOpen > 0,
+    intent: row.intent ?? null,
+    matchType,
+  };
+}
+
+function expandAnalysisRows(row, interactionMeta, idByName) {
+  const parent = interactionMeta.get(row.interaction_id);
+  const direction =
+    parent?.metadata?.Direction || parent?.metadata?.direction || row.metadata?.Direction || 'Unknown';
+
+  const records = [];
+  const seenProfileIds = new Set();
+  const primaryId = row.quality_profile_uid;
+  const primaryName = row.quality_profile_name;
+
+  if (primaryId) {
+    records.push(analysisRecordFromRow(row, primaryId, primaryName, direction, 'primary'));
+    seenProfileIds.add(primaryId);
+  }
+
+  for (const ap of row.analyzed_profiles ?? []) {
+    const apId = ap.id || ap.quality_profile_uid;
+    const apName = ap.name || ap.quality_profile_name || idByName.get(apId);
+    if (!apId || seenProfileIds.has(apId)) continue;
+    records.push(analysisRecordFromRow(row, apId, apName, direction, 'smarter_assignment'));
+    seenProfileIds.add(apId);
+  }
+
+  return records;
+}
+
 function aggregatePeriod(
   interactionAnalyses,
   interactions,
@@ -511,48 +571,37 @@ function aggregatePeriod(
   const interactionMeta = new Map(
     interactions.map((item) => [item.interaction_id, item]),
   );
+  const { byId: profileMeta, idByName } = profileLookupMaps(profiles);
+  const smarterAssignmentActive = interactionAnalyses.some(
+    (row) => (row.analyzed_profiles?.length ?? 0) > 1,
+  );
 
   for (const row of interactionAnalyses) {
     const date = new Date(row.created_at || row.metadata?.call_end_time);
     if (!inPeriod(date, periodKey, refDate)) continue;
 
-    const score = normScoreFromRow(row);
-    const { aiPct, qaPct, scoreDrop } = scorePercents(row);
-    const disputeOpen = row.dispute_details?.open_disputes_count ?? 0;
-    const disputeTotal = row.dispute_details?.total_disputes_count ?? 0;
-    const parent = interactionMeta.get(row.interaction_id);
-    const direction =
-      parent?.metadata?.Direction || parent?.metadata?.direction || row.metadata?.Direction || 'Unknown';
-
     uniqueInteractionIds.add(row.interaction_id);
-    analyses.push({
-      profileId: row.quality_profile_uid,
-      profileName: row.quality_profile_name,
-      score,
-      date,
-      direction,
-      analysisId: row.analysis_id,
-      aiScore: row.total_ai_score,
-      qaScore: row.total_qa_score,
-      aiPct,
-      qaPct,
-      scoreDrop,
-      disputeOpen,
-      disputeTotal,
-    });
+    analyses.push(...expandAnalysisRows(row, interactionMeta, idByName));
   }
 
   const byProfile = new Map();
   for (const a of analyses) {
     if (!byProfile.has(a.profileId)) {
-      byProfile.set(a.profileId, { name: a.profileName, scores: [], analyses: [] });
+      byProfile.set(a.profileId, {
+        name: a.profileName,
+        scores: [],
+        analyses: [],
+        smarterMatches: 0,
+        primaryMatches: 0,
+      });
     }
     const p = byProfile.get(a.profileId);
     if (a.score != null) p.scores.push(a.score);
     p.analyses.push(a);
+    if (a.matchType === 'smarter_assignment') p.smarterMatches += 1;
+    else p.primaryMatches += 1;
   }
 
-  const profileMeta = new Map(profiles.map((p) => [p.id, p]));
   const activeRows = [...byProfile.entries()]
     .map(([id, p]) => {
       const avgScore = avg(p.scores);
@@ -561,6 +610,7 @@ function aggregatePeriod(
       const kpisFromProfile = extractKpis(detail);
       const detailMaps = analysisDetailsByProfile.get(id) ?? [];
       const kpis = mergeProfileKpis(kpisFromProfile, detailMaps);
+      const hasCampaignAssignment = Boolean(profileMeta.get(id)?.assigned_campaigns?.length);
       return {
         id,
         name: p.name,
@@ -568,7 +618,8 @@ function aggregatePeriod(
         avgScore,
         scoreDelta: null,
         severity: severityFromProfile(avgScore, matched, kpis),
-        smarterAssignment: Boolean(profileMeta.get(id)?.assigned_campaigns?.length),
+        smarterAssignment:
+          hasCampaignAssignment || smarterAssignmentActive || p.smarterMatches > 0 || p.primaryMatches > 0,
         kpis,
       };
     })
@@ -632,7 +683,7 @@ function aggregatePeriod(
         avgScore: null,
         scoreDelta: null,
         severity: 'unused',
-        smarterAssignment: Boolean(profileMeta.get(p.id)?.assigned_campaigns?.length),
+        smarterAssignment: Boolean(profileMeta.get(p.id)?.assigned_campaigns?.length) || smarterAssignmentActive,
       })),
     ],
     aiInsightRows: [
@@ -648,6 +699,7 @@ function aggregatePeriod(
       activeRows.map((row) => {
         const profileAnalyses = byProfile.get(row.id)?.analyses ?? [];
         const directionCounts = new Map();
+        const intentCounts = new Map();
 
         for (const a of profileAnalyses) {
           const label =
@@ -657,6 +709,7 @@ function aggregatePeriod(
                 ? 'Outbound calls'
                 : a.direction;
           directionCounts.set(label, (directionCounts.get(label) ?? 0) + 1);
+          if (a.intent) intentCounts.set(a.intent, (intentCounts.get(a.intent) ?? 0) + 1);
         }
 
         const escalations = buildEscalations(profileAnalyses, row.name);
@@ -671,6 +724,16 @@ function aggregatePeriod(
             escalations,
           );
 
+        const topIntents = row.smarterAssignment
+          ? [...intentCounts.entries()]
+              .map(([label, count]) => ({ label, count }))
+              .sort((a, b) => b.count - a.count)
+              .slice(0, 4)
+          : [...directionCounts.entries()]
+              .map(([label, count]) => ({ label, count }))
+              .sort((a, b) => b.count - a.count)
+              .slice(0, 4);
+
         return [
           row.id,
           {
@@ -683,10 +746,7 @@ function aggregatePeriod(
             scoreTrend: buildTrend(profileAnalyses, refDate),
             aiInsights,
             escalations,
-            topIntents: [...directionCounts.entries()]
-              .map(([label, count]) => ({ label, count }))
-              .sort((a, b) => b.count - a.count)
-              .slice(0, 4),
+            topIntents,
             kpis: row.kpis,
           },
         ];
@@ -870,7 +930,14 @@ async function main() {
   const activeProfileIds = new Set();
   for (const row of interactionAnalyses) {
     if (row.quality_profile_uid) activeProfileIds.add(row.quality_profile_uid);
+    for (const ap of row.analyzed_profiles ?? []) {
+      const apId = ap.id || ap.quality_profile_uid;
+      if (apId) activeProfileIds.add(apId);
+    }
   }
+
+  const smarterRows = interactionAnalyses.filter((row) => (row.analyzed_profiles?.length ?? 0) > 1).length;
+  console.log(`  smarter-assignment analyses (multi-profile): ${smarterRows}`);
 
   console.log(`Fetching details for ${activeProfileIds.size} active profiles...`);
   const profileDetails = new Map();

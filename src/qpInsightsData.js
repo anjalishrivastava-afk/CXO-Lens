@@ -1,10 +1,10 @@
-// Auto-generated from CQA tenant "cxdemo" (1600257d18) on 2026-07-14T11:17:46.127Z.
+// Auto-generated from CQA tenant "cxdemo" (1600257d18) on 2026-07-14T12:18:04.458Z.
 // Regenerate: npm run fetch:qp-insights
 
 export const QP_DATA_SOURCE = {
   tenant: "cxdemo",
   accountId: "1600257d18",
-  fetchedAt: "2026-07-14T11:17:46.127Z",
+  fetchedAt: "2026-07-14T12:18:04.458Z",
   integrationType: "ecc4x",
   subscriptionType: "paid",
 };
@@ -19,24 +19,64 @@ export const QP_PROFILES = [
     "label": "test suggestion with sop"
   },
   {
+    "id": "389a0c4b-7351-4962-be72-958731688342",
+    "label": "Non-SOP QP"
+  },
+  {
+    "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+    "label": "HSL - Enquiry & Account Query"
+  },
+  {
+    "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+    "label": "HSL - Advisory, Portfolio & Sales"
+  },
+  {
+    "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+    "label": "HSL - Confirmation & Follow Up"
+  },
+  {
+    "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
+    "label": "HSL - Non-Conversation"
+  },
+  {
     "id": "dbc24f70-d0cb-4ac7-ba49-3bfbb7099146",
     "label": "EFV1"
   },
   {
-    "id": "389a0c4b-7351-4962-be72-958731688342",
-    "label": "Non-SOP QP"
+    "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
+    "label": "HSL - Others"
+  },
+  {
+    "id": "d482214d-737a-45d9-9a46-939398338496",
+    "label": "HSL - Market Update"
   },
   {
     "id": "9cbbf7e0-4a46-4844-99aa-938b74e81b28",
     "label": "EFV3"
   },
   {
+    "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+    "label": "HSL - Order Placement"
+  },
+  {
+    "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+    "label": "HSL - Activation"
+  },
+  {
     "id": "ace05b63-6b50-4b9c-95b6-8d9dd3ad5c53",
     "label": "EFV2"
   },
   {
+    "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+    "label": "HSL - Onboarding & KYC"
+  },
+  {
     "id": "ec43d0e5-31f6-4f51-8cd7-aae9da8105b9",
     "label": "madhu-test-default"
+  },
+  {
+    "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+    "label": "HSL - Complaint & Escalation"
   },
   {
     "id": "fa6ad09a-0a5e-40a9-ad3d-5f2a30dcc956",
@@ -51,64 +91,24 @@ export const QP_PROFILES = [
     "label": "V7final bluedart"
   },
   {
-    "id": "036ed93d-4b46-47bc-8675-19a4d7023240",
-    "label": "v10Bluedart_v3"
-  },
-  {
-    "id": "b80f9a0f-3ef7-46a7-ac09-ce4e666b0f5e",
-    "label": "BluedartV9.1_QP"
-  },
-  {
-    "id": "b5a65d62-d976-4646-90ee-72c7b3d6b1ff",
-    "label": "Bluedart Updated QP"
-  },
-  {
-    "id": "ece568b4-598b-4456-8a36-a644faf9d65c",
-    "label": "BluedartupdatedV6"
-  },
-  {
-    "id": "9c7f47ae-14ee-4bb2-bd32-6fa60e615528",
-    "label": "Empathy - Tone & Intent"
-  },
-  {
-    "id": "1d3c7851-a046-4345-bdae-b5c59b02584d",
-    "label": "last blurdart - copy"
-  },
-  {
-    "id": "ea9a3b80-f4d9-4dd9-9bd9-27571c55c183",
-    "label": "last blurdart"
-  },
-  {
-    "id": "b976024b-8edc-4103-9a0c-11f2dc330471",
-    "label": "v7 Profile Blue Dart test"
-  },
-  {
-    "id": "9cb792fd-9789-4c4d-a01c-87445dfb33d4",
-    "label": "v10Bluedart"
-  },
-  {
-    "id": "49733f1c-bbd6-4c65-915a-7bd2cee03fed",
-    "label": "BluedartV8_QP"
-  },
-  {
     "id": "730132d9-e6e9-4dc4-899d-51574a3c83e5",
     "label": "test profile with sop watu"
   },
   {
-    "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-    "label": "HSL - Others"
+    "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+    "label": "01_HSL_Advisory_Portfolio_Sales.xlsx"
   },
   {
-    "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-    "label": "HSL - Onboarding & KYC"
+    "id": "4347a256-5a0f-4f85-8d84-f8f4de3d02b2",
+    "label": "HSL Test"
   },
   {
-    "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
-    "label": "HSL - Non-Conversation"
+    "id": "cc3870a5-5060-4f92-88da-8adbc587518b",
+    "label": "nasa-test-demo-1001"
   },
   {
-    "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
-    "label": "HSL - Complaint & Escalation"
+    "id": "1b69e9cc-4a60-4459-a193-b35dc31f2b6a",
+    "label": "v10Bluedart_Final"
   }
 ];
 
@@ -121,12 +121,12 @@ export const QP_PERIODS = [
 const baseAllProfiles = {
   "month": {
     "uniqueInteractions": 550,
-    "totalAnalysis": 638,
-    "totalScore": 67.5,
+    "totalAnalysis": 1368,
+    "totalScore": 65.2,
     "totalScoreDelta": null,
     "uniqueDelta": null,
     "analysisDelta": null,
-    "crossQpHeadline": "Across 33 active quality profiles on cxdemo, 67.5% avg score from 638 analyses on 550 calls. HSL - QA Compliance (All Calls) is the primary risk at 67.7%. 12 active profiles had zero matches.",
+    "crossQpHeadline": "Across 43 active quality profiles on cxdemo, 65.2% avg score from 1368 analyses on 550 calls. HSL - QA Compliance (All Calls) is the primary risk at 67.7%. 12 active profiles had zero matches.",
     "topPriorityAlert": "HSL - QA Compliance (All Calls) has the lowest avg score (67.7%) across 300 evaluations.",
     "unusedProfiles": [
       {
@@ -135,148 +135,148 @@ const baseAllProfiles = {
         "matched": 0
       },
       {
-        "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-        "name": "HSL - Others",
+        "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+        "name": "01_HSL_Advisory_Portfolio_Sales.xlsx",
         "matched": 0
       },
       {
-        "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-        "name": "HSL - Onboarding & KYC",
+        "id": "4347a256-5a0f-4f85-8d84-f8f4de3d02b2",
+        "name": "HSL Test",
         "matched": 0
       },
       {
-        "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
-        "name": "HSL - Non-Conversation",
+        "id": "cc3870a5-5060-4f92-88da-8adbc587518b",
+        "name": "nasa-test-demo-1001",
         "matched": 0
       },
       {
-        "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
-        "name": "HSL - Complaint & Escalation",
+        "id": "1b69e9cc-4a60-4459-a193-b35dc31f2b6a",
+        "name": "v10Bluedart_Final",
         "matched": 0
       },
       {
-        "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
-        "name": "HSL - Confirmation & Follow Up",
-        "matched": 0
-      }
-    ],
-    "scoreDistribution": [
-      {
-        "band": "<60%",
-        "count": 205,
-        "share": 32.9
-      },
-      {
-        "band": "60–70%",
-        "count": 93,
-        "share": 14.9
-      },
-      {
-        "band": "70–75%",
-        "count": 82,
-        "share": 13.1
-      },
-      {
-        "band": "75–80%",
-        "count": 55,
-        "share": 8.8
-      },
-      {
-        "band": "80–85%",
-        "count": 51,
-        "share": 8.2
-      },
-      {
-        "band": "85–100%",
-        "count": 138,
-        "share": 22.1
-      }
-    ],
-    "distributionInsight": "32.9% of analyses fall in the <60% band — largest concentration this period."
-  },
-  "week": {
-    "uniqueInteractions": 304,
-    "totalAnalysis": 304,
-    "totalScore": 68.2,
-    "totalScoreDelta": null,
-    "uniqueDelta": null,
-    "analysisDelta": null,
-    "crossQpHeadline": "Across 2 active quality profiles on cxdemo, 68.2% avg score from 304 analyses on 304 calls. HSL - QA Compliance (All Calls) is the primary risk at 67.7%. 12 active profiles had zero matches.",
-    "topPriorityAlert": "HSL - QA Compliance (All Calls) has the lowest avg score (67.7%) across 300 evaluations.",
-    "unusedProfiles": [
-      {
-        "id": "730132d9-e6e9-4dc4-899d-51574a3c83e5",
-        "name": "test profile with sop watu",
-        "matched": 0
-      },
-      {
-        "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-        "name": "HSL - Others",
-        "matched": 0
-      },
-      {
-        "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-        "name": "HSL - Onboarding & KYC",
-        "matched": 0
-      },
-      {
-        "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
-        "name": "HSL - Non-Conversation",
-        "matched": 0
-      },
-      {
-        "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
-        "name": "HSL - Complaint & Escalation",
-        "matched": 0
-      },
-      {
-        "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
-        "name": "HSL - Confirmation & Follow Up",
+        "id": "25fa04fb-affa-4bf5-85e3-58683e0199c8",
+        "name": "Bluedart Complete QP",
         "matched": 0
       }
     ],
     "scoreDistribution": [
       {
         "band": "<60%",
-        "count": 102,
-        "share": 33.6
+        "count": 501,
+        "share": 37
       },
       {
         "band": "60–70%",
-        "count": 63,
-        "share": 20.7
+        "count": 292,
+        "share": 21.6
       },
       {
         "band": "70–75%",
-        "count": 32,
-        "share": 10.5
+        "count": 164,
+        "share": 12.1
       },
       {
         "band": "75–80%",
-        "count": 31,
-        "share": 10.2
-      },
-      {
-        "band": "80–85%",
-        "count": 26,
+        "count": 116,
         "share": 8.6
       },
       {
+        "band": "80–85%",
+        "count": 95,
+        "share": 7
+      },
+      {
         "band": "85–100%",
-        "count": 50,
-        "share": 16.4
+        "count": 186,
+        "share": 13.7
       }
     ],
-    "distributionInsight": "33.6% of analyses fall in the <60% band — largest concentration this period."
+    "distributionInsight": "37% of analyses fall in the <60% band — largest concentration this period."
   },
-  "yesterday": {
-    "uniqueInteractions": 100,
-    "totalAnalysis": 100,
-    "totalScore": 82.6,
+  "week": {
+    "uniqueInteractions": 304,
+    "totalAnalysis": 1034,
+    "totalScore": 64.7,
     "totalScoreDelta": null,
     "uniqueDelta": null,
     "analysisDelta": null,
-    "crossQpHeadline": "Across 1 active quality profiles on cxdemo, 82.6% avg score from 100 analyses on 100 calls. HSL - QA Compliance (All Calls) leads at 82.6%. 12 active profiles had zero matches.",
+    "crossQpHeadline": "Across 14 active quality profiles on cxdemo, 64.7% avg score from 1034 analyses on 304 calls. HSL - QA Compliance (All Calls) is the primary risk at 67.7%. 12 active profiles had zero matches.",
+    "topPriorityAlert": "HSL - QA Compliance (All Calls) has the lowest avg score (67.7%) across 300 evaluations.",
+    "unusedProfiles": [
+      {
+        "id": "730132d9-e6e9-4dc4-899d-51574a3c83e5",
+        "name": "test profile with sop watu",
+        "matched": 0
+      },
+      {
+        "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+        "name": "01_HSL_Advisory_Portfolio_Sales.xlsx",
+        "matched": 0
+      },
+      {
+        "id": "8d888882-f8ff-456f-99b1-a8270e3eca35",
+        "name": "ai ingestion profile",
+        "matched": 0
+      },
+      {
+        "id": "4347a256-5a0f-4f85-8d84-f8f4de3d02b2",
+        "name": "HSL Test",
+        "matched": 0
+      },
+      {
+        "id": "cc3870a5-5060-4f92-88da-8adbc587518b",
+        "name": "nasa-test-demo-1001",
+        "matched": 0
+      },
+      {
+        "id": "214cbad9-aabe-4d12-9229-2f3ce4c4a7f4",
+        "name": "nasa-test-demo",
+        "matched": 0
+      }
+    ],
+    "scoreDistribution": [
+      {
+        "band": "<60%",
+        "count": 398,
+        "share": 38.5
+      },
+      {
+        "band": "60–70%",
+        "count": 262,
+        "share": 25.3
+      },
+      {
+        "band": "70–75%",
+        "count": 114,
+        "share": 11
+      },
+      {
+        "band": "75–80%",
+        "count": 92,
+        "share": 8.9
+      },
+      {
+        "band": "80–85%",
+        "count": 70,
+        "share": 6.8
+      },
+      {
+        "band": "85–100%",
+        "count": 98,
+        "share": 9.5
+      }
+    ],
+    "distributionInsight": "38.5% of analyses fall in the <60% band — largest concentration this period."
+  },
+  "yesterday": {
+    "uniqueInteractions": 100,
+    "totalAnalysis": 249,
+    "totalScore": 81.2,
+    "totalScoreDelta": null,
+    "uniqueDelta": null,
+    "analysisDelta": null,
+    "crossQpHeadline": "Across 10 active quality profiles on cxdemo, 81.2% avg score from 249 analyses on 100 calls. HSL - QA Compliance (All Calls) leads at 82.6%. 12 active profiles had zero matches.",
     "topPriorityAlert": "12 active quality profiles received no matched interactions — verify assignment rules.",
     "unusedProfiles": [
       {
@@ -290,59 +290,59 @@ const baseAllProfiles = {
         "matched": 0
       },
       {
-        "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-        "name": "HSL - Onboarding & KYC",
+        "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+        "name": "01_HSL_Advisory_Portfolio_Sales.xlsx",
         "matched": 0
       },
       {
-        "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
-        "name": "HSL - Non-Conversation",
+        "id": "8d888882-f8ff-456f-99b1-a8270e3eca35",
+        "name": "ai ingestion profile",
         "matched": 0
       },
       {
-        "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
-        "name": "HSL - Complaint & Escalation",
+        "id": "4347a256-5a0f-4f85-8d84-f8f4de3d02b2",
+        "name": "HSL Test",
         "matched": 0
       },
       {
-        "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
-        "name": "HSL - Confirmation & Follow Up",
+        "id": "cc3870a5-5060-4f92-88da-8adbc587518b",
+        "name": "nasa-test-demo-1001",
         "matched": 0
       }
     ],
     "scoreDistribution": [
       {
         "band": "<60%",
-        "count": 2,
-        "share": 2
+        "count": 4,
+        "share": 1.6
       },
       {
         "band": "60–70%",
-        "count": 8,
-        "share": 8
+        "count": 23,
+        "share": 9.2
       },
       {
         "band": "70–75%",
-        "count": 14,
-        "share": 14
+        "count": 41,
+        "share": 16.5
       },
       {
         "band": "75–80%",
-        "count": 23,
-        "share": 23
+        "count": 65,
+        "share": 26.1
       },
       {
         "band": "80–85%",
-        "count": 19,
-        "share": 19
+        "count": 49,
+        "share": 19.7
       },
       {
         "band": "85–100%",
-        "count": 34,
-        "share": 34
+        "count": 67,
+        "share": 26.9
       }
     ],
-    "distributionInsight": "34% of analyses fall in the 85–100% band — largest concentration this period."
+    "distributionInsight": "26.9% of analyses fall in the 85–100% band — largest concentration this period."
   }
 };
 
@@ -355,7 +355,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 67.7,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "During the conversation has the RM shared any unpublished price sensitive information (UPSI) with clients, either directly or indirectly, in violation of organizational policies or regulatory guidelines. This includes sharing or discussing details about upcoming quarterly results, mergers, acquisitions, board decisions, dividend announcements, strategic tie-ups, or any material events before they are publicly disclosed, or suggesting investment actions based on such insider information? Consider direct statements or phrases that imply this, such as \"This is insider info\", \"Don’t tell anyone\", \"Company is going to announce\", \"Before market knows\", \"Confidential update\", \"Not yet public\", \"This will be in news soon\", \"Advance information\", \"Internal info\". Answer with a \"Yes\" or \"No\".                                                                                                                                                                Important clarification:\n\nDiscussions within authorized internal teams (e.g., research, compliance, strategy, treasury, internal review, management discussions) should NOT be marked as “Yes” if the conversation is clearly internal and within official organizational processes.\nDiscussions based on publicly available research, analyst opinions, market rumors already in the public domain, published reports, or officially released information should NOT be marked as “Yes”.\nGeneral research recommendations, analyst coverage discussions, or investment views without indication of non-public/confidential information should NOT be marked as “Yes”.",
@@ -426,11 +426,11 @@ const baseSummaryRowsByPeriod = {
     {
       "id": "def97e3c-6733-43ca-a768-2d0b02f7abc2",
       "name": "test suggestion with sop",
-      "matched": 64,
-      "avgScore": 59.5,
+      "matched": 205,
+      "avgScore": 55.7,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent greet the customer using the standard greeting script?",
@@ -499,13 +499,308 @@ const baseSummaryRowsByPeriod = {
       ]
     },
     {
+      "id": "389a0c4b-7351-4962-be72-958731688342",
+      "name": "Non-SOP QP",
+      "matched": 171,
+      "avgScore": 58,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Check the company SOP for agent opening steps. Did the agent follow these opening procedures?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent thank the customer before the end of the call? If the call ended abruptly, mark \"NA\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did agent mention processing fee details -- amount as well as tax?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 0,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "On a scale of 1-5, rate how satisfied was the customer with the call",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+      "name": "HSL - Enquiry & Account Query",
+      "matched": 81,
+      "avgScore": 67.5,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+      "name": "HSL - Advisory, Portfolio & Sales",
+      "matched": 80,
+      "avgScore": 67.3,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+      "name": "HSL - Confirmation & Follow Up",
+      "matched": 78,
+      "avgScore": 72,
+      "scoreDelta": null,
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
+      "name": "HSL - Non-Conversation",
+      "matched": 67,
+      "avgScore": 68.5,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": " \n         \nDid the agent  not say anything on a set of 2 min or longer calls. Do not mark \"Yes\" if forwareded to voicemail. Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the call blank without the agent not saying anything. Do not mark \"Yes\" if forwarded to voicemail.  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
       "id": "dbc24f70-d0cb-4ac7-ba49-3bfbb7099146",
       "name": "EFV1",
       "matched": 63,
       "avgScore": 71.6,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the ST/CRO communicate with the customer using polite, respectful, and professional language throughout the conversation?\n\nAnswer Options:\n\nYes / No / NA\n\nMark \"Yes\" if:\nST/CRO uses courteous and respectful language throughout the call.\nST/CRO addresses the customer professionally and appropriately.\nST/CRO avoids rude, dismissive, sarcastic, or confrontational remarks.\nST/CRO maintains patience and professionalism even when the customer is upset or difficult.\nThe conversation reflects a customer-centric and respectful communication style.\nMark \"No\" if:\nST/CRO uses rude, disrespectful, aggressive, sarcastic, or unprofessional language.\nST/CRO interrupts the customer excessively or speaks in a dismissive manner.\nST/CRO argues with, blames, threatens, or talks down to the customer.\nST/CRO displays impatience, irritation, frustration, or lack of courtesy during the interaction.\nThe overall communication does not meet expected standards of professional customer service.\nSTRICTLY Mark \"NA\" if:\nVoicemail, IVR, automated recording, or unanswered call.\nAudio is unclear, incomplete, or inaudible.\nNo meaningful conversation occurred between the ST/CRO and customer.\nThe interaction is too brief to assess communication behavior.\nInsufficient speech is available to determine whether politeness and respectful language were demonstrated.",
@@ -574,16 +869,40 @@ const baseSummaryRowsByPeriod = {
       ]
     },
     {
-      "id": "389a0c4b-7351-4962-be72-958731688342",
-      "name": "Non-SOP QP",
-      "matched": 51,
-      "avgScore": 56.1,
+      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
+      "name": "HSL - Others",
+      "matched": 47,
+      "avgScore": 61.3,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
-          "question": "Check the company SOP for agent opening steps. Did the agent follow these opening procedures?",
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
           "type": null,
           "avgScore": null,
           "maxScore": 5,
@@ -591,7 +910,7 @@ const baseSummaryRowsByPeriod = {
           "prevPct": null
         },
         {
-          "question": "Did the agent thank the customer before the end of the call? If the call ended abruptly, mark \"NA\"",
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
           "type": null,
           "avgScore": null,
           "maxScore": 5,
@@ -599,18 +918,101 @@ const baseSummaryRowsByPeriod = {
           "prevPct": null
         },
         {
-          "question": "Did agent mention processing fee details -- amount as well as tax?",
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
           "type": null,
           "avgScore": null,
-          "maxScore": 0,
+          "maxScore": 2,
           "avgPct": null,
           "prevPct": null
         },
         {
-          "question": "On a scale of 1-5, rate how satisfied was the customer with the call",
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
           "type": null,
           "avgScore": null,
-          "maxScore": 5,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "d482214d-737a-45d9-9a46-939398338496",
+      "name": "HSL - Market Update",
+      "matched": 37,
+      "avgScore": 65.2,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
           "avgPct": null,
           "prevPct": null
         }
@@ -623,7 +1025,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 76.8,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the ST/CRO communicate with the customer using polite, respectful, and professional language throughout the conversation?\n\nAnswer Options:\n\nYes / No / NA\n\nMark \"Yes\" if:\nST/CRO uses courteous and respectful language throughout the call.\nST/CRO addresses the customer professionally and appropriately.\nST/CRO avoids rude, dismissive, sarcastic, or confrontational remarks.\nST/CRO maintains patience and professionalism even when the customer is upset or difficult.\nThe conversation reflects a customer-centric and respectful communication style.\nMark \"No\" if:\nST/CRO uses rude, disrespectful, aggressive, sarcastic, or unprofessional language.\nST/CRO interrupts the customer excessively or speaks in a dismissive manner.\nST/CRO argues with, blames, threatens, or talks down to the customer.\nST/CRO displays impatience, irritation, frustration, or lack of courtesy during the interaction.\nThe overall communication does not meet expected standards of professional customer service.\nSTRICTLY Mark \"NA\" if:\nVoicemail, IVR, automated recording, or unanswered call.\nAudio is unclear, incomplete, or inaudible.\nNo meaningful conversation occurred between the ST/CRO and customer.\nThe interaction is too brief to assess communication behavior.\nInsufficient speech is available to determine whether politeness and respectful language were demonstrated.",
@@ -692,13 +1094,163 @@ const baseSummaryRowsByPeriod = {
       ]
     },
     {
+      "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+      "name": "HSL - Order Placement",
+      "matched": 31,
+      "avgScore": 66.2,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on self-research. Do not mark \"Yes\" if agent state previous or current market trends and tell expected return. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+      "name": "HSL - Activation",
+      "matched": 28,
+      "avgScore": 66.7,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
       "id": "ace05b63-6b50-4b9c-95b6-8d9dd3ad5c53",
       "name": "EFV2",
       "matched": 26,
       "avgScore": 73.1,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the ST/CRO communicate with the customer using polite, respectful, and professional language throughout the conversation?\n\nAnswer Options:\n\nYes / No / NA\n\nMark \"Yes\" if:\nST/CRO uses courteous and respectful language throughout the call.\nST/CRO addresses the customer professionally and appropriately.\nST/CRO avoids rude, dismissive, sarcastic, or confrontational remarks.\nST/CRO maintains patience and professionalism even when the customer is upset or difficult.\nThe conversation reflects a customer-centric and respectful communication style.\nMark \"No\" if:\nST/CRO uses rude, disrespectful, aggressive, sarcastic, or unprofessional language.\nST/CRO interrupts the customer excessively or speaks in a dismissive manner.\nST/CRO argues with, blames, threatens, or talks down to the customer.\nST/CRO displays impatience, irritation, frustration, or lack of courtesy during the interaction.\nThe overall communication does not meet expected standards of professional customer service.\nSTRICTLY Mark \"NA\" if:\nVoicemail, IVR, automated recording, or unanswered call.\nAudio is unclear, incomplete, or inaudible.\nNo meaningful conversation occurred between the ST/CRO and customer.\nThe interaction is too brief to assess communication behavior.\nInsufficient speech is available to determine whether politeness and respectful language were demonstrated.",
@@ -767,14 +1319,164 @@ const baseSummaryRowsByPeriod = {
       ]
     },
     {
+      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+      "name": "HSL - Onboarding & KYC",
+      "matched": 11,
+      "avgScore": 64.8,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
       "id": "ec43d0e5-31f6-4f51-8cd7-aae9da8105b9",
       "name": "madhu-test-default",
       "matched": 11,
       "avgScore": null,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": []
+    },
+    {
+      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+      "name": "HSL - Complaint & Escalation",
+      "matched": 9,
+      "avgScore": 58,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     },
     {
       "id": "fa6ad09a-0a5e-40a9-ad3d-5f2a30dcc956",
@@ -783,7 +1485,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 75,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's overall empathetic tone on a scale of 0 to 10. Focus on whether the customer felt heard, understood, and cared for — not on whether the agent followed a script.\n\nConsider: Was the agent's voice warm and naturally caring? When the customer expressed frustration, did the agent acknowledge it before moving to resolution? Was the empathy specific to this customer's situation or generic? Did the tone stay consistent throughout?\n\nUse the full 0-10 range. Higher scores for genuine warmth, timely emotional responses, and personalized acknowledgments. Lower scores for flat tone, generic phrases, skipping emotional moments, or jumping straight to procedure when the customer is distressed.",
@@ -802,7 +1504,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 38.9,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did agent follow the steps for opening?",
@@ -845,7 +1547,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 75.4,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 10.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected  within 3 seconds of starting the call?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected within 3 seconds of starting of the call?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -920,7 +1622,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 77.9,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening on a scale of 1 to 5.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening using the required Blue Dart structure: greeting, self-introduction, and an offer to assist?\n\nRequired structure (wording may vary slightly; assess intent and structure, not verbatim match):\n\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"\n\nSTT / transcription tolerance: Speech-to-text may mishear the brand name (e.g. \"Go Air\", \"Blue Dot\"). Do NOT heavily penalize solely because the brand name was transcribed incorrectly if the rest of the opening structure is clearly present in audio — welcome + name + offer to help.\n\nEvaluate:\n- Greeting structure: Did the agent follow the required opening pattern (welcome + name + offer to help)?\n- Introduction & assistance offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\n- Clarity & confidence: Was the opening audible, professionally delivered, and free from unclear speech or excessive hesitation?\n- Timeliness: Did the agent greet promptly after the call connected?\n- Professional presence: Did the opening create a welcoming first impression rather than sounding casual, incomplete, or robotic?\n\nHard scoring caps (apply strictly):\n- If \"Welcome to Blue Dart\" (or clear audio equivalent) is completely absent and opening is incoherent (e.g. \"I'm going to work on it\") → score cannot exceed 1\n- If agent name is not stated (e.g. \"My name is.\" with no name) → score cannot exceed 2\n- If required welcome + introduction + assistance offer are not all present → score cannot exceed 2\n- Full score (5) only when all three elements are clearly delivered\n\nScore higher when the required opening structure is delivered clearly and promptly.\n\nScore lower when the agent skips introduction, skips the assistance offer, opens with process questions, or delivers an incomplete or unprofessional opening.\n\nScoring instruction: Return ONLY an integer from 1 to 5. The maximum score for this KPI is 5. Do not use 0. Do not return a score above 5. The integer you return maps directly to the points awarded for this KPI.",
@@ -995,7 +1697,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 63.4,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening on a scale of 1 to 5 (maximum score for this KPI is 5).\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening using the required Blue Dart structure: greeting, self-introduction, and an offer to assist?\n\nRequired structure (wording may vary slightly; assess intent and structure, not verbatim match):\n\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"\n\nSTT / transcription tolerance: Speech-to-text may mishear the brand name (e.g. \"Go Air\", \"Blue Dot\"). Do NOT heavily penalize or zero the score solely because the brand name was transcribed incorrectly if the rest of the opening structure is clearly present — introduction, assistance offer, professional delivery.\n\nEvaluate:\n- Greeting structure: Did the agent follow the required opening pattern (welcome + name + offer to help)?\n- Introduction & assistance offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\n- Clarity & confidence: Was the opening audible, professionally delivered, and free from unclear speech or excessive hesitation?\n- Timeliness: Did the agent greet promptly after the call connected?\n- Professional presence: Did the opening create a welcoming first impression rather than sounding casual, incomplete, or robotic?\n\nScore higher when the required opening structure is delivered clearly and promptly, even if STT garbled the brand name.\n\nScore lower when the agent skips introduction, skips the assistance offer, opens with process questions, or delivers an incomplete or unprofessional opening.",
@@ -1070,7 +1772,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 78.2,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent open the call using the standard Blue Dart greeting script, stating their name, asking how to assist, and initiating the opening very clearly with correct pronunciation within 3 seconds without any unauthorized changes?\n\nRate 5 - Perfect Compliance: The agent perfectly delivers the full, standard script (\"Welcome to Blue Dart, my name is [Name], how may I assist you?\") very clearly and pronounced correctly, professionally, audibly, and within 3 seconds of the call landing OR when the interaction does not contain an agent-led call opening, such as transferred calls, disconnected calls, callbacks already in progress, system-triggered recordings, or recordings where the opening portion is unavailable or inaudible\nRate 3 - Late Opening or Multiple Deviations: The agent opens the call late (after 3 seconds have passed), OR they open on time but miss or mumble two major parts of the mandatory opening script by either not saying clearly or with wrong pronunciation. Else the agent opens the call within 3 seconds, but misses exactly one component of the mandatory script.\nRate 0 - Poor / Critical Failure / No Response: The agent either delays the opening beyond 3 seconds and heavily deviates from the standard script, provides only a casual or incomplete greeting, completely fails to perform the required standard opening, or remains silent/unresponsive.",
@@ -1145,7 +1847,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 65.2,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 10.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected timeframe?\n\nEvaluate the agent’s opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1220,7 +1922,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 60,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent demonstrate genuine empathy through their tone, emotional responsiveness, and personalization — not just words, but whether the customer felt heard and cared for?\n\nEvaluate the agent's overall empathetic presence by considering:\n- Tone quality: Was the voice warm, engaged, and naturally caring — or flat, rushed, and mechanical?\n- Emotional responsiveness: When the customer expressed distress, did the agent pause to acknowledge it before problem-solving?\n- Personalization: Did the agent reference the customer's specific situation in their own words, or rely on generic phrases?\n- Consistency: Did the empathetic tone hold steady throughout, even when the customer escalated or repeated concerns?\n\nRate 10: Consistently warm, naturally caring tone. Every moment of customer distress is met with a specific, personalized acknowledgment before proceeding. The customer clearly feels heard. OR a purely informational call with no emotional content.\nRate 6: Generally warm but one moment where tone dips — a slightly generic acknowledgment, a brief flat/procedural shift, or a small delay in responding to distress.\nRate 3: Mostly procedural tone. May say empathetic words but delivers them without warmth, skips emotional acknowledgment to jump into process, or relies on generic phrases without personalizing.\nRate 0: Indifferent, dismissive, or robotic. Customer distress is met with flat or transactional responses. No genuine attempt to connect emotionally.",
@@ -1239,7 +1941,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 79.6,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 5\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected  within 3 seconds of starting the call?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected within 3 seconds of starting of the call?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1314,7 +2016,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 73.5,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 5\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected  within 3 seconds of starting the call?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected within 3 seconds of starting of the call?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1389,7 +2091,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 79.2,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 5\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected  within 3 seconds of starting the call?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected within 3 seconds of starting of the call?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1464,7 +2166,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 75,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 10.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected timeframe?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1539,7 +2241,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 82.7,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 10.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected timeframe?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1614,7 +2316,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 65,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 10.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected timeframe?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -1689,7 +2391,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": null,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "What's the user ID",
@@ -1708,7 +2410,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 95.9,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent start the conversation with a professional greeting and clearly state the purpose of the call?\n\nYES:\nAgent gives the intro and tells the company name within the first 15 seconds and communicates the purpose of the call\nGreets the User by Name\nNO:\nJumps straight into pitch without context\nConfusing or delayed introduction\nNA:\nCallback/continuation where intro already done",
@@ -1783,7 +2485,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 78,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent start the conversation with a professional greeting and clearly state the purpose of the call?\n\nYES:\nAgent gives the intro and tells the company name within the first 15 seconds and communicates the purpose of the call\nGreets the User by Name\nNO:\nJumps straight into pitch without context\nConfusing or delayed introduction\nNA:\nCallback/continuation where intro already done",
@@ -1858,7 +2560,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 52,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": []
     },
     {
@@ -1868,7 +2570,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 76,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent greet the customer?",
@@ -1919,7 +2621,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 72.3,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 1 to 5\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected timeframe?\n\nEvaluate the agent's opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?\n\nScoring instruction: Return ONLY an integer from 1 to 5. The maximum score for this KPI is 5. Do not use 0. Do not return a score above 5. The integer you return maps directly to the points awarded for this KPI.",
@@ -1994,7 +2696,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 86.2,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Rate the agent's call opening compliance on a scale of 0 to 10.\n\nDid the agent initiate the interaction with a clear, professional, and customer-friendly opening by delivering the standard Blue Dart greeting(\"Welcome to Blue Dart, my name is [Name], how may I assist you?\"), introducing themselves, offering assistance, and ensuring the opening is audible, correctly pronounced, and delivered within the expected timeframe?\n\nEvaluate the agent’s opening behavior by considering:\n\nGreeting Compliance: Did the agent use the approved Blue Dart opening greeting and maintain the required structure?\nIntroduction & Assistance Offer: Did the agent clearly introduce themselves and invite the customer to share their requirement?\nClarity & Confidence: Was the opening audible, professionally delivered, and free from unclear speech, incorrect pronunciation, or hesitation?\nTimeliness: Did the agent initiate the greeting promptly after the call connected?\nProfessional Presence: Did the opening create a welcoming and helpful first impression rather than sounding casual, incomplete, or robotic?",
@@ -2069,7 +2771,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 92.3,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent open the call using the standard Blue Dart greeting script, stating their name, asking how to assist, and initiating the opening very clearly with correct pronunciation within 3 seconds without any unauthorized changes?\n\nRate 5 - Perfect Compliance: The agent perfectly delivers the full, standard script (\"Welcome to Blue Dart, my name is [Name], how may I assist you?\") very clearly and pronounced correctly, professionally, audibly, and within 3 seconds of the call landing OR when the interaction does not contain an agent-led call opening, such as transferred calls, disconnected calls, callbacks already in progress, system-triggered recordings, or recordings where the opening portion is unavailable or inaudible\nRate 3 - Late Opening or Multiple Deviations: The agent opens the call late (after 3 seconds have passed), OR they open on time but miss or mumble two major parts of the mandatory opening script by either not saying clearly or with wrong pronunciation. Else the agent opens the call within 3 seconds, but misses exactly one component of the mandatory script (e.g., forgets to state their name, incorrect pronunciation,forgets \"how may I assist you\", or fails to voice out \"Welcome to Blue Dart\").\nRate 0 - Poor / Critical Failure / No Response: The agent either delays the opening beyond 3 seconds and heavily deviates from the standard script (unclear and wrong pronunciation), provides only a casual or incomplete greeting (e.g., just “Hello” or “Blue Dart, how can I help?”), completely fails to perform the required standard opening, or remains silent/unresponsive without acknowledging the call..",
@@ -2144,7 +2846,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 78.5,
       "scoreDelta": null,
       "severity": "attention",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent open the call using the standard Blue Dart greeting script, stating their name, asking how to assist, and initiating the opening very clearly with correct pronunciation within 3 seconds without any unauthorized changes?\n\nRate 5 - Perfect Compliance: The agent perfectly delivers the full, standard script (\"Welcome to Blue Dart, my name is [Name], how may I assist you?\") very clearly and pronounced correctly, professionally, audibly, and within 3 seconds of the call landing OR when the interaction does not contain an agent-led call opening, such as transferred calls, disconnected calls, callbacks already in progress, system-triggered recordings, or recordings where the opening portion is unavailable or inaudible\nRate 3 - Late Opening or Multiple Deviations: The agent opens the call late (after 3 seconds have passed), OR they open on time but miss or mumble two major parts of the mandatory opening script by either not saying clearly or with wrong pronunciation. Else the agent opens the call within 3 seconds, but misses exactly one component of the mandatory script (e.g., forgets to state their name, incorrect pronunciation,forgets \"how may I assist you\", or fails to voice out \"Welcome to Blue Dart\").\nRate 0 - Poor / Critical Failure / No Response: The agent either delays the opening beyond 3 seconds and heavily deviates from the standard script (unclear and wrong pronunciation), provides only a casual or incomplete greeting (e.g., just “Hello” or “Blue Dart, how can I help?”), completely fails to perform the required standard opening, or remains silent/unresponsive without acknowledging the call..",
@@ -2219,7 +2921,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 30,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent respond with genuine warmth and empathy when the customer expressed frustration or distress?\n\nFocus on TONE, not scripts. Evaluate:\n- Did the agent's voice convey care and concern, or was it flat and transactional?\n- When the customer shared a problem, did the agent acknowledge their feelings IMMEDIATELY (in the very next response) before moving to process?\n- Was the empathy specific to the customer's situation, or generic/rehearsed?\n\nDeduct for: responding to distress with 'Okay, let me check...' or jumping to procedure without first acknowledging emotion; flat/monotone delivery; generic apologies like 'sorry for the inconvenience' without personalizing.\n\nRate 10: Warm, genuine tone throughout. Every moment of customer distress met with immediate, personalized empathy. OR purely transactional call with no emotional content.\nRate 6: Mostly empathetic but missed one moment where tone fell flat or empathy came late.\nRate 3: Multiple moments where agent skipped empathy or responded transactionally to distress. Tone lacked warmth.\nRate 0: Consistently flat, dismissive, or indifferent tone. No genuine empathy shown.",
@@ -2238,7 +2940,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 30,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Evaluate the agent's active empathy by scoring EACH customer grievance moment independently. A grievance moment is any point where the customer expresses frustration, dissatisfaction, inconvenience, or recounts a negative experience.\n\nCRITICAL SCORING RULES:\n\n1. TIMING IS MANDATORY: The agent MUST acknowledge the customer's emotional state IMMEDIATELY (in their very next response) after the customer voices a grievance. An apology or empathy statement that comes 2+ turns later does NOT count for that grievance moment. Each grievance moment must be evaluated separately.\n\n2. ANTI-PATTERNS THAT REQUIRE DEDUCTION (each occurrence warrants downgrade):\n   - Agent responds to an emotional grievance by jumping straight to process/procedure (e.g., 'Okay, please provide your address' or 'Let me check that for you') WITHOUT FIRST acknowledging the customer's feelings. This is a CLEAR MISS even if the agent apologizes later in the call.\n   - Agent uses filler transitions like 'Okay', 'Alright', 'Hmm', 'Uh-huh' as the primary acknowledgment of a customer's distress instead of a genuine empathy statement.\n   - Agent repeats information the customer has already shared instead of building on it.\n   - Agent uses a flat, monotone, or robotic delivery tone even when saying empathetic words. Words alone are not enough -- the TONE must convey genuine warmth and concern.\n   - Agent provides a scripted or rehearsed-sounding care statement that feels generic rather than tailored to the customer's specific situation.\n\n3. WHAT COUNTS AS GENUINE EMPATHY:\n   - A specific, personalized acknowledgment of what the customer just described (not a generic 'sorry for the inconvenience')\n   - Warmth and concern audible in the agent's tone of voice\n   - Validating the customer's feelings before moving to resolution (e.g., 'I completely understand how frustrating that must be, especially when you were home waiting')\n\nSCORING:\n\nRate 10 - Perfect Compliance: For EVERY grievance moment in the call, the agent IMMEDIATELY responds with a timely, personalized, warm empathy statement BEFORE moving to process. Tone is consistently warm and engaged throughout. No anti-patterns present. OR the interaction is purely transactional with no emotional content requiring empathy.\n\nRate 6 - Minor Empathy Gap: The agent demonstrates empathy for MOST grievance moments but misses exactly ONE -- either the timing was slightly delayed, the acknowledgment was slightly generic, or the tone dipped briefly. All other moments were handled well.\n\nRate 3 - Moderate Empathy Gap: The agent misses empathy timing on MULTIPLE grievance moments, OR demonstrates 2-3 anti-patterns (e.g., jumps to procedure without acknowledging distress, uses flat tone, gives generic responses). May have apologized at some point but not at the critical moments when the customer needed it most.\n\nRate 0 - Poor / Critical Failure: The agent consistently fails to acknowledge customer emotions, responds to distress with purely transactional statements, uses frequent filler words as acknowledgments, maintains a flat or indifferent tone, or demonstrates hostile/dismissive behavior.",
@@ -2257,7 +2959,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 100,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the agent demonstrate active empathy by understanding the customer's emotional state, avoided repetition of already shared information, offered Interim apology when the customer explained any prior bad experience, delivering a personalized and caring response, maintaining an engaged and helpful tone, and avoiding scripted (avoided usage of OK frequently), casual, or indifferent behavior?\n\nRate 10 - Perfect Compliance: The agent instantly mirrors the customer's situation with a timely, caring response or sincere apology, offered Interim apology when the customer explained any prior bad experience. The tone is highly engaging, personalized, and proactive, providing a complete resolution without ever sounding robotic, without repetitions or casual like avoided usage of OK frequently. No deductions applied. OR when the interaction is purely transactional or informational in nature, with no emotional concern requiring empathy.\n\nRate 6 - Minor Empathy Gap: The agent provides a helpful and complete response, but misses exactly one element of emotional connection such as delivering a care statement that sounds slightly rehearsed or omitting a warm apology where it would have perfectly fit.\n\nRate 3 - Moderate Empathy Gap: The agent resolves the issue but demonstrates a noticeable lack of emotional warmth. They violate three empathy guidelines (e.g., the tone is purely transactional, they provide a rigid repetitive explanation instead of tailoring it to the customer's distress and no Interim apology offered).\n\nRate 0 - Poor / Critical Failure / Hostile Engagement: The agent demonstrates a highly casual, detached, apathetic, dismissive, repetitive or hostile attitude by providing incomplete or one-word responses, showing little to no concern, using OK frequently, failing to offer empathy or care statements, or actively shutting down the customer with indifference.",
@@ -2278,7 +2980,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 67.7,
       "scoreDelta": null,
       "severity": "critical",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "During the conversation has the RM shared any unpublished price sensitive information (UPSI) with clients, either directly or indirectly, in violation of organizational policies or regulatory guidelines. This includes sharing or discussing details about upcoming quarterly results, mergers, acquisitions, board decisions, dividend announcements, strategic tie-ups, or any material events before they are publicly disclosed, or suggesting investment actions based on such insider information? Consider direct statements or phrases that imply this, such as \"This is insider info\", \"Don’t tell anyone\", \"Company is going to announce\", \"Before market knows\", \"Confidential update\", \"Not yet public\", \"This will be in news soon\", \"Advance information\", \"Internal info\". Answer with a \"Yes\" or \"No\".                                                                                                                                                                Important clarification:\n\nDiscussions within authorized internal teams (e.g., research, compliance, strategy, treasury, internal review, management discussions) should NOT be marked as “Yes” if the conversation is clearly internal and within official organizational processes.\nDiscussions based on publicly available research, analyst opinions, market rumors already in the public domain, published reports, or officially released information should NOT be marked as “Yes”.\nGeneral research recommendations, analyst coverage discussions, or investment views without indication of non-public/confidential information should NOT be marked as “Yes”.",
@@ -2347,13 +3049,833 @@ const baseSummaryRowsByPeriod = {
       ]
     },
     {
+      "id": "def97e3c-6733-43ca-a768-2d0b02f7abc2",
+      "name": "test suggestion with sop",
+      "matched": 141,
+      "avgScore": 54,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent greet the customer using the standard greeting script?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves by name?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 3,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "What was the overall tone of the agent during the greeting?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent verify the customer's identity before sharing account details?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 10,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "How many verification factors did the agent use?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 10,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent ask for the registered mobile number or account number?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 3,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "What was the customer's primary concern?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 0,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent listen to the customer's issue without interrupting?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "389a0c4b-7351-4962-be72-958731688342",
+      "name": "Non-SOP QP",
+      "matched": 120,
+      "avgScore": 58.8,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Check the company SOP for agent opening steps. Did the agent follow these opening procedures?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent thank the customer before the end of the call? If the call ended abruptly, mark \"NA\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did agent mention processing fee details -- amount as well as tax?",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 0,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "On a scale of 1-5, rate how satisfied was the customer with the call",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+      "name": "HSL - Enquiry & Account Query",
+      "matched": 81,
+      "avgScore": 67.5,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+      "name": "HSL - Advisory, Portfolio & Sales",
+      "matched": 80,
+      "avgScore": 67.3,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+      "name": "HSL - Confirmation & Follow Up",
+      "matched": 78,
+      "avgScore": 72,
+      "scoreDelta": null,
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
+      "name": "HSL - Non-Conversation",
+      "matched": 67,
+      "avgScore": 68.5,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": " \n         \nDid the agent  not say anything on a set of 2 min or longer calls. Do not mark \"Yes\" if forwareded to voicemail. Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the call blank without the agent not saying anything. Do not mark \"Yes\" if forwarded to voicemail.  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
+      "name": "HSL - Others",
+      "matched": 47,
+      "avgScore": 61.3,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "d482214d-737a-45d9-9a46-939398338496",
+      "name": "HSL - Market Update",
+      "matched": 37,
+      "avgScore": 65.2,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+      "name": "HSL - Order Placement",
+      "matched": 31,
+      "avgScore": 66.2,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on self-research. Do not mark \"Yes\" if agent state previous or current market trends and tell expected return. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+      "name": "HSL - Activation",
+      "matched": 28,
+      "avgScore": 66.7,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+      "name": "HSL - Onboarding & KYC",
+      "matched": 11,
+      "avgScore": 64.8,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+      "name": "HSL - Complaint & Escalation",
+      "matched": 9,
+      "avgScore": 58,
+      "scoreDelta": null,
+      "severity": "critical",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
       "id": "9cbbf7e0-4a46-4844-99aa-938b74e81b28",
       "name": "EFV3",
       "matched": 4,
       "avgScore": 100,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "Did the ST/CRO communicate with the customer using polite, respectful, and professional language throughout the conversation?\n\nAnswer Options:\n\nYes / No / NA\n\nMark \"Yes\" if:\nST/CRO uses courteous and respectful language throughout the call.\nST/CRO addresses the customer professionally and appropriately.\nST/CRO avoids rude, dismissive, sarcastic, or confrontational remarks.\nST/CRO maintains patience and professionalism even when the customer is upset or difficult.\nThe conversation reflects a customer-centric and respectful communication style.\nMark \"No\" if:\nST/CRO uses rude, disrespectful, aggressive, sarcastic, or unprofessional language.\nST/CRO interrupts the customer excessively or speaks in a dismissive manner.\nST/CRO argues with, blames, threatens, or talks down to the customer.\nST/CRO displays impatience, irritation, frustration, or lack of courtesy during the interaction.\nThe overall communication does not meet expected standards of professional customer service.\nSTRICTLY Mark \"NA\" if:\nVoicemail, IVR, automated recording, or unanswered call.\nAudio is unclear, incomplete, or inaudible.\nNo meaningful conversation occurred between the ST/CRO and customer.\nThe interaction is too brief to assess communication behavior.\nInsufficient speech is available to determine whether politeness and respectful language were demonstrated.",
@@ -2420,60 +3942,6 @@ const baseSummaryRowsByPeriod = {
           "prevPct": null
         }
       ]
-    },
-    {
-      "id": "730132d9-e6e9-4dc4-899d-51574a3c83e5",
-      "name": "test profile with sop watu",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
-    },
-    {
-      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-      "name": "HSL - Others",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
-    },
-    {
-      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-      "name": "HSL - Onboarding & KYC",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
-    },
-    {
-      "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
-      "name": "HSL - Non-Conversation",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
-    },
-    {
-      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
-      "name": "HSL - Complaint & Escalation",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
-    },
-    {
-      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
-      "name": "HSL - Confirmation & Follow Up",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
     }
   ],
   "yesterday": [
@@ -2484,7 +3952,7 @@ const baseSummaryRowsByPeriod = {
       "avgScore": 82.6,
       "scoreDelta": null,
       "severity": "healthy",
-      "smarterAssignment": false,
+      "smarterAssignment": true,
       "kpis": [
         {
           "question": "During the conversation has the RM shared any unpublished price sensitive information (UPSI) with clients, either directly or indirectly, in violation of organizational policies or regulatory guidelines. This includes sharing or discussing details about upcoming quarterly results, mergers, acquisitions, board decisions, dividend announcements, strategic tie-ups, or any material events before they are publicly disclosed, or suggesting investment actions based on such insider information? Consider direct statements or phrases that imply this, such as \"This is insider info\", \"Don’t tell anyone\", \"Company is going to announce\", \"Before market knows\", \"Confidential update\", \"Not yet public\", \"This will be in news soon\", \"Advance information\", \"Internal info\". Answer with a \"Yes\" or \"No\".                                                                                                                                                                Important clarification:\n\nDiscussions within authorized internal teams (e.g., research, compliance, strategy, treasury, internal review, management discussions) should NOT be marked as “Yes” if the conversation is clearly internal and within official organizational processes.\nDiscussions based on publicly available research, analyst opinions, market rumors already in the public domain, published reports, or officially released information should NOT be marked as “Yes”.\nGeneral research recommendations, analyst coverage discussions, or investment views without indication of non-public/confidential information should NOT be marked as “Yes”.",
@@ -2553,67 +4021,631 @@ const baseSummaryRowsByPeriod = {
       ]
     },
     {
-      "id": "730132d9-e6e9-4dc4-899d-51574a3c83e5",
-      "name": "test profile with sop watu",
-      "matched": 0,
-      "avgScore": null,
+      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+      "name": "HSL - Confirmation & Follow Up",
+      "matched": 31,
+      "avgScore": 82,
       "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
+      "severity": "healthy",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     },
     {
-      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-      "name": "HSL - Others",
-      "matched": 0,
-      "avgScore": null,
+      "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+      "name": "HSL - Advisory, Portfolio & Sales",
+      "matched": 29,
+      "avgScore": 74.4,
       "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     },
     {
-      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-      "name": "HSL - Onboarding & KYC",
-      "matched": 0,
-      "avgScore": null,
+      "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+      "name": "HSL - Enquiry & Account Query",
+      "matched": 24,
+      "avgScore": 74.8,
       "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     },
     {
       "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
       "name": "HSL - Non-Conversation",
-      "matched": 0,
-      "avgScore": null,
+      "matched": 22,
+      "avgScore": 98.5,
       "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
+      "severity": "healthy",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": " \n         \nDid the agent  not say anything on a set of 2 min or longer calls. Do not mark \"Yes\" if forwareded to voicemail. Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Was the call blank without the agent not saying anything. Do not mark \"Yes\" if forwarded to voicemail.  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     },
     {
-      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
-      "name": "HSL - Complaint & Escalation",
-      "matched": 0,
-      "avgScore": null,
+      "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+      "name": "HSL - Order Placement",
+      "matched": 18,
+      "avgScore": 77.6,
       "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
-    },
-    {
-      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
-      "name": "HSL - Confirmation & Follow Up",
-      "matched": 0,
-      "avgScore": null,
-      "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on self-research. Do not mark \"Yes\" if agent state previous or current market trends and tell expected return. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     },
     {
       "id": "d482214d-737a-45d9-9a46-939398338496",
       "name": "HSL - Market Update",
-      "matched": 0,
-      "avgScore": null,
+      "matched": 10,
+      "avgScore": 74.9,
       "scoreDelta": null,
-      "severity": "unused",
-      "smarterAssignment": false
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+      "name": "HSL - Activation",
+      "matched": 9,
+      "avgScore": 74.4,
+      "scoreDelta": null,
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+      "name": "HSL - Onboarding & KYC",
+      "matched": 4,
+      "avgScore": 82.4,
+      "scoreDelta": null,
+      "severity": "healthy",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 5,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
+    },
+    {
+      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+      "name": "HSL - Complaint & Escalation",
+      "matched": 2,
+      "avgScore": 73.8,
+      "scoreDelta": null,
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": [
+        {
+          "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 1,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        },
+        {
+          "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+          "type": null,
+          "avgScore": null,
+          "maxScore": 2,
+          "avgPct": null,
+          "prevPct": null
+        }
+      ]
     }
   ]
 };
@@ -2625,7 +4657,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "HSL - QA Compliance (All Calls)",
       "severity": "critical",
       "avgScore": 67.7,
-      "matchedPct": 47,
+      "matchedPct": 21.9,
       "summary": "HSL - QA Compliance (All Calls) averages 67.7% — lowest among active profiles with 300 evaluations.",
       "alert": "Low avg score (67.7%)"
     },
@@ -2633,63 +4665,153 @@ const baseAiInsightRowsByPeriod = {
       "id": "def97e3c-6733-43ca-a768-2d0b02f7abc2",
       "name": "test suggestion with sop",
       "severity": "critical",
-      "avgScore": 59.5,
-      "matchedPct": 10,
-      "summary": "test suggestion with sop averages 59.5% — lowest among active profiles with 64 evaluations.",
-      "alert": "Low avg score (59.5%)"
+      "avgScore": 55.7,
+      "matchedPct": 15,
+      "summary": "test suggestion with sop averages 55.7% — lowest among active profiles with 205 evaluations.",
+      "alert": "Low avg score (55.7%)"
+    },
+    {
+      "id": "389a0c4b-7351-4962-be72-958731688342",
+      "name": "Non-SOP QP",
+      "severity": "critical",
+      "avgScore": 58,
+      "matchedPct": 12.5,
+      "summary": "Non-SOP QP averages 58% — lowest among active profiles with 171 evaluations.",
+      "alert": "Low avg score (58%)"
+    },
+    {
+      "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+      "name": "HSL - Enquiry & Account Query",
+      "severity": "critical",
+      "avgScore": 67.5,
+      "matchedPct": 5.9,
+      "summary": "HSL - Enquiry & Account Query averages 67.5% — lowest among active profiles with 81 evaluations.",
+      "alert": "Low avg score (67.5%)"
+    },
+    {
+      "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+      "name": "HSL - Advisory, Portfolio & Sales",
+      "severity": "critical",
+      "avgScore": 67.3,
+      "matchedPct": 5.8,
+      "summary": "HSL - Advisory, Portfolio & Sales averages 67.3% — lowest among active profiles with 80 evaluations.",
+      "alert": "Low avg score (67.3%)"
+    },
+    {
+      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+      "name": "HSL - Confirmation & Follow Up",
+      "severity": "attention",
+      "avgScore": 72,
+      "matchedPct": 5.7,
+      "summary": "HSL - Confirmation & Follow Up at 72% avg with 5.7% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
+      "name": "HSL - Non-Conversation",
+      "severity": "critical",
+      "avgScore": 68.5,
+      "matchedPct": 4.9,
+      "summary": "HSL - Non-Conversation averages 68.5% — lowest among active profiles with 67 evaluations.",
+      "alert": "Low avg score (68.5%)"
     },
     {
       "id": "dbc24f70-d0cb-4ac7-ba49-3bfbb7099146",
       "name": "EFV1",
       "severity": "attention",
       "avgScore": 71.6,
-      "matchedPct": 9.9,
-      "summary": "EFV1 at 71.6% avg with 9.9% of total analysis volume.",
+      "matchedPct": 4.6,
+      "summary": "EFV1 at 71.6% avg with 4.6% of total analysis volume.",
       "alert": null
     },
     {
-      "id": "389a0c4b-7351-4962-be72-958731688342",
-      "name": "Non-SOP QP",
+      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
+      "name": "HSL - Others",
       "severity": "critical",
-      "avgScore": 56.1,
-      "matchedPct": 8,
-      "summary": "Non-SOP QP averages 56.1% — lowest among active profiles with 51 evaluations.",
-      "alert": "Low avg score (56.1%)"
+      "avgScore": 61.3,
+      "matchedPct": 3.4,
+      "summary": "HSL - Others averages 61.3% — lowest among active profiles with 47 evaluations.",
+      "alert": "Low avg score (61.3%)"
+    },
+    {
+      "id": "d482214d-737a-45d9-9a46-939398338496",
+      "name": "HSL - Market Update",
+      "severity": "critical",
+      "avgScore": 65.2,
+      "matchedPct": 2.7,
+      "summary": "HSL - Market Update averages 65.2% — lowest among active profiles with 37 evaluations.",
+      "alert": "Low avg score (65.2%)"
     },
     {
       "id": "9cbbf7e0-4a46-4844-99aa-938b74e81b28",
       "name": "EFV3",
       "severity": "attention",
       "avgScore": 76.8,
-      "matchedPct": 5.8,
-      "summary": "EFV3 at 76.8% avg with 5.8% of total analysis volume.",
+      "matchedPct": 2.7,
+      "summary": "EFV3 at 76.8% avg with 2.7% of total analysis volume.",
       "alert": null
+    },
+    {
+      "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+      "name": "HSL - Order Placement",
+      "severity": "critical",
+      "avgScore": 66.2,
+      "matchedPct": 2.3,
+      "summary": "HSL - Order Placement averages 66.2% — lowest among active profiles with 31 evaluations.",
+      "alert": "Low avg score (66.2%)"
+    },
+    {
+      "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+      "name": "HSL - Activation",
+      "severity": "critical",
+      "avgScore": 66.7,
+      "matchedPct": 2,
+      "summary": "HSL - Activation averages 66.7% — lowest among active profiles with 28 evaluations.",
+      "alert": "Low avg score (66.7%)"
     },
     {
       "id": "ace05b63-6b50-4b9c-95b6-8d9dd3ad5c53",
       "name": "EFV2",
       "severity": "attention",
       "avgScore": 73.1,
-      "matchedPct": 4.1,
-      "summary": "EFV2 at 73.1% avg with 4.1% of total analysis volume.",
+      "matchedPct": 1.9,
+      "summary": "EFV2 at 73.1% avg with 1.9% of total analysis volume.",
       "alert": null
+    },
+    {
+      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+      "name": "HSL - Onboarding & KYC",
+      "severity": "critical",
+      "avgScore": 64.8,
+      "matchedPct": 0.8,
+      "summary": "HSL - Onboarding & KYC averages 64.8% — lowest among active profiles with 11 evaluations.",
+      "alert": "Low avg score (64.8%)"
     },
     {
       "id": "ec43d0e5-31f6-4f51-8cd7-aae9da8105b9",
       "name": "madhu-test-default",
       "severity": "attention",
       "avgScore": null,
-      "matchedPct": 1.7,
-      "summary": "madhu-test-default at null% avg with 1.7% of total analysis volume.",
+      "matchedPct": 0.8,
+      "summary": "madhu-test-default at null% avg with 0.8% of total analysis volume.",
       "alert": null
+    },
+    {
+      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+      "name": "HSL - Complaint & Escalation",
+      "severity": "critical",
+      "avgScore": 58,
+      "matchedPct": 0.7,
+      "summary": "HSL - Complaint & Escalation averages 58% — lowest among active profiles with 9 evaluations.",
+      "alert": "Low avg score (58%)"
     },
     {
       "id": "fa6ad09a-0a5e-40a9-ad3d-5f2a30dcc956",
       "name": "Empathy - Natural Scale",
       "severity": "attention",
       "avgScore": 75,
-      "matchedPct": 1.3,
-      "summary": "Empathy - Natural Scale at 75% avg with 1.3% of total analysis volume.",
+      "matchedPct": 0.6,
+      "summary": "Empathy - Natural Scale at 75% avg with 0.6% of total analysis volume.",
       "alert": null
     },
     {
@@ -2697,7 +4819,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "qp-1",
       "severity": "critical",
       "avgScore": 38.9,
-      "matchedPct": 0.9,
+      "matchedPct": 0.4,
       "summary": "qp-1 averages 38.9% — lowest among active profiles with 6 evaluations.",
       "alert": "Low avg score (38.9%)"
     },
@@ -2706,8 +4828,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "V7final bluedart",
       "severity": "attention",
       "avgScore": 75.4,
-      "matchedPct": 0.8,
-      "summary": "V7final bluedart at 75.4% avg with 0.8% of total analysis volume.",
+      "matchedPct": 0.4,
+      "summary": "V7final bluedart at 75.4% avg with 0.4% of total analysis volume.",
       "alert": null
     },
     {
@@ -2715,8 +4837,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "v10Bluedart_v3",
       "severity": "attention",
       "avgScore": 77.9,
-      "matchedPct": 0.8,
-      "summary": "v10Bluedart_v3 at 77.9% avg with 0.8% of total analysis volume.",
+      "matchedPct": 0.4,
+      "summary": "v10Bluedart_v3 at 77.9% avg with 0.4% of total analysis volume.",
       "alert": null
     },
     {
@@ -2724,7 +4846,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "BluedartV9.1_QP",
       "severity": "critical",
       "avgScore": 63.4,
-      "matchedPct": 0.8,
+      "matchedPct": 0.4,
       "summary": "BluedartV9.1_QP averages 63.4% — lowest among active profiles with 5 evaluations.",
       "alert": "Low avg score (63.4%)"
     },
@@ -2733,8 +4855,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "Bluedart Updated QP",
       "severity": "attention",
       "avgScore": 78.2,
-      "matchedPct": 0.8,
-      "summary": "Bluedart Updated QP at 78.2% avg with 0.8% of total analysis volume.",
+      "matchedPct": 0.4,
+      "summary": "Bluedart Updated QP at 78.2% avg with 0.4% of total analysis volume.",
       "alert": null
     },
     {
@@ -2742,7 +4864,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "BluedartupdatedV6",
       "severity": "critical",
       "avgScore": 65.2,
-      "matchedPct": 0.8,
+      "matchedPct": 0.4,
       "summary": "BluedartupdatedV6 averages 65.2% — lowest among active profiles with 5 evaluations.",
       "alert": "Low avg score (65.2%)"
     },
@@ -2751,7 +4873,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "Empathy - Tone & Intent",
       "severity": "critical",
       "avgScore": 60,
-      "matchedPct": 0.8,
+      "matchedPct": 0.4,
       "summary": "Empathy - Tone & Intent averages 60% — lowest among active profiles with 5 evaluations.",
       "alert": "Low avg score (60%)"
     },
@@ -2760,8 +4882,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "last blurdart - copy",
       "severity": "attention",
       "avgScore": 79.6,
-      "matchedPct": 0.6,
-      "summary": "last blurdart - copy at 79.6% avg with 0.6% of total analysis volume.",
+      "matchedPct": 0.3,
+      "summary": "last blurdart - copy at 79.6% avg with 0.3% of total analysis volume.",
       "alert": null
     },
     {
@@ -2769,8 +4891,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "last blurdart",
       "severity": "attention",
       "avgScore": 73.5,
-      "matchedPct": 0.6,
-      "summary": "last blurdart at 73.5% avg with 0.6% of total analysis volume.",
+      "matchedPct": 0.3,
+      "summary": "last blurdart at 73.5% avg with 0.3% of total analysis volume.",
       "alert": null
     },
     {
@@ -2778,8 +4900,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "v7 Profile Blue Dart test",
       "severity": "attention",
       "avgScore": 79.2,
-      "matchedPct": 0.6,
-      "summary": "v7 Profile Blue Dart test at 79.2% avg with 0.6% of total analysis volume.",
+      "matchedPct": 0.3,
+      "summary": "v7 Profile Blue Dart test at 79.2% avg with 0.3% of total analysis volume.",
       "alert": null
     },
     {
@@ -2787,8 +4909,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "v10Bluedart",
       "severity": "attention",
       "avgScore": 75,
-      "matchedPct": 0.6,
-      "summary": "v10Bluedart at 75% avg with 0.6% of total analysis volume.",
+      "matchedPct": 0.3,
+      "summary": "v10Bluedart at 75% avg with 0.3% of total analysis volume.",
       "alert": null
     },
     {
@@ -2796,7 +4918,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "BluedartV8_QP",
       "severity": "healthy",
       "avgScore": 82.7,
-      "matchedPct": 0.6,
+      "matchedPct": 0.3,
       "summary": "BluedartV8_QP performing strongly at 82.7% across 4 evaluations.",
       "alert": null
     },
@@ -2805,7 +4927,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "BluedartV7_QP",
       "severity": "critical",
       "avgScore": 65,
-      "matchedPct": 0.6,
+      "matchedPct": 0.3,
       "summary": "BluedartV7_QP averages 65% — lowest among active profiles with 4 evaluations.",
       "alert": "Low avg score (65%)"
     },
@@ -2814,8 +4936,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "ai ingestion profile",
       "severity": "attention",
       "avgScore": null,
-      "matchedPct": 0.5,
-      "summary": "ai ingestion profile at null% avg with 0.5% of total analysis volume.",
+      "matchedPct": 0.2,
+      "summary": "ai ingestion profile at null% avg with 0.2% of total analysis volume.",
       "alert": null
     },
     {
@@ -2823,7 +4945,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "SaleskpiV2updated",
       "severity": "healthy",
       "avgScore": 95.9,
-      "matchedPct": 0.5,
+      "matchedPct": 0.2,
       "summary": "SaleskpiV2updated performing strongly at 95.9% across 3 evaluations.",
       "alert": null
     },
@@ -2832,8 +4954,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "SaleskpiV2",
       "severity": "attention",
       "avgScore": 78,
-      "matchedPct": 0.5,
-      "summary": "SaleskpiV2 at 78% avg with 0.5% of total analysis volume.",
+      "matchedPct": 0.2,
+      "summary": "SaleskpiV2 at 78% avg with 0.2% of total analysis volume.",
       "alert": null
     },
     {
@@ -2841,7 +4963,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "nasa-test-demo-1001 - copy",
       "severity": "critical",
       "avgScore": 52,
-      "matchedPct": 0.2,
+      "matchedPct": 0.1,
       "summary": "nasa-test-demo-1001 - copy averages 52% — lowest among active profiles with 1 evaluations.",
       "alert": "Low avg score (52%)"
     },
@@ -2850,8 +4972,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "nasa-test-demo",
       "severity": "attention",
       "avgScore": 76,
-      "matchedPct": 0.2,
-      "summary": "nasa-test-demo at 76% avg with 0.2% of total analysis volume.",
+      "matchedPct": 0.1,
+      "summary": "nasa-test-demo at 76% avg with 0.1% of total analysis volume.",
       "alert": null
     },
     {
@@ -2859,8 +4981,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "v10Bluedart_v2",
       "severity": "attention",
       "avgScore": 72.3,
-      "matchedPct": 0.2,
-      "summary": "v10Bluedart_v2 at 72.3% avg with 0.2% of total analysis volume.",
+      "matchedPct": 0.1,
+      "summary": "v10Bluedart_v2 at 72.3% avg with 0.1% of total analysis volume.",
       "alert": null
     },
     {
@@ -2868,7 +4990,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "Bluedartv6updatedV1",
       "severity": "healthy",
       "avgScore": 86.2,
-      "matchedPct": 0.2,
+      "matchedPct": 0.1,
       "summary": "Bluedartv6updatedV1 performing strongly at 86.2% across 1 evaluations.",
       "alert": null
     },
@@ -2877,7 +4999,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "BludartV6updated",
       "severity": "healthy",
       "avgScore": 92.3,
-      "matchedPct": 0.2,
+      "matchedPct": 0.1,
       "summary": "BludartV6updated performing strongly at 92.3% across 1 evaluations.",
       "alert": null
     },
@@ -2886,8 +5008,8 @@ const baseAiInsightRowsByPeriod = {
       "name": "Bluedart Complete QP v2",
       "severity": "attention",
       "avgScore": 78.5,
-      "matchedPct": 0.2,
-      "summary": "Bluedart Complete QP v2 at 78.5% avg with 0.2% of total analysis volume.",
+      "matchedPct": 0.1,
+      "summary": "Bluedart Complete QP v2 at 78.5% avg with 0.1% of total analysis volume.",
       "alert": null
     },
     {
@@ -2895,7 +5017,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "Empathetic Tone Evaluation",
       "severity": "critical",
       "avgScore": 30,
-      "matchedPct": 0.2,
+      "matchedPct": 0.1,
       "summary": "Empathetic Tone Evaluation averages 30% — lowest among active profiles with 1 evaluations.",
       "alert": "Low avg score (30%)"
     },
@@ -2904,7 +5026,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "Active Empathy Evaluation v3",
       "severity": "critical",
       "avgScore": 30,
-      "matchedPct": 0.2,
+      "matchedPct": 0.1,
       "summary": "Active Empathy Evaluation v3 averages 30% — lowest among active profiles with 1 evaluations.",
       "alert": "Low avg score (30%)"
     },
@@ -2913,7 +5035,7 @@ const baseAiInsightRowsByPeriod = {
       "name": "Active Empathy Evaluation v2",
       "severity": "healthy",
       "avgScore": 100,
-      "matchedPct": 0.2,
+      "matchedPct": 0.1,
       "summary": "Active Empathy Evaluation v2 performing strongly at 100% across 1 evaluations.",
       "alert": null
     },
@@ -2927,8 +5049,8 @@ const baseAiInsightRowsByPeriod = {
       "alert": "Zero matched interactions"
     },
     {
-      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-      "name": "HSL - Others",
+      "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+      "name": "01_HSL_Advisory_Portfolio_Sales.xlsx",
       "severity": "unused",
       "avgScore": null,
       "matchedPct": 0,
@@ -2936,8 +5058,8 @@ const baseAiInsightRowsByPeriod = {
       "alert": "Zero matched interactions"
     },
     {
-      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-      "name": "HSL - Onboarding & KYC",
+      "id": "4347a256-5a0f-4f85-8d84-f8f4de3d02b2",
+      "name": "HSL Test",
       "severity": "unused",
       "avgScore": null,
       "matchedPct": 0,
@@ -2951,16 +5073,124 @@ const baseAiInsightRowsByPeriod = {
       "name": "HSL - QA Compliance (All Calls)",
       "severity": "critical",
       "avgScore": 67.7,
-      "matchedPct": 98.7,
+      "matchedPct": 29,
       "summary": "HSL - QA Compliance (All Calls) averages 67.7% — lowest among active profiles with 300 evaluations.",
       "alert": "Low avg score (67.7%)"
+    },
+    {
+      "id": "def97e3c-6733-43ca-a768-2d0b02f7abc2",
+      "name": "test suggestion with sop",
+      "severity": "critical",
+      "avgScore": 54,
+      "matchedPct": 13.6,
+      "summary": "test suggestion with sop averages 54% — lowest among active profiles with 141 evaluations.",
+      "alert": "Low avg score (54%)"
+    },
+    {
+      "id": "389a0c4b-7351-4962-be72-958731688342",
+      "name": "Non-SOP QP",
+      "severity": "critical",
+      "avgScore": 58.8,
+      "matchedPct": 11.6,
+      "summary": "Non-SOP QP averages 58.8% — lowest among active profiles with 120 evaluations.",
+      "alert": "Low avg score (58.8%)"
+    },
+    {
+      "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+      "name": "HSL - Enquiry & Account Query",
+      "severity": "critical",
+      "avgScore": 67.5,
+      "matchedPct": 7.8,
+      "summary": "HSL - Enquiry & Account Query averages 67.5% — lowest among active profiles with 81 evaluations.",
+      "alert": "Low avg score (67.5%)"
+    },
+    {
+      "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+      "name": "HSL - Advisory, Portfolio & Sales",
+      "severity": "critical",
+      "avgScore": 67.3,
+      "matchedPct": 7.7,
+      "summary": "HSL - Advisory, Portfolio & Sales averages 67.3% — lowest among active profiles with 80 evaluations.",
+      "alert": "Low avg score (67.3%)"
+    },
+    {
+      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+      "name": "HSL - Confirmation & Follow Up",
+      "severity": "attention",
+      "avgScore": 72,
+      "matchedPct": 7.5,
+      "summary": "HSL - Confirmation & Follow Up at 72% avg with 7.5% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
+      "name": "HSL - Non-Conversation",
+      "severity": "critical",
+      "avgScore": 68.5,
+      "matchedPct": 6.5,
+      "summary": "HSL - Non-Conversation averages 68.5% — lowest among active profiles with 67 evaluations.",
+      "alert": "Low avg score (68.5%)"
+    },
+    {
+      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
+      "name": "HSL - Others",
+      "severity": "critical",
+      "avgScore": 61.3,
+      "matchedPct": 4.5,
+      "summary": "HSL - Others averages 61.3% — lowest among active profiles with 47 evaluations.",
+      "alert": "Low avg score (61.3%)"
+    },
+    {
+      "id": "d482214d-737a-45d9-9a46-939398338496",
+      "name": "HSL - Market Update",
+      "severity": "critical",
+      "avgScore": 65.2,
+      "matchedPct": 3.6,
+      "summary": "HSL - Market Update averages 65.2% — lowest among active profiles with 37 evaluations.",
+      "alert": "Low avg score (65.2%)"
+    },
+    {
+      "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+      "name": "HSL - Order Placement",
+      "severity": "critical",
+      "avgScore": 66.2,
+      "matchedPct": 3,
+      "summary": "HSL - Order Placement averages 66.2% — lowest among active profiles with 31 evaluations.",
+      "alert": "Low avg score (66.2%)"
+    },
+    {
+      "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+      "name": "HSL - Activation",
+      "severity": "critical",
+      "avgScore": 66.7,
+      "matchedPct": 2.7,
+      "summary": "HSL - Activation averages 66.7% — lowest among active profiles with 28 evaluations.",
+      "alert": "Low avg score (66.7%)"
+    },
+    {
+      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+      "name": "HSL - Onboarding & KYC",
+      "severity": "critical",
+      "avgScore": 64.8,
+      "matchedPct": 1.1,
+      "summary": "HSL - Onboarding & KYC averages 64.8% — lowest among active profiles with 11 evaluations.",
+      "alert": "Low avg score (64.8%)"
+    },
+    {
+      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+      "name": "HSL - Complaint & Escalation",
+      "severity": "critical",
+      "avgScore": 58,
+      "matchedPct": 0.9,
+      "summary": "HSL - Complaint & Escalation averages 58% — lowest among active profiles with 9 evaluations.",
+      "alert": "Low avg score (58%)"
     },
     {
       "id": "9cbbf7e0-4a46-4844-99aa-938b74e81b28",
       "name": "EFV3",
       "severity": "healthy",
       "avgScore": 100,
-      "matchedPct": 1.3,
+      "matchedPct": 0.4,
       "summary": "EFV3 performing strongly at 100% across 4 evaluations.",
       "alert": null
     },
@@ -2974,8 +5204,8 @@ const baseAiInsightRowsByPeriod = {
       "alert": "Zero matched interactions"
     },
     {
-      "id": "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc",
-      "name": "HSL - Others",
+      "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+      "name": "01_HSL_Advisory_Portfolio_Sales.xlsx",
       "severity": "unused",
       "avgScore": null,
       "matchedPct": 0,
@@ -2983,8 +5213,8 @@ const baseAiInsightRowsByPeriod = {
       "alert": "Zero matched interactions"
     },
     {
-      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-      "name": "HSL - Onboarding & KYC",
+      "id": "8d888882-f8ff-456f-99b1-a8270e3eca35",
+      "name": "ai ingestion profile",
       "severity": "unused",
       "avgScore": null,
       "matchedPct": 0,
@@ -2998,8 +5228,89 @@ const baseAiInsightRowsByPeriod = {
       "name": "HSL - QA Compliance (All Calls)",
       "severity": "healthy",
       "avgScore": 82.6,
-      "matchedPct": 100,
+      "matchedPct": 40.2,
       "summary": "HSL - QA Compliance (All Calls) performing strongly at 82.6% across 100 evaluations.",
+      "alert": null
+    },
+    {
+      "id": "f1aa098c-b57a-41df-a5ff-da436aeb42b2",
+      "name": "HSL - Confirmation & Follow Up",
+      "severity": "healthy",
+      "avgScore": 82,
+      "matchedPct": 12.4,
+      "summary": "HSL - Confirmation & Follow Up performing strongly at 82% across 31 evaluations.",
+      "alert": null
+    },
+    {
+      "id": "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb",
+      "name": "HSL - Advisory, Portfolio & Sales",
+      "severity": "attention",
+      "avgScore": 74.4,
+      "matchedPct": 11.6,
+      "summary": "HSL - Advisory, Portfolio & Sales at 74.4% avg with 11.6% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "bcd51c66-5214-4c0b-8961-e0f5a52a9354",
+      "name": "HSL - Enquiry & Account Query",
+      "severity": "attention",
+      "avgScore": 74.8,
+      "matchedPct": 9.6,
+      "summary": "HSL - Enquiry & Account Query at 74.8% avg with 9.6% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8",
+      "name": "HSL - Non-Conversation",
+      "severity": "healthy",
+      "avgScore": 98.5,
+      "matchedPct": 8.8,
+      "summary": "HSL - Non-Conversation performing strongly at 98.5% across 22 evaluations.",
+      "alert": null
+    },
+    {
+      "id": "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b",
+      "name": "HSL - Order Placement",
+      "severity": "attention",
+      "avgScore": 77.6,
+      "matchedPct": 7.2,
+      "summary": "HSL - Order Placement at 77.6% avg with 7.2% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "d482214d-737a-45d9-9a46-939398338496",
+      "name": "HSL - Market Update",
+      "severity": "attention",
+      "avgScore": 74.9,
+      "matchedPct": 4,
+      "summary": "HSL - Market Update at 74.9% avg with 4% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "e889eae1-1693-4db3-8f4a-fc9d7d038aa4",
+      "name": "HSL - Activation",
+      "severity": "attention",
+      "avgScore": 74.4,
+      "matchedPct": 3.6,
+      "summary": "HSL - Activation at 74.4% avg with 3.6% of total analysis volume.",
+      "alert": null
+    },
+    {
+      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
+      "name": "HSL - Onboarding & KYC",
+      "severity": "healthy",
+      "avgScore": 82.4,
+      "matchedPct": 1.6,
+      "summary": "HSL - Onboarding & KYC performing strongly at 82.4% across 4 evaluations.",
+      "alert": null
+    },
+    {
+      "id": "d397adca-3c64-4acc-a0fe-db8b51cbad05",
+      "name": "HSL - Complaint & Escalation",
+      "severity": "attention",
+      "avgScore": 73.8,
+      "matchedPct": 0.8,
+      "summary": "HSL - Complaint & Escalation at 73.8% avg with 0.8% of total analysis volume.",
       "alert": null
     },
     {
@@ -3021,8 +5332,8 @@ const baseAiInsightRowsByPeriod = {
       "alert": "Zero matched interactions"
     },
     {
-      "id": "196cdb90-3015-4b58-999a-9e5c134e1721",
-      "name": "HSL - Onboarding & KYC",
+      "id": "db75f996-a066-41fe-9642-d4639c090bc8",
+      "name": "01_HSL_Advisory_Portfolio_Sales.xlsx",
       "severity": "unused",
       "avgScore": null,
       "matchedPct": 0,
@@ -3034,7 +5345,7 @@ const baseAiInsightRowsByPeriod = {
 
 const qpDataBase = {
   "41a5bdb8-17d1-4e65-9d90-0e0d96d58d4a": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 300,
       "qpScore": 67.7,
@@ -3072,12 +5383,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 300
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "During the conversation has the RM shared any unpublished price sensitive information (UPSI) with clients, either directly or indirectly, in violation of organizational policies or regulatory guidelines. This includes sharing or discussing details about upcoming quarterly results, mergers, acquisitions, board decisions, dividend announcements, strategic tie-ups, or any material events before they are publicly disclosed, or suggesting investment actions based on such insider information? Consider direct statements or phrases that imply this, such as \"This is insider info\", \"Don’t tell anyone\", \"Company is going to announce\", \"Before market knows\", \"Confidential update\", \"Not yet public\", \"This will be in news soon\", \"Advance information\", \"Internal info\". Answer with a \"Yes\" or \"No\".                                                                                                                                                                Important clarification:\n\nDiscussions within authorized internal teams (e.g., research, compliance, strategy, treasury, internal review, management discussions) should NOT be marked as “Yes” if the conversation is clearly internal and within official organizational processes.\nDiscussions based on publicly available research, analyst opinions, market rumors already in the public domain, published reports, or officially released information should NOT be marked as “Yes”.\nGeneral research recommendations, analyst coverage discussions, or investment views without indication of non-public/confidential information should NOT be marked as “Yes”.",
@@ -3146,10 +5452,10 @@ const qpDataBase = {
     ]
   },
   "def97e3c-6733-43ca-a768-2d0b02f7abc2": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
-      "analysisCount": 64,
-      "qpScore": 59.5,
+      "analysisCount": 205,
+      "qpScore": 55.7,
       "qpScoreDelta": null
     },
     "scoreTrend": [
@@ -3167,16 +5473,16 @@ const qpDataBase = {
       },
       {
         "label": "Jul 8–Jul 14",
-        "value": 0
+        "value": 54
       }
     ],
     "aiInsights": {
-      "headline": "test suggestion with sop is the highest-risk profile (59.5% avg) — multiple KPI(s) are below target.",
+      "headline": "test suggestion with sop is the highest-risk profile (55.7% avg) — multiple KPI(s) are below target.",
       "needsAttention": [
         {
           "name": "Overall score",
-          "score": "59.5%",
-          "detail": "test suggestion with sop is trending below target (59.5% avg). Focus coaching on lowest-scoring calls."
+          "score": "55.7%",
+          "detail": "test suggestion with sop is trending below target (55.7% avg). Focus coaching on lowest-scoring calls."
         }
       ],
       "performingWell": [],
@@ -3184,12 +5490,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 64
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Did the agent greet the customer using the standard greeting script?",
@@ -3257,8 +5558,463 @@ const qpDataBase = {
       }
     ]
   },
+  "389a0c4b-7351-4962-be72-958731688342": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 171,
+      "qpScore": 58,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 65.8
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 40
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 45.6
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 58.8
+      }
+    ],
+    "aiInsights": {
+      "headline": "Non-SOP QP is the highest-risk profile (58% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "58%",
+          "detail": "Non-SOP QP is trending below target (58% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for Non-SOP QP with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Check the company SOP for agent opening steps. Did the agent follow these opening procedures?",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent thank the customer before the end of the call? If the call ended abruptly, mark \"NA\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did agent mention processing fee details -- amount as well as tax?",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 0,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "On a scale of 1-5, rate how satisfied was the customer with the call",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
+  "bcd51c66-5214-4c0b-8961-e0f5a52a9354": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 81,
+      "qpScore": 67.5,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 67.5
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Enquiry & Account Query is the highest-risk profile (67.5% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "67.5%",
+          "detail": "HSL - Enquiry & Account Query is trending below target (67.5% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Enquiry & Account Query with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
+  "50df1d4a-8c7e-4dcc-95d0-fad9365a1deb": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 80,
+      "qpScore": 67.3,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 67.3
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Advisory, Portfolio & Sales is the highest-risk profile (67.3% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "67.3%",
+          "detail": "HSL - Advisory, Portfolio & Sales is trending below target (67.3% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Advisory, Portfolio & Sales with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\nExplaining the clear benefit of a product means communicating how the product directly addresses a customer's needs, solves a problem, or improves their situation. It emphasizes the tangible value or advantage the customer will gain from using the product, helping them understand why it is worth purchasing or using. Explanation should be straightforward, relevant and highlight key outcomes, such as time savings, cost savings, convenience, or enhanced performance.Did the relationship manager/ agent explain clear benefit of product to customer. Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Was the agent/ relationship manager able to handle Objections from client with a appropriate rebuttal. Answer with \"Yes\" or \"No\" Answer with \"Yes\" or \"No\" Mark as \"NA\" in case of abrupt call ending or no objections were made.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
+  "f1aa098c-b57a-41df-a5ff-da436aeb42b2": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 78,
+      "qpScore": 72,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 72
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Confirmation & Follow Up is stable but below target at 72% avg — focused remediation on weak KPIs recommended.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "72%",
+          "detail": "HSL - Confirmation & Follow Up is trending below target (72% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Continue monitoring HSL - Confirmation & Follow Up; share top-performer snippets during the next team review.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
+  "600c26cb-1dc9-4c8b-9f74-1c9e77ec30d8": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 67,
+      "qpScore": 68.5,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 68.5
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Non-Conversation is the highest-risk profile (68.5% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "68.5%",
+          "detail": "HSL - Non-Conversation is trending below target (68.5% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Non-Conversation with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": " \n         \nDid the agent  not say anything on a set of 2 min or longer calls. Do not mark \"Yes\" if forwareded to voicemail. Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Was the call blank without the agent not saying anything. Do not mark \"Yes\" if forwarded to voicemail.  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
   "dbc24f70-d0cb-4ac7-ba49-3bfbb7099146": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 63,
       "qpScore": 71.6,
@@ -3298,8 +6054,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 63
+        "label": "Not Provided",
+        "count": 4
+      },
+      {
+        "label": "To leave a voicemail message.",
+        "count": 4
+      },
+      {
+        "label": "Rescheduling a service appointment.",
+        "count": 2
+      },
+      {
+        "label": "To inquire about the status of a 350 rupees recharge related to a complaint.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -3369,54 +6137,73 @@ const qpDataBase = {
       }
     ]
   },
-  "389a0c4b-7351-4962-be72-958731688342": {
-    "smarterAssignment": false,
+  "e1a7e9e0-5f51-46bc-9cc2-8fa4b2d748dc": {
+    "smarterAssignment": true,
     "metrics": {
-      "analysisCount": 51,
-      "qpScore": 56.1,
+      "analysisCount": 47,
+      "qpScore": 61.3,
       "qpScoreDelta": null
     },
     "scoreTrend": [
       {
         "label": "Jun 17–Jun 23",
-        "value": 65.8
+        "value": 0
       },
       {
         "label": "Jun 24–Jun 30",
-        "value": 40
+        "value": 0
       },
       {
         "label": "Jul 1–Jul 7",
-        "value": 45.6
+        "value": 0
       },
       {
         "label": "Jul 8–Jul 14",
-        "value": 0
+        "value": 61.3
       }
     ],
     "aiInsights": {
-      "headline": "Non-SOP QP is the highest-risk profile (56.1% avg) — multiple KPI(s) are below target.",
+      "headline": "HSL - Others is the highest-risk profile (61.3% avg) — multiple KPI(s) are below target.",
       "needsAttention": [
         {
           "name": "Overall score",
-          "score": "56.1%",
-          "detail": "Non-SOP QP is trending below target (56.1% avg). Focus coaching on lowest-scoring calls."
+          "score": "61.3%",
+          "detail": "HSL - Others is trending below target (61.3% avg). Focus coaching on lowest-scoring calls."
         }
       ],
       "performingWell": [],
-      "recommendation": "Run a coaching sprint on critical KPIs for Non-SOP QP with the bottom-quartile agents.",
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Others with the bottom-quartile agents.",
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 51
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
-        "question": "Check the company SOP for agent opening steps. Did the agent follow these opening procedures?",
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
         "type": null,
         "avgScore": null,
         "maxScore": 5,
@@ -3424,7 +6211,7 @@ const qpDataBase = {
         "prevPct": null
       },
       {
-        "question": "Did the agent thank the customer before the end of the call? If the call ended abruptly, mark \"NA\"",
+        "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
         "type": null,
         "avgScore": null,
         "maxScore": 5,
@@ -3432,25 +6219,140 @@ const qpDataBase = {
         "prevPct": null
       },
       {
-        "question": "Did agent mention processing fee details -- amount as well as tax?",
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
         "type": null,
         "avgScore": null,
-        "maxScore": 0,
+        "maxScore": 2,
         "avgPct": null,
         "prevPct": null
       },
       {
-        "question": "On a scale of 1-5, rate how satisfied was the customer with the call",
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
         "type": null,
         "avgScore": null,
-        "maxScore": 5,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
+  "d482214d-737a-45d9-9a46-939398338496": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 37,
+      "qpScore": 65.2,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 65.2
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Market Update is the highest-risk profile (65.2% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "65.2%",
+          "detail": "HSL - Market Update is trending below target (65.2% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Market Update with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
         "avgPct": null,
         "prevPct": null
       }
     ]
   },
   "9cbbf7e0-4a46-4844-99aa-938b74e81b28": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 37,
       "qpScore": 76.8,
@@ -3490,8 +6392,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 37
+        "label": "To discuss motor payment and arrange a callback.",
+        "count": 1
+      },
+      {
+        "label": "To arrange a callback for motor payment discussion.",
+        "count": 1
+      },
+      {
+        "label": "To discuss a motor payment.",
+        "count": 1
+      },
+      {
+        "label": "To discuss payment method for an account.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -3561,8 +6475,222 @@ const qpDataBase = {
       }
     ]
   },
+  "5f65f3d0-4e7c-4a8c-8ad5-df8142be561b": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 31,
+      "qpScore": 66.2,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 66.2
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Order Placement is the highest-risk profile (66.2% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "66.2%",
+          "detail": "HSL - Order Placement is trending below target (66.2% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Order Placement with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on self-research. Do not mark \"Yes\" if agent state previous or current market trends and tell expected return. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest. Answer with a \"Yes\" or \"No\". Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
+  "e889eae1-1693-4db3-8f4a-fc9d7d038aa4": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 28,
+      "qpScore": 66.7,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 66.7
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Activation is the highest-risk profile (66.7% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "66.7%",
+          "detail": "HSL - Activation is trending below target (66.7% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Activation with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
   "ace05b63-6b50-4b9c-95b6-8d9dd3ad5c53": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 26,
       "qpScore": 73.1,
@@ -3602,8 +6730,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 26
+        "label": "To schedule a repair for a broken vacuum cleaner.",
+        "count": 1
+      },
+      {
+        "label": "To reschedule a service appointment for an RO repair to an earlier time.",
+        "count": 1
+      },
+      {
+        "label": "To ensure water purifier service is correctly processed under warranty.",
+        "count": 1
+      },
+      {
+        "label": "Resolving a machine issue and exchanging documentation.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -3673,8 +6813,115 @@ const qpDataBase = {
       }
     ]
   },
+  "196cdb90-3015-4b58-999a-9e5c134e1721": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 11,
+      "qpScore": 64.8,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 64.8
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Onboarding & KYC is the highest-risk profile (64.8% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "64.8%",
+          "detail": "HSL - Onboarding & KYC is trending below target (64.8% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Onboarding & KYC with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n\nClient profiling refers to the process of gathering and analysing detailed information about clients or customers in order to better understand their needs, preferences, behaviours, and demographics.\n\nDemographics: Age, gender, income, education level, occupation, etc.\nPsychographics: Interests, values, lifestyle, and attitudes.\nBehavioural data: Past purchasing patterns, service usage, and response to marketing campaigns.\nGeographics: Location, region, and environmental factors that could influence behaviour.\nNeeds and pain points: Identifying the challenges clients are looking to solve.                                                                                    Did the agent try to understand the requirement of the client? how well the agent gathered relevant information about the client’s needs, preferences, and expectations during the call. Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent gather insights about the client’s needs. Answer with \"Yes\" or \"No\". Mark as \"NA\" in case of abrupt call ending or relationship manager already have enough infromation of customer.",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 5,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
   "ec43d0e5-31f6-4f51-8cd7-aae9da8105b9": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 11,
       "qpScore": null,
@@ -3708,14 +6955,133 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 11
+        "label": "To explain a Fin Nifty bear put strategy to the customer.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to discuss their motor payment with Aeon.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to inquire about and discuss their motor payment with EON Credit.",
+        "count": 1
+      },
+      {
+        "label": "To inquire about and discuss motor payment for their account.",
+        "count": 1
       }
     ],
     "kpis": []
   },
+  "d397adca-3c64-4acc-a0fe-db8b51cbad05": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 9,
+      "qpScore": 58,
+      "qpScoreDelta": null
+    },
+    "scoreTrend": [
+      {
+        "label": "Jun 17–Jun 23",
+        "value": 0
+      },
+      {
+        "label": "Jun 24–Jun 30",
+        "value": 0
+      },
+      {
+        "label": "Jul 1–Jul 7",
+        "value": 0
+      },
+      {
+        "label": "Jul 8–Jul 14",
+        "value": 58
+      }
+    ],
+    "aiInsights": {
+      "headline": "HSL - Complaint & Escalation is the highest-risk profile (58% avg) — multiple KPI(s) are below target.",
+      "needsAttention": [
+        {
+          "name": "Overall score",
+          "score": "58%",
+          "detail": "HSL - Complaint & Escalation is trending below target (58% avg). Focus coaching on lowest-scoring calls."
+        }
+      ],
+      "performingWell": [],
+      "recommendation": "Run a coaching sprint on critical KPIs for HSL - Complaint & Escalation with the bottom-quartile agents.",
+      "source": "aggregated"
+    },
+    "escalations": [],
+    "topIntents": [],
+    "kpis": [
+      {
+        "question": "Did the agent / Relationship Manager start the call with a professional and polite greeting (e.g., “Good morning”, “Good afternoon”, “Good evening”, or a natural alternative like “Hello/Hi”)?\n\nAnswer Options:\nYes\nNo\nNA\nMark “Yes” if:\nThe RM uses a clear and polite greeting at the beginning of the call\n(e.g., “Good morning”, “Hi”, “Hello”)\nGreeting is audible and occurs before moving into conversation/purpose\nApplies to both inbound and outbound calls (live interaction only)\nMark “No” if:\nThe RM starts abruptly without any greeting\nDirectly jumps into:\nPitch\nVerification\nPurpose of call\nGreeting is unclear, rushed, or not audible\nUses an unprofessional or inappropriate opening\nMark “NA” if:\nVoicemail scenario (no live interaction)\nCall disconnected / ended before RM could greet\nCustomer disconnects immediately upon call connect\nBeginning of the call is missing / not recorded / inaudible\nVery short / incomplete call where greeting opportunity did not exist\nSystem/connectivity issues (dead air, delayed connection)",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent introduce themselves properly. Answer with a \"Yes\" or \"No\" . Mark as \"NA\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 1,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager Inform the customer at the start of the call that this is a \"service call\".This is valid only if it is a outgoing call. If the call is incoming call, mark as \"NA\", else Answer with a \"Yes\" or \"No\".  Answer with a \"Yes\" or \"No\"",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the client provide login Id and credentials on the call or did the agent ask him to do so.  Answer with a \"Yes\" or \"No\" Answer with a \"Yes\" or \"No\".Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "\n Did the agent disclose the portfolio holdings on call without verifying the client through personal information. Answer with a \"Yes\" or \"No   Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the agent/ relationship manager give recommendations to the client or customer based on  self-research . Do not mark \"Yes\" if agent state previous or current market trends and tell expected return   Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent provide personal or financial information directly to a third party or some other person. Mark as \"No\" if it is disclosed to a proxy holder or Joint account holder. Answer with a \"Yes\" or \"No\"\n\nMark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      },
+      {
+        "question": "Did the relationship manager/ agent mention about internal employee contests or sale drives to the customer and mention about his personal interest .  Answer with a \"Yes\" or \"No\" Mark as \"No\" in case of abrupt call ending or voicemail",
+        "type": null,
+        "avgScore": null,
+        "maxScore": 2,
+        "avgPct": null,
+        "prevPct": null
+      }
+    ]
+  },
   "fa6ad09a-0a5e-40a9-ad3d-5f2a30dcc956": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 8,
       "qpScore": 75,
@@ -3753,12 +7119,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 8
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Rate the agent's overall empathetic tone on a scale of 0 to 10. Focus on whether the customer felt heard, understood, and cared for — not on whether the agent followed a script.\n\nConsider: Was the agent's voice warm and naturally caring? When the customer expressed frustration, did the agent acknowledge it before moving to resolution? Was the empathy specific to this customer's situation or generic? Did the tone stay consistent throughout?\n\nUse the full 0-10 range. Higher scores for genuine warmth, timely emotional responses, and personalized acknowledgments. Lower scores for flat tone, generic phrases, skipping emotional moments, or jumping straight to procedure when the customer is distressed.",
@@ -3771,7 +7132,7 @@ const qpDataBase = {
     ]
   },
   "355f5d39-d72a-40c2-9096-ce401ab76a61": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 6,
       "qpScore": 38.9,
@@ -3809,12 +7170,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 6
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Did agent follow the steps for opening?",
@@ -3851,7 +7207,7 @@ const qpDataBase = {
     ]
   },
   "127caefe-47c6-43e0-88c8-b684a1150540": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 5,
       "qpScore": 75.4,
@@ -3891,8 +7247,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 5
+        "label": "The customer's intent was to inquire about the status of an undelivered SBI bank courier, understand why it was marked as 'recipient not available' without a call, and seek a resolution for its delivery.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to inquire about the status of an undelivered banking shipment and to arrange for its successful delivery, as well as to register a complaint regarding a failed delivery attempt marked as 'customer not available'.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to inquire about the status of a delayed and failed delivery, specifically to understand why a previously attempted reschedule was not reflecting and to expedite the delivery of their parcel.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a cancelled delivery, dispute the 'not available' status, and seek a resolution to have their package delivered.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -3963,7 +7331,7 @@ const qpDataBase = {
     ]
   },
   "036ed93d-4b46-47bc-8675-19a4d7023240": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 5,
       "qpScore": 77.9,
@@ -4003,8 +7371,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 5
+        "label": "The primary intent of the call was for the customer to reschedule a missed parcel delivery, inquire about its status, and request urgent delivery for the same day, as their previous online rescheduling attempt was unsuccessful.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to inquire about a delayed banking shipment and to resolve an incorrect delivery status update ('recipient not available'). The customer also sought to expedite delivery or collect the parcel themselves.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call is for the customer to reschedule a missed parcel delivery and to inquire about the status of a previous online rescheduling attempt that was not reflecting.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call is for the customer to complain about a missed and cancelled delivery, dispute the 'not available' status, and seek a redelivery or resolution for their order.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4075,7 +7455,7 @@ const qpDataBase = {
     ]
   },
   "b80f9a0f-3ef7-46a7-ac09-ce4e666b0f5e": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 5,
       "qpScore": 63.4,
@@ -4115,8 +7495,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 5
+        "label": "The primary intent of the call is to inquire about the status of a missed delivery, reschedule it for the same day, and register a complaint regarding the failed delivery and online rescheduling attempt.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about an undelivered courier from SBI Bank and to arrange for its delivery or collection.",
+        "count": 1
+      },
+      {
+        "label": "ERROR",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a missed and cancelled delivery, dispute the 'not available' status, and seek resolution for their shipment.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4187,7 +7579,7 @@ const qpDataBase = {
     ]
   },
   "b5a65d62-d976-4646-90ee-72c7b3d6b1ff": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 5,
       "qpScore": 78.2,
@@ -4227,8 +7619,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 5
+        "label": "To place an order for flowers.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call from the customer's side was to inquire about a delayed courier delivery and seek a resolution for its receipt. The agent's intent was to address the customer's delivery issue, explain the situation, register a complaint for the service failure, and provide a complaint reference number.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to reschedule a missed parcel delivery and ensure it is delivered on the same day of the call, as a previous online rescheduling attempt was unsuccessful.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to resolve an issue with a cancelled order that was incorrectly marked as undeliverable due to unavailability, and to arrange for its re-delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4299,7 +7703,7 @@ const qpDataBase = {
     ]
   },
   "ece568b4-598b-4456-8a36-a644faf9d65c": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 5,
       "qpScore": 65.2,
@@ -4339,8 +7743,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 5
+        "label": "The customer's intent was to inquire about the status of a delayed parcel delivery and ensure its successful delivery.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent is to reschedule a missed parcel delivery, check the status of a previous rescheduling attempt, and ensure the parcel (a laptop) is delivered on the same day due to urgency.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a delayed banking shipment, understand the reason for non-delivery, and facilitate its delivery or collection.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a missed delivery, dispute the incorrect delivery status, and arrange for the redelivery of their shipment.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4411,7 +7827,7 @@ const qpDataBase = {
     ]
   },
   "9c7f47ae-14ee-4bb2-bd32-6fa60e615528": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 5,
       "qpScore": 60,
@@ -4449,12 +7865,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 5
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Did the agent demonstrate genuine empathy through their tone, emotional responsiveness, and personalization — not just words, but whether the customer felt heard and cared for?\n\nEvaluate the agent's overall empathetic presence by considering:\n- Tone quality: Was the voice warm, engaged, and naturally caring — or flat, rushed, and mechanical?\n- Emotional responsiveness: When the customer expressed distress, did the agent pause to acknowledge it before problem-solving?\n- Personalization: Did the agent reference the customer's specific situation in their own words, or rely on generic phrases?\n- Consistency: Did the empathetic tone hold steady throughout, even when the customer escalated or repeated concerns?\n\nRate 10: Consistently warm, naturally caring tone. Every moment of customer distress is met with a specific, personalized acknowledgment before proceeding. The customer clearly feels heard. OR a purely informational call with no emotional content.\nRate 6: Generally warm but one moment where tone dips — a slightly generic acknowledgment, a brief flat/procedural shift, or a small delay in responding to distress.\nRate 3: Mostly procedural tone. May say empathetic words but delivers them without warmth, skips emotional acknowledgment to jump into process, or relies on generic phrases without personalizing.\nRate 0: Indifferent, dismissive, or robotic. Customer distress is met with flat or transactional responses. No genuine attempt to connect emotionally.",
@@ -4467,7 +7878,7 @@ const qpDataBase = {
     ]
   },
   "1d3c7851-a046-4345-bdae-b5c59b02584d": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 4,
       "qpScore": 79.6,
@@ -4507,8 +7918,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 4
+        "label": "The customer's intent was to inquire about the status of a delayed SBI Bank courier, understand why it was not delivered, and seek a resolution for its delivery. The agent's intent was to provide information on the shipment status, address the customer's complaint regarding the incorrect delivery status, register a formal complaint, and manage expectations regarding redelivery and collection options.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call is to reschedule a missed parcel delivery and to check the status of a previous, unsuccessful online rescheduling attempt. The customer also explicitly requests the delivery to be made on the same day due to urgency.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a cancelled order, dispute the incorrect delivery status (claiming unavailability), and seek a resolution for redelivery.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about the status of an undelivered parcel and ensure its successful delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4579,7 +8002,7 @@ const qpDataBase = {
     ]
   },
   "ea9a3b80-f4d9-4dd9-9bd9-27571c55c183": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 4,
       "qpScore": 73.5,
@@ -4619,8 +8042,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 4
+        "label": "The primary intent of the call is to inquire about a delayed courier, understand the reason for non-delivery (specifically the 'recipient not available' status), and facilitate its delivery or collection.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to reschedule a missed delivery for a parcel, understand why their online rescheduling attempt was not reflecting, and request an urgent redelivery for the same day.",
+        "count": 1
+      },
+      {
+        "label": "The intent of the call was for the customer to inquire about a cancelled delivery, dispute the 'no one available' status, and arrange for a redelivery of their order.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to inquire about the status of an undelivered parcel and to ensure its successful delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4691,7 +8126,7 @@ const qpDataBase = {
     ]
   },
   "b976024b-8edc-4103-9a0c-11f2dc330471": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 4,
       "qpScore": 79.2,
@@ -4731,8 +8166,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 4
+        "label": "The primary intent of the call was for the customer to inquire about a delayed and incorrectly status-updated banking shipment and to seek its delivery or collection.",
+        "count": 1
+      },
+      {
+        "label": "The intent of the call is for the customer to reschedule the delivery of their parcel and ensure it is delivered on the same day due to its urgent nature, as previous attempts to reschedule were unsuccessful.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a missed/cancelled delivery, dispute the incorrect 'no one available' status, and arrange for the redelivery of their shipment.",
+        "count": 1
+      },
+      {
+        "label": "The intent of the call was for the customer to inquire about a delayed/undelivered parcel and to ensure its successful delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4803,7 +8250,7 @@ const qpDataBase = {
     ]
   },
   "9cb792fd-9789-4c4d-a01c-87445dfb33d4": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 4,
       "qpScore": 75,
@@ -4843,8 +8290,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 4
+        "label": "The customer's intent was to inquire about a delayed banking shipment, understand the reason for non-delivery despite an incorrect status, and seek a resolution, including exploring options for quicker receipt like self-collection.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent is to reschedule the delivery of their parcel (a laptop and charger) for the same day, as a previous delivery attempt failed due to their unavailability and an online rescheduling attempt was unsuccessful. They also seek clarification on the status of their previous rescheduling request.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a delayed and cancelled delivery, understand the reason for the cancellation despite their availability, and seek a resolution to have the order delivered.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call was for the customer to inquire about the status of an undelivered parcel and to ensure its successful delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -4915,7 +8374,7 @@ const qpDataBase = {
     ]
   },
   "49733f1c-bbd6-4c65-915a-7bd2cee03fed": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 4,
       "qpScore": 82.7,
@@ -4949,8 +8408,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 4
+        "label": "The customer's intent was to inquire about the status of a delayed banking shipment, understand the reason for non-delivery, and facilitate its delivery or collection.",
+        "count": 1
+      },
+      {
+        "label": "The customer's primary intent was to reschedule a missed parcel delivery, understand its current status, and ensure it is delivered urgently (ideally today) after previous rescheduling attempts failed.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to understand why their order was cancelled despite their availability, dispute the 'customer not available' status, and arrange for the redelivery of their shipment.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about the status of their undelivered parcel and ensure its successful delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -5021,7 +8492,7 @@ const qpDataBase = {
     ]
   },
   "051efbac-5591-40c3-9493-0e7023ddabb2": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 4,
       "qpScore": 65,
@@ -5061,8 +8532,20 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 4
+        "label": "The customer's intent was to inquire about the status of an undelivered banking shipment and to arrange for its successful delivery.",
+        "count": 1
+      },
+      {
+        "label": "The primary intent of the call is to reschedule a missed parcel delivery and escalate the issue to ensure prompt delivery, ideally on the same day.",
+        "count": 1
+      },
+      {
+        "label": "The customer's intent was to inquire about a missed/cancelled delivery, dispute the 'no one available' status, and get the delivery rescheduled or resolved.",
+        "count": 1
+      },
+      {
+        "label": "The intent of the call was for the customer to inquire about the status of their undelivered parcel and to ensure its successful delivery.",
+        "count": 1
       }
     ],
     "kpis": [
@@ -5133,7 +8616,7 @@ const qpDataBase = {
     ]
   },
   "8d888882-f8ff-456f-99b1-a8270e3eca35": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 3,
       "qpScore": null,
@@ -5165,12 +8648,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 3
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "What's the user ID",
@@ -5183,7 +8661,7 @@ const qpDataBase = {
     ]
   },
   "c713f3f4-a541-401d-b56c-5b30d570e86d": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 3,
       "qpScore": 95.9,
@@ -5217,8 +8695,16 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 3
+        "label": "Identification",
+        "count": 1
+      },
+      {
+        "label": "Transfer",
+        "count": 1
+      },
+      {
+        "label": "Reschedule",
+        "count": 1
       }
     ],
     "kpis": [
@@ -5289,7 +8775,7 @@ const qpDataBase = {
     ]
   },
   "3c72d6bd-7053-4a07-bd85-400ccbb46bfe": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 3,
       "qpScore": 78,
@@ -5329,8 +8815,16 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
-        "count": 3
+        "label": "Introduction",
+        "count": 1
+      },
+      {
+        "label": "Informational",
+        "count": 1
+      },
+      {
+        "label": "Rescheduling",
+        "count": 1
       }
     ],
     "kpis": [
@@ -5401,7 +8895,7 @@ const qpDataBase = {
     ]
   },
   "8bebe309-1b93-4191-ac5d-06f3ff5f6d5d": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 52,
@@ -5439,16 +8933,11 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 1
-      }
-    ],
+    "topIntents": [],
     "kpis": []
   },
   "214cbad9-aabe-4d12-9229-2f3ce4c4a7f4": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 76,
@@ -5486,12 +8975,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 1
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Did the agent greet the customer?",
@@ -5536,7 +9020,7 @@ const qpDataBase = {
     ]
   },
   "04f4714b-355a-4cd3-95e7-2ef9093e51cc": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 72.3,
@@ -5576,7 +9060,7 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
+        "label": "The customer's intent was to inquire about a delayed/undelivered parcel and ensure its successful delivery.",
         "count": 1
       }
     ],
@@ -5648,7 +9132,7 @@ const qpDataBase = {
     ]
   },
   "339f46f1-b5fa-4d9e-aa48-fe21b65c9a44": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 86.2,
@@ -5682,7 +9166,7 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
+        "label": "The customer's intent was to resolve an issue with a cancelled delivery, specifically to understand why it was cancelled despite their availability and lack of contact, and to arrange for the delivery to be completed.",
         "count": 1
       }
     ],
@@ -5754,7 +9238,7 @@ const qpDataBase = {
     ]
   },
   "c1517e9e-d2bc-4c46-879b-4a8ab6cd28b2": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 92.3,
@@ -5788,7 +9272,7 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
+        "label": "The customer's intent was to inquire about a missed and cancelled delivery, dispute the 'no one available' status, and seek a resolution for the delivery to be completed.",
         "count": 1
       }
     ],
@@ -5860,7 +9344,7 @@ const qpDataBase = {
     ]
   },
   "bbdf2025-3366-430b-9aea-d66be826c0e1": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 78.5,
@@ -5900,7 +9384,7 @@ const qpDataBase = {
     "escalations": [],
     "topIntents": [
       {
-        "label": "Unknown",
+        "label": "The customer's intent is to resolve a cancelled delivery issue and arrange for a redelivery of their shipment.",
         "count": 1
       }
     ],
@@ -5972,7 +9456,7 @@ const qpDataBase = {
     ]
   },
   "37d876c0-a30a-446a-9f2d-996393e9fe08": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 30,
@@ -6010,12 +9494,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 1
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Did the agent respond with genuine warmth and empathy when the customer expressed frustration or distress?\n\nFocus on TONE, not scripts. Evaluate:\n- Did the agent's voice convey care and concern, or was it flat and transactional?\n- When the customer shared a problem, did the agent acknowledge their feelings IMMEDIATELY (in the very next response) before moving to process?\n- Was the empathy specific to the customer's situation, or generic/rehearsed?\n\nDeduct for: responding to distress with 'Okay, let me check...' or jumping to procedure without first acknowledging emotion; flat/monotone delivery; generic apologies like 'sorry for the inconvenience' without personalizing.\n\nRate 10: Warm, genuine tone throughout. Every moment of customer distress met with immediate, personalized empathy. OR purely transactional call with no emotional content.\nRate 6: Mostly empathetic but missed one moment where tone fell flat or empathy came late.\nRate 3: Multiple moments where agent skipped empathy or responded transactionally to distress. Tone lacked warmth.\nRate 0: Consistently flat, dismissive, or indifferent tone. No genuine empathy shown.",
@@ -6028,7 +9507,7 @@ const qpDataBase = {
     ]
   },
   "860aa012-7174-4d64-acbd-bdbe9aa70823": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 30,
@@ -6066,12 +9545,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 1
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Evaluate the agent's active empathy by scoring EACH customer grievance moment independently. A grievance moment is any point where the customer expresses frustration, dissatisfaction, inconvenience, or recounts a negative experience.\n\nCRITICAL SCORING RULES:\n\n1. TIMING IS MANDATORY: The agent MUST acknowledge the customer's emotional state IMMEDIATELY (in their very next response) after the customer voices a grievance. An apology or empathy statement that comes 2+ turns later does NOT count for that grievance moment. Each grievance moment must be evaluated separately.\n\n2. ANTI-PATTERNS THAT REQUIRE DEDUCTION (each occurrence warrants downgrade):\n   - Agent responds to an emotional grievance by jumping straight to process/procedure (e.g., 'Okay, please provide your address' or 'Let me check that for you') WITHOUT FIRST acknowledging the customer's feelings. This is a CLEAR MISS even if the agent apologizes later in the call.\n   - Agent uses filler transitions like 'Okay', 'Alright', 'Hmm', 'Uh-huh' as the primary acknowledgment of a customer's distress instead of a genuine empathy statement.\n   - Agent repeats information the customer has already shared instead of building on it.\n   - Agent uses a flat, monotone, or robotic delivery tone even when saying empathetic words. Words alone are not enough -- the TONE must convey genuine warmth and concern.\n   - Agent provides a scripted or rehearsed-sounding care statement that feels generic rather than tailored to the customer's specific situation.\n\n3. WHAT COUNTS AS GENUINE EMPATHY:\n   - A specific, personalized acknowledgment of what the customer just described (not a generic 'sorry for the inconvenience')\n   - Warmth and concern audible in the agent's tone of voice\n   - Validating the customer's feelings before moving to resolution (e.g., 'I completely understand how frustrating that must be, especially when you were home waiting')\n\nSCORING:\n\nRate 10 - Perfect Compliance: For EVERY grievance moment in the call, the agent IMMEDIATELY responds with a timely, personalized, warm empathy statement BEFORE moving to process. Tone is consistently warm and engaged throughout. No anti-patterns present. OR the interaction is purely transactional with no emotional content requiring empathy.\n\nRate 6 - Minor Empathy Gap: The agent demonstrates empathy for MOST grievance moments but misses exactly ONE -- either the timing was slightly delayed, the acknowledgment was slightly generic, or the tone dipped briefly. All other moments were handled well.\n\nRate 3 - Moderate Empathy Gap: The agent misses empathy timing on MULTIPLE grievance moments, OR demonstrates 2-3 anti-patterns (e.g., jumps to procedure without acknowledging distress, uses flat tone, gives generic responses). May have apologized at some point but not at the critical moments when the customer needed it most.\n\nRate 0 - Poor / Critical Failure: The agent consistently fails to acknowledge customer emotions, responds to distress with purely transactional statements, uses frequent filler words as acknowledgments, maintains a flat or indifferent tone, or demonstrates hostile/dismissive behavior.",
@@ -6084,7 +9558,7 @@ const qpDataBase = {
     ]
   },
   "22b2ea99-89cc-4d39-9a93-27cb3bb5fc86": {
-    "smarterAssignment": false,
+    "smarterAssignment": true,
     "metrics": {
       "analysisCount": 1,
       "qpScore": 100,
@@ -6116,12 +9590,7 @@ const qpDataBase = {
       "source": "aggregated"
     },
     "escalations": [],
-    "topIntents": [
-      {
-        "label": "Unknown",
-        "count": 1
-      }
-    ],
+    "topIntents": [],
     "kpis": [
       {
         "question": "Did the agent demonstrate active empathy by understanding the customer's emotional state, avoided repetition of already shared information, offered Interim apology when the customer explained any prior bad experience, delivering a personalized and caring response, maintaining an engaged and helpful tone, and avoiding scripted (avoided usage of OK frequently), casual, or indifferent behavior?\n\nRate 10 - Perfect Compliance: The agent instantly mirrors the customer's situation with a timely, caring response or sincere apology, offered Interim apology when the customer explained any prior bad experience. The tone is highly engaging, personalized, and proactive, providing a complete resolution without ever sounding robotic, without repetitions or casual like avoided usage of OK frequently. No deductions applied. OR when the interaction is purely transactional or informational in nature, with no emotional concern requiring empathy.\n\nRate 6 - Minor Empathy Gap: The agent provides a helpful and complete response, but misses exactly one element of emotional connection such as delivering a care statement that sounds slightly rehearsed or omitting a warm apology where it would have perfectly fit.\n\nRate 3 - Moderate Empathy Gap: The agent resolves the issue but demonstrates a noticeable lack of emotional warmth. They violate three empathy guidelines (e.g., the tone is purely transactional, they provide a rigid repetitive explanation instead of tailoring it to the customer's distress and no Interim apology offered).\n\nRate 0 - Poor / Critical Failure / Hostile Engagement: The agent demonstrates a highly casual, detached, apathetic, dismissive, repetitive or hostile attitude by providing incomplete or one-word responses, showing little to no concern, using OK frequently, failing to offer empathy or care statements, or actively shutting down the customer with indifference.",
