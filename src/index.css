@@ -3958,7 +3958,7 @@ select {
   font-size: 18px;
 }
 
-/* QP Score Distribution — horizontal band chart */
+/* QP Score Distribution — donut pie chart */
 .qp-score-dist {
   display: flex;
   flex-direction: column;
@@ -3971,64 +3971,120 @@ select {
   line-height: 1.45;
 }
 
-.qp-score-dist-list {
+.qp-score-dist-pie-wrap {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.qp-score-dist-pie {
+  position: relative;
+  width: 220px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.qp-score-dist-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.qp-score-dist-slice {
+  cursor: pointer;
+  transition: opacity 0.15s ease, filter 0.15s ease;
+}
+
+.qp-score-dist-svg:has(.qp-score-dist-slice.is-active) .qp-score-dist-slice:not(.is-active) {
+  opacity: 0.45;
+}
+
+.qp-score-dist-slice.is-active {
+  filter: drop-shadow(0 2px 4px rgba(10, 13, 18, 0.16));
+}
+
+.qp-score-dist-pie-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+  text-align: center;
+  padding: 0 42px;
+}
+
+.qp-score-dist-pie-value {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.qp-score-dist-pie-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+.qp-score-dist-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 220px;
+  background: #26282c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.qp-score-dist-legend {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 0;
 }
 
-.qp-score-dist-row {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr) auto;
-  gap: 10px;
+.qp-score-dist-legend-item {
+  display: flex;
   align-items: center;
-  padding: 8px 10px;
-  border: 1px solid var(--border-light);
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid transparent;
   border-radius: 8px;
-  background: var(--white);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.qp-score-dist-row.is-avg-band {
-  border-color: var(--accent-light-border);
+.qp-score-dist-legend-item:hover,
+.qp-score-dist-legend-item.is-active {
   background: var(--accent-tint, #f0f4ff);
+  border-color: var(--accent-light-border);
 }
 
-.qp-score-dist-row.is-top-band .qp-score-dist-band {
-  font-weight: 700;
+.qp-score-dist-legend-item.is-empty {
+  opacity: 0.55;
+  cursor: default;
 }
 
-.qp-score-dist-band {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text);
+.qp-score-dist-legend-item .dist-legend-count {
+  margin-left: auto;
   white-space: nowrap;
-}
-
-.qp-score-dist-bar-track {
-  height: 10px;
-  border-radius: 5px;
-  background: #eeeeee;
-  overflow: hidden;
-}
-
-.qp-score-dist-bar-fill {
-  height: 100%;
-  border-radius: 5px;
-  transform-origin: left;
-  animation: fillBar 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) both;
-}
-
-.qp-score-dist-stats {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.qp-score-dist-pct {
-  margin-left: 4px;
-  font-weight: 500;
-  color: var(--text-secondary);
 }
 
 .qp-score-cell {
@@ -4368,6 +4424,10 @@ select {
   }
 
   .qp-coaching-kpi-row {
+    grid-template-columns: 1fr;
+  }
+
+  .qp-score-dist-pie-wrap {
     grid-template-columns: 1fr;
   }
 
