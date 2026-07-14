@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Tabs from './components/Tabs';
 import FilterBar from './components/FilterBar';
+import FeedbackButtons from './components/FeedbackButtons';
 import AgentView from './components/AgentView';
 import OverviewView from './components/OverviewView';
 import CustomReportsView from './components/CustomReportsView';
@@ -11,8 +12,21 @@ import CxoLensView from './components/CxoLensView';
 
 const FILTER_BAR_VIEWS = ['org', 'team', 'agent'];
 
+function dashboardFeedback(section, view) {
+  if (section === 'agent-summary') {
+    return { view, section: 'dashboard', insightId: view };
+  }
+  if (section === 'cx-pulse') {
+    return { view: 'cxo_lens', section: 'dashboard', insightId: 'cx_pulse' };
+  }
+  if (section === 'custom-insights') {
+    return { view: 'custom', section: 'dashboard', insightId: 'custom_insights' };
+  }
+  return null;
+}
+
 export default function App() {
-  const [section, setSection] = useState('ai-insights');
+  const [section, setSection] = useState('agent-summary');
   const [view, setViewState] = useState('agent');
   const [period, setPeriod] = useState('month');
   const [selector, setSelector] = useState('H0967');
@@ -23,14 +37,16 @@ export default function App() {
   };
 
   const openAgent = (code) => {
-    setSection('ai-insights');
+    setSection('agent-summary');
     setViewState('agent');
     setSelector(code);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const isCxoLens = section === 'cxo-lens';
-  const isCustomReports = section === 'custom-reports';
+  const isCxoLens = section === 'cx-pulse';
+  const isCustomReports = section === 'custom-insights';
+  const isAgentSummary = section === 'agent-summary';
+  const feedback = dashboardFeedback(section, view);
 
   return (
     <ExotelThemeProvider defaultMode="light">
@@ -46,26 +62,35 @@ export default function App() {
             <main className="main main--flush">
               <div className="panel panel--flush">
                 <div className="panel-titlebar">
-                  <div className="panel-title-row">
-                    <span className="panel-title">
-                      {isCxoLens ? 'CXO Lens' : isCustomReports ? 'Custom Reports' : 'AI Insights'}
-                    </span>
-                    <span className="panel-subtitle">
-                      {isCxoLens
-                        ? 'Bi-weekly AI-generated executive reports — narrative-first, admin-only'
-                        : isCustomReports
-                          ? 'Generate ad-hoc AI reports from a natural-language prompt — admin-only'
-                          : 'AI-generated quality insights across your org, teams and agents'}
-                    </span>
+                  <div className="panel-titlebar-top">
+                    <div className="panel-title-row">
+                      <span className="panel-title">
+                        {isCxoLens ? 'CX Pulse' : isCustomReports ? 'Custom Insights' : 'Overview'}
+                      </span>
+                      <span className="panel-subtitle">
+                        {isCxoLens
+                          ? 'Bi-weekly AI-generated executive reports — narrative-first, admin-only'
+                          : isCustomReports
+                            ? 'Generate ad-hoc AI reports from a natural-language prompt — admin-only'
+                            : 'AI-generated quality insights across your org, teams and agents'}
+                      </span>
+                    </div>
+                    {feedback && (
+                      <FeedbackButtons
+                        view={feedback.view}
+                        section={feedback.section}
+                        insightId={feedback.insightId}
+                      />
+                    )}
                   </div>
-                  {!isCxoLens && !isCustomReports && (
+                  {isAgentSummary && (
                     <div className="tabs-row">
                       <Tabs view={view} onChange={setView} />
                     </div>
                   )}
                 </div>
 
-                {!isCxoLens && !isCustomReports && FILTER_BAR_VIEWS.includes(view) && (
+                {isAgentSummary && FILTER_BAR_VIEWS.includes(view) && (
                   <FilterBar
                     view={view}
                     period={period}
@@ -81,8 +106,8 @@ export default function App() {
                   <div className="content">
                     <div className="sections">
                       {isCxoLens && <CxoLensView />}
-                      {!isCxoLens && view === 'agent' && <AgentView />}
-                      {!isCxoLens && (view === 'team' || view === 'org') && (
+                      {isAgentSummary && view === 'agent' && <AgentView />}
+                      {isAgentSummary && (view === 'team' || view === 'org') && (
                         <OverviewView view={view} onOpenAgent={openAgent} />
                       )}
                       <div className="footer-note">AI-generated summary. May contain errors.</div>

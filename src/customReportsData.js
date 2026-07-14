@@ -5,7 +5,7 @@
 let nextId = 100;
 
 // Mock period-over-period trend behind each report, so its detail view can
-// use the same chart-type toggle + prev/next pager pattern as CXO Insights.
+// use the same prev/next pager pattern as CX Pulse charts.
 const TREND_LABELS = {
   DAILY: ['Jul 8', 'Jul 9', 'Jul 10', 'Jul 11', 'Jul 12', 'Jul 13'],
   WEEKLY: ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6'],

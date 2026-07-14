@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Icon from './Icon';
-import FeedbackButtons from './FeedbackButtons';
 import CollapsibleSection from './CollapsibleSection';
 import SignalDateFilter from './SignalDateFilter';
 import WeekPager from './WeekPager';
@@ -466,9 +465,8 @@ export default function CxoInsightsView({
         <div className="top-cards-row">
           {reportData.keyInsights.map((k) => (
             <div key={k.id} className={`info-card focus${viewKey === 'cxo_lens' ? ` narrative-card tone-${k.tone || 'neutral'}` : ''}`} style={{ flex: '1 1 260px' }}>
-              <div className="info-card-heading-row" style={{ justifyContent: 'space-between' }}>
+              <div className="info-card-heading-row">
                 <span className="info-card-kpi">{k.title}</span>
-                <FeedbackButtons view={viewKey} section="key_insight" insightId={k.id} />
               </div>
               <div className="info-card-text">{k.detail}</div>
             </div>
@@ -502,9 +500,8 @@ export default function CxoInsightsView({
         <div className="top-cards-row">
           {reportData.intentCallouts.map((k) => (
             <div key={k.id} className={`info-card priority${viewKey === 'cxo_lens' ? ` narrative-card tone-${k.tone || 'neutral'}` : ''}`} style={{ flex: '1 1 260px' }}>
-              <div className="info-card-heading-row" style={{ justifyContent: 'space-between' }}>
+              <div className="info-card-heading-row">
                 <span className="info-card-title">{k.title}</span>
-                <FeedbackButtons view={viewKey} section="intent_callout" insightId={k.id} />
               </div>
               <div className="info-card-text">{k.detail}</div>
             </div>
@@ -631,9 +628,8 @@ export default function CxoInsightsView({
                     </div>
                   ))}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, paddingTop: 10, borderTop: '1px solid var(--border-light)' }}>
+                <div style={{ paddingTop: 10, borderTop: '1px solid var(--border-light)' }}>
                   <div className="improve-detail-text">{group.insight}</div>
-                  <FeedbackButtons view={viewKey} section="kpi_deep_dive" insightId={group.groupId} />
                 </div>
               </div>
             );

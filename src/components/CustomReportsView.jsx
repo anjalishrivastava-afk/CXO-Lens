@@ -2,9 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button, ChatInputBox, CircularProgress, Tooltip, Typography } from '@exotel-npm-dev/signal-design-system';
 import Icon from './Icon';
-import FeedbackButtons from './FeedbackButtons';
 import WeekPager from './WeekPager';
-import ChartTypeToggle from './ChartTypeToggle';
 import SimpleLineChart from './SimpleLineChart';
 import {
   seedHistory,
@@ -42,18 +40,31 @@ function scoreColor(score) {
   return score >= 80 ? 'var(--green)' : score >= 60 ? 'var(--yellow)' : 'var(--red)';
 }
 
+function ChartCard({ title, subtitle, headerRight, children, className = '' }) {
+  return (
+    <div className={`section-card${className ? ` ${className}` : ''}`}>
+      <div className="section-card-header chart-card-header">
+        <div>
+          <div className="section-card-title">{title}</div>
+          <div className="section-card-sub">{subtitle}</div>
+        </div>
+        {headerRight}
+      </div>
+      <div className="section-card-body">{children}</div>
+    </div>
+  );
+}
+
 function ReportTrendChart({ trend, period }) {
-  const [graphType, setGraphType] = useState('line');
   const [selectedIdx, setSelectedIdx] = useState(trend.length - 1);
   const point = trend[selectedIdx];
-  const max = Math.max(...trend.map((p) => p.score)) || 1;
 
   return (
-    <div className="section-card" style={{ marginBottom: 16 }}>
-      <div className="section-card-title" style={{ marginBottom: 2 }}>Score & Volume Trend</div>
-      <div className="section-card-sub" style={{ marginBottom: 10 }}>Avg quality score across recent {period.toLowerCase()} periods.</div>
-      <div className="chart-toolbar">
-        <ChartTypeToggle value={graphType} onChange={setGraphType} />
+    <ChartCard
+      className="custom-reports-trend-card"
+      title="Score & Volume Trend"
+      subtitle={`Avg quality score across recent ${period.toLowerCase()} periods.`}
+      headerRight={
         <WeekPager
           label={point.label}
           index={selectedIdx}
@@ -62,24 +73,9 @@ function ReportTrendChart({ trend, period }) {
           prevTooltip="Previous period"
           nextTooltip="Next period"
         />
-      </div>
-      {graphType === 'line' ? (
-        <SimpleLineChart points={trend.map((p) => ({ label: p.label, value: p.score, color: scoreColor(p.score) }))} />
-      ) : (
-        <div className="dist-grid" style={{ gridTemplateColumns: `repeat(${trend.length}, 1fr)` }}>
-          {trend.map((p) => (
-            <div key={p.label} className="dist-col">
-              <div className="dist-share">{p.score}%</div>
-              <div
-                className="dist-bar chart-hover"
-                data-tooltip={`${p.label} · ${p.score}% avg score (${p.calls.toLocaleString()} calls)`}
-                style={{ height: `${Math.round((p.score / max) * 118)}px`, background: scoreColor(p.score) }}
-              />
-              <div className="dist-range">{p.label}</div>
-            </div>
-          ))}
-        </div>
-      )}
+      }
+    >
+      <SimpleLineChart points={trend.map((p) => ({ label: p.label, value: p.score, color: scoreColor(p.score) }))} />
       <div className="week-detail-panel">
         <span className="week-detail-label">{point.label}</span>
         <span className="week-detail-stat" style={{ color: scoreColor(point.score) }}>
@@ -89,7 +85,7 @@ function ReportTrendChart({ trend, period }) {
           {point.calls.toLocaleString()} calls
         </span>
       </div>
-    </div>
+    </ChartCard>
   );
 }
 
@@ -97,24 +93,20 @@ function ReportDetail({ entry }) {
   const { report } = entry;
   return (
     <div className="section-card custom-reports-report-card">
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 14 }}>
-        <div>
-          <div className="section-card-title" style={{ marginBottom: 4 }}>“{entry.prompt}”</div>
-          <div className="section-card-sub">
-            {entry.period} · {entry.createdAt}
-          </div>
+      <div style={{ marginBottom: 14 }}>
+        <div className="section-card-title" style={{ marginBottom: 4 }}>“{entry.prompt}”</div>
+        <div className="section-card-sub">
+          {entry.period} · {entry.createdAt}
         </div>
-        <FeedbackButtons view={VIEW} section="exec_summary" insightId={entry.id} />
       </div>
 
       <div className="improve-detail-text" style={{ marginBottom: 14 }}>{report.exec}</div>
 
       <div className="top-cards-row" style={{ marginBottom: 16 }}>
-        {report.highlights.map((h, i) => (
+        {report.highlights.map((h) => (
           <div key={h.title} className="info-card focus" style={{ flex: '1 1 240px' }}>
-            <div className="info-card-heading-row" style={{ justifyContent: 'space-between' }}>
+            <div className="info-card-heading-row">
               <span className="info-card-kpi">{h.title}</span>
-              <FeedbackButtons view={VIEW} section="highlight_card" insightId={`${entry.id}_h${i}`} />
             </div>
             <div className="info-card-text">{h.detail}</div>
           </div>
@@ -170,10 +162,7 @@ function ReportDetail({ entry }) {
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 16 }}>
-        <div className="improve-detail-text">{report.strategic}</div>
-        <FeedbackButtons view={VIEW} section="strategic" insightId={entry.id} />
-      </div>
+      <div className="improve-detail-text" style={{ marginBottom: 16 }}>{report.strategic}</div>
 
       <div className="coaching-list">
         {report.coaching.map((c, i) => (
@@ -183,7 +172,6 @@ function ReportDetail({ entry }) {
               <div className="coaching-title">{c.title}</div>
               <div className="coaching-text">{c.text}</div>
             </div>
-            <FeedbackButtons view={VIEW} section="coaching_list" insightId={`${entry.id}_c${i}`} />
           </div>
         ))}
       </div>
