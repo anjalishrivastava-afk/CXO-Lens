@@ -11,6 +11,7 @@ const MAIN_MENU_ITEMS = [
 export const AI_INSIGHTS_SECTIONS = [
   { id: 'cx-pulse', label: 'CX Pulse' },
   { id: 'agent-summary', label: 'Agent Summary' },
+  { id: 'qp-insights', label: 'QP Insights' },
   { id: 'custom-insights', label: 'Custom Insights' },
 ];
 

@@ -3597,3 +3597,91 @@ select {
     transform: translateY(0);
   }
 }
+
+/* ---------- QP Insights (scoped — reuses shared dashboard tokens) ---------- */
+
+.qp-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.qp-insights .kpi-card,
+.qp-insights .section-card,
+.qp-insights .rank-table-card,
+.qp-insights .improve-list {
+  background: var(--white);
+}
+
+.qp-kpi-grid--two {
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
+}
+
+.qp-profile-head,
+.qp-profile-row {
+  grid-template-columns: 1.2fr 1.6fr 0.7fr;
+}
+
+.qp-match-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.qp-match-bar {
+  width: 100%;
+  max-width: 280px;
+}
+
+.qp-score-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.qp-kpi-head,
+.qp-kpi-row {
+  grid-template-columns: 2fr 0.8fr 0.7fr 0.7fr 0.6fr 0.6fr;
+}
+
+.qp-intent-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.qp-intent-row .tab-badge.active {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 64px;
+}
+
+.qp-intent-count {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 64px;
+  background: var(--white);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .qp-kpi-grid--two {
+    grid-template-columns: 1fr;
+  }
+
+  .qp-kpi-head,
+  .qp-kpi-row {
+    grid-template-columns: 1.4fr 0.8fr 0.6fr 0.6fr;
+  }
+
+  .qp-kpi-head span:nth-child(n + 5),
+  .qp-kpi-row span:nth-child(n + 5) {
+    display: none;
+  }
+}

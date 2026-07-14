@@ -3,23 +3,56 @@ import { ExotelThemeProvider, ToastProvider } from '@exotel-npm-dev/signal-desig
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Tabs from './components/Tabs';
+import QpInsightsTabs from './components/QpInsightsTabs';
 import FilterBar from './components/FilterBar';
+import QpFilterBar from './components/QpFilterBar';
 import FeedbackButtons from './components/FeedbackButtons';
 import AgentView from './components/AgentView';
 import OverviewView from './components/OverviewView';
 import CustomReportsView from './components/CustomReportsView';
 import CxoLensView from './components/CxoLensView';
+import QpInsightsView from './components/QpInsightsView';
+import { trackQpAnalyticsPeriodChanged, trackQpAnalyticsTabSwitched } from './analytics';
+import { useQpAnalyticsTimeSpent } from './useQpAnalyticsTimeSpent';
+import { getQpProfile } from './qpInsightsData';
 
 const FILTER_BAR_VIEWS = ['org', 'team', 'agent'];
 
-function dashboardFeedback(section, view, insightId) {
+function dashboardFeedback(section, view, insightId, qpTab, qpId) {
   if (section === 'agent-summary') {
     return { view, section: 'dashboard', insightId: view };
   }
   if (section === 'cx-pulse') {
     return { view: 'cxo_lens', section: 'dashboard', insightId: insightId ?? 'cx_pulse' };
   }
+  if (section === 'qp-insights') {
+    return {
+      view: 'qp_insights',
+      section: 'dashboard',
+      insightId: qpTab === 'all-profiles' ? 'all_profiles' : `qp_${qpId}`,
+    };
+  }
   return null;
+}
+
+function panelTitle(section) {
+  if (section === 'cx-pulse') return 'CX Pulse';
+  if (section === 'custom-insights') return 'Custom Insights';
+  if (section === 'qp-insights') return 'QP Insights';
+  return 'Overview';
+}
+
+function panelSubtitle(section) {
+  if (section === 'cx-pulse') {
+    return 'Bi-weekly AI-generated executive reports — narrative-first, admin-only';
+  }
+  if (section === 'custom-insights') {
+    return 'Generate ad-hoc AI reports from a natural-language prompt — admin-only';
+  }
+  if (section === 'qp-insights') {
+    return 'Quality Profile analytics with AI-generated insights — admins, supervisors, and agents';
+  }
+  return 'AI-generated quality insights across your org, teams and agents';
 }
 
 export default function App() {
@@ -27,6 +60,9 @@ export default function App() {
   const [view, setViewState] = useState('agent');
   const [period, setPeriod] = useState('month');
   const [selector, setSelector] = useState('H0967');
+  const [qpTab, setQpTab] = useState('all-profiles');
+  const [qpId, setQpId] = useState('sales_outbound');
+  const [qpPeriod, setQpPeriod] = useState('month');
 
   const setView = (v) => {
     setViewState(v);
@@ -43,20 +79,75 @@ export default function App() {
   const isCxoLens = section === 'cx-pulse';
   const isCustomReports = section === 'custom-insights';
   const isAgentSummary = section === 'agent-summary';
+  const isQpInsights = section === 'qp-insights';
   const [dashboardReady, setDashboardReady] = useState({ ready: true, insightId: view });
+
+  useQpAnalyticsTimeSpent(isQpInsights);
 
   useEffect(() => {
     if (isAgentSummary) {
       setDashboardReady({ ready: true, insightId: view });
+    } else if (isQpInsights) {
+      setDashboardReady({ ready: true, insightId: qpTab === 'all-profiles' ? 'all_profiles' : qpId });
     } else {
       setDashboardReady({ ready: false, insightId: null });
     }
-  }, [section, view, isAgentSummary]);
+  }, [section, view, isAgentSummary, isQpInsights, qpTab, qpId]);
 
   const feedback =
-    isAgentSummary || (isCxoLens && dashboardReady.ready)
-      ? dashboardFeedback(section, view, dashboardReady.insightId)
+    isAgentSummary || isQpInsights || (isCxoLens && dashboardReady.ready)
+      ? dashboardFeedback(section, view, dashboardReady.insightId, qpTab, qpId)
       : null;
+
+  const handleQpTabChange = (nextTab) => {
+    setQpTab(nextTab);
+    const profile = nextTab === 'per-qp' ? getQpProfile(qpId) : null;
+    trackQpAnalyticsTabSwitched({
+      tabType: nextTab === 'all-profiles' ? 'all_profiles' : 'specific_qp',
+      profileId: profile?.id ?? null,
+      profileName: profile?.label ?? null,
+      source: 'tab_bar',
+      period: qpPeriod,
+    });
+  };
+
+  const handleOpenQpProfile = (profileId, source) => {
+    const profile = getQpProfile(profileId);
+    setQpId(profileId);
+    setQpTab('per-qp');
+    trackQpAnalyticsTabSwitched({
+      tabType: 'specific_qp',
+      profileId: profile.id,
+      profileName: profile.label,
+      source,
+      period: qpPeriod,
+    });
+  };
+
+  const handleQpChange = (nextQpId) => {
+    const profile = getQpProfile(nextQpId);
+    setQpId(nextQpId);
+    if (qpTab === 'per-qp') {
+      trackQpAnalyticsTabSwitched({
+        tabType: 'specific_qp',
+        profileId: profile.id,
+        profileName: profile.label,
+        source: 'profile_selector',
+        period: qpPeriod,
+      });
+    }
+  };
+
+  const handleQpPeriodChange = (nextPeriod) => {
+    setQpPeriod(nextPeriod);
+    const profile = qpTab === 'per-qp' ? getQpProfile(qpId) : null;
+    trackQpAnalyticsPeriodChanged({
+      period: nextPeriod,
+      tabType: qpTab === 'all-profiles' ? 'all_profiles' : 'specific_qp',
+      profileId: profile?.id ?? null,
+      profileName: profile?.label ?? null,
+    });
+  };
 
   return (
     <ExotelThemeProvider defaultMode="light">
@@ -65,25 +156,13 @@ export default function App() {
           <Sidebar section={section} onSectionChange={setSection} />
           <div className="content-col">
             <Header />
-            {/* Same flush shell (8px gutter, borderless panel) everywhere —
-                CXO Lens and AI Insights used to sit in a wider 16px-inset,
-                bordered panel while Custom Reports had its own tighter chrome;
-                now all three sections share identical outer padding/spacing. */}
             <main className="main main--flush">
               <div className="panel panel--flush">
                 <div className="panel-titlebar">
                   <div className="panel-titlebar-top">
                     <div className="panel-title-row">
-                      <span className="panel-title">
-                        {isCxoLens ? 'CX Pulse' : isCustomReports ? 'Custom Insights' : 'Overview'}
-                      </span>
-                      <span className="panel-subtitle">
-                        {isCxoLens
-                          ? 'Bi-weekly AI-generated executive reports — narrative-first, admin-only'
-                          : isCustomReports
-                            ? 'Generate ad-hoc AI reports from a natural-language prompt — admin-only'
-                            : 'AI-generated quality insights across your org, teams and agents'}
-                      </span>
+                      <span className="panel-title">{panelTitle(section)}</span>
+                      <span className="panel-subtitle">{panelSubtitle(section)}</span>
                     </div>
                     {feedback && (
                       <FeedbackButtons
@@ -99,6 +178,11 @@ export default function App() {
                       <Tabs view={view} onChange={setView} />
                     </div>
                   )}
+                  {isQpInsights && (
+                    <div className="tabs-row">
+                      <QpInsightsTabs tab={qpTab} onChange={handleQpTabChange} />
+                    </div>
+                  )}
                 </div>
 
                 {isAgentSummary && FILTER_BAR_VIEWS.includes(view) && (
@@ -111,12 +195,30 @@ export default function App() {
                   />
                 )}
 
+                {isQpInsights && (
+                  <QpFilterBar
+                    qpId={qpId}
+                    onQpChange={handleQpChange}
+                    period={qpPeriod}
+                    onPeriodChange={handleQpPeriodChange}
+                    showProfileSelector={qpTab === 'per-qp'}
+                  />
+                )}
+
                 {isCustomReports ? (
                   <CustomReportsView />
                 ) : (
                   <div className="content">
                     <div className="sections">
                       {isCxoLens && <CxoLensView onDashboardReadyChange={setDashboardReady} />}
+                      {isQpInsights && (
+                        <QpInsightsView
+                          tab={qpTab}
+                          qpId={qpId}
+                          period={qpPeriod}
+                          onOpenProfile={handleOpenQpProfile}
+                        />
+                      )}
                       {isAgentSummary && view === 'agent' && <AgentView />}
                       {isAgentSummary && (view === 'team' || view === 'org') && (
                         <OverviewView view={view} onOpenAgent={openAgent} />
