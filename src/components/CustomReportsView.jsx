@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Button, ChatInputBox, CircularProgress, Tooltip, Typography } from '@exotel-npm-dev/signal-design-system';
 import Icon from './Icon';
+import FeedbackButtons from './FeedbackButtons';
 import WeekPager from './WeekPager';
 import SimpleLineChart from './SimpleLineChart';
 import {
@@ -93,11 +94,14 @@ function ReportDetail({ entry }) {
   const { report } = entry;
   return (
     <div className="section-card custom-reports-report-card">
-      <div style={{ marginBottom: 14 }}>
-        <div className="section-card-title" style={{ marginBottom: 4 }}>“{entry.prompt}”</div>
-        <div className="section-card-sub">
-          {entry.period} · {entry.createdAt}
+      <div className="custom-reports-report-header">
+        <div>
+          <div className="section-card-title">“{entry.prompt}”</div>
+          <div className="section-card-sub">
+            {entry.period} · {entry.createdAt}
+          </div>
         </div>
+        <FeedbackButtons view={VIEW} section="dashboard" insightId={entry.id} />
       </div>
 
       <div className="improve-detail-text" style={{ marginBottom: 14 }}>{report.exec}</div>

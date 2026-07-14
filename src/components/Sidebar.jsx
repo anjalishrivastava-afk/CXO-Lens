@@ -9,8 +9,8 @@ const MAIN_MENU_ITEMS = [
 ];
 
 export const AI_INSIGHTS_SECTIONS = [
-  { id: 'agent-summary', label: 'Agent Summary' },
   { id: 'cx-pulse', label: 'CX Pulse' },
+  { id: 'agent-summary', label: 'Agent Summary' },
   { id: 'custom-insights', label: 'Custom Insights' },
 ];
 

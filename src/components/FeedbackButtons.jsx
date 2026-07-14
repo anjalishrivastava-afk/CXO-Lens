@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Box, Button, Checkbox, EnhancedTextField, Popover, Typography, useToast } from '@exotel-npm-dev/signal-design-system';
+import { Box, Button, Checkbox, EnhancedTextField, Popover, Tooltip, Typography, useToast } from '@exotel-npm-dev/signal-design-system';
 import Icon from './Icon';
 import { trackInsightFeedback } from '../analytics';
 
@@ -56,7 +56,7 @@ export default function FeedbackButtons({ view, section, insightId }) {
 
   return (
     <div className="feedback-buttons" ref={rootRef}>
-      <span className="tooltip-anchor" data-tooltip={vote === 'up' ? 'Undo' : 'Helpful'}>
+      <Tooltip title={vote === 'up' ? 'Undo' : 'Helpful'} placement="bottom" arrow>
         <button
           className={`feedback-btn${vote === 'up' ? ' active-up' : ''}`}
           onClick={() => castVote('up')}
@@ -65,8 +65,8 @@ export default function FeedbackButtons({ view, section, insightId }) {
         >
           <Icon name="thumb_up" />
         </button>
-      </span>
-      <span className="tooltip-anchor" data-tooltip={vote === 'down' ? 'Undo' : 'Not helpful'}>
+      </Tooltip>
+      <Tooltip title={vote === 'down' ? 'Undo' : 'Not helpful'} placement="bottom" arrow>
         <button
           className={`feedback-btn${vote === 'down' ? ' active-down' : ''}`}
           onClick={() => castVote('down')}
@@ -75,9 +75,9 @@ export default function FeedbackButtons({ view, section, insightId }) {
         >
           <Icon name="thumb_down" />
         </button>
-      </span>
+      </Tooltip>
       {vote && (
-        <span className="tooltip-anchor" data-tooltip="Share more details">
+        <Tooltip title="Share more details" placement="bottom" arrow>
           <button
             className="feedback-btn"
             onClick={() => setPanelOpen((o) => !o)}
@@ -86,7 +86,7 @@ export default function FeedbackButtons({ view, section, insightId }) {
           >
             <Icon name="edit_note" />
           </button>
-        </span>
+        </Tooltip>
       )}
 
       <Popover

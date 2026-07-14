@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Tooltip,
@@ -25,7 +25,7 @@ const PERIODS_CHRONO = [...fortnightPeriods].reverse();
 
 const VIEW = 'cxo_lens';
 
-export default function CxoLensView() {
+export default function CxoLensView({ onDashboardReadyChange }) {
   const [lensId, setLensId] = useState('sales_quality');
   const [periodId, setPeriodId] = useState('current');
 
@@ -45,6 +45,13 @@ export default function CxoLensView() {
   const handlePeriodIndex = (idx) => {
     setPeriodId(PERIODS_CHRONO[idx].id);
   };
+
+  useEffect(() => {
+    onDashboardReadyChange?.({
+      ready: status === 'READY',
+      insightId: status === 'READY' ? `${lensId}_${periodId}` : null,
+    });
+  }, [status, lensId, periodId, onDashboardReadyChange]);
 
   return (
     <div className="cxo-lens">

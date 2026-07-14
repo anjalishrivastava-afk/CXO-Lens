@@ -8,7 +8,8 @@ let nextId = 100;
 // use the same prev/next pager pattern as CX Pulse charts.
 const TREND_LABELS = {
   DAILY: ['Jul 8', 'Jul 9', 'Jul 10', 'Jul 11', 'Jul 12', 'Jul 13'],
-  WEEKLY: ['Wk 1', 'Wk 2', 'Wk 3', 'Wk 4', 'Wk 5', 'Wk 6'],
+  // Same week-range labels as CX Pulse weeklySentimentSeries (last 6 weeks).
+  WEEKLY: ['May 26–Jun 1', 'Jun 2–8', 'Jun 9–15', 'Jun 16–22', 'Jun 23–29', 'Jun 30–Jul 6'],
   MONTHLY: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
 };
 const SCORE_DELTAS = [-2.4, -1.1, -0.3, 0.6, 1.2, 0];

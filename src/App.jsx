@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ExotelThemeProvider, ToastProvider } from '@exotel-npm-dev/signal-design-system';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -12,15 +12,12 @@ import CxoLensView from './components/CxoLensView';
 
 const FILTER_BAR_VIEWS = ['org', 'team', 'agent'];
 
-function dashboardFeedback(section, view) {
+function dashboardFeedback(section, view, insightId) {
   if (section === 'agent-summary') {
     return { view, section: 'dashboard', insightId: view };
   }
   if (section === 'cx-pulse') {
-    return { view: 'cxo_lens', section: 'dashboard', insightId: 'cx_pulse' };
-  }
-  if (section === 'custom-insights') {
-    return { view: 'custom', section: 'dashboard', insightId: 'custom_insights' };
+    return { view: 'cxo_lens', section: 'dashboard', insightId: insightId ?? 'cx_pulse' };
   }
   return null;
 }
@@ -46,7 +43,20 @@ export default function App() {
   const isCxoLens = section === 'cx-pulse';
   const isCustomReports = section === 'custom-insights';
   const isAgentSummary = section === 'agent-summary';
-  const feedback = dashboardFeedback(section, view);
+  const [dashboardReady, setDashboardReady] = useState({ ready: true, insightId: view });
+
+  useEffect(() => {
+    if (isAgentSummary) {
+      setDashboardReady({ ready: true, insightId: view });
+    } else {
+      setDashboardReady({ ready: false, insightId: null });
+    }
+  }, [section, view, isAgentSummary]);
+
+  const feedback =
+    isAgentSummary || (isCxoLens && dashboardReady.ready)
+      ? dashboardFeedback(section, view, dashboardReady.insightId)
+      : null;
 
   return (
     <ExotelThemeProvider defaultMode="light">
@@ -77,6 +87,7 @@ export default function App() {
                     </div>
                     {feedback && (
                       <FeedbackButtons
+                        key={feedback.insightId}
                         view={feedback.view}
                         section={feedback.section}
                         insightId={feedback.insightId}
@@ -105,7 +116,7 @@ export default function App() {
                 ) : (
                   <div className="content">
                     <div className="sections">
-                      {isCxoLens && <CxoLensView />}
+                      {isCxoLens && <CxoLensView onDashboardReadyChange={setDashboardReady} />}
                       {isAgentSummary && view === 'agent' && <AgentView />}
                       {isAgentSummary && (view === 'team' || view === 'org') && (
                         <OverviewView view={view} onOpenAgent={openAgent} />
