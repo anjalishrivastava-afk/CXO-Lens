@@ -4,8 +4,108 @@
 **Prototype:** [CXO-Lens](https://cxo-lens.vercel.app)  
 **CQA embed route:** `/cqa-ui/qp-analytics`  
 **Data tenant:** `cxdemo` (`1600257d18`)  
-**Last verified:** 14 Jul 2026  
-**Latest deploy commit:** `123de79`
+**Last verified:** 14 Jul 2026, 5:54 PM IST  
+**Latest commit:** `30d6601` (smarter-assignment fix + refreshed data)  
+**Production:** [cxo-lens.vercel.app](https://cxo-lens.vercel.app)
+
+---
+
+## Coverage status — what was asked vs what is done
+
+### Executive summary
+
+| Area | Status |
+|------|--------|
+| CCS-1155 prototype (UI + cxdemo data) | ✅ Largely covered |
+| Six product gaps (requested 14 Jul) | ⚠️ Scaffolded in CXO-Lens; not fully shippable in CQA |
+| Empty Quality Rubric score columns | ⚠️ Explained — blocked on CQA API data, not missing UI |
+| Smarter assignment / HSL sub-profiles (Anuja tests) | ✅ Fixed and live (14 Jul, commit `30d6601`) |
+
+**Bottom line:** The story and prototype are largely covered. Six gaps are wired in CXO-Lens but need CQA product work or a richer tenant to complete. Rubric score columns stay empty on cxdemo because the analysis-detail API returns no KPI breakdown. Smarter-assignment routing is now reflected correctly for all HSL sub-profiles.
+
+---
+
+### 1. CCS-1155 QP Insights (main story)
+
+| Ask | Status |
+|-----|--------|
+| Build QP Insights under AI Insights | ✅ Done |
+| Portfolio + Per-profile views | ✅ Done |
+| Real **cxdemo** data | ✅ Done |
+| Drill-down, charts, coaching, rubric table | ✅ Done |
+| UI polish (spacing, pie chart, 5-row scroll, filters, search) | ✅ Done |
+| Story coverage doc | ✅ This document |
+
+---
+
+### 2. Six gaps requested (14 Jul 2026)
+
+| Gap | Covered? | Reality |
+|-----|----------|---------|
+| **Per-KPI real scores** | ⚠️ Partial | Fetch calls `GET /interaction-analysis/{id}`; **cxdemo returns empty `category[]`** → Type / Avg Score / Avg % / Change stay `—` |
+| **Real escalation logic** | ⚠️ Partial | Rules coded (dispute >20%, AI–QA drop >0.5pp); **no cxdemo data triggers them** |
+| **RBAC + feature flag** | ⚠️ Partial | `cqaHostContext.js` + UI gating; **no superadmin toggle in CQA** |
+| **True gen-AI insights** | ⚠️ Partial | `buildGenAiInsights()` uses aggregates; **LLM endpoint not configured** |
+| **Full analytics property set** | ✅ Done | Events + `account_id`, `tenant_name`, etc. wired |
+| **Integration into CQA** | ⚠️ Partial | Embed bundle + docs exist; **not mounted inside CQA console** |
+
+---
+
+### 3. Empty Quality Rubric columns — why?
+
+| Column | Source | Status on cxdemo |
+|--------|--------|------------------|
+| KPI Question | Profile definition (`GET /quality-profiles/{id}`) | ✅ Populated |
+| Max Score | Profile definition | ✅ Populated |
+| Type | Per-analysis KPI breakdown | ❌ Empty |
+| Avg Score | Per-analysis KPI breakdown | ❌ Empty |
+| Avg % | Per-analysis KPI breakdown | ❌ Empty |
+| Change | Per-analysis KPI breakdown | ❌ Empty |
+
+**Root cause:** Per-KPI scores come from `GET /interaction-analysis/{id}` → `category[].sub_categories[].kpis[]`. On **cxdemo**, analysis detail returns **`category: []`** (empty), so score columns show `—` even when evaluations exist.
+
+The UI caption *"Re-run fetch with CQA_API_KEY for per-KPI scores when available"* is accurate: the fetch pipeline is ready; the tenant API does not return KPI breakdown data.
+
+**To unblock:** Use a tenant with populated `category` data, or ensure `CQA_API_KEY` grants fuller analysis-detail access.
+
+---
+
+### 4. Smarter assignment / HSL profiles (Anuja tests)
+
+**Issue (before fix):** Fetch only counted the **primary** `quality_profile_name`, not `analyzed_profiles` from smarter-assignment routing. Result: only **HSL - QA Compliance (All Calls)** showed data; sub-profiles appeared empty.
+
+**Fix (commit `30d6601`):** `scripts/fetchQpInsights.mjs` expands each analysis into primary + all `analyzed_profiles` matches and fetches profile definitions for every routed profile.
+
+**Verified counts — cxdemo, last month (after fix):**
+
+| Profile | Matched (before) | Matched (after) |
+|---------|------------------|-----------------|
+| HSL - QA Compliance (All Calls) | 300 | 300 (primary) |
+| HSL - Enquiry & Account Query | 0 | **81** |
+| HSL - Advisory, Portfolio & Sales | 0 | **80** |
+| HSL - Confirmation & Follow Up | 0 | **78** |
+| HSL - Non-Conversation | 0 | **67** |
+| HSL - Others | 0 | **47** |
+| HSL - Market Update | 0 | **37** |
+| HSL - Order Placement | 0 | **31** |
+| HSL - Activation | 0 | **28** |
+| HSL - Onboarding & KYC | 0 | **11** (64.8% avg) |
+| HSL - Complaint & Escalation | 0 | **9** |
+
+Additional fetch stats: **299** analyses with multi-profile smarter assignment; **84** active profiles fetched; month totals **550 calls**, **1,368 analyses** (expanded), **65.2%** portfolio avg.
+
+---
+
+### 5. Still not covered (needs CQA team or different tenant)
+
+1. Mount embed at `/cqa-ui/qp-analytics` inside CQA SPA  
+2. Pass live auth, role, and feature flags from CQA session  
+3. Per-KPI scores on a tenant that returns `category` data  
+4. Real escalations when dispute / score-drop data exists  
+5. True LLM gen-AI via `CQA_GENAI_ENDPOINT`  
+6. Period-over-period deltas in fetch output  
+7. Per-profile KPI/coaching data when period filter changes (currently month-base for some drill-down fields)  
+8. Amplitude events firing in production CQA shell
 
 ---
 
@@ -151,6 +251,7 @@
 | 8.7 | Regenerate command | ✅ | `npm run fetch:qp-insights` |
 | 8.8 | Static snapshot in deploy (not live API at runtime) | ✅ | `qpInsightsData.js` baked into Vercel build |
 | 8.9 | Per-profile data updates when period changes | ⚠️ | Portfolio period works; profile KPI/coaching from **month** base |
+| 8.10 | Smarter-assignment profile counting (`analyzed_profiles`) | ✅ | Fixed in `30d6601` — expands primary + routed sub-profiles |
 
 ---
 
@@ -230,15 +331,18 @@ Priority order for CQA engineering:
 ## Jira paste block (summary)
 
 ```
-CCS-1155 QP Analytics — CXO-Lens prototype status (cxdemo)
+CCS-1155 QP Analytics — CXO-Lens prototype status (cxdemo) — 14 Jul 2026
 
-DONE: Full portfolio + per-profile UI, real cxdemo data, period filters, drill-down, 
-score distribution, interaction mix, coaching insights UI, KPI rubric table, 
-analytics events + full property set, RBAC/feature-flag scaffold, CQA embed bundle.
+DONE: Full portfolio + per-profile UI, real cxdemo data, period filters, drill-down,
+score distribution (pie), interaction mix, coaching insights UI, KPI rubric table,
+search/filters on portfolio tables, analytics events + full property set,
+RBAC/feature-flag scaffold, CQA embed bundle, smarter-assignment counting fix
+(HSL sub-profiles now show routed evaluation counts).
 
-PARTIAL: Per-KPI scores (API wired; cxdemo empty categories), escalation rules 
-(coded; no triggers in cxdemo), gen-AI (aggregated not LLM), period deltas, 
-per-profile period data, Amplitude in prod, superadmin flag UI.
+PARTIAL: Per-KPI scores (API wired; cxdemo returns empty category[] → rubric score
+columns show —), escalation rules (coded; no triggers in cxdemo), gen-AI (aggregated
+not LLM), period deltas, per-profile period data, Amplitude in prod CQA shell,
+superadmin flag UI, CQA native mount.
 
 NOT DONE: Native mount inside CQA console, live runtime API, PDF export.
 
