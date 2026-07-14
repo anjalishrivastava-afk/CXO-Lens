@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ExotelThemeProvider, ToastProvider } from '@exotel-npm-dev/signal-design-system';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
@@ -14,6 +14,13 @@ import CxoLensView from './components/CxoLensView';
 import QpInsightsView from './components/QpInsightsView';
 import { trackQpAnalyticsPeriodChanged, trackQpAnalyticsTabSwitched } from './analytics';
 import { useQpAnalyticsTimeSpent } from './useQpAnalyticsTimeSpent';
+import {
+  canAccessQpAnalytics,
+  canViewPortfolioInsights,
+  getCqaHostContext,
+  isQpAnalyticsFeatureEnabled,
+  resolveInitialQpSection,
+} from './cqaHostContext';
 import { getQpProfile, QP_PROFILES } from './qpInsightsData';
 
 const FILTER_BAR_VIEWS = ['org', 'team', 'agent'];
@@ -56,13 +63,18 @@ function panelSubtitle(section) {
 }
 
 export default function App() {
-  const [section, setSection] = useState('agent-summary');
+  const hostContext = useMemo(() => getCqaHostContext(), []);
+  const initialSection = resolveInitialQpSection();
+  const [section, setSection] = useState(initialSection ?? 'agent-summary');
   const [view, setViewState] = useState('agent');
   const [period, setPeriod] = useState('month');
   const [selector, setSelector] = useState('H0967');
-  const [qpTab, setQpTab] = useState('all-profiles');
+  const [qpTab, setQpTab] = useState(canViewPortfolioInsights(hostContext) ? 'all-profiles' : 'per-qp');
   const [qpId, setQpId] = useState(() => QP_PROFILES[0]?.id ?? '');
   const [qpPeriod, setQpPeriod] = useState('month');
+
+  const qpAccessAllowed = canAccessQpAnalytics(hostContext);
+  const qpFeatureEnabled = isQpAnalyticsFeatureEnabled(hostContext);
 
   const setView = (v) => {
     setViewState(v);
@@ -100,6 +112,7 @@ export default function App() {
       : null;
 
   const handleQpTabChange = (nextTab) => {
+    if (!canViewPortfolioInsights(hostContext) && nextTab === 'all-profiles') return;
     setQpTab(nextTab);
     const profile = nextTab === 'per-qp' ? getQpProfile(qpId) : null;
     trackQpAnalyticsTabSwitched({
@@ -151,7 +164,12 @@ export default function App() {
     <ExotelThemeProvider defaultMode="light">
       <ToastProvider>
         <div className="app-shell">
-          <Sidebar section={section} onSectionChange={setSection} />
+          <Sidebar
+            section={section}
+            onSectionChange={setSection}
+            qpFeatureEnabled={qpFeatureEnabled}
+            qpAccessAllowed={qpAccessAllowed}
+          />
           <div className="content-col">
             <Header />
             <main className="main main--flush">
@@ -176,7 +194,7 @@ export default function App() {
                       <Tabs view={view} onChange={setView} />
                     </div>
                   )}
-                  {isQpInsights && (
+                  {isQpInsights && canViewPortfolioInsights(hostContext) && (
                     <div className="tabs-row">
                       <QpInsightsTabs tab={qpTab} onChange={handleQpTabChange} />
                     </div>
@@ -199,12 +217,30 @@ export default function App() {
                     onQpChange={handleQpChange}
                     period={qpPeriod}
                     onPeriodChange={handleQpPeriodChange}
-                    showProfileSelector={qpTab === 'per-qp'}
+                    showProfileSelector={qpTab === 'per-qp' || !canViewPortfolioInsights(hostContext)}
                   />
                 )}
 
                 {isCustomReports ? (
                   <CustomReportsView />
+                ) : isQpInsights && !qpFeatureEnabled ? (
+                  <div className="content">
+                    <div className="cxo-lens-state cxo-lens-state--info">
+                      <div className="section-card-title">QP Analytics is not enabled</div>
+                      <div className="info-card-text">
+                        Enable the QP Analytics feature flag in CQA superadmin settings to use this view.
+                      </div>
+                    </div>
+                  </div>
+                ) : isQpInsights && !qpAccessAllowed ? (
+                  <div className="content">
+                    <div className="cxo-lens-state cxo-lens-state--info">
+                      <div className="section-card-title">Access restricted</div>
+                      <div className="info-card-text">
+                        Your role does not have permission to view QP Analytics.
+                      </div>
+                    </div>
+                  </div>
                 ) : (
                   <div className="content">
                     <div className="sections">

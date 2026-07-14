@@ -62,10 +62,15 @@ function NavButton({ icon, label, active, onClick, nested, count }) {
   );
 }
 
-export default function Sidebar({ section, onSectionChange }) {
+export default function Sidebar({ section, onSectionChange, qpFeatureEnabled = true, qpAccessAllowed = true }) {
   const isAiInsightsSection = AI_INSIGHTS_SECTIONS.some((item) => item.id === section);
   const [aiInsightsOpen, setAiInsightsOpen] = useState(isAiInsightsSection);
   const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const visibleAiSections = AI_INSIGHTS_SECTIONS.filter((item) => {
+    if (item.id !== 'qp-insights') return true;
+    return qpFeatureEnabled && qpAccessAllowed;
+  });
 
   useEffect(() => {
     if (isAiInsightsSection) {
@@ -110,7 +115,7 @@ export default function Sidebar({ section, onSectionChange }) {
 
             {aiInsightsOpen && (
               <div className="sidebar-accordion-body">
-                {AI_INSIGHTS_SECTIONS.map((item) => (
+                {visibleAiSections.map((item) => (
                   <NavButton
                     key={item.id}
                     label={item.label}

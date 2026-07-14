@@ -20,6 +20,13 @@ const BASE = process.env.CQA_BASE_URL || 'https://cqa-console.in.exotel.com';
 const TENANT = process.env.CQA_TENANT || 'cxdemo';
 const USERNAME = process.env.CQA_USERNAME;
 const PASSWORD = process.env.CQA_PASSWORD;
+const API_KEY = process.env.CQA_API_KEY;
+const GENAI_ENDPOINT = process.env.CQA_GENAI_ENDPOINT;
+const MAX_DETAIL_PER_PROFILE = Number(process.env.CQA_MAX_ANALYSIS_DETAILS || 8);
+
+const DISPUTE_RATE_THRESHOLD = 20;
+const SCORE_DROP_THRESHOLD = 0.5;
+const KPI_FAIL_THRESHOLD = 80;
 
 const PERIOD_DAYS = { yesterday: 1, week: 7, month: 30 };
 
@@ -34,12 +41,20 @@ function normScore(analysis) {
   return Math.min(100, Math.round((Number(raw) / max) * 1000) / 10);
 }
 
-function severityFromScore(avgScore, matched) {
+function severityFromProfile(avgScore, matched, kpis = []) {
   if (!matched) return 'unused';
+  const failingCount = kpis.filter((k) => k.avgPct != null && k.avgPct < KPI_FAIL_THRESHOLD).length;
+  const criticalFailing = kpis.filter(
+    (k) => k.type === 'critical' && k.avgPct != null && k.avgPct < KPI_FAIL_THRESHOLD,
+  ).length;
+  if (criticalFailing > 0 || (avgScore != null && avgScore < 70)) return 'critical';
+  if (failingCount > 0 || (avgScore != null && avgScore < 82)) return 'attention';
   if (avgScore == null) return 'attention';
-  if (avgScore < 70) return 'critical';
-  if (avgScore < 82) return 'attention';
   return 'healthy';
+}
+
+function severityFromScore(avgScore, matched) {
+  return severityFromProfile(avgScore, matched, []);
 }
 
 function round1(n) {
@@ -134,16 +149,184 @@ function extractKpis(profileDetail) {
   return kpis.slice(0, 8);
 }
 
-function buildAiCopy(profileName, avgScore, matched, severity, kpis) {
-  const failing = kpis.filter((k) => k.type === 'critical').slice(0, 2);
+function normScoreFromRow(row) {
+  if (row.percentage_score != null && !Number.isNaN(Number(row.percentage_score))) {
+    return round1(Number(row.percentage_score));
+  }
+  return normScore(row);
+}
+
+function scorePercents(row) {
+  const max = Number(row.max_score) || Number(row.total_weightage);
+  if (!max) return { aiPct: null, qaPct: null, scoreDrop: null };
+  const aiPct =
+    row.total_ai_score != null ? round1((Number(row.total_ai_score) / max) * 100) : null;
+  const qaPct =
+    row.total_qa_score != null ? round1((Number(row.total_qa_score) / max) * 100) : null;
+  const scoreDrop = aiPct != null && qaPct != null ? round1(aiPct - qaPct) : null;
+  return { aiPct, qaPct, scoreDrop };
+}
+
+function buildEscalations(analyses, profileName) {
+  const escalations = [];
+  const total = analyses.length;
+  if (!total) return escalations;
+
+  const disputed = analyses.filter(
+    (a) => (a.disputeTotal ?? 0) > 0 || (a.disputeOpen ?? 0) > 0,
+  );
+  const disputeRate = round1((disputed.length / total) * 100);
+  if (disputeRate > DISPUTE_RATE_THRESHOLD) {
+    escalations.push({
+      type: 'dispute',
+      kpi: 'Dispute rate',
+      detail: `${profileName} has a ${disputeRate}% dispute rate (${disputed.length}/${total} analyses) — above the ${DISPUTE_RATE_THRESHOLD}% threshold.`,
+    });
+  }
+
+  const scoreDrops = analyses.filter(
+    (a) => a.scoreDrop != null && a.scoreDrop > SCORE_DROP_THRESHOLD,
+  );
+  if (scoreDrops.length > 0) {
+    const worst = [...scoreDrops].sort((a, b) => b.scoreDrop - a.scoreDrop)[0];
+    escalations.push({
+      type: 'score_drop',
+      kpi: 'QA score adjustment',
+      detail: `${profileName}: AI scored ${worst.aiPct}% but final QA score was ${worst.qaPct}% on ${scoreDrops.length} evaluation(s) — review manual overrides exceeding ${SCORE_DROP_THRESHOLD}pp.`,
+    });
+  }
+
+  return escalations;
+}
+
+function extractKpiScoresFromDetail(detail) {
+  const scores = new Map();
+  const data = detail?.response?.data ?? detail;
+  for (const cat of data?.category ?? []) {
+    for (const sub of cat.sub_categories ?? []) {
+      for (const kpi of sub.kpis ?? []) {
+        const name = kpi.kpi_name || kpi.name;
+        if (!name) continue;
+        const max = Number(kpi.max_score ?? sub.max_score ?? kpi.weightage ?? 5);
+        const raw =
+          kpi.score ??
+          kpi.kpi_score ??
+          kpi.adjusted_score ??
+          kpi.total_score ??
+          kpi.ai_score ??
+          kpi.final_score;
+        if (!scores.has(name)) {
+          scores.set(name, {
+            scores: [],
+            max,
+            critical: Boolean(kpi.is_critical),
+          });
+        }
+        if (raw != null && !Number.isNaN(Number(raw))) {
+          scores.get(name).scores.push(Number(raw));
+        }
+      }
+    }
+  }
+  return scores;
+}
+
+function mergeProfileKpis(profileKpis, detailScoreMaps) {
+  const merged = new Map();
+  for (const scoreMap of detailScoreMaps) {
+    for (const [name, entry] of scoreMap.entries()) {
+      if (!merged.has(name)) {
+        merged.set(name, { scores: [], max: entry.max, critical: entry.critical });
+      }
+      const bucket = merged.get(name);
+      bucket.scores.push(...entry.scores);
+      bucket.max = entry.max ?? bucket.max;
+      bucket.critical = bucket.critical || entry.critical;
+    }
+  }
+
+  return profileKpis.map((kpi) => {
+    const entry = merged.get(kpi.name);
+    if (!entry?.scores.length) {
+      return {
+        question: kpi.question,
+        type: kpi.type,
+        avgScore: null,
+        maxScore: kpi.maxScore,
+        avgPct: null,
+        prevPct: null,
+      };
+    }
+
+    const avgScore = round1(entry.scores.reduce((sum, value) => sum + value, 0) / entry.scores.length);
+    const maxScore = entry.max || kpi.maxScore;
+    const avgPct = maxScore ? round1((avgScore / maxScore) * 100) : null;
+    let type = kpi.type;
+    if (avgPct != null && avgPct < KPI_FAIL_THRESHOLD) {
+      type = kpi.type === 'critical' ? 'critical' : 'failing';
+    }
+
+    return {
+      question: kpi.question,
+      type,
+      avgScore,
+      maxScore,
+      avgPct,
+      prevPct: null,
+    };
+  });
+}
+
+async function maybeFetchGenAiInsights(token, accountId, profileId, context) {
+  if (!GENAI_ENDPOINT) return null;
+  const url = GENAI_ENDPOINT
+    .replace('{accountId}', accountId)
+    .replace('{profileId}', profileId);
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    };
+    if (API_KEY) headers['X-API-Key'] = API_KEY;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(context),
+    });
+    if (!res.ok) return null;
+    const body = await res.json();
+    const payload = body.response?.data ?? body.data ?? body;
+    if (!payload?.headline) return null;
+    return {
+      headline: payload.headline,
+      needsAttention: payload.needs_attention ?? payload.needsAttention ?? [],
+      performingWell: payload.performing_well ?? payload.performingWell ?? [],
+      recommendation: payload.recommendation ?? '',
+      source: 'gen_ai',
+    };
+  } catch (error) {
+    console.warn(`  gen-ai skipped for ${profileId}: ${error.message}`);
+    return null;
+  }
+}
+
+function buildGenAiInsights(profileName, avgScore, matched, severity, kpis, escalations) {
+  const weakKpis = kpis
+    .filter((k) => k.avgPct != null && k.avgPct < KPI_FAIL_THRESHOLD)
+    .slice(0, 3);
+  const strongKpis = kpis
+    .filter((k) => k.avgPct != null && k.avgPct >= 90)
+    .slice(0, 3);
+
   const needsAttention =
     severity === 'unused'
       ? []
-      : failing.length
-        ? failing.map((k) => ({
-            name: k.name,
-            score: avgScore != null ? `${Math.max(40, Math.round(avgScore - 15))}%` : '—',
-            detail: `${k.name} is a critical KPI on ${profileName}; review recent evaluations for compliance gaps.`,
+      : weakKpis.length
+        ? weakKpis.map((k) => ({
+            name: k.question?.slice(0, 48) || k.name || 'KPI',
+            score: `${k.avgPct}%`,
+            detail: `${k.question?.slice(0, 120) || k.name} is averaging ${k.avgPct}% — below the ${KPI_FAIL_THRESHOLD}% target.`,
           }))
         : avgScore != null && avgScore < 82
           ? [
@@ -155,23 +338,24 @@ function buildAiCopy(profileName, avgScore, matched, severity, kpis) {
             ]
           : [];
 
-  const performingWell =
-    severity === 'healthy'
-      ? kpis.slice(0, 3).map((k) => ({
-          name: k.name,
-          score: `${Math.min(99, Math.round((avgScore ?? 85) + 5))}%`,
-        }))
-      : [];
+  const performingWell = strongKpis.map((k) => ({
+    name: k.question?.slice(0, 48) || k.name || 'KPI',
+    score: `${k.avgPct}%`,
+  }));
+
+  const escalationHint = escalations.length
+    ? ` ${escalations.length} escalation indicator${escalations.length > 1 ? 's' : ''} need review.`
+    : '';
 
   let headline;
   if (severity === 'unused') {
     headline = `${profileName} received no matched interactions this period. Review assignment rules or archive if unused.`;
   } else if (severity === 'critical') {
-    headline = `${profileName} is the highest-risk profile (${avgScore}% avg) — critical KPIs need immediate coaching attention.`;
+    headline = `${profileName} is the highest-risk profile (${avgScore}% avg) — ${weakKpis.length || 'multiple'} KPI(s) are below target.${escalationHint}`;
   } else if (severity === 'attention') {
-    headline = `${profileName} is stable but below target at ${avgScore}% avg — focused remediation on weak KPIs recommended.`;
+    headline = `${profileName} is stable but below target at ${avgScore}% avg — focused remediation on weak KPIs recommended.${escalationHint}`;
   } else {
-    headline = `${profileName} is performing well at ${avgScore}% avg across ${matched} evaluated interactions.`;
+    headline = `${profileName} is performing well at ${avgScore}% avg across ${matched} evaluated interactions.${escalationHint}`;
   }
 
   return {
@@ -181,9 +365,12 @@ function buildAiCopy(profileName, avgScore, matched, severity, kpis) {
     recommendation:
       severity === 'unused'
         ? 'Confirm smarter assignment mappings include relevant call types for this profile.'
-        : severity === 'critical'
-          ? `Run a coaching sprint on critical KPIs for ${profileName} with the bottom-quartile agents.`
-          : `Continue monitoring ${profileName}; share top-performer snippets during the next team review.`,
+        : escalations.some((e) => e.type === 'dispute')
+          ? `Review disputed evaluations on ${profileName} and coach agents on the KPIs driving disputes.`
+          : severity === 'critical'
+            ? `Run a coaching sprint on critical KPIs for ${profileName} with the bottom-quartile agents.`
+            : `Continue monitoring ${profileName}; share top-performer snippets during the next team review.`,
+    source: 'aggregated',
   };
 }
 
@@ -226,7 +413,12 @@ async function login() {
   const token = body.response?.data?.bearer_token;
   if (!token) throw new Error(`Login failed: ${JSON.stringify(body).slice(0, 300)}`);
   const aud = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString()).aud;
-  return { token, accountId: aud };
+  return {
+    token,
+    accountId: aud,
+    integrationType: body.response?.data?.integration_type ?? null,
+    subscriptionType: body.response?.data?.customer_type ?? null,
+  };
 }
 
 async function fetchPaginated(token, accountId, resource) {
@@ -265,33 +457,89 @@ async function fetchProfileDetail(token, accountId, profileId) {
   return res.json();
 }
 
-function aggregatePeriod(interactions, profiles, profileDetails, periodKey, refDate) {
+async function fetchInteractionAnalyses(token, accountId) {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  const all = [];
+  let offset = 0;
+
+  while (true) {
+    const url = `${BASE}/cqa/api/v1/accounts/${accountId}/interaction-analysis?limit=100&offset=${offset}`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ metadata_filter_group: [], other_filters: [] }),
+    });
+    const body = await res.json();
+    const batch = (body.response ?? []).map((wrapper) => wrapper.data).filter(Boolean);
+    all.push(...batch);
+    if (batch.length < 100) break;
+    offset += batch.length;
+    const total = Number(body.metadata?.total ?? 0);
+    if (total && offset >= total) break;
+  }
+
+  return all;
+}
+
+async function fetchAnalysisDetail(token, accountId, analysisId) {
+  const headers = { Authorization: `Bearer ${token}`, Accept: 'application/json' };
+  if (API_KEY) headers['X-API-Key'] = API_KEY;
+  const res = await fetch(
+    `${BASE}/cqa/api/v1/accounts/${accountId}/interaction-analysis/${analysisId}`,
+    { headers },
+  );
+  if (!res.ok) return null;
+  return res.json();
+}
+
+function aggregatePeriod(
+  interactionAnalyses,
+  interactions,
+  profiles,
+  profileDetails,
+  analysisDetailsByProfile,
+  periodKey,
+  refDate,
+  genAiInsightsByProfile,
+) {
   const analyses = [];
   const uniqueInteractionIds = new Set();
+  const interactionMeta = new Map(
+    interactions.map((item) => [item.interaction_id, item]),
+  );
 
-  for (const item of interactions) {
-    if (item.status !== 'SUCCESS') continue;
-    const date = new Date(item.created_at);
+  for (const row of interactionAnalyses) {
+    const date = new Date(row.created_at || row.metadata?.call_end_time);
     if (!inPeriod(date, periodKey, refDate)) continue;
 
-    const itemAnalyses = item.interaction_analysis ?? [];
-    if (itemAnalyses.length) uniqueInteractionIds.add(item.interaction_id);
+    const score = normScoreFromRow(row);
+    const { aiPct, qaPct, scoreDrop } = scorePercents(row);
+    const disputeOpen = row.dispute_details?.open_disputes_count ?? 0;
+    const disputeTotal = row.dispute_details?.total_disputes_count ?? 0;
+    const parent = interactionMeta.get(row.interaction_id);
+    const direction =
+      parent?.metadata?.Direction || parent?.metadata?.direction || row.metadata?.Direction || 'Unknown';
 
-    const direction = item.metadata?.Direction || item.metadata?.direction || 'Unknown';
-
-    for (const a of itemAnalyses) {
-      const score = normScore(a);
-      analyses.push({
-        profileId: a.quality_profile_uid,
-        profileName: a.quality_profile_name,
-        score,
-        date,
-        direction,
-        analysisId: a.analysis_id,
-        aiScore: a.total_ai_score,
-        qaScore: a.total_qa_score,
-      });
-    }
+    uniqueInteractionIds.add(row.interaction_id);
+    analyses.push({
+      profileId: row.quality_profile_uid,
+      profileName: row.quality_profile_name,
+      score,
+      date,
+      direction,
+      analysisId: row.analysis_id,
+      aiScore: row.total_ai_score,
+      qaScore: row.total_qa_score,
+      aiPct,
+      qaPct,
+      scoreDrop,
+      disputeOpen,
+      disputeTotal,
+    });
   }
 
   const byProfile = new Map();
@@ -309,14 +557,19 @@ function aggregatePeriod(interactions, profiles, profileDetails, periodKey, refD
     .map(([id, p]) => {
       const avgScore = avg(p.scores);
       const matched = p.analyses.length;
+      const detail = profileDetails.get(id);
+      const kpisFromProfile = extractKpis(detail);
+      const detailMaps = analysisDetailsByProfile.get(id) ?? [];
+      const kpis = mergeProfileKpis(kpisFromProfile, detailMaps);
       return {
         id,
         name: p.name,
         matched,
         avgScore,
         scoreDelta: null,
-        severity: severityFromScore(avgScore, matched),
+        severity: severityFromProfile(avgScore, matched, kpis),
         smarterAssignment: Boolean(profileMeta.get(id)?.assigned_campaigns?.length),
+        kpis,
       };
     })
     .sort((a, b) => b.matched - a.matched);
@@ -393,8 +646,6 @@ function aggregatePeriod(interactions, profiles, profileDetails, periodKey, refD
     ],
     qpData: Object.fromEntries(
       activeRows.map((row) => {
-        const detail = profileDetails.get(row.id);
-        const kpisFromProfile = extractKpis(detail);
         const profileAnalyses = byProfile.get(row.id)?.analyses ?? [];
         const directionCounts = new Map();
 
@@ -408,22 +659,17 @@ function aggregatePeriod(interactions, profiles, profileDetails, periodKey, refD
           directionCounts.set(label, (directionCounts.get(label) ?? 0) + 1);
         }
 
-        const kpis = kpisFromProfile.map((k) => ({
-          question: k.question,
-          type: k.type,
-          avgScore: null,
-          maxScore: k.maxScore,
-          avgPct: null,
-          prevPct: null,
-        }));
-
-        const aiInsights = buildAiCopy(
-          row.name,
-          row.avgScore,
-          row.matched,
-          row.severity,
-          kpisFromProfile,
-        );
+        const escalations = buildEscalations(profileAnalyses, row.name);
+        const aiInsights =
+          genAiInsightsByProfile.get(row.id)
+          ?? buildGenAiInsights(
+            row.name,
+            row.avgScore,
+            row.matched,
+            row.severity,
+            row.kpis,
+            escalations,
+          );
 
         return [
           row.id,
@@ -436,21 +682,12 @@ function aggregatePeriod(interactions, profiles, profileDetails, periodKey, refD
             },
             scoreTrend: buildTrend(profileAnalyses, refDate),
             aiInsights,
-            escalations:
-              row.severity === 'critical'
-                ? [
-                    {
-                      type: 'score_drop',
-                      kpi: kpisFromProfile[0]?.name ?? 'Critical KPI',
-                      detail: `${row.name} avg ${row.avgScore}% — review disputed evaluations and critical KPI failures.`,
-                    },
-                  ]
-                : [],
+            escalations,
             topIntents: [...directionCounts.entries()]
               .map(([label, count]) => ({ label, count }))
               .sort((a, b) => b.count - a.count)
               .slice(0, 4),
-            kpis,
+            kpis: row.kpis,
           },
         ];
       }),
@@ -458,7 +695,7 @@ function aggregatePeriod(interactions, profiles, profileDetails, periodKey, refD
   };
 }
 
-function emitModule({ tenant, accountId, fetchedAt, qpProfiles, periodData }) {
+function emitModule({ tenant, accountId, fetchedAt, integrationType, subscriptionType, qpProfiles, periodData }) {
   const header = `// Auto-generated from CQA tenant "${tenant}" (${accountId}) on ${fetchedAt}.
 // Regenerate: npm run fetch:qp-insights
 
@@ -468,6 +705,8 @@ function emitModule({ tenant, accountId, fetchedAt, qpProfiles, periodData }) {
   tenant: ${JSON.stringify(tenant)},
   accountId: ${JSON.stringify(accountId)},
   fetchedAt: ${JSON.stringify(fetchedAt)},
+  integrationType: ${JSON.stringify(integrationType)},
+  subscriptionType: ${JSON.stringify(subscriptionType)},
 };
 
 export const QP_PROFILES = ${JSON.stringify(qpProfiles, null, 2)};
@@ -606,7 +845,7 @@ async function main() {
   }
 
   console.log(`Logging into ${BASE} as ${TENANT}/${USERNAME}...`);
-  const { token, accountId } = await login();
+  const { token, accountId, integrationType, subscriptionType } = await login();
   console.log(`Account ID: ${accountId}`);
 
   console.log('Fetching quality profiles...');
@@ -617,18 +856,20 @@ async function main() {
   const interactions = await fetchPaginated(token, accountId, 'interactions');
   console.log(`  ${interactions.length} interactions`);
 
-  const refDate = interactions.reduce((max, i) => {
-    const d = new Date(i.created_at);
+  console.log('Fetching interaction analyses (disputes, QA scores)...');
+  const interactionAnalyses = await fetchInteractionAnalyses(token, accountId);
+  console.log(`  ${interactionAnalyses.length} analyses`);
+
+  const refDate = [...interactionAnalyses, ...interactions].reduce((max, item) => {
+    const raw = item.created_at || item.metadata?.call_end_time;
+    const d = new Date(raw);
     return d > max ? d : max;
   }, new Date(0));
   console.log(`Reference date: ${refDate.toISOString()}`);
 
   const activeProfileIds = new Set();
-  for (const item of interactions) {
-    if (item.status !== 'SUCCESS') continue;
-    for (const a of item.interaction_analysis ?? []) {
-      activeProfileIds.add(a.quality_profile_uid);
-    }
+  for (const row of interactionAnalyses) {
+    if (row.quality_profile_uid) activeProfileIds.add(row.quality_profile_uid);
   }
 
   console.log(`Fetching details for ${activeProfileIds.size} active profiles...`);
@@ -637,18 +878,61 @@ async function main() {
     try {
       profileDetails.set(id, await fetchProfileDetail(token, accountId, id));
     } catch (e) {
-      console.warn(`  skip detail ${id}: ${e.message}`);
+      console.warn(`  skip profile detail ${id}: ${e.message}`);
+    }
+  }
+
+  console.log('Sampling analysis details for per-KPI scores...');
+  const analysisDetailsByProfile = new Map();
+  const analysesByProfile = new Map();
+  for (const row of interactionAnalyses) {
+    if (!row.quality_profile_uid || !row.analysis_id) continue;
+    if (!analysesByProfile.has(row.quality_profile_uid)) {
+      analysesByProfile.set(row.quality_profile_uid, []);
+    }
+    analysesByProfile.get(row.quality_profile_uid).push(row.analysis_id);
+  }
+
+  for (const [profileId, analysisIds] of analysesByProfile.entries()) {
+    const sampleIds = [...new Set(analysisIds)].slice(0, MAX_DETAIL_PER_PROFILE);
+    const detailMaps = [];
+    for (const analysisId of sampleIds) {
+      try {
+        const detail = await fetchAnalysisDetail(token, accountId, analysisId);
+        if (detail) detailMaps.push(extractKpiScoresFromDetail(detail));
+      } catch (e) {
+        console.warn(`  skip analysis detail ${analysisId}: ${e.message}`);
+      }
+    }
+    if (detailMaps.length) analysisDetailsByProfile.set(profileId, detailMaps);
+  }
+
+  const genAiInsightsByProfile = new Map();
+  if (GENAI_ENDPOINT) {
+    console.log('Fetching gen-AI insights...');
+    for (const profileId of activeProfileIds) {
+      const profileName = profileDetails.get(profileId)?.response?.data?.name
+        ?? profiles.find((p) => p.id === profileId)?.name
+        ?? profileId;
+      const insights = await maybeFetchGenAiInsights(token, accountId, profileId, {
+        profile_name: profileName,
+        tenant: TENANT,
+      });
+      if (insights) genAiInsightsByProfile.set(profileId, insights);
     }
   }
 
   const periodData = {};
   for (const periodKey of ['month', 'week', 'yesterday']) {
     periodData[periodKey] = aggregatePeriod(
+      interactionAnalyses,
       interactions,
       profiles,
       profileDetails,
+      analysisDetailsByProfile,
       periodKey,
       refDate,
+      genAiInsightsByProfile,
     );
     const p = periodData[periodKey].allProfiles;
     console.log(
@@ -675,6 +959,8 @@ async function main() {
     tenant: TENANT,
     accountId,
     fetchedAt: new Date().toISOString(),
+    integrationType,
+    subscriptionType,
     qpProfiles,
     periodData,
   });

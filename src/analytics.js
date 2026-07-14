@@ -1,6 +1,8 @@
 // Thin Amplitude wrapper. Falls back to console logging when the Amplitude
 // browser SDK isn't loaded on window (e.g. local/mock environments).
 
+import { getQpAnalyticsEventProperties } from './cqaHostContext';
+
 export const CQA_PAGES = {
   QP_ANALYTICS: '/cqa-ui/qp-analytics',
 };
@@ -14,7 +16,7 @@ export function trackEvent(eventName, properties) {
 }
 
 export function trackInsightFeedback({ view, section, insightId, vote, reasons, detail }) {
-  trackEvent('AI Insight Feedback', {
+  trackEvent('AI Insight Feedback', getQpAnalyticsEventProperties({
     view,
     section,
     insight_id: insightId,
@@ -22,26 +24,26 @@ export function trackInsightFeedback({ view, section, insightId, vote, reasons, 
     reasons: reasons && reasons.length ? reasons : undefined,
     detail: detail || undefined,
     source: 'ai_insights_dashboard',
-  });
+  }));
 }
 
 export function trackQpAnalyticsTabSwitched({ tabType, profileId, profileName, source, period }) {
-  trackEvent('CQA C3 - QP Analytics Tab Switched', {
+  trackEvent('CQA C3 - QP Analytics Tab Switched', getQpAnalyticsEventProperties({
     tab_type: tabType,
     profile_id: profileId ?? undefined,
     profile_name: profileName ?? undefined,
     source,
     period: period ?? undefined,
-  });
+  }));
 }
 
 export function trackQpAnalyticsPeriodChanged({ period, tabType, profileId, profileName }) {
-  trackEvent('CQA C3 - QP Analytics Period Changed', {
+  trackEvent('CQA C3 - QP Analytics Period Changed', getQpAnalyticsEventProperties({
     period,
     tab_type: tabType,
     profile_id: profileId ?? undefined,
     profile_name: profileName ?? undefined,
-  });
+  }));
 }
 
 export function trackQpAnalyticsAiInsightViewed({
@@ -53,7 +55,7 @@ export function trackQpAnalyticsAiInsightViewed({
   profileCount,
   unusedProfileCount,
 }) {
-  trackEvent('CQA C3 - QP Analytics AI Insight Viewed', {
+  trackEvent('CQA C3 - QP Analytics AI Insight Viewed', getQpAnalyticsEventProperties({
     view_type: viewType,
     profile_id: profileId ?? undefined,
     profile_name: profileName ?? undefined,
@@ -61,16 +63,16 @@ export function trackQpAnalyticsAiInsightViewed({
     has_escalation_indicators: hasEscalationIndicators,
     profile_count: profileCount,
     unused_profile_count: unusedProfileCount,
-  });
+  }));
 }
 
 export function trackQpAnalyticsDistributionViewed({ viewType, period, avgScore, topBand }) {
-  trackEvent('CQA C3 - QP Analytics Distribution Viewed', {
+  trackEvent('CQA C3 - QP Analytics Distribution Viewed', getQpAnalyticsEventProperties({
     view_type: viewType,
     period,
     avg_score: avgScore,
     top_band: topBand,
-  });
+  }));
 }
 
 export function trackQpAnalyticsEscalationViewed({
@@ -80,13 +82,13 @@ export function trackQpAnalyticsEscalationViewed({
   disputeCount,
   scoreDropCount,
 }) {
-  trackEvent('CQA C3 - QP Analytics Escalation Viewed', {
+  trackEvent('CQA C3 - QP Analytics Escalation Viewed', getQpAnalyticsEventProperties({
     profile_id: profileId,
     profile_name: profileName,
     escalation_count: escalationCount,
     dispute_count: disputeCount,
     score_drop_count: scoreDropCount,
-  });
+  }));
 }
 
 export function trackQpAnalyticsKpiBreakdownViewed({
@@ -97,21 +99,21 @@ export function trackQpAnalyticsKpiBreakdownViewed({
   failingKpiCount,
   period,
 }) {
-  trackEvent('CQA C3 - QP Analytics KPI Breakdown Viewed', {
+  trackEvent('CQA C3 - QP Analytics KPI Breakdown Viewed', getQpAnalyticsEventProperties({
     profile_id: profileId,
     profile_name: profileName,
     total_kpis: totalKpis,
     critical_kpi_count: criticalKpiCount,
     failing_kpi_count: failingKpiCount,
     period: period ?? undefined,
-  });
+  }));
 }
 
 export function trackTimeSpentC3({ route, minutes, integrationType, subscriptionType }) {
-  trackEvent(`Time Spent C3 (route=${route})`, {
+  trackEvent(`Time Spent C3 (route=${route})`, getQpAnalyticsEventProperties({
     route,
     minutes,
     integration_type: integrationType ?? undefined,
     subscription_type: subscriptionType ?? undefined,
-  });
+  }));
 }

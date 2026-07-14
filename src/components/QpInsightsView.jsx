@@ -139,12 +139,25 @@ function KpiQuestionCell({ text }) {
 }
 
 function CoachingInsightsPanel({ profileLabel, aiInsights, escalations, escRef }) {
+  const sourceLabel =
+    aiInsights.source === 'gen_ai'
+      ? 'Gen-AI insight'
+      : aiInsights.source === 'aggregated'
+        ? 'Data-driven insight'
+        : null;
+
   return (
     <div className="qp-coaching-section">
       <QpSectionHeader
         title="Coaching Insights"
         caption={(
           <>
+            {sourceLabel ? (
+              <>
+                <span className="qp-insight-source-badge">{sourceLabel}</span>
+                {' '}
+              </>
+            ) : null}
             AI-generated coaching guidance for <strong>{profileLabel}</strong> this period
           </>
         )}
@@ -946,7 +959,11 @@ function PerQpView({ qpId, period }) {
         <div>
           <QpSectionHeader
             title="Quality Rubric"
-            caption="KPI questions from the quality profile definition. Per-KPI scores require analysis detail access."
+            caption={
+              kpis.some((k) => k.avgPct != null)
+                ? 'Per-KPI scores aggregated from interaction analysis detail.'
+                : 'KPI questions from the quality profile definition. Re-run fetch with CQA_API_KEY for per-KPI scores when available.'
+            }
           />
           <div ref={kpiRef} className="improve-list">
             <div className="roster-grid-row roster-head qp-kpi-head">

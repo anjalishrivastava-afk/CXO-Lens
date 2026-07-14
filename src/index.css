@@ -3891,6 +3891,27 @@ select {
   color: var(--text-secondary);
 }
 
+.qp-embed-shell {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.qp-embed-shell .panel {
+  min-height: 100vh;
+}
+
+.qp-insight-source-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-light-bg);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
 .qp-table-scroll-body {
   max-height: calc(var(--qp-table-row-height) * var(--qp-table-visible-rows));
   overflow-y: auto;
