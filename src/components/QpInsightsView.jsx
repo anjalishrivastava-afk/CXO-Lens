@@ -307,16 +307,149 @@ function scoreColor(score) {
   return 'var(--red-text)';
 }
 
-function ScrollableTable({ head, children, totalRows, bodyClassName = '' }) {
-  const scrollHint = totalRows > 10 ? ` · scroll for all ${totalRows}` : '';
+function ScrollableTable({ head, children, totalRows, bodyClassName = '', visibleRows = 10 }) {
+  const scrollHint = totalRows > visibleRows ? ` · scroll for all ${totalRows}` : '';
   return (
     <div className="rank-table-card qp-table-scroll">
       <div className="qp-table-scroll-head">{head}</div>
       <div
         className={`qp-table-scroll-body${bodyClassName ? ` ${bodyClassName}` : ''}`}
-        aria-label={`Table body, up to 10 rows visible${scrollHint}`}
+        style={{ '--qp-table-visible-rows': visibleRows }}
+        aria-label={`Table body, up to ${visibleRows} rows visible${scrollHint}`}
       >
         {children}
+      </div>
+    </div>
+  );
+}
+
+const STATUS_FILTER_OPTIONS = [
+  { value: 'all', label: 'All statuses' },
+  { value: 'critical', label: 'Critical' },
+  { value: 'attention', label: 'Attention' },
+  { value: 'healthy', label: 'Healthy' },
+  { value: 'unused', label: 'Unused' },
+];
+
+const EMPTY_TABLE_FILTERS = {
+  search: '',
+  status: 'all',
+  scoreMin: '',
+  scoreMax: '',
+};
+
+function matchesSearch(query, ...fields) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  return fields.some((field) => String(field ?? '').toLowerCase().includes(q));
+}
+
+function matchesScoreRange(score, scoreMin, scoreMax) {
+  const hasMin = scoreMin !== '';
+  const hasMax = scoreMax !== '';
+  if (!hasMin && !hasMax) return true;
+  if (score == null) return false;
+
+  const min = hasMin ? Number(scoreMin) : -Infinity;
+  const max = hasMax ? Number(scoreMax) : Infinity;
+  if (Number.isNaN(min) || Number.isNaN(max)) return true;
+  return score >= min && score <= max;
+}
+
+function QpTableToolbar({
+  search,
+  onSearchChange,
+  status,
+  onStatusChange,
+  scoreMin,
+  scoreMax,
+  onScoreMinChange,
+  onScoreMaxChange,
+  showStatus = false,
+  searchPlaceholder = 'Search profiles…',
+}) {
+  const hasFilters = Boolean(
+    search.trim() || (showStatus && status !== 'all') || scoreMin !== '' || scoreMax !== '',
+  );
+
+  const clearFilters = () => {
+    onSearchChange('');
+    if (showStatus) onStatusChange('all');
+    onScoreMinChange('');
+    onScoreMaxChange('');
+  };
+
+  return (
+    <div className="qp-table-toolbar">
+      <div className="qp-table-toolbar-search">
+        <Icon name="search" />
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+          placeholder={searchPlaceholder}
+          aria-label="Search table"
+        />
+      </div>
+
+      <div className="qp-table-toolbar-filters">
+        {showStatus && (
+          <div className="qp-table-toolbar-field">
+            <label className="qp-table-toolbar-label" htmlFor="qp-priority-status-filter">
+              Status
+            </label>
+            <div className="selector-wrap">
+              <select
+                id="qp-priority-status-filter"
+                className="selector qp-table-toolbar-select"
+                value={status}
+                onChange={(e) => onStatusChange(e.target.value)}
+              >
+                {STATUS_FILTER_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+              <Icon name="arrow_drop_down" className="selector-arrow" />
+            </div>
+          </div>
+        )}
+
+        <div className="qp-table-toolbar-field">
+          <span className="qp-table-toolbar-label">Avg score</span>
+          <div className="qp-table-toolbar-range">
+            <input
+              type="number"
+              className="qp-table-toolbar-input"
+              min={0}
+              max={100}
+              step={0.1}
+              value={scoreMin}
+              onChange={(e) => onScoreMinChange(e.target.value)}
+              placeholder="Min"
+              aria-label="Minimum average score"
+            />
+            <span className="qp-table-toolbar-range-sep">–</span>
+            <input
+              type="number"
+              className="qp-table-toolbar-input"
+              min={0}
+              max={100}
+              step={0.1}
+              value={scoreMax}
+              onChange={(e) => onScoreMaxChange(e.target.value)}
+              placeholder="Max"
+              aria-label="Maximum average score"
+            />
+          </div>
+        </div>
+
+        {hasFilters && (
+          <button type="button" className="qp-table-toolbar-clear" onClick={clearFilters}>
+            Clear
+          </button>
+        )}
       </div>
     </div>
   );
@@ -335,8 +468,19 @@ function AllProfilesView({ period, onOpenProfile }) {
     distributionInsight,
   } = data;
 
+  const [priorityFilters, setPriorityFilters] = useState(EMPTY_TABLE_FILTERS);
+  const [comparisonFilters, setComparisonFilters] = useState({
+    ...EMPTY_TABLE_FILTERS,
+    status: undefined,
+  });
+
   const aiRef = useRef(null);
   const distRef = useRef(null);
+
+  useEffect(() => {
+    setPriorityFilters(EMPTY_TABLE_FILTERS);
+    setComparisonFilters({ ...EMPTY_TABLE_FILTERS, status: undefined });
+  }, [period]);
 
   useIntersectionOnce(
     aiRef,
@@ -382,6 +526,21 @@ function AllProfilesView({ period, onOpenProfile }) {
     () => [...activeRows].sort((a, b) => b.matched - a.matched || (b.avgScore ?? 0) - (a.avgScore ?? 0)),
     [activeRows],
   );
+
+  const filteredInsights = useMemo(() => {
+    return sortedInsights.filter((row) => {
+      if (priorityFilters.status !== 'all' && row.severity !== priorityFilters.status) return false;
+      if (!matchesScoreRange(row.avgScore, priorityFilters.scoreMin, priorityFilters.scoreMax)) return false;
+      return matchesSearch(priorityFilters.search, row.name, row.summary, row.alert);
+    });
+  }, [sortedInsights, priorityFilters]);
+
+  const filteredActiveRows = useMemo(() => {
+    return sortedActiveRows.filter((row) => {
+      if (!matchesScoreRange(row.avgScore, comparisonFilters.scoreMin, comparisonFilters.scoreMax)) return false;
+      return matchesSearch(comparisonFilters.search, row.name);
+    });
+  }, [sortedActiveRows, comparisonFilters]);
 
   return (
     <>
@@ -464,11 +623,25 @@ function AllProfilesView({ period, onOpenProfile }) {
           </div>
         )}
 
+        <QpTableToolbar
+          search={priorityFilters.search}
+          onSearchChange={(search) => setPriorityFilters((f) => ({ ...f, search }))}
+          status={priorityFilters.status}
+          onStatusChange={(status) => setPriorityFilters((f) => ({ ...f, status }))}
+          scoreMin={priorityFilters.scoreMin}
+          scoreMax={priorityFilters.scoreMax}
+          onScoreMinChange={(scoreMin) => setPriorityFilters((f) => ({ ...f, scoreMin }))}
+          onScoreMaxChange={(scoreMax) => setPriorityFilters((f) => ({ ...f, scoreMax }))}
+          showStatus
+          searchPlaceholder="Search profile or insight…"
+        />
+
         <div className="list-caption">
-          Click a row to open profile detail — scroll inside the table to see all {sortedInsights.length} profiles.
+          Click a row to open profile detail — showing {filteredInsights.length} of {sortedInsights.length} profiles (5 visible at a time).
         </div>
         <ScrollableTable
-          totalRows={sortedInsights.length}
+          totalRows={filteredInsights.length}
+          visibleRows={5}
           bodyClassName="qp-table-scroll-body--tall"
           head={(
             <div className="roster-grid-row roster-head qp-ai-insight-head">
@@ -481,7 +654,9 @@ function AllProfilesView({ period, onOpenProfile }) {
             </div>
           )}
         >
-          {sortedInsights.map((row) => {
+          {filteredInsights.length === 0 ? (
+            <div className="qp-table-empty">No profiles match the current filters.</div>
+          ) : filteredInsights.map((row) => {
             const clickable = row.severity !== 'unused';
             const summary = summaryById.get(row.id);
             const matched = summary?.matched ?? 0;
@@ -529,10 +704,22 @@ function AllProfilesView({ period, onOpenProfile }) {
       <div>
         <QpSectionHeader
           title="Profile Comparison"
-          caption={`Each row is one quality profile — scroll inside the table to browse all ${sortedActiveRows.length} profiles (10 visible at a time).`}
+          caption={`Each row is one quality profile — showing ${filteredActiveRows.length} of ${sortedActiveRows.length} profiles (5 visible at a time).`}
         />
+
+        <QpTableToolbar
+          search={comparisonFilters.search}
+          onSearchChange={(search) => setComparisonFilters((f) => ({ ...f, search }))}
+          scoreMin={comparisonFilters.scoreMin}
+          scoreMax={comparisonFilters.scoreMax}
+          onScoreMinChange={(scoreMin) => setComparisonFilters((f) => ({ ...f, scoreMin }))}
+          onScoreMaxChange={(scoreMax) => setComparisonFilters((f) => ({ ...f, scoreMax }))}
+          searchPlaceholder="Search quality profile…"
+        />
+
         <ScrollableTable
-          totalRows={sortedActiveRows.length}
+          totalRows={filteredActiveRows.length}
+          visibleRows={5}
           head={(
             <div className="roster-grid-row roster-head qp-profile-head">
               <span>Quality Profile Name</span>
@@ -541,7 +728,9 @@ function AllProfilesView({ period, onOpenProfile }) {
             </div>
           )}
         >
-          {sortedActiveRows.map((row) => {
+          {filteredActiveRows.length === 0 ? (
+            <div className="qp-table-empty">No profiles match the current filters.</div>
+          ) : filteredActiveRows.map((row) => {
             const pct = matchedSharePct(row.matched, metrics.uniqueInteractions);
             const scoreDelta = formatDelta(row.scoreDelta, 'pp');
             return (
