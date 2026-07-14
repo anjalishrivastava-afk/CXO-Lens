@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 .vercel
+
+# CQA API exploration artifacts (credentials / tokens)
+.cqa-*

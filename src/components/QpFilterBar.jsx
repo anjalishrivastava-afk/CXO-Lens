@@ -7,9 +7,15 @@ const PERIOD_DEFS = [
   { key: 'month', label: 'Last Month' },
 ];
 
-export default function QpFilterBar({ qpId, onQpChange, period, onPeriodChange, showProfileSelector = true }) {
+export default function QpFilterBar({
+  qpId,
+  onQpChange,
+  period,
+  onPeriodChange,
+  showProfileSelector = true,
+}) {
   return (
-    <div className="filter-bar">
+    <div className="filter-bar qp-filter-bar">
       <div className="periods">
         {PERIOD_DEFS.map((p) => (
           <button
@@ -23,7 +29,8 @@ export default function QpFilterBar({ qpId, onQpChange, period, onPeriodChange, 
       </div>
       <div className="filter-right">
         {showProfileSelector && (
-          <div className="selector-wrap">
+          <div className="selector-wrap qp-profile-selector">
+            <span className="qp-selector-label">Profile</span>
             <select className="selector" value={qpId} onChange={(e) => onQpChange(e.target.value)}>
               {QP_PROFILES.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -34,7 +41,7 @@ export default function QpFilterBar({ qpId, onQpChange, period, onPeriodChange, 
             <Icon name="arrow_drop_down" className="selector-arrow" />
           </div>
         )}
-        <Icon name="autorenew" className="refresh-icon" />
+        <Icon name="autorenew" className="refresh-icon" title="Refresh data" />
       </div>
     </div>
   );

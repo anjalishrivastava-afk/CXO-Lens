@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from './Icon';
 import SimpleLineChart from './SimpleLineChart';
+import WeekPager from './WeekPager';
 import { QpInteractionMix, QpScoreDistribution } from './QpDistributionChart';
 import {
   formatDelta,
@@ -17,7 +18,222 @@ import {
   trackQpAnalyticsKpiBreakdownViewed,
 } from '../analytics';
 
-function ChartCard({ title, subtitle, children, className = '' }) {
+function QpSectionHeader({ title, caption, heading }) {
+  return (
+    <div className="qp-section-header">
+      <div className={`section-heading${heading ? ' qp-drill-nav-heading' : ''}`}>
+        {heading ?? title}
+      </div>
+      {caption && <p className="section-scope-caption">{caption}</p>}
+    </div>
+  );
+}
+
+function QpProfileDetailNav({ profile, summary, onBack }) {
+  return (
+    <div className="qp-section-header qp-drill-nav">
+      <div className="qp-drill-nav-row">
+        <button type="button" className="qp-drill-nav-back" onClick={onBack} aria-label="Back to portfolio">
+          <Icon name="arrow_back" />
+        </button>
+        <div className="qp-drill-nav-body">
+          <div className="section-heading qp-drill-nav-heading">
+            <span className="qp-drill-nav-name">{profile.label}</span>
+            {summary?.severity && summary.severity !== 'unused' && (
+              <SeverityBadge severity={summary.severity} />
+            )}
+            {summary?.avgScore != null && (
+              <span className="qp-drill-nav-score" style={{ color: scoreColor(summary.avgScore) }}>
+                {summary.avgScore}%
+              </span>
+            )}
+          </div>
+          <p className="section-scope-caption">
+            Metrics below are for this profile only. Portfolio totals stay on the Portfolio tab.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ViewScopeBanner({ variant, profileName }) {
+  if (variant === 'portfolio') {
+    return (
+      <div className="qp-scope-banner">
+        <Icon name="layers" />
+        <div>
+          <div className="qp-scope-banner-title">Portfolio view</div>
+          <div className="qp-scope-banner-text">
+            Every metric below adds up <strong>all quality profiles</strong> for the selected period.
+            One call can appear in multiple analyses.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === 'profile') {
+    return (
+      <div className="qp-scope-banner">
+        <Icon name="description" />
+        <div>
+          <div className="qp-scope-banner-title">Single-profile view</div>
+          <div className="qp-scope-banner-text">
+            Every metric below is scoped to <strong>{profileName}</strong> only — not the full portfolio.
+            Switch to Portfolio to see org-wide totals.
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function TruncatedText({ text, className = '', clampClass = 'qp-truncated-text' }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = text.length > 120;
+
+  return (
+    <div
+      className={`qp-truncated-wrap${expanded ? ' is-expanded' : ''}${isLong ? ' has-toggle' : ''}${className ? ` ${className}` : ''}`}
+    >
+      <p className={`${clampClass}${expanded ? ' is-expanded' : ''}`}>
+        {text}
+        {isLong && expanded && (
+          <>
+            {' '}
+            <button
+              type="button"
+              className="qp-truncated-toggle-inline"
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpanded(false);
+              }}
+            >
+              see less
+            </button>
+          </>
+        )}
+      </p>
+      {isLong && !expanded && (
+        <button
+          type="button"
+          className="qp-truncated-toggle-inline qp-truncated-toggle-end"
+          onClick={() => setExpanded(true)}
+        >
+          see more
+        </button>
+      )}
+    </div>
+  );
+}
+
+function KpiQuestionCell({ text }) {
+  return (
+    <div className="qp-kpi-question-cell">
+      <TruncatedText text={text} clampClass="qp-kpi-question" />
+    </div>
+  );
+}
+
+function CoachingInsightsPanel({ profileLabel, aiInsights, escalations, escRef }) {
+  return (
+    <div className="qp-coaching-section">
+      <QpSectionHeader
+        title="Coaching Insights"
+        caption={(
+          <>
+            AI-generated coaching guidance for <strong>{profileLabel}</strong> this period
+          </>
+        )}
+      />
+
+      <div className="qp-coaching-panel">
+        <div className="qp-coaching-summary info-card focus">
+          <Icon name="auto_awesome" className="qp-coaching-summary-icon" />
+          <TruncatedText text={aiInsights.headline} clampClass="qp-coaching-summary-text" />
+        </div>
+
+        {aiInsights.needsAttention.length > 0 || aiInsights.performingWell.length > 0 ? (
+          <div className="qp-coaching-kpi-row">
+            {aiInsights.needsAttention.length > 0 && (
+              <div className="qp-coaching-card info-card priority">
+                <div className="qp-coaching-card-head">
+                  <Icon name="warning" />
+                  <span className="info-card-title">Needs Attention</span>
+                  <span className="qp-coaching-count">{aiInsights.needsAttention.length}</span>
+                </div>
+                <div className="qp-coaching-list">
+                  {aiInsights.needsAttention.map((k) => (
+                    <div key={k.name} className="qp-coaching-item">
+                      <div className="qp-coaching-item-head">
+                        <span className="info-card-kpi">{k.name}</span>
+                        <span className="improve-badge below">{k.score}</span>
+                      </div>
+                      <TruncatedText text={k.detail} clampClass="qp-coaching-item-text" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {aiInsights.performingWell.length > 0 && (
+              <div className="qp-coaching-card info-card strength">
+                <div className="qp-coaching-card-head">
+                  <Icon name="verified" />
+                  <span className="info-card-title">Performing Well</span>
+                  <span className="qp-coaching-count">{aiInsights.performingWell.length}</span>
+                </div>
+                <div className="qp-coaching-list">
+                  {aiInsights.performingWell.map((k) => (
+                    <div key={k.name} className="qp-coaching-item">
+                      <div className="qp-coaching-item-head">
+                        <span className="info-card-kpi">{k.name}</span>
+                        <span className="improve-badge above">{k.score}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : null}
+
+        <div className="qp-coaching-recommendation info-card focus">
+          <div className="qp-coaching-card-head">
+            <Icon name="lightbulb" />
+            <span className="info-card-kpi">Recommended Action</span>
+          </div>
+          <TruncatedText text={aiInsights.recommendation} clampClass="qp-coaching-item-text" />
+        </div>
+
+        {escalations.length > 0 && (
+          <div className="qp-coaching-escalations" ref={escRef}>
+            <div className="qp-coaching-escalations-label">Escalations to review</div>
+            <div className="qp-coaching-escalation-grid">
+              {escalations.map((e) => (
+                <div
+                  key={`${e.type}-${e.kpi}`}
+                  className={`qp-coaching-escalation info-card ${e.type === 'dispute' ? 'priority' : 'focus'}`}
+                >
+                  <div className="qp-coaching-card-head">
+                    <Icon name={e.type === 'dispute' ? 'gavel' : 'trending_down'} />
+                    <span className="info-card-kpi">{e.kpi}</span>
+                  </div>
+                  <TruncatedText text={e.detail} clampClass="qp-coaching-item-text" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ChartCard({ title, subtitle, headerRight, children, className = '' }) {
   return (
     <div className={`section-card${className ? ` ${className}` : ''}`}>
       <div className="section-card-header chart-card-header">
@@ -25,6 +241,7 @@ function ChartCard({ title, subtitle, children, className = '' }) {
           <div className="section-card-title">{title}</div>
           {subtitle && <div className="section-card-sub">{subtitle}</div>}
         </div>
+        {headerRight}
       </div>
       <div className="section-card-body">{children}</div>
     </div>
@@ -90,6 +307,20 @@ function scoreColor(score) {
   return 'var(--red-text)';
 }
 
+function ScrollableTable({ head, children, totalRows, bodyClassName = '' }) {
+  const scrollHint = totalRows > 10 ? ` · scroll for all ${totalRows}` : '';
+  return (
+    <div className="rank-table-card qp-table-scroll">
+      <div className="qp-table-scroll-head">{head}</div>
+      <div
+        className={`qp-table-scroll-body${bodyClassName ? ` ${bodyClassName}` : ''}`}
+        aria-label={`Table body, up to 10 rows visible${scrollHint}`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
 function AllProfilesView({ period, onOpenProfile }) {
   const data = getAllProfilesData(period);
   const {
@@ -141,28 +372,38 @@ function AllProfilesView({ period, onOpenProfile }) {
     return (order[a.severity] ?? 4) - (order[b.severity] ?? 4);
   });
 
+  const summaryById = useMemo(
+    () => new Map(summaryTable.map((row) => [row.id, row])),
+    [summaryTable],
+  );
+
   const activeRows = summaryTable.filter((r) => r.matched > 0);
+  const sortedActiveRows = useMemo(
+    () => [...activeRows].sort((a, b) => b.matched - a.matched || (b.avgScore ?? 0) - (a.avgScore ?? 0)),
+    [activeRows],
+  );
 
   return (
     <>
       <div>
-        <div className="section-heading">Key Metrics</div>
+        <QpSectionHeader title="Portfolio Metrics" caption="Combined across every quality profile" />
         <div className="kpi-grid">
           <MetricCard
-            label="Total Unique Interactions"
+            label="Unique Calls"
             value={metrics.uniqueInteractions.toLocaleString()}
+            sub="Distinct interactions evaluated — counted once regardless of how many profiles matched"
             delta={{ value: metrics.uniqueDelta }}
           />
           <MetricCard
-            label="Total No. of Analysis"
+            label="Total Analyses"
             value={metrics.totalAnalysis.toLocaleString()}
-            sub="Sum of all QP evaluations (can exceed unique interactions)"
+            sub="Sum of every profile evaluation — higher than unique calls when one call matches multiple profiles"
             delta={{ value: metrics.analysisDelta }}
           />
           <MetricCard
-            label="Total Score"
+            label="Portfolio Avg Score"
             value={`${metrics.totalScore}%`}
-            sub="Simple average across all Quality Profiles"
+            sub="Mean of each profile's average score — not the same as any single profile's score"
             delta={{ value: metrics.totalScoreDelta, suffix: 'pp' }}
             valueColor={scoreColor(metrics.totalScore)}
           />
@@ -170,12 +411,15 @@ function AllProfilesView({ period, onOpenProfile }) {
       </div>
 
       <div className="rank-tables-grid chart-card-grid">
-        <ChartCard title="QP Interaction Mix" subtitle="How interactions are distributed across quality profiles">
+        <ChartCard
+          title="QP Interaction Mix"
+          subtitle="Profiles ranked by matched calls — scroll inside the chart (5 visible at a time)"
+        >
           <QpInteractionMix rows={interactionMix} totalUnique={metrics.uniqueInteractions} />
         </ChartCard>
 
         <div ref={distRef}>
-          <ChartCard title="Score Distribution" subtitle="Interaction score bands across all profiles">
+          <ChartCard title="Score Distribution" subtitle="Analysis scores by band — low and high volumes shown on the same scale">
             <QpScoreDistribution
               bands={scoreDistribution}
               insight={distributionInsight}
@@ -186,7 +430,7 @@ function AllProfilesView({ period, onOpenProfile }) {
       </div>
 
       <div ref={aiRef}>
-        <div className="section-heading">AI Insights</div>
+        <QpSectionHeader title="Priority Highlights" />
         <div className="top-cards-row" style={{ marginBottom: 12 }}>
           <div className="info-card focus" style={{ flex: '1 1 100%' }}>
             <div className="info-card-text">{crossQpHeadline}</div>
@@ -220,52 +464,84 @@ function AllProfilesView({ period, onOpenProfile }) {
           </div>
         )}
 
-        <div className="list-caption">Click a row to open the quality profile detail view.</div>
-        <div className="improve-list">
+        <div className="list-caption">
+          Click a row to open profile detail — scroll inside the table to see all {sortedInsights.length} profiles.
+        </div>
+        <ScrollableTable
+          totalRows={sortedInsights.length}
+          bodyClassName="qp-table-scroll-body--tall"
+          head={(
+            <div className="roster-grid-row roster-head qp-ai-insight-head">
+              <span>Status</span>
+              <span>Profile</span>
+              <span>Avg Score</span>
+              <span>Analyses</span>
+              <span>AI Insight</span>
+              <span aria-hidden="true" />
+            </div>
+          )}
+        >
           {sortedInsights.map((row) => {
             const clickable = row.severity !== 'unused';
+            const summary = summaryById.get(row.id);
+            const matched = summary?.matched ?? 0;
+
             return (
-              <div key={row.id} className="improve-row">
-                <div
-                  className="improve-header"
-                  style={{ cursor: clickable ? 'pointer' : 'default', opacity: clickable ? 1 : 0.65 }}
-                  onClick={() => clickable && onOpenProfile(row.id, 'ai_insight_row')}
-                  role={clickable ? 'button' : undefined}
-                  tabIndex={clickable ? 0 : undefined}
-                  onKeyDown={(e) => clickable && e.key === 'Enter' && onOpenProfile(row.id, 'ai_insight_row')}
-                >
-                  <div className="improve-name-row">
-                    <SeverityBadge severity={row.severity} />
-                    <span className="improve-name">{row.name}</span>
-                    {row.avgScore != null && (
-                      <span className="improve-pct" style={{ color: scoreColor(row.avgScore), minWidth: 'auto' }}>
-                        {row.avgScore}%
-                      </span>
-                    )}
-                  </div>
-                  <div className="improve-meta">
-                    {row.alert && <span className="improve-badge below">{row.alert}</span>}
-                    {clickable && <Icon name="chevron_right" className="improve-chevron" />}
-                  </div>
-                </div>
-                <div className="improve-detail">
-                  <div className="improve-detail-text">{row.summary}</div>
-                </div>
+              <div
+                key={row.id}
+                className={`roster-grid-row roster-row qp-ai-insight-row${clickable ? '' : ' qp-ai-insight-row--disabled'}`}
+                onClick={() => clickable && onOpenProfile(row.id, 'ai_insight_row')}
+                onKeyDown={(e) => clickable && e.key === 'Enter' && onOpenProfile(row.id, 'ai_insight_row')}
+                role={clickable ? 'button' : undefined}
+                tabIndex={clickable ? 0 : undefined}
+                title={clickable ? `Open ${row.name}` : undefined}
+              >
+                <span>
+                  <SeverityBadge severity={row.severity} />
+                </span>
+                <span className="roster-agent-name">{row.name}</span>
+                <span className="rank-score" style={{ color: scoreColor(row.avgScore), width: 'auto' }}>
+                  {row.avgScore != null ? `${row.avgScore}%` : '—'}
+                </span>
+                <span className="roster-calls">
+                  {matched > 0 ? (
+                    <>
+                      {matched.toLocaleString()}
+                      <span className="qp-ai-insight-share"> ({row.matchedPct}%)</span>
+                    </>
+                  ) : (
+                    '—'
+                  )}
+                </span>
+                <span className="qp-ai-insight-summary" title={row.summary}>
+                  {row.summary}
+                  {row.alert && <span className="improve-badge below qp-ai-insight-alert">{row.alert}</span>}
+                </span>
+                <span className="qp-ai-insight-chevron">
+                  {clickable && <Icon name="chevron_right" />}
+                </span>
               </div>
             );
           })}
-        </div>
+        </ScrollableTable>
       </div>
 
       <div>
-        <div className="section-heading">Quality Profiles</div>
-        <div className="rank-table-card">
-          <div className="roster-grid-row roster-head qp-profile-head">
-            <span>Quality Profile Name</span>
-            <span>Interactions Matched</span>
-            <span>Avg Score</span>
-          </div>
-          {activeRows.map((row) => {
+        <QpSectionHeader
+          title="Profile Comparison"
+          caption={`Each row is one quality profile — scroll inside the table to browse all ${sortedActiveRows.length} profiles (10 visible at a time).`}
+        />
+        <ScrollableTable
+          totalRows={sortedActiveRows.length}
+          head={(
+            <div className="roster-grid-row roster-head qp-profile-head">
+              <span>Quality Profile Name</span>
+              <span>Interactions Matched</span>
+              <span>Avg Score</span>
+            </div>
+          )}
+        >
+          {sortedActiveRows.map((row) => {
             const pct = matchedSharePct(row.matched, metrics.uniqueInteractions);
             const scoreDelta = formatDelta(row.scoreDelta, 'pp');
             return (
@@ -297,7 +573,7 @@ function AllProfilesView({ period, onOpenProfile }) {
               </div>
             );
           })}
-        </div>
+        </ScrollableTable>
       </div>
     </>
   );
@@ -307,6 +583,7 @@ function PerQpView({ qpId, period }) {
   const profile = getQpProfile(qpId);
   const data = getQpData(qpId, period);
   const { metrics, aiInsights, escalations, topIntents, kpis, smarterAssignment, scoreTrend } = data;
+  const [trendIdx, setTrendIdx] = useState(() => Math.max(scoreTrend.length - 1, 0));
   const aiRef = useRef(null);
   const kpiRef = useRef(null);
   const escRef = useRef(null);
@@ -357,6 +634,10 @@ function PerQpView({ qpId, period }) {
     [qpId, escalations.length],
   );
 
+  useEffect(() => {
+    setTrendIdx(Math.max(scoreTrend.length - 1, 0));
+  }, [qpId, period, scoreTrend.length]);
+
   const sharePct = analysisSharePct(metrics.analysisCount, metrics.totalAnalysis);
   const isEmpty = metrics.analysisCount === 0;
 
@@ -386,122 +667,81 @@ function PerQpView({ qpId, period }) {
     value: pt.value,
     color: pt.value >= 82 ? 'var(--green)' : pt.value >= 75 ? 'var(--accent)' : 'var(--red)',
   }));
-  const latestTrend = scoreTrend[scoreTrend.length - 1];
+  const activeTrend = scoreTrend[trendIdx] ?? scoreTrend[scoreTrend.length - 1];
 
   return (
     <>
       <div>
-        <div className="section-heading">Key Metrics</div>
-        <div className="kpi-grid qp-kpi-grid--two">
-          <MetricCard
-            label="Total No. of Analysis"
-            value={metrics.analysisCount.toLocaleString()}
-            sub={`${sharePct}% of total analysis were run on this Quality Profile`}
-          />
-          <MetricCard
-            label="Quality Profile Score"
-            value={`${metrics.qpScore}%`}
-            sub="Average score across all KPIs"
-            delta={metrics.qpScoreDelta != null ? { value: metrics.qpScoreDelta, suffix: 'pp' } : null}
-            valueColor={scoreColor(metrics.qpScore)}
-          />
+        <QpSectionHeader
+          title="Profile Metrics"
+          caption={(
+            <>
+              Only <strong>{profile.label}</strong> — not portfolio-wide totals
+            </>
+          )}
+        />
+        <div className="qp-profile-metrics-layout">
+          <div className="qp-profile-metrics-kpis">
+            <MetricCard
+              label="Analyses (This Profile)"
+              value={metrics.analysisCount.toLocaleString()}
+              sub={`${metrics.analysisCount.toLocaleString()} of ${metrics.totalAnalysis.toLocaleString()} portfolio analyses (${sharePct}%)`}
+            />
+            <MetricCard
+              label="Profile Avg Score"
+              value={`${metrics.qpScore}%`}
+              sub="This profile's mean score — open Portfolio tab to compare against the org average"
+              delta={metrics.qpScoreDelta != null ? { value: metrics.qpScoreDelta, suffix: 'pp' } : null}
+              valueColor={scoreColor(metrics.qpScore)}
+            />
+          </div>
+
+          {scoreTrend.length > 0 && (
+            <ChartCard
+              className="qp-profile-metrics-chart"
+              title="Score Trend"
+              subtitle={`Weekly average for ${profile.label} only`}
+              headerRight={activeTrend ? (
+                <WeekPager
+                  label={activeTrend.label}
+                  index={trendIdx}
+                  total={scoreTrend.length}
+                  onChange={setTrendIdx}
+                  prevTooltip="Previous week"
+                  nextTooltip="Next week"
+                />
+              ) : null}
+            >
+              <SimpleLineChart
+                points={trendPoints}
+                height={150}
+                selectedIdx={trendIdx}
+                onSelect={setTrendIdx}
+              />
+              {activeTrend && (
+                <div className="week-detail-panel qp-score-trend-detail">
+                  <span className="week-detail-stat" style={{ color: scoreColor(activeTrend.value) }}>
+                    Avg score {activeTrend.value}%
+                  </span>
+                </div>
+              )}
+            </ChartCard>
+          )}
         </div>
       </div>
-
-      {scoreTrend.length > 0 && (
-        <ChartCard title="Score Trend" subtitle="Weekly average score for this quality profile">
-          <SimpleLineChart points={trendPoints} height={150} />
-          {latestTrend && (
-            <div className="week-detail-panel">
-              <span className="week-detail-label">{latestTrend.label}</span>
-              <span className="week-detail-stat" style={{ color: scoreColor(latestTrend.value) }}>
-                Avg score {latestTrend.value}%
-              </span>
-            </div>
-          )}
-        </ChartCard>
-      )}
 
       <div ref={aiRef}>
-        <div className="section-heading">{profile.label}</div>
-        <div className="top-cards-row" style={{ marginBottom: 12 }}>
-          <div className="info-card focus" style={{ flex: '1 1 100%' }}>
-            <div className="info-card-text">{aiInsights.headline}</div>
-          </div>
-        </div>
-
-        <div className="top-cards-row">
-          {aiInsights.needsAttention.length > 0 && (
-            <div className="info-card priority" style={{ flex: '1 1 320px' }}>
-              <div className="info-card-heading-row">
-                <Icon name="warning" />
-                <span className="info-card-title">Needs Attention</span>
-              </div>
-              {aiInsights.needsAttention.map((k) => (
-                <div key={k.name} style={{ marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--yellow-border)' }}>
-                  <div className="info-card-heading-row">
-                    <span className="info-card-kpi">{k.name}</span>
-                    <span className="improve-badge below">{k.score}</span>
-                  </div>
-                  <div className="info-card-text">{k.detail}</div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {aiInsights.performingWell.length > 0 && (
-            <div className="info-card strength" style={{ flex: '1 1 320px' }}>
-              <div className="info-card-heading-row">
-                <Icon name="verified" />
-                <span className="info-card-title">Performing Well</span>
-              </div>
-              {aiInsights.performingWell.map((k) => (
-                <div key={k.name} style={{ marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--green-border)' }}>
-                  <div className="info-card-heading-row">
-                    <span className="info-card-kpi">{k.name}</span>
-                    <span className="improve-badge above">{k.score}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="top-cards-row" style={{ marginTop: 12 }}>
-          <div className="info-card focus" style={{ flex: '1 1 100%' }}>
-            <div className="info-card-heading-row">
-              <Icon name="lightbulb" />
-              <span className="info-card-kpi">Recommendation</span>
-            </div>
-            <div className="info-card-text">{aiInsights.recommendation}</div>
-          </div>
-        </div>
+        <CoachingInsightsPanel
+          profileLabel={profile.label}
+          aiInsights={aiInsights}
+          escalations={escalations}
+          escRef={escRef}
+        />
       </div>
-
-      {escalations.length > 0 && (
-        <div>
-          <div className="section-heading">Escalation Indicators</div>
-          <div ref={escRef} className="top-cards-row">
-            {escalations.map((e) => (
-              <div
-                key={`${e.type}-${e.kpi}`}
-                className={`info-card ${e.type === 'dispute' ? 'priority' : 'focus'}`}
-                style={{ flex: '1 1 280px' }}
-              >
-                <div className="info-card-heading-row">
-                  <Icon name={e.type === 'dispute' ? 'gavel' : 'trending_down'} />
-                  <span className="info-card-kpi">{e.kpi}</span>
-                </div>
-                <div className="info-card-text">{e.detail}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {smarterAssignment && topIntents.length > 0 && (
         <div>
-          <div className="section-heading">Top Intents</div>
+          <QpSectionHeader title="Top Intents" />
           <div className="qp-intent-row">
             {topIntents.map((intent) => (
               <span key={intent.label} className="tab-badge active">
@@ -515,7 +755,10 @@ function PerQpView({ qpId, period }) {
 
       {kpis.length > 0 && (
         <div>
-          <div className="section-heading">KPI Breakdown</div>
+          <QpSectionHeader
+            title="Quality Rubric"
+            caption="KPI questions from the quality profile definition. Per-KPI scores require analysis detail access."
+          />
           <div ref={kpiRef} className="improve-list">
             <div className="roster-grid-row roster-head qp-kpi-head">
               <span>KPI Question</span>
@@ -526,16 +769,21 @@ function PerQpView({ qpId, period }) {
               <span>Change</span>
             </div>
             {kpis.map((k) => {
-              const pctDelta = k.prevPct != null ? Math.round((k.avgPct - k.prevPct) * 10) / 10 : null;
+              const pctDelta =
+                k.prevPct != null && k.avgPct != null
+                  ? Math.round((k.avgPct - k.prevPct) * 10) / 10
+                  : null;
               const deltaFmt = formatDelta(pctDelta, 'pp');
               const rowTone = k.type === 'critical' ? 'var(--red-text)' : k.type === 'failing' ? 'var(--yellow-text)' : 'var(--text)';
               return (
                 <div key={k.question} className="roster-grid-row roster-row qp-kpi-row" style={{ color: rowTone }}>
-                  <span className="roster-agent-name">{k.question}</span>
+                  <KpiQuestionCell text={k.question} />
                   <span><KpiTypeBadge type={k.type} /></span>
-                  <span className="roster-calls">{k.avgScore}</span>
+                  <span className="roster-calls">{k.avgScore ?? '—'}</span>
                   <span className="roster-calls">{k.maxScore}</span>
-                  <span className="roster-calls" style={{ fontWeight: k.type ? 700 : 500 }}>{k.avgPct}%</span>
+                  <span className="roster-calls" style={{ fontWeight: k.type ? 700 : 500 }}>
+                    {k.avgPct != null ? `${k.avgPct}%` : '—'}
+                  </span>
                   <span className={`kpi-delta ${deltaFmt ? (deltaFmt.up ? 'up' : 'down') : ''}`}>
                     {deltaFmt ? deltaFmt.text : '—'}
                   </span>
@@ -549,13 +797,48 @@ function PerQpView({ qpId, period }) {
   );
 }
 
-export default function QpInsightsView({ tab, qpId, period, onOpenProfile }) {
+export default function QpInsightsView({ tab, qpId, period, onProfileDrill }) {
+  const [drillProfileId, setDrillProfileId] = useState(null);
+
+  useEffect(() => {
+    setDrillProfileId(null);
+  }, [tab]);
+
+  const handleOpenProfile = (profileId, source) => {
+    setDrillProfileId(profileId);
+    onProfileDrill?.(profileId, source);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToOverview = () => {
+    setDrillProfileId(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (tab === 'all-profiles' && drillProfileId) {
+    const profile = getQpProfile(drillProfileId);
+    const summary = getAllProfilesData(period).summaryTable.find((r) => r.id === drillProfileId);
+
+    return (
+      <div className="qp-insights">
+        <QpProfileDetailNav profile={profile} summary={summary} onBack={handleBackToOverview} />
+        <PerQpView qpId={drillProfileId} period={period} />
+      </div>
+    );
+  }
+
   return (
     <div className="qp-insights">
       {tab === 'all-profiles' ? (
-        <AllProfilesView period={period} onOpenProfile={onOpenProfile} />
+        <>
+          <ViewScopeBanner variant="portfolio" />
+          <AllProfilesView period={period} onOpenProfile={handleOpenProfile} />
+        </>
       ) : (
-        <PerQpView qpId={qpId} period={period} />
+        <>
+          <ViewScopeBanner variant="profile" profileName={getQpProfile(qpId).label} />
+          <PerQpView qpId={qpId} period={period} />
+        </>
       )}
     </div>
   );

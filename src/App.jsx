@@ -14,7 +14,7 @@ import CxoLensView from './components/CxoLensView';
 import QpInsightsView from './components/QpInsightsView';
 import { trackQpAnalyticsPeriodChanged, trackQpAnalyticsTabSwitched } from './analytics';
 import { useQpAnalyticsTimeSpent } from './useQpAnalyticsTimeSpent';
-import { getQpProfile } from './qpInsightsData';
+import { getQpProfile, QP_PROFILES } from './qpInsightsData';
 
 const FILTER_BAR_VIEWS = ['org', 'team', 'agent'];
 
@@ -50,7 +50,7 @@ function panelSubtitle(section) {
     return 'Generate ad-hoc AI reports from a natural-language prompt — admin-only';
   }
   if (section === 'qp-insights') {
-    return 'Quality Profile analytics with AI-generated insights — admins, supervisors, and agents';
+    return 'Compare quality profiles portfolio-wide, or drill into one profile at a time';
   }
   return 'AI-generated quality insights across your org, teams and agents';
 }
@@ -61,7 +61,7 @@ export default function App() {
   const [period, setPeriod] = useState('month');
   const [selector, setSelector] = useState('H0967');
   const [qpTab, setQpTab] = useState('all-profiles');
-  const [qpId, setQpId] = useState('sales_outbound');
+  const [qpId, setQpId] = useState(() => QP_PROFILES[0]?.id ?? '');
   const [qpPeriod, setQpPeriod] = useState('month');
 
   const setView = (v) => {
@@ -111,10 +111,8 @@ export default function App() {
     });
   };
 
-  const handleOpenQpProfile = (profileId, source) => {
+  const handleProfileDrill = (profileId, source) => {
     const profile = getQpProfile(profileId);
-    setQpId(profileId);
-    setQpTab('per-qp');
     trackQpAnalyticsTabSwitched({
       tabType: 'specific_qp',
       profileId: profile.id,
@@ -216,7 +214,7 @@ export default function App() {
                           tab={qpTab}
                           qpId={qpId}
                           period={qpPeriod}
-                          onOpenProfile={handleOpenQpProfile}
+                          onProfileDrill={handleProfileDrill}
                         />
                       )}
                       {isAgentSummary && view === 'agent' && <AgentView />}
