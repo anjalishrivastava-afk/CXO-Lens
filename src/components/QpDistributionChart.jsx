@@ -97,22 +97,18 @@ export function QpInteractionMix({ rows, totalUnique }) {
 
       <div className="qp-mix-rank-list qp-table-scroll-body">
         {sorted.map((row, index) => (
-          <div
-            key={row.id}
-            className="qp-mix-rank-row chart-hover"
-            data-tooltip={`${row.name}: ${row.matched.toLocaleString()} calls (${row.sharePct}% of unique calls)${
-              row.avgScore != null ? ` · avg ${row.avgScore}%` : ''
-            }`}
-          >
+          <div key={row.id} className="qp-mix-rank-row">
             <span className="qp-mix-rank-index">{index + 1}</span>
             <div className="qp-mix-rank-main">
               <div className="qp-mix-rank-head">
                 <span className="qp-mix-rank-name" title={row.name}>
                   {row.name}
                 </span>
-                <span className="qp-mix-rank-stats">
+                <span
+                  className="qp-mix-rank-stats chart-hover"
+                  data-tooltip={`Matched calls: ${row.matched.toLocaleString()} (${row.sharePct}% of total unique interactions)`}
+                >
                   {row.matched.toLocaleString()}
-                  <span className="qp-mix-rank-pct">({row.sharePct}%)</span>
                 </span>
               </div>
               <div className="qp-mix-rank-bar-track">
@@ -126,7 +122,11 @@ export function QpInteractionMix({ rows, totalUnique }) {
               </div>
             </div>
             {row.avgScore != null && (
-              <span className="qp-mix-rank-score" style={{ color: SEVERITY_COLOR[row.severity] ?? 'var(--text)' }}>
+              <span
+                className="qp-mix-rank-score chart-hover"
+                data-tooltip={`Profile avg score: ${row.avgScore}%`}
+                style={{ color: SEVERITY_COLOR[row.severity] ?? 'var(--text)' }}
+              >
                 {row.avgScore}%
               </span>
             )}
@@ -243,9 +243,22 @@ export function QpScoreDistribution({ bands, insight, avgScore }) {
           {hoverBand && (() => {
             const band = orderedBands.find((b) => b.band === hoverBand);
             if (!band) return null;
+            const names = band.profiles ?? [];
+            const shown = names.slice(0, 5);
+            const extra = names.length - shown.length;
             return (
               <div className="qp-score-dist-tooltip">
-                {band.band}: {band.count.toLocaleString()} analyses ({band.share}%)
+                <div>
+                  {band.band}: {band.count.toLocaleString()} quality profile{band.count === 1 ? '' : 's'} ({band.share}%)
+                </div>
+                {shown.length > 0 && (
+                  <ul className="qp-score-dist-tooltip-names">
+                    {shown.map((pr) => (
+                      <li key={pr.id}>{pr.name}</li>
+                    ))}
+                    {extra > 0 && <li>+{extra} more</li>}
+                  </ul>
+                )}
               </div>
             );
           })()}

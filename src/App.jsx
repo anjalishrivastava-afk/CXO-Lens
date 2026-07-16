@@ -111,7 +111,7 @@ export default function App() {
       ? dashboardFeedback(section, view, dashboardReady.insightId, qpTab, qpId)
       : null;
 
-  const handleQpTabChange = (nextTab) => {
+  const handleQpTabChange = (nextTab, source = 'tab_bar') => {
     if (!canViewPortfolioInsights(hostContext) && nextTab === 'all-profiles') return;
     setQpTab(nextTab);
     const profile = nextTab === 'per-qp' ? getQpProfile(qpId) : null;
@@ -119,13 +119,15 @@ export default function App() {
       tabType: nextTab === 'all-profiles' ? 'all_profiles' : 'specific_qp',
       profileId: profile?.id ?? null,
       profileName: profile?.label ?? null,
-      source: 'tab_bar',
+      source,
       period: qpPeriod,
     });
   };
 
   const handleProfileDrill = (profileId, source) => {
     const profile = getQpProfile(profileId);
+    setQpId(profileId);
+    setQpTab('per-qp');
     trackQpAnalyticsTabSwitched({
       tabType: 'specific_qp',
       profileId: profile.id,
@@ -134,6 +136,8 @@ export default function App() {
       period: qpPeriod,
     });
   };
+
+  const handleBackToPortfolio = () => handleQpTabChange('all-profiles', 'back_button');
 
   const handleQpChange = (nextQpId) => {
     const profile = getQpProfile(nextQpId);
@@ -251,6 +255,8 @@ export default function App() {
                           qpId={qpId}
                           period={qpPeriod}
                           onProfileDrill={handleProfileDrill}
+                          onBackToPortfolio={handleBackToPortfolio}
+                          showBackToPortfolio={canViewPortfolioInsights(hostContext)}
                         />
                       )}
                       {isAgentSummary && view === 'agent' && <AgentView />}

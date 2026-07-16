@@ -9604,6 +9604,30 @@ const qpDataBase = {
   }
 };
 
+const PROFILE_SCORE_BANDS = [
+  { band: '<60%', test: (s) => s < 60 },
+  { band: '60–70%', test: (s) => s >= 60 && s < 70 },
+  { band: '70–75%', test: (s) => s >= 70 && s < 75 },
+  { band: '75–80%', test: (s) => s >= 75 && s < 80 },
+  { band: '80–85%', test: (s) => s >= 80 && s < 85 },
+  { band: '85–100%', test: (s) => s >= 85 },
+];
+
+// Buckets quality profiles (not calls/analyses) by their own avg score, so
+// each donut slice represents "how many profiles score in this range" rather
+// than "how many analyses landed in this range".
+function computeProfileScoreDistribution(summaryTable) {
+  const scored = summaryTable.filter((r) => r.avgScore != null);
+  const total = scored.length || 1;
+  return PROFILE_SCORE_BANDS.map(({ band, test }) => {
+    const profiles = scored
+      .filter((r) => test(r.avgScore))
+      .map((r) => ({ id: r.id, name: r.name, avgScore: r.avgScore }))
+      .sort((a, b) => b.avgScore - a.avgScore);
+    return { band, count: profiles.length, share: Math.round((profiles.length / total) * 1000) / 10, profiles };
+  });
+}
+
 export function getAllProfilesData(period = 'month') {
   const p = baseAllProfiles[period] ?? baseAllProfiles.month;
   const summaryTable = baseSummaryRowsByPeriod[period] ?? baseSummaryRowsByPeriod.month ?? [];
@@ -9621,6 +9645,12 @@ export function getAllProfilesData(period = 'month') {
       severity: r.severity,
     }));
 
+  const scoreDistribution = computeProfileScoreDistribution(summaryTable);
+  const topDistBand = scoreDistribution.reduce((a, b) => (b.share > a.share ? b : a), scoreDistribution[0]);
+  const distributionInsight = topDistBand?.count > 0
+    ? `${topDistBand.count} of ${summaryTable.filter((r) => r.avgScore != null).length} quality profiles score in the ${topDistBand.band} band — largest concentration this period.`
+    : null;
+
   return {
     period,
     metrics: {
@@ -9634,8 +9664,8 @@ export function getAllProfilesData(period = 'month') {
     crossQpHeadline: p.crossQpHeadline,
     topPriorityAlert: p.topPriorityAlert,
     unusedProfiles: p.unusedProfiles,
-    scoreDistribution: p.scoreDistribution,
-    distributionInsight: p.distributionInsight,
+    scoreDistribution,
+    distributionInsight,
     aiInsightRows,
     summaryTable,
     interactionMix,

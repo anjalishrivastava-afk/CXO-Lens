@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from './Icon';
-import SimpleLineChart from './SimpleLineChart';
-import WeekPager from './WeekPager';
+import SimpleBarChart from './SimpleBarChart';
 import { QpInteractionMix, QpScoreDistribution } from './QpDistributionChart';
 import {
   formatDelta,
@@ -29,7 +28,10 @@ function QpSectionHeader({ title, caption, heading }) {
   );
 }
 
-function QpProfileDetailNav({ profile, summary, onBack }) {
+function QpProfileDetailNav({ profile, summary, totalUnique, onBack }) {
+  const matched = summary?.matched ?? 0;
+  const pct = totalUnique ? matchedSharePct(matched, totalUnique) : null;
+
   return (
     <div className="qp-section-header qp-drill-nav">
       <div className="qp-drill-nav-row">
@@ -49,7 +51,14 @@ function QpProfileDetailNav({ profile, summary, onBack }) {
             )}
           </div>
           <p className="section-scope-caption">
-            Metrics below are for this profile only. Portfolio totals stay on the Portfolio tab.
+            {matched > 0 ? (
+              <>
+                {matched.toLocaleString()} matched calls{pct != null ? ` (${pct}% of all unique interactions)` : ''} this period
+                {summary?.avgScore != null && <> · avg score {summary.avgScore}%</>}
+              </>
+            ) : (
+              'No calls matched this profile in the selected period.'
+            )}
           </p>
         </div>
       </div>
@@ -58,21 +67,6 @@ function QpProfileDetailNav({ profile, summary, onBack }) {
 }
 
 function ViewScopeBanner({ variant, profileName }) {
-  if (variant === 'portfolio') {
-    return (
-      <div className="qp-scope-banner">
-        <Icon name="layers" />
-        <div>
-          <div className="qp-scope-banner-title">Portfolio view</div>
-          <div className="qp-scope-banner-text">
-            Every metric below adds up <strong>all quality profiles</strong> for the selected period.
-            One call can appear in multiple analyses.
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   if (variant === 'profile') {
     return (
       <div className="qp-scope-banner">
@@ -482,17 +476,12 @@ function AllProfilesView({ period, onOpenProfile }) {
   } = data;
 
   const [priorityFilters, setPriorityFilters] = useState(EMPTY_TABLE_FILTERS);
-  const [comparisonFilters, setComparisonFilters] = useState({
-    ...EMPTY_TABLE_FILTERS,
-    status: undefined,
-  });
 
   const aiRef = useRef(null);
   const distRef = useRef(null);
 
   useEffect(() => {
     setPriorityFilters(EMPTY_TABLE_FILTERS);
-    setComparisonFilters({ ...EMPTY_TABLE_FILTERS, status: undefined });
   }, [period]);
 
   useIntersectionOnce(
@@ -534,12 +523,6 @@ function AllProfilesView({ period, onOpenProfile }) {
     [summaryTable],
   );
 
-  const activeRows = summaryTable.filter((r) => r.matched > 0);
-  const sortedActiveRows = useMemo(
-    () => [...activeRows].sort((a, b) => b.matched - a.matched || (b.avgScore ?? 0) - (a.avgScore ?? 0)),
-    [activeRows],
-  );
-
   const filteredInsights = useMemo(() => {
     return sortedInsights.filter((row) => {
       if (priorityFilters.status !== 'all' && row.severity !== priorityFilters.status) return false;
@@ -548,34 +531,27 @@ function AllProfilesView({ period, onOpenProfile }) {
     });
   }, [sortedInsights, priorityFilters]);
 
-  const filteredActiveRows = useMemo(() => {
-    return sortedActiveRows.filter((row) => {
-      if (!matchesScoreRange(row.avgScore, comparisonFilters.scoreMin, comparisonFilters.scoreMax)) return false;
-      return matchesSearch(comparisonFilters.search, row.name);
-    });
-  }, [sortedActiveRows, comparisonFilters]);
-
   return (
     <>
       <div>
-        <QpSectionHeader title="Portfolio Metrics" caption="Combined across every quality profile" />
+        <QpSectionHeader title="Portfolio Metrics" caption="Combined across every quality profile for the selected period" />
         <div className="kpi-grid">
           <MetricCard
-            label="Unique Calls"
+            label="Total Unique Interactions"
             value={metrics.uniqueInteractions.toLocaleString()}
-            sub="Distinct interactions evaluated — counted once regardless of how many profiles matched"
+            sub="Distinct calls that matched at least one quality profile — each call is counted once, even if several profiles analyzed it"
             delta={{ value: metrics.uniqueDelta }}
           />
           <MetricCard
             label="Total Analyses"
             value={metrics.totalAnalysis.toLocaleString()}
-            sub="Sum of every profile evaluation — higher than unique calls when one call matches multiple profiles"
+            sub="Every profile evaluation added together — higher than Unique Interactions whenever a call is analyzed by more than one profile"
             delta={{ value: metrics.analysisDelta }}
           />
           <MetricCard
             label="Portfolio Avg Score"
             value={`${metrics.totalScore}%`}
-            sub="Mean of each profile's average score — not the same as any single profile's score"
+            sub="Simple average of each profile's own average score — not weighted by call volume, so a low-volume profile counts as much as a high-volume one"
             delta={{ value: metrics.totalScoreDelta, suffix: 'pp' }}
             valueColor={scoreColor(metrics.totalScore)}
           />
@@ -585,13 +561,13 @@ function AllProfilesView({ period, onOpenProfile }) {
       <div className="rank-tables-grid chart-card-grid">
         <ChartCard
           title="QP Interaction Mix"
-          subtitle="Profiles ranked by matched calls — scroll inside the chart (5 visible at a time)"
+          subtitle="Each profile's share of Total Unique Interactions — ranked by matched calls, scroll inside the chart (5 visible at a time)"
         >
           <QpInteractionMix rows={interactionMix} totalUnique={metrics.uniqueInteractions} />
         </ChartCard>
 
         <div ref={distRef}>
-          <ChartCard title="Score Distribution" subtitle="Analysis scores by band — low and high volumes shown on the same scale">
+          <ChartCard title="Score Distribution" subtitle="Quality profiles grouped by their own avg score — sized by number of profiles, not call volume">
             <QpScoreDistribution
               bands={scoreDistribution}
               insight={distributionInsight}
@@ -649,9 +625,6 @@ function AllProfilesView({ period, onOpenProfile }) {
           searchPlaceholder="Search profile or insight…"
         />
 
-        <div className="list-caption">
-          Click a row to open profile detail — showing {filteredInsights.length} of {sortedInsights.length} profiles (5 visible at a time).
-        </div>
         <ScrollableTable
           totalRows={filteredInsights.length}
           visibleRows={5}
@@ -661,7 +634,7 @@ function AllProfilesView({ period, onOpenProfile }) {
               <span>Status</span>
               <span>Profile</span>
               <span>Avg Score</span>
-              <span>Analyses</span>
+              <span>Interactions Matched</span>
               <span>AI Insight</span>
               <span aria-hidden="true" />
             </div>
@@ -691,16 +664,27 @@ function AllProfilesView({ period, onOpenProfile }) {
                 <span className="rank-score" style={{ color: scoreColor(row.avgScore), width: 'auto' }}>
                   {row.avgScore != null ? `${row.avgScore}%` : '—'}
                 </span>
-                <span className="roster-calls">
+                <div className="qp-match-cell">
                   {matched > 0 ? (
                     <>
-                      {matched.toLocaleString()}
-                      <span className="qp-ai-insight-share"> ({row.matchedPct}%)</span>
+                      <span className="roster-calls">
+                        {matched.toLocaleString()} / {metrics.uniqueInteractions.toLocaleString()} (
+                        {matchedSharePct(matched, metrics.uniqueInteractions)}%)
+                      </span>
+                      <div className="weak-bar-track qp-match-bar">
+                        <div
+                          className="weak-bar-fill"
+                          style={{
+                            width: `${matchedSharePct(matched, metrics.uniqueInteractions)}%`,
+                            background: 'var(--accent)',
+                          }}
+                        />
+                      </div>
                     </>
                   ) : (
                     '—'
                   )}
-                </span>
+                </div>
                 <span className="qp-ai-insight-summary" title={row.summary}>
                   {row.summary}
                   {row.alert && <span className="improve-badge below qp-ai-insight-alert">{row.alert}</span>}
@@ -713,79 +697,65 @@ function AllProfilesView({ period, onOpenProfile }) {
           })}
         </ScrollableTable>
       </div>
-
-      <div>
-        <QpSectionHeader
-          title="Profile Comparison"
-          caption={`Each row is one quality profile — showing ${filteredActiveRows.length} of ${sortedActiveRows.length} profiles (5 visible at a time).`}
-        />
-
-        <QpTableToolbar
-          search={comparisonFilters.search}
-          onSearchChange={(search) => setComparisonFilters((f) => ({ ...f, search }))}
-          scoreMin={comparisonFilters.scoreMin}
-          scoreMax={comparisonFilters.scoreMax}
-          onScoreMinChange={(scoreMin) => setComparisonFilters((f) => ({ ...f, scoreMin }))}
-          onScoreMaxChange={(scoreMax) => setComparisonFilters((f) => ({ ...f, scoreMax }))}
-          searchPlaceholder="Search quality profile…"
-        />
-
-        <ScrollableTable
-          totalRows={filteredActiveRows.length}
-          visibleRows={5}
-          head={(
-            <div className="roster-grid-row roster-head qp-profile-head">
-              <span>Quality Profile Name</span>
-              <span>Interactions Matched</span>
-              <span>Avg Score</span>
-            </div>
-          )}
-        >
-          {filteredActiveRows.length === 0 ? (
-            <div className="qp-table-empty">No profiles match the current filters.</div>
-          ) : filteredActiveRows.map((row) => {
-            const pct = matchedSharePct(row.matched, metrics.uniqueInteractions);
-            const scoreDelta = formatDelta(row.scoreDelta, 'pp');
-            return (
-              <div
-                key={row.id}
-                className="roster-grid-row roster-row qp-profile-row"
-                onClick={() => onOpenProfile(row.id, 'table_row')}
-                title="Open quality profile detail"
-              >
-                <span className="roster-agent-name">{row.name}</span>
-                <div className="qp-match-cell">
-                  <span className="roster-calls">
-                    {row.matched.toLocaleString()} / {metrics.uniqueInteractions.toLocaleString()} ({pct}%)
-                  </span>
-                  <div className="weak-bar-track qp-match-bar">
-                    <div className="weak-bar-fill" style={{ width: `${pct}%`, background: 'var(--accent)' }} />
-                  </div>
-                </div>
-                <div className="qp-score-cell">
-                  <span className="rank-score" style={{ color: scoreColor(row.avgScore), width: 'auto' }}>
-                    {row.avgScore}%
-                  </span>
-                  {scoreDelta && (
-                    <span className={`kpi-delta ${scoreDelta.up ? 'up' : 'down'}`} style={{ fontSize: 11 }}>
-                      {scoreDelta.text}
-                    </span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </ScrollableTable>
-      </div>
     </>
   );
 }
+
+// Deterministic per-day-of-week wobble so daily bars derived from a weekly
+// average don't all render as flat, identical-height bars.
+const DAY_JITTER = [0, -1.4, 0.9, -0.6, 1.3, -0.9, 0.5];
+
+function parseWeekEndDate(label) {
+  const endPart = label.split(/[–-]/).pop()?.trim();
+  if (!endPart) return null;
+  const parsed = new Date(`${endPart}, ${new Date().getFullYear()}`);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+// Expands the weekly scoreTrend buckets into a fixed 30-day daily series so
+// the chart always shows the same range — the period filter only changes
+// which days are highlighted, not what's fetched or displayed.
+function buildDailyScoreTrend(scoreTrend, totalDays = 30) {
+  if (!scoreTrend.length) return [];
+  const endDate = parseWeekEndDate(scoreTrend[scoreTrend.length - 1].label) ?? new Date();
+
+  const raw = [];
+  for (let i = totalDays - 1; i >= 0; i -= 1) {
+    const date = new Date(endDate);
+    date.setDate(date.getDate() - i);
+    const weeksAgo = Math.floor(i / 7);
+    const week = scoreTrend[Math.max(scoreTrend.length - 1 - weeksAgo, 0)];
+    const noData = week.value <= 0;
+    const jitter = noData ? 0 : DAY_JITTER[i % DAY_JITTER.length];
+    const value = noData ? 0 : Math.max(0, Math.min(100, Math.round((week.value + jitter) * 10) / 10));
+    raw.push({ date, value, noData });
+  }
+
+  // Axis shows just the day number per bar (fits all 30 without rotation),
+  // with the month name surfaced only where it changes.
+  return raw.map((d, idx) => {
+    const monthChanged = idx === 0 || d.date.getMonth() !== raw[idx - 1].date.getMonth();
+    return {
+      label: String(d.date.getDate()),
+      monthLabel: monthChanged ? d.date.toLocaleDateString('en-US', { month: 'short' }) : null,
+      fullLabel: d.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      value: d.value,
+      noData: d.noData,
+      color: d.value >= 82 ? 'var(--green)' : d.value >= 75 ? 'var(--accent)' : 'var(--red)',
+    };
+  });
+}
+
+const PERIOD_TREND_LABELS = {
+  yesterday: 'Yesterday',
+  week: 'Last 7 Days',
+  month: 'Last 30 Days',
+};
 
 function PerQpView({ qpId, period }) {
   const profile = getQpProfile(qpId);
   const data = getQpData(qpId, period);
   const { metrics, aiInsights, escalations, topIntents, kpis, smarterAssignment, scoreTrend } = data;
-  const [trendIdx, setTrendIdx] = useState(() => Math.max(scoreTrend.length - 1, 0));
   const aiRef = useRef(null);
   const kpiRef = useRef(null);
   const escRef = useRef(null);
@@ -836,10 +806,6 @@ function PerQpView({ qpId, period }) {
     [qpId, escalations.length],
   );
 
-  useEffect(() => {
-    setTrendIdx(Math.max(scoreTrend.length - 1, 0));
-  }, [qpId, period, scoreTrend.length]);
-
   const sharePct = analysisSharePct(metrics.analysisCount, metrics.totalAnalysis);
   const isEmpty = metrics.analysisCount === 0;
 
@@ -864,24 +830,18 @@ function PerQpView({ qpId, period }) {
     );
   }
 
-  const trendPoints = scoreTrend.map((pt) => ({
-    label: pt.label,
-    value: pt.value,
-    color: pt.value >= 82 ? 'var(--green)' : pt.value >= 75 ? 'var(--accent)' : 'var(--red)',
-  }));
-  const activeTrend = scoreTrend[trendIdx] ?? scoreTrend[scoreTrend.length - 1];
+  const dailyTrend = buildDailyScoreTrend(scoreTrend, 30);
+  const highlightCount = period === 'yesterday' ? 1 : period === 'week' ? 7 : dailyTrend.length;
+  const highlightStart = Math.max(dailyTrend.length - highlightCount, 0);
+  const highlightRange = dailyTrend.length ? [highlightStart, dailyTrend.length - 1] : null;
+  const highlightedDays = dailyTrend.slice(highlightStart).filter((d) => d.value > 0);
+  const highlightedAvg = highlightedDays.length
+    ? Math.round((highlightedDays.reduce((sum, d) => sum + d.value, 0) / highlightedDays.length) * 10) / 10
+    : null;
 
   return (
     <>
       <div>
-        <QpSectionHeader
-          title="Profile Metrics"
-          caption={(
-            <>
-              Only <strong>{profile.label}</strong> — not portfolio-wide totals
-            </>
-          )}
-        />
         <div className="qp-profile-metrics-layout">
           <div className="qp-profile-metrics-kpis">
             <MetricCard
@@ -898,32 +858,17 @@ function PerQpView({ qpId, period }) {
             />
           </div>
 
-          {scoreTrend.length > 0 && (
+          {dailyTrend.length > 0 && (
             <ChartCard
               className="qp-profile-metrics-chart"
               title="Score Trend"
-              subtitle={`Weekly average for ${profile.label} only`}
-              headerRight={activeTrend ? (
-                <WeekPager
-                  label={activeTrend.label}
-                  index={trendIdx}
-                  total={scoreTrend.length}
-                  onChange={setTrendIdx}
-                  prevTooltip="Previous week"
-                  nextTooltip="Next week"
-                />
-              ) : null}
+              subtitle={`Daily average for ${profile.label} — last 30 days`}
             >
-              <SimpleLineChart
-                points={trendPoints}
-                height={150}
-                selectedIdx={trendIdx}
-                onSelect={setTrendIdx}
-              />
-              {activeTrend && (
+              <SimpleBarChart points={dailyTrend} height={150} highlightRange={highlightRange} />
+              {highlightedAvg != null && (
                 <div className="week-detail-panel qp-score-trend-detail">
-                  <span className="week-detail-stat" style={{ color: scoreColor(activeTrend.value) }}>
-                    Avg score {activeTrend.value}%
+                  <span className="week-detail-stat" style={{ color: scoreColor(highlightedAvg) }}>
+                    {PERIOD_TREND_LABELS[period] ?? 'Selected period'} avg score {highlightedAvg}%
                   </span>
                 </div>
               )}
@@ -961,7 +906,7 @@ function PerQpView({ qpId, period }) {
             title="Quality Rubric"
             caption={
               kpis.some((k) => k.avgPct != null)
-                ? 'Per-KPI scores aggregated from interaction analysis detail.'
+                ? "Avg Score is the mean points this KPI earned per analysis, out of Max Score (the KPI's maximum possible points) — Avg % is Avg Score ÷ Max Score."
                 : 'KPI questions from the quality profile definition. Re-run fetch with CQA_API_KEY for per-KPI scores when available.'
             }
           />
@@ -1003,42 +948,30 @@ function PerQpView({ qpId, period }) {
   );
 }
 
-export default function QpInsightsView({ tab, qpId, period, onProfileDrill }) {
-  const [drillProfileId, setDrillProfileId] = useState(null);
-
-  useEffect(() => {
-    setDrillProfileId(null);
-  }, [tab]);
-
+export default function QpInsightsView({ tab, qpId, period, onProfileDrill, onBackToPortfolio, showBackToPortfolio }) {
   const handleOpenProfile = (profileId, source) => {
-    setDrillProfileId(profileId);
     onProfileDrill?.(profileId, source);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToOverview = () => {
-    setDrillProfileId(null);
+    onBackToPortfolio?.();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  if (tab === 'all-profiles' && drillProfileId) {
-    const profile = getQpProfile(drillProfileId);
-    const summary = getAllProfilesData(period).summaryTable.find((r) => r.id === drillProfileId);
-
-    return (
-      <div className="qp-insights">
-        <QpProfileDetailNav profile={profile} summary={summary} onBack={handleBackToOverview} />
-        <PerQpView qpId={drillProfileId} period={period} />
-      </div>
-    );
-  }
 
   return (
     <div className="qp-insights">
       {tab === 'all-profiles' ? (
+        <AllProfilesView period={period} onOpenProfile={handleOpenProfile} />
+      ) : showBackToPortfolio ? (
         <>
-          <ViewScopeBanner variant="portfolio" />
-          <AllProfilesView period={period} onOpenProfile={handleOpenProfile} />
+          <QpProfileDetailNav
+            profile={getQpProfile(qpId)}
+            summary={getAllProfilesData(period).summaryTable.find((r) => r.id === qpId)}
+            totalUnique={getAllProfilesData(period).metrics.uniqueInteractions}
+            onBack={handleBackToOverview}
+          />
+          <PerQpView qpId={qpId} period={period} />
         </>
       ) : (
         <>

@@ -2272,6 +2272,29 @@ select {
   fill: var(--text-muted);
 }
 
+.daily-bar-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.daily-bar-chart-bar {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.daily-bar-chart-label {
+  font-size: 8px;
+  fill: var(--text-muted);
+}
+
+.daily-bar-chart-month-label {
+  font-size: 8.5px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
 .chart-toolbar {
   display: flex;
   align-items: center;
@@ -4016,6 +4039,11 @@ select {
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background: var(--white);
+  transition: background 0.1s;
+}
+
+.qp-mix-rank-row:hover {
+  background: var(--bg);
 }
 
 .qp-mix-rank-row--others {
@@ -4087,6 +4115,23 @@ select {
   white-space: nowrap;
   min-width: 42px;
   text-align: right;
+}
+
+/* These two sit inside a scrolling list (overflow-y: auto) near the row's
+   right edge, which clips a tooltip that pops upward (off the top row) or
+   is wide enough to bleed past the card's right edge when centered. Open
+   downward, anchor from the right, and wrap instead of a long nowrap line. */
+.qp-mix-rank-stats.chart-hover::after,
+.qp-mix-rank-score.chart-hover::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  left: auto;
+  right: 0;
+  transform: none;
+  white-space: normal;
+  text-align: left;
+  width: max-content;
+  max-width: 200px;
 }
 
 .qp-mix-expand-btn .msr {
@@ -4173,15 +4218,31 @@ select {
   bottom: -2px;
   transform: translateX(-50%);
   width: max-content;
-  max-width: 220px;
+  max-width: 260px;
   background: #26282c;
   color: #fff;
   font-size: 11px;
   font-weight: 500;
-  padding: 4px 8px;
+  padding: 6px 10px;
   border-radius: 4px;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.qp-score-dist-tooltip-names {
+  margin: 4px 0 0;
+  padding: 0 0 0 16px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.qp-score-dist-tooltip-names li {
+  list-style: disc;
+  line-height: 1.5;
 }
 
 .qp-score-dist-legend {
@@ -4329,7 +4390,7 @@ select {
 
 .qp-profile-metrics-layout {
   display: grid;
-  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 30%) minmax(0, 1fr);
   gap: 12px;
   align-items: stretch;
 }
