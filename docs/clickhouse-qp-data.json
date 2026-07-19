@@ -1,0 +1,3629 @@
+{
+  "profileSummary": [
+    {
+      "profile_id": "b1069975-1ea2-4f51-bf7e-35b9e8940025",
+      "profile_name": "Branch Profile 1",
+      "unique_interactions": 1177841,
+      "total_kpi_evals": 57714196,
+      "avg_score": 76.2,
+      "first_eval": "2026-05-19",
+      "last_eval": "2026-07-18",
+      "kpi_count": 49
+    },
+    {
+      "profile_id": "3e2c8cf9-7c54-433d-8fff-e7a093f711cb",
+      "profile_name": "HSL FINAL profile",
+      "unique_interactions": 796545,
+      "total_kpi_evals": 18320535,
+      "avg_score": 18.5,
+      "first_eval": "2026-01-27",
+      "last_eval": "2026-03-11",
+      "kpi_count": 23
+    },
+    {
+      "profile_id": "56a1a026-35a7-45fe-97de-d28da2ff25ea",
+      "profile_name": "rm/qa profile 2",
+      "unique_interactions": 392319,
+      "total_kpi_evals": 18760608,
+      "avg_score": 74.7,
+      "first_eval": "2026-04-29",
+      "last_eval": "2026-05-19",
+      "kpi_count": 48
+    },
+    {
+      "profile_id": "cc677238-58cc-49c3-867a-aca35f4c98a8",
+      "profile_name": "RM_QA_PROFILE",
+      "unique_interactions": 390428,
+      "total_kpi_evals": 18740544,
+      "avg_score": 20.2,
+      "first_eval": "2026-04-08",
+      "last_eval": "2026-04-28",
+      "kpi_count": 48
+    },
+    {
+      "profile_id": "07d2be32-30c1-4b72-80ec-57b5408a351e",
+      "profile_name": "HSL_RM_QA_Profile",
+      "unique_interactions": 370910,
+      "total_kpi_evals": 8530930,
+      "avg_score": 18.7,
+      "first_eval": "2026-03-11",
+      "last_eval": "2026-04-09",
+      "kpi_count": 23
+    },
+    {
+      "profile_id": "701ad356-2159-4c3d-bbd6-49bfac2e39bc",
+      "profile_name": "rm/qa profile",
+      "unique_interactions": 18592,
+      "total_kpi_evals": 892416,
+      "avg_score": 38.0,
+      "first_eval": "2026-04-29",
+      "last_eval": "2026-04-29",
+      "kpi_count": 48
+    },
+    {
+      "profile_id": "1a0de5e0-a3e8-4a42-9e36-59a51c4a1c17",
+      "profile_name": "rm/qa profile 3",
+      "unique_interactions": 879,
+      "total_kpi_evals": 43071,
+      "avg_score": 77.4,
+      "first_eval": "2026-05-19",
+      "last_eval": "2026-05-19",
+      "kpi_count": 49
+    },
+    {
+      "profile_id": "2eb13f37-7065-48a5-a378-1bd145c75cd0",
+      "profile_name": "compliance_5pm_may7",
+      "unique_interactions": 511,
+      "total_kpi_evals": 4599,
+      "avg_score": 98.5,
+      "first_eval": "2026-05-08",
+      "last_eval": "2026-05-12",
+      "kpi_count": 9
+    },
+    {
+      "profile_id": "b3f70a61-d0cd-441c-8bb2-a0a65080e2db",
+      "profile_name": "QA_compliance_profile_1",
+      "unique_interactions": 404,
+      "total_kpi_evals": 3232,
+      "avg_score": 97.0,
+      "first_eval": "2026-04-22",
+      "last_eval": "2026-05-07",
+      "kpi_count": 8
+    },
+    {
+      "profile_id": "52530a93-17c7-41dc-acc3-d949ea4b12ce",
+      "profile_name": "compliance_5pm_may19",
+      "unique_interactions": 76,
+      "total_kpi_evals": 684,
+      "avg_score": 96.2,
+      "first_eval": "2026-05-22",
+      "last_eval": "2026-07-09",
+      "kpi_count": 9
+    },
+    {
+      "profile_id": "ad21ea01-3e20-4f0a-b903-f50af7e8e981",
+      "profile_name": "Branch Profile",
+      "unique_interactions": 8,
+      "total_kpi_evals": 392,
+      "avg_score": 75.5,
+      "first_eval": "2026-05-19",
+      "last_eval": "2026-05-19",
+      "kpi_count": 49
+    }
+  ],
+  "categoryPerformance": [
+    {
+      "profile_name": "Branch Profile",
+      "category_name": "Main contents of the Product",
+      "evals": 152,
+      "avg_score_pct": 96.7
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 3533523,
+      "avg_score_pct": 39.5
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Follow Up ",
+      "evals": 1177841,
+      "avg_score_pct": 41.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 2355681,
+      "avg_score_pct": 49.5
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 3533520,
+      "avg_score_pct": 58.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Call Closing ",
+      "evals": 1177841,
+      "avg_score_pct": 63.1
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Introduction & Greetings",
+      "evals": 3533523,
+      "avg_score_pct": 64.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Promotion of Invest right app",
+      "evals": 1177841,
+      "avg_score_pct": 66.1
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Main contents of the Product",
+      "evals": 2355683,
+      "avg_score_pct": 68.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 8244886,
+      "avg_score_pct": 75.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "Business Compliance",
+      "evals": 20023292,
+      "avg_score_pct": 98.5
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "category_name": "QA Compliance",
+      "evals": 10600565,
+      "avg_score_pct": 99.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Promotion of Invest right app",
+      "evals": 796545,
+      "avg_score_pct": 2.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 2389635,
+      "avg_score_pct": 5.0
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Follow Up ",
+      "evals": 796545,
+      "avg_score_pct": 25.0
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Introduction & Greetings",
+      "evals": 2389635,
+      "avg_score_pct": 25.3
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Main contents of the Product",
+      "evals": 1593090,
+      "avg_score_pct": 34.7
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 2389635,
+      "avg_score_pct": 37.5
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 1593090,
+      "avg_score_pct": 42.1
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Call Closing ",
+      "evals": 796545,
+      "avg_score_pct": 56.3
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 5575815,
+      "avg_score_pct": 63.7
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Promotion of Invest right app",
+      "evals": 370910,
+      "avg_score_pct": 2.7
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 1112730,
+      "avg_score_pct": 5.4
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Follow Up ",
+      "evals": 370910,
+      "avg_score_pct": 24.0
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Introduction & Greetings",
+      "evals": 1112730,
+      "avg_score_pct": 26.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Main contents of the Product",
+      "evals": 741820,
+      "avg_score_pct": 35.4
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 1112730,
+      "avg_score_pct": 37.3
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 741820,
+      "avg_score_pct": 43.0
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Call Closing ",
+      "evals": 370910,
+      "avg_score_pct": 56.1
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 2596370,
+      "avg_score_pct": 65.7
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Misleading Sales Practices & Risk Disclosure",
+      "evals": 404,
+      "avg_score_pct": 91.3
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Unauthorized Trading Activities",
+      "evals": 404,
+      "avg_score_pct": 98.0
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Conflict of Interest & Personal Business Activities",
+      "evals": 404,
+      "avg_score_pct": 98.8
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Unregistered Client Communication",
+      "evals": 404,
+      "avg_score_pct": 99.0
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Unauthorized Access & Client Credentials",
+      "evals": 404,
+      "avg_score_pct": 99.5
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Research Integrity & External Recommendations",
+      "evals": 404,
+      "avg_score_pct": 99.5
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Financial Misconduct & Client Fund Misuse",
+      "evals": 404,
+      "avg_score_pct": 100.0
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "category_name": "Insider Trading & Unpublished Information",
+      "evals": 404,
+      "avg_score_pct": 100.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Main contents of the Product",
+      "evals": 10541556,
+      "avg_score_pct": 3.4
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Promotion of Invest right app",
+      "evals": 390428,
+      "avg_score_pct": 3.6
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 1171284,
+      "avg_score_pct": 7.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Follow Up ",
+      "evals": 390428,
+      "avg_score_pct": 25.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 1171284,
+      "avg_score_pct": 39.8
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 780856,
+      "avg_score_pct": 43.1
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Introduction & Greetings",
+      "evals": 1171284,
+      "avg_score_pct": 49.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Call Closing ",
+      "evals": 390428,
+      "avg_score_pct": 57.1
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 2732996,
+      "avg_score_pct": 66.2
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Unregistered Client Communication",
+      "evals": 511,
+      "avg_score_pct": 94.9
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Unauthorized Access & Client Credentials",
+      "evals": 511,
+      "avg_score_pct": 97.7
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Research Integrity & External Recommendations",
+      "evals": 511,
+      "avg_score_pct": 98.2
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Conflict of Interest & Personal Business Activities",
+      "evals": 511,
+      "avg_score_pct": 99.4
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Insider Trading & Unpublished Information",
+      "evals": 511,
+      "avg_score_pct": 99.6
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Financial Misconduct & Client Fund Misuse",
+      "evals": 511,
+      "avg_score_pct": 99.6
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Insurance missell",
+      "evals": 511,
+      "avg_score_pct": 100.0
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "F/O Misselling",
+      "evals": 511,
+      "avg_score_pct": 100.0
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "category_name": "Unauthorized Trading Activities",
+      "evals": 511,
+      "avg_score_pct": 100.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Main contents of the Product",
+      "evals": 501984,
+      "avg_score_pct": 7.1
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 55776,
+      "avg_score_pct": 35.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Follow Up ",
+      "evals": 18592,
+      "avg_score_pct": 35.8
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 37184,
+      "avg_score_pct": 52.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Promotion of Invest right app",
+      "evals": 18592,
+      "avg_score_pct": 60.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 55776,
+      "avg_score_pct": 62.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Call Closing ",
+      "evals": 18592,
+      "avg_score_pct": 62.4
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Introduction & Greetings",
+      "evals": 55776,
+      "avg_score_pct": 64.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 130144,
+      "avg_score_pct": 74.7
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 1172538,
+      "avg_score_pct": 32.7
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Follow Up ",
+      "evals": 390852,
+      "avg_score_pct": 38.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 781655,
+      "avg_score_pct": 50.4
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Promotion of Invest right app",
+      "evals": 390864,
+      "avg_score_pct": 54.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 1172563,
+      "avg_score_pct": 54.8
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Call Closing ",
+      "evals": 390845,
+      "avg_score_pct": 62.1
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Introduction & Greetings",
+      "evals": 1172512,
+      "avg_score_pct": 64.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 2735802,
+      "avg_score_pct": 74.9
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "category_name": "Main contents of the Product",
+      "evals": 10552977,
+      "avg_score_pct": 96.4
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Follow Up ",
+      "evals": 879,
+      "avg_score_pct": 36.4
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Reference Check / Additional Product",
+      "evals": 2637,
+      "avg_score_pct": 44.4
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Customer Profiling / Probing",
+      "evals": 1758,
+      "avg_score_pct": 48.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Product Pitching & Convincing Skill",
+      "evals": 2637,
+      "avg_score_pct": 60.3
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Promotion of Invest right app",
+      "evals": 879,
+      "avg_score_pct": 61.5
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Introduction & Greetings",
+      "evals": 2637,
+      "avg_score_pct": 63.7
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Call Closing ",
+      "evals": 879,
+      "avg_score_pct": 64.6
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Communication skills, Tone, Manner & Pace of Call",
+      "evals": 6153,
+      "avg_score_pct": 75.5
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "Main contents of the Product",
+      "evals": 16701,
+      "avg_score_pct": 96.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "category_name": "QA Compliance",
+      "evals": 7911,
+      "avg_score_pct": 99.2
+    }
+  ],
+  "kpiPerProfile": [
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 1177840,
+      "avg_score_pct": 15.4,
+      "score_stddev": 36.1
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 1177841,
+      "avg_score_pct": 26.0,
+      "score_stddev": 43.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 1177839,
+      "avg_score_pct": 26.5,
+      "score_stddev": 44.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 1177841,
+      "avg_score_pct": 29.5,
+      "score_stddev": 45.6
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 1177840,
+      "avg_score_pct": 30.0,
+      "score_stddev": 45.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 1177842,
+      "avg_score_pct": 36.7,
+      "score_stddev": 48.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 1177841,
+      "avg_score_pct": 41.0,
+      "score_stddev": 49.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 1177841,
+      "avg_score_pct": 47.9,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 1177842,
+      "avg_score_pct": 50.9,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 1177840,
+      "avg_score_pct": 51.0,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 1177840,
+      "avg_score_pct": 59.0,
+      "score_stddev": 49.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 1177841,
+      "avg_score_pct": 63.1,
+      "score_stddev": 48.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 1177841,
+      "avg_score_pct": 66.1,
+      "score_stddev": 47.3
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Service Call Notification",
+      "evals": 1177839,
+      "avg_score_pct": 71.0,
+      "score_stddev": 45.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 1177842,
+      "avg_score_pct": 77.2,
+      "score_stddev": 41.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 1177841,
+      "avg_score_pct": 86.6,
+      "score_stddev": 34.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 1177842,
+      "avg_score_pct": 86.8,
+      "score_stddev": 33.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 1177840,
+      "avg_score_pct": 87.7,
+      "score_stddev": 32.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Self-Researched Recommendations",
+      "evals": 1177841,
+      "avg_score_pct": 88.5,
+      "score_stddev": 31.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 1177841,
+      "avg_score_pct": 90.2,
+      "score_stddev": 29.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Language Adherence",
+      "evals": 1177841,
+      "avg_score_pct": 91.0,
+      "score_stddev": 28.7
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 1177842,
+      "avg_score_pct": 91.9,
+      "score_stddev": 27.3
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Portfolio Disclosure Without Verification",
+      "evals": 1177841,
+      "avg_score_pct": 95.8,
+      "score_stddev": 20.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Personal Contact Sharing",
+      "evals": 1177841,
+      "avg_score_pct": 98.4,
+      "score_stddev": 12.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Unregistered Client Communication",
+      "evals": 1177842,
+      "avg_score_pct": 98.6,
+      "score_stddev": 11.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Market-Linked Return Assurance",
+      "evals": 1177841,
+      "avg_score_pct": 98.6,
+      "score_stddev": 11.5
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Misleading Product/Guarantee Claims",
+      "evals": 1177841,
+      "avg_score_pct": 98.9,
+      "score_stddev": 10.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Silent Call",
+      "evals": 1177838,
+      "avg_score_pct": 98.9,
+      "score_stddev": 10.3
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Job Inquiry Handling",
+      "evals": 1177841,
+      "avg_score_pct": 99.0,
+      "score_stddev": 9.8
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Meaningless Share Pitch",
+      "evals": 1177840,
+      "avg_score_pct": 99.1,
+      "score_stddev": 9.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Silent Calls",
+      "evals": 1177841,
+      "avg_score_pct": 99.1,
+      "score_stddev": 9.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 1177841,
+      "avg_score_pct": 99.2,
+      "score_stddev": 8.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "F/O Misselling",
+      "evals": 1177842,
+      "avg_score_pct": 99.2,
+      "score_stddev": 8.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Login ID/Credentials Provided?",
+      "evals": 1177841,
+      "avg_score_pct": 99.3,
+      "score_stddev": 8.1
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Professional Tone Check",
+      "evals": 1177841,
+      "avg_score_pct": 99.4,
+      "score_stddev": 7.7
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Misselling Attempt",
+      "evals": 1177841,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.3
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Account Login Attempt",
+      "evals": 1177842,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Insurance missell",
+      "evals": 1177841,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "RM Brokerage Prompt",
+      "evals": 1177841,
+      "avg_score_pct": 99.6,
+      "score_stddev": 5.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Research Integrity & External Recommendations",
+      "evals": 1177838,
+      "avg_score_pct": 99.6,
+      "score_stddev": 5.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Unauthorized Access & Client Credentials",
+      "evals": 1177839,
+      "avg_score_pct": 99.6,
+      "score_stddev": 6.7
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Unauthorized Trading Activities",
+      "evals": 1177842,
+      "avg_score_pct": 99.8,
+      "score_stddev": 4.1
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "RM/Agent Contest & Personal Interest Mention",
+      "evals": 1177839,
+      "avg_score_pct": 99.8,
+      "score_stddev": 4.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Unauthorized Information Disclosure",
+      "evals": 1177842,
+      "avg_score_pct": 99.8,
+      "score_stddev": 4.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Insider Trading & Unpublished Information",
+      "evals": 1177840,
+      "avg_score_pct": 99.9,
+      "score_stddev": 2.3
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Conflict of Interest & Personal Business Activities",
+      "evals": 1177840,
+      "avg_score_pct": 99.9,
+      "score_stddev": 2.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "Financial Misconduct & Client Fund Misuse",
+      "evals": 1177841,
+      "avg_score_pct": 100.0,
+      "score_stddev": 1.9
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "UPI/Payment ID Request",
+      "evals": 1177840,
+      "avg_score_pct": 100.0,
+      "score_stddev": 2.0
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "kpi_name": "RM Digital Account Opening",
+      "evals": 1177841,
+      "avg_score_pct": 100.0,
+      "score_stddev": 2.2
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 796545,
+      "avg_score_pct": 0.5,
+      "score_stddev": 6.9
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 796545,
+      "avg_score_pct": 2.6,
+      "score_stddev": 16.0
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 796545,
+      "avg_score_pct": 3.3,
+      "score_stddev": 18.0
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Service Call Notification",
+      "evals": 796545,
+      "avg_score_pct": 7.3,
+      "score_stddev": 26.0
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Language Adherence",
+      "evals": 796545,
+      "avg_score_pct": 10.4,
+      "score_stddev": 30.5
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 796545,
+      "avg_score_pct": 11.0,
+      "score_stddev": 31.2
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 796545,
+      "avg_score_pct": 22.1,
+      "score_stddev": 41.5
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 796545,
+      "avg_score_pct": 24.2,
+      "score_stddev": 42.8
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 796545,
+      "avg_score_pct": 25.0,
+      "score_stddev": 43.3
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 796545,
+      "avg_score_pct": 25.2,
+      "score_stddev": 43.4
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 796545,
+      "avg_score_pct": 25.9,
+      "score_stddev": 43.8
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 796545,
+      "avg_score_pct": 29.0,
+      "score_stddev": 45.4
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 796545,
+      "avg_score_pct": 31.4,
+      "score_stddev": 46.4
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 796545,
+      "avg_score_pct": 34.8,
+      "score_stddev": 47.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 796545,
+      "avg_score_pct": 39.2,
+      "score_stddev": 48.8
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 796545,
+      "avg_score_pct": 45.0,
+      "score_stddev": 49.8
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 796545,
+      "avg_score_pct": 52.8,
+      "score_stddev": 49.9
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 796545,
+      "avg_score_pct": 56.3,
+      "score_stddev": 49.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 796545,
+      "avg_score_pct": 64.8,
+      "score_stddev": 47.8
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 796545,
+      "avg_score_pct": 68.5,
+      "score_stddev": 46.5
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 796545,
+      "avg_score_pct": 89.1,
+      "score_stddev": 31.2
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 796545,
+      "avg_score_pct": 98.1,
+      "score_stddev": 13.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "kpi_name": "Professional Tone Check",
+      "evals": 796545,
+      "avg_score_pct": 99.1,
+      "score_stddev": 9.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 370910,
+      "avg_score_pct": 0.5,
+      "score_stddev": 6.8
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 370910,
+      "avg_score_pct": 2.7,
+      "score_stddev": 16.3
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 370910,
+      "avg_score_pct": 4.9,
+      "score_stddev": 21.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Service Call Notification",
+      "evals": 370910,
+      "avg_score_pct": 6.6,
+      "score_stddev": 24.7
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 370910,
+      "avg_score_pct": 10.9,
+      "score_stddev": 31.1
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 370910,
+      "avg_score_pct": 20.9,
+      "score_stddev": 40.7
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 370910,
+      "avg_score_pct": 22.8,
+      "score_stddev": 42.0
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 370910,
+      "avg_score_pct": 24.0,
+      "score_stddev": 42.7
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 370910,
+      "avg_score_pct": 24.5,
+      "score_stddev": 43.0
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 370910,
+      "avg_score_pct": 27.4,
+      "score_stddev": 44.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 370910,
+      "avg_score_pct": 29.7,
+      "score_stddev": 45.7
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 370910,
+      "avg_score_pct": 32.6,
+      "score_stddev": 46.9
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 370910,
+      "avg_score_pct": 34.8,
+      "score_stddev": 47.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 370910,
+      "avg_score_pct": 40.2,
+      "score_stddev": 49.0
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 370910,
+      "avg_score_pct": 45.9,
+      "score_stddev": 49.8
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Language Adherence",
+      "evals": 370910,
+      "avg_score_pct": 53.9,
+      "score_stddev": 49.8
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 370910,
+      "avg_score_pct": 56.1,
+      "score_stddev": 49.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 370910,
+      "avg_score_pct": 58.7,
+      "score_stddev": 49.2
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 370910,
+      "avg_score_pct": 66.5,
+      "score_stddev": 47.2
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 370910,
+      "avg_score_pct": 68.4,
+      "score_stddev": 46.5
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 370910,
+      "avg_score_pct": 87.2,
+      "score_stddev": 33.5
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 370910,
+      "avg_score_pct": 98.3,
+      "score_stddev": 13.1
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "kpi_name": "Professional Tone Check",
+      "evals": 370910,
+      "avg_score_pct": 99.0,
+      "score_stddev": 9.7
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "Misselling or Lack of Risk Disclosure",
+      "evals": 404,
+      "avg_score_pct": 91.3,
+      "score_stddev": 28.1
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "F&O/Equity Trading Without Authorization",
+      "evals": 404,
+      "avg_score_pct": 98.0,
+      "score_stddev": 13.9
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "Investment Product Guarantee Claims",
+      "evals": 404,
+      "avg_score_pct": 98.8,
+      "score_stddev": 11.1
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "Unregistered Phone Number Trading",
+      "evals": 404,
+      "avg_score_pct": 99.0,
+      "score_stddev": 9.9
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "Client Personal Credentials Usage",
+      "evals": 404,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.0
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "F&O External Research Recommendations",
+      "evals": 404,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.0
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "Profit Commission Revenue Sharing Promise",
+      "evals": 404,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "kpi_name": "Unpublished Price Sensitive Information Sharing",
+      "evals": 404,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "UPI/Payment ID Request",
+      "evals": 390428,
+      "avg_score_pct": 0.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "UPSI Disclosure Violation",
+      "evals": 390428,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "RM Digital Account Opening",
+      "evals": 390428,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Unauthorized Client Trades",
+      "evals": 390428,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Client Fund Misappropriation/Sharing",
+      "evals": 390428,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Conflict of Interest Disclosure",
+      "evals": 390428,
+      "avg_score_pct": 0.2,
+      "score_stddev": 4.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "RM/Agent Contest & Personal Interest Mention",
+      "evals": 390428,
+      "avg_score_pct": 0.3,
+      "score_stddev": 5.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "RM Brokerage Prompt",
+      "evals": 390428,
+      "avg_score_pct": 0.3,
+      "score_stddev": 5.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Unauthorized Information Disclosure",
+      "evals": 390428,
+      "avg_score_pct": 0.3,
+      "score_stddev": 5.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 390428,
+      "avg_score_pct": 0.5,
+      "score_stddev": 7.1
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "RM Unauthorized Access",
+      "evals": 390428,
+      "avg_score_pct": 0.5,
+      "score_stddev": 7.1
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Unapproved Research Promotion",
+      "evals": 390428,
+      "avg_score_pct": 0.7,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Meaningless Share Pitch",
+      "evals": 390428,
+      "avg_score_pct": 0.8,
+      "score_stddev": 8.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Login ID/Credentials Provided?",
+      "evals": 390428,
+      "avg_score_pct": 0.8,
+      "score_stddev": 8.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Silent Calls",
+      "evals": 390428,
+      "avg_score_pct": 0.9,
+      "score_stddev": 9.4
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Job Inquiry Handling",
+      "evals": 390428,
+      "avg_score_pct": 1.0,
+      "score_stddev": 9.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Account Login Attempt",
+      "evals": 390428,
+      "avg_score_pct": 1.1,
+      "score_stddev": 10.4
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Personal Contact Sharing",
+      "evals": 390428,
+      "avg_score_pct": 1.5,
+      "score_stddev": 12.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Silent Call",
+      "evals": 390428,
+      "avg_score_pct": 1.7,
+      "score_stddev": 12.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Misselling Attempt",
+      "evals": 390428,
+      "avg_score_pct": 1.7,
+      "score_stddev": 12.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Client Trade Consent & Authorization",
+      "evals": 390428,
+      "avg_score_pct": 2.0,
+      "score_stddev": 14.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Misleading Product/Guarantee Claims",
+      "evals": 390428,
+      "avg_score_pct": 2.3,
+      "score_stddev": 15.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Market-Linked Return Assurance",
+      "evals": 390428,
+      "avg_score_pct": 2.7,
+      "score_stddev": 16.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 390428,
+      "avg_score_pct": 3.6,
+      "score_stddev": 18.6
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "RM F&O Misselling/Disclosure",
+      "evals": 390428,
+      "avg_score_pct": 4.1,
+      "score_stddev": 19.8
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Service Call Notification",
+      "evals": 390428,
+      "avg_score_pct": 7.2,
+      "score_stddev": 25.8
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Portfolio Disclosure Without Verification",
+      "evals": 390428,
+      "avg_score_pct": 7.7,
+      "score_stddev": 26.7
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 390428,
+      "avg_score_pct": 8.7,
+      "score_stddev": 28.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Self-Researched Recommendations",
+      "evals": 390428,
+      "avg_score_pct": 10.4,
+      "score_stddev": 30.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 390428,
+      "avg_score_pct": 13.8,
+      "score_stddev": 34.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 390428,
+      "avg_score_pct": 22.1,
+      "score_stddev": 41.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 390428,
+      "avg_score_pct": 24.3,
+      "score_stddev": 42.9
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 390428,
+      "avg_score_pct": 25.9,
+      "score_stddev": 43.8
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 390428,
+      "avg_score_pct": 30.3,
+      "score_stddev": 46.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 390428,
+      "avg_score_pct": 30.9,
+      "score_stddev": 46.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 390428,
+      "avg_score_pct": 32.9,
+      "score_stddev": 47.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 390428,
+      "avg_score_pct": 34.8,
+      "score_stddev": 47.6
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 390428,
+      "avg_score_pct": 40.6,
+      "score_stddev": 49.1
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 390428,
+      "avg_score_pct": 45.6,
+      "score_stddev": 49.8
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 390428,
+      "avg_score_pct": 51.3,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 390428,
+      "avg_score_pct": 57.1,
+      "score_stddev": 49.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Language Adherence",
+      "evals": 390428,
+      "avg_score_pct": 59.1,
+      "score_stddev": 49.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 390428,
+      "avg_score_pct": 66.1,
+      "score_stddev": 47.3
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 390428,
+      "avg_score_pct": 71.3,
+      "score_stddev": 45.2
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 390428,
+      "avg_score_pct": 84.3,
+      "score_stddev": 36.4
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 390428,
+      "avg_score_pct": 89.4,
+      "score_stddev": 30.8
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 390428,
+      "avg_score_pct": 98.4,
+      "score_stddev": 12.5
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "kpi_name": "Professional Tone Check",
+      "evals": 390428,
+      "avg_score_pct": 99.2,
+      "score_stddev": 8.9
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Unregistered Client Communication",
+      "evals": 511,
+      "avg_score_pct": 94.9,
+      "score_stddev": 22.0
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Unauthorized Access & Client Credentials",
+      "evals": 511,
+      "avg_score_pct": 97.7,
+      "score_stddev": 15.0
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Research Integrity & External Recommendations",
+      "evals": 511,
+      "avg_score_pct": 98.2,
+      "score_stddev": 13.3
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Conflict of Interest & Personal Business Activities",
+      "evals": 511,
+      "avg_score_pct": 99.4,
+      "score_stddev": 7.7
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Insider Trading & Unpublished Information",
+      "evals": 511,
+      "avg_score_pct": 99.6,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Financial Misconduct & Client Fund Misuse",
+      "evals": 511,
+      "avg_score_pct": 99.6,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Insurance missell",
+      "evals": 511,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "F/O Misselling",
+      "evals": 511,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "kpi_name": "Unauthorized Trading Activities",
+      "evals": 511,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "UPI/Payment ID Request",
+      "evals": 18592,
+      "avg_score_pct": 0.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "UPSI Disclosure Violation",
+      "evals": 18592,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "RM Digital Account Opening",
+      "evals": 18592,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Unauthorized Client Trades",
+      "evals": 18592,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Client Fund Misappropriation/Sharing",
+      "evals": 18592,
+      "avg_score_pct": 0.1,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Conflict of Interest Disclosure",
+      "evals": 18592,
+      "avg_score_pct": 0.3,
+      "score_stddev": 5.5
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "RM/Agent Contest & Personal Interest Mention",
+      "evals": 18592,
+      "avg_score_pct": 0.4,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "RM Brokerage Prompt",
+      "evals": 18592,
+      "avg_score_pct": 0.4,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Unauthorized Information Disclosure",
+      "evals": 18592,
+      "avg_score_pct": 0.4,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 18592,
+      "avg_score_pct": 2.3,
+      "score_stddev": 15.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "RM Unauthorized Access",
+      "evals": 18592,
+      "avg_score_pct": 0.7,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Unapproved Research Promotion",
+      "evals": 18592,
+      "avg_score_pct": 1.0,
+      "score_stddev": 9.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Meaningless Share Pitch",
+      "evals": 18592,
+      "avg_score_pct": 1.1,
+      "score_stddev": 10.4
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Login ID/Credentials Provided?",
+      "evals": 18592,
+      "avg_score_pct": 1.1,
+      "score_stddev": 10.4
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Silent Calls",
+      "evals": 18592,
+      "avg_score_pct": 1.2,
+      "score_stddev": 10.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Job Inquiry Handling",
+      "evals": 18592,
+      "avg_score_pct": 1.4,
+      "score_stddev": 11.7
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Account Login Attempt",
+      "evals": 18592,
+      "avg_score_pct": 1.5,
+      "score_stddev": 12.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Personal Contact Sharing",
+      "evals": 18592,
+      "avg_score_pct": 2.1,
+      "score_stddev": 14.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Silent Call",
+      "evals": 18592,
+      "avg_score_pct": 2.4,
+      "score_stddev": 15.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Misselling Attempt",
+      "evals": 18592,
+      "avg_score_pct": 2.4,
+      "score_stddev": 15.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Client Trade Consent & Authorization",
+      "evals": 18592,
+      "avg_score_pct": 2.8,
+      "score_stddev": 16.5
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Misleading Product/Guarantee Claims",
+      "evals": 18592,
+      "avg_score_pct": 3.2,
+      "score_stddev": 17.6
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Market-Linked Return Assurance",
+      "evals": 18592,
+      "avg_score_pct": 3.7,
+      "score_stddev": 18.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 18592,
+      "avg_score_pct": 60.0,
+      "score_stddev": 49.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "RM F&O Misselling/Disclosure",
+      "evals": 18592,
+      "avg_score_pct": 5.7,
+      "score_stddev": 23.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Service Call Notification",
+      "evals": 18592,
+      "avg_score_pct": 11.1,
+      "score_stddev": 31.4
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Portfolio Disclosure Without Verification",
+      "evals": 18592,
+      "avg_score_pct": 10.7,
+      "score_stddev": 30.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 18592,
+      "avg_score_pct": 39.9,
+      "score_stddev": 49.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Self-Researched Recommendations",
+      "evals": 18592,
+      "avg_score_pct": 14.4,
+      "score_stddev": 35.1
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 18592,
+      "avg_score_pct": 63.4,
+      "score_stddev": 48.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 18592,
+      "avg_score_pct": 26.0,
+      "score_stddev": 43.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 18592,
+      "avg_score_pct": 28.6,
+      "score_stddev": 45.2
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 18592,
+      "avg_score_pct": 35.8,
+      "score_stddev": 47.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 18592,
+      "avg_score_pct": 41.5,
+      "score_stddev": 49.3
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 18592,
+      "avg_score_pct": 42.8,
+      "score_stddev": 49.5
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 18592,
+      "avg_score_pct": 50.9,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 18592,
+      "avg_score_pct": 47.6,
+      "score_stddev": 49.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 18592,
+      "avg_score_pct": 49.3,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 18592,
+      "avg_score_pct": 55.3,
+      "score_stddev": 49.7
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 18592,
+      "avg_score_pct": 60.4,
+      "score_stddev": 48.9
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 18592,
+      "avg_score_pct": 62.4,
+      "score_stddev": 48.4
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Language Adherence",
+      "evals": 18592,
+      "avg_score_pct": 69.6,
+      "score_stddev": 46.0
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 18592,
+      "avg_score_pct": 91.6,
+      "score_stddev": 27.7
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 18592,
+      "avg_score_pct": 97.5,
+      "score_stddev": 15.6
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 18592,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.1
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 18592,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.1
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 18592,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.1
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "kpi_name": "Professional Tone Check",
+      "evals": 18592,
+      "avg_score_pct": 99.5,
+      "score_stddev": 7.1
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "UPI/Payment ID Request",
+      "evals": 390803,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "UPSI Disclosure Violation",
+      "evals": 390805,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "RM Digital Account Opening",
+      "evals": 390807,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Unauthorized Client Trades",
+      "evals": 390809,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Client Fund Misappropriation/Sharing",
+      "evals": 390811,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Conflict of Interest Disclosure",
+      "evals": 390813,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "RM/Agent Contest & Personal Interest Mention",
+      "evals": 390815,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "RM Brokerage Prompt",
+      "evals": 390817,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Unauthorized Information Disclosure",
+      "evals": 390819,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 390821,
+      "avg_score_pct": 12.8,
+      "score_stddev": 33.4
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "RM Unauthorized Access",
+      "evals": 390823,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Unapproved Research Promotion",
+      "evals": 390825,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Meaningless Share Pitch",
+      "evals": 390827,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Login ID/Credentials Provided?",
+      "evals": 390829,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Silent Calls",
+      "evals": 390831,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Job Inquiry Handling",
+      "evals": 390833,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Account Login Attempt",
+      "evals": 390835,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Personal Contact Sharing",
+      "evals": 390837,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Silent Call",
+      "evals": 390839,
+      "avg_score_pct": 99.9,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Misselling Attempt",
+      "evals": 390841,
+      "avg_score_pct": 99.9,
+      "score_stddev": 3.2
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Client Trade Consent & Authorization",
+      "evals": 390843,
+      "avg_score_pct": 99.6,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Misleading Product/Guarantee Claims",
+      "evals": 390845,
+      "avg_score_pct": 99.3,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Market-Linked Return Assurance",
+      "evals": 390847,
+      "avg_score_pct": 98.9,
+      "score_stddev": 10.4
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 390849,
+      "avg_score_pct": 54.0,
+      "score_stddev": 49.8
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "RM F&O Misselling/Disclosure",
+      "evals": 390851,
+      "avg_score_pct": 97.4,
+      "score_stddev": 15.9
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Service Call Notification",
+      "evals": 390853,
+      "avg_score_pct": 70.6,
+      "score_stddev": 45.6
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Portfolio Disclosure Without Verification",
+      "evals": 390855,
+      "avg_score_pct": 93.8,
+      "score_stddev": 24.1
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 390857,
+      "avg_score_pct": 63.9,
+      "score_stddev": 48.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Self-Researched Recommendations",
+      "evals": 390859,
+      "avg_score_pct": 91.0,
+      "score_stddev": 28.6
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 390861,
+      "avg_score_pct": 21.5,
+      "score_stddev": 41.1
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 390863,
+      "avg_score_pct": 26.3,
+      "score_stddev": 44.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 390865,
+      "avg_score_pct": 29.3,
+      "score_stddev": 45.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 390867,
+      "avg_score_pct": 38.0,
+      "score_stddev": 48.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 390869,
+      "avg_score_pct": 42.6,
+      "score_stddev": 49.4
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 390871,
+      "avg_score_pct": 70.2,
+      "score_stddev": 45.7
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 390873,
+      "avg_score_pct": 36.5,
+      "score_stddev": 48.1
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 390875,
+      "avg_score_pct": 49.4,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 390877,
+      "avg_score_pct": 48.8,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 390879,
+      "avg_score_pct": 52.0,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 390881,
+      "avg_score_pct": 89.6,
+      "score_stddev": 30.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 390883,
+      "avg_score_pct": 62.1,
+      "score_stddev": 48.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Language Adherence",
+      "evals": 390885,
+      "avg_score_pct": 90.4,
+      "score_stddev": 29.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 390887,
+      "avg_score_pct": 34.4,
+      "score_stddev": 47.5
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 390889,
+      "avg_score_pct": 72.5,
+      "score_stddev": 44.7
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 390891,
+      "avg_score_pct": 86.4,
+      "score_stddev": 34.3
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 390893,
+      "avg_score_pct": 91.3,
+      "score_stddev": 28.2
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 390895,
+      "avg_score_pct": 98.6,
+      "score_stddev": 11.7
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "kpi_name": "Professional Tone Check",
+      "evals": 390897,
+      "avg_score_pct": 98.8,
+      "score_stddev": 10.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "UPI/Payment ID Request",
+      "evals": 879,
+      "avg_score_pct": 99.4,
+      "score_stddev": 7.7
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "UPSI Disclosure Violation",
+      "evals": 879,
+      "avg_score_pct": 99.3,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "RM Digital Account Opening",
+      "evals": 879,
+      "avg_score_pct": 99.3,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Unauthorized Client Trades",
+      "evals": 879,
+      "avg_score_pct": 99.3,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Client Fund Misappropriation/Sharing",
+      "evals": 879,
+      "avg_score_pct": 99.3,
+      "score_stddev": 8.3
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Conflict of Interest Disclosure",
+      "evals": 879,
+      "avg_score_pct": 99.2,
+      "score_stddev": 8.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "RM/Agent Contest & Personal Interest Mention",
+      "evals": 879,
+      "avg_score_pct": 99.1,
+      "score_stddev": 9.4
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "RM Brokerage Prompt",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Unauthorized Information Disclosure",
+      "evals": 879,
+      "avg_score_pct": 99.1,
+      "score_stddev": 9.4
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Reference Account Opening Inquiry",
+      "evals": 879,
+      "avg_score_pct": 17.3,
+      "score_stddev": 37.8
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "RM Unauthorized Access",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Unapproved Research Promotion",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Meaningless Share Pitch",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Login ID/Credentials Provided?",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Silent Calls",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Job Inquiry Handling",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Account Login Attempt",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Personal Contact Sharing",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Silent Call",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Misselling Attempt",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Client Trade Consent & Authorization",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Misleading Product/Guarantee Claims",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Market-Linked Return Assurance",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Invest Right App Pitch",
+      "evals": 879,
+      "avg_score_pct": 61.5,
+      "score_stddev": 48.7
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "RM F&O Misselling/Disclosure",
+      "evals": 879,
+      "avg_score_pct": 100.0,
+      "score_stddev": 0.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Service Call Notification",
+      "evals": 879,
+      "avg_score_pct": 69.8,
+      "score_stddev": 45.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Portfolio Disclosure Without Verification",
+      "evals": 879,
+      "avg_score_pct": 96.4,
+      "score_stddev": 18.6
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "evals": 879,
+      "avg_score_pct": 86.7,
+      "score_stddev": 34.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Self-Researched Recommendations",
+      "evals": 879,
+      "avg_score_pct": 93.6,
+      "score_stddev": 24.5
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "evals": 879,
+      "avg_score_pct": 29.2,
+      "score_stddev": 45.5
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "evals": 879,
+      "avg_score_pct": 26.5,
+      "score_stddev": 44.1
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "evals": 879,
+      "avg_score_pct": 29.5,
+      "score_stddev": 45.6
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "evals": 879,
+      "avg_score_pct": 36.4,
+      "score_stddev": 48.1
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Product Benefit Explained",
+      "evals": 879,
+      "avg_score_pct": 46.9,
+      "score_stddev": 49.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Call Closure Technique Adoption",
+      "evals": 879,
+      "avg_score_pct": 72.2,
+      "score_stddev": 44.8
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Introduction Proper",
+      "evals": 879,
+      "avg_score_pct": 36.1,
+      "score_stddev": 48.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Product Pitch Effectiveness",
+      "evals": 879,
+      "avg_score_pct": 54.3,
+      "score_stddev": 49.8
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Client Needs Insight Gathered",
+      "evals": 879,
+      "avg_score_pct": 47.4,
+      "score_stddev": 49.9
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Client Understanding Depth",
+      "evals": 879,
+      "avg_score_pct": 50.4,
+      "score_stddev": 50.0
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Hold Procedure Compliance",
+      "evals": 879,
+      "avg_score_pct": 90.3,
+      "score_stddev": 29.6
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Call Closing Quality",
+      "evals": 879,
+      "avg_score_pct": 64.6,
+      "score_stddev": 47.8
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Language Adherence",
+      "evals": 879,
+      "avg_score_pct": 91.1,
+      "score_stddev": 28.5
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "evals": 879,
+      "avg_score_pct": 35.4,
+      "score_stddev": 47.8
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Objection Handling Effectiveness",
+      "evals": 879,
+      "avg_score_pct": 79.7,
+      "score_stddev": 40.2
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Greeting at Call Start",
+      "evals": 879,
+      "avg_score_pct": 85.3,
+      "score_stddev": 35.4
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "evals": 879,
+      "avg_score_pct": 92.0,
+      "score_stddev": 27.1
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "evals": 879,
+      "avg_score_pct": 99.4,
+      "score_stddev": 7.7
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Professional Tone Check",
+      "evals": 879,
+      "avg_score_pct": 99.6,
+      "score_stddev": 6.3
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "kpi_name": "Insurance missell",
+      "evals": 879,
+      "avg_score_pct": 98.9,
+      "score_stddev": 10.4
+    }
+  ],
+  "weeklyTrends": [
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-05-17",
+      "unique_interactions": 92659,
+      "avg_score": 76.6
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-05-24",
+      "unique_interactions": 118540,
+      "avg_score": 76.3
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-05-31",
+      "unique_interactions": 137887,
+      "avg_score": 76.5
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-06-07",
+      "unique_interactions": 145363,
+      "avg_score": 76.6
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-06-14",
+      "unique_interactions": 152192,
+      "avg_score": 76.4
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-06-21",
+      "unique_interactions": 113152,
+      "avg_score": 76.2
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-06-28",
+      "unique_interactions": 125873,
+      "avg_score": 76.1
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-07-05",
+      "unique_interactions": 134940,
+      "avg_score": 75.7
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "week": "2026-07-12",
+      "unique_interactions": 157235,
+      "avg_score": 75.5
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-01-25",
+      "unique_interactions": 6523,
+      "avg_score": 15.9
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-02-01",
+      "unique_interactions": 7952,
+      "avg_score": 17.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-02-08",
+      "unique_interactions": 166349,
+      "avg_score": 18.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-02-15",
+      "unique_interactions": 280277,
+      "avg_score": 18.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-02-22",
+      "unique_interactions": 160133,
+      "avg_score": 18.3
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-03-01",
+      "unique_interactions": 99538,
+      "avg_score": 18.6
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "week": "2026-03-08",
+      "unique_interactions": 75773,
+      "avg_score": 18.5
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "week": "2026-03-08",
+      "unique_interactions": 45658,
+      "avg_score": 18.6
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "week": "2026-03-15",
+      "unique_interactions": 109886,
+      "avg_score": 18.4
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "week": "2026-03-22",
+      "unique_interactions": 86042,
+      "avg_score": 18.4
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "week": "2026-03-29",
+      "unique_interactions": 65976,
+      "avg_score": 18.9
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "week": "2026-04-05",
+      "unique_interactions": 63348,
+      "avg_score": 19.7
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "week": "2026-05-03",
+      "unique_interactions": 396,
+      "avg_score": 97.1
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "week": "2026-04-05",
+      "unique_interactions": 57008,
+      "avg_score": 20.7
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "week": "2026-04-12",
+      "unique_interactions": 127090,
+      "avg_score": 20.4
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "week": "2026-04-19",
+      "unique_interactions": 147569,
+      "avg_score": 20.0
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "week": "2026-04-26",
+      "unique_interactions": 58761,
+      "avg_score": 19.5
+    },
+    {
+      "profile_name": "compliance_5pm_may19",
+      "week": "2026-05-24",
+      "unique_interactions": 11,
+      "avg_score": 92.7
+    },
+    {
+      "profile_name": "compliance_5pm_may19",
+      "week": "2026-06-28",
+      "unique_interactions": 62,
+      "avg_score": 96.8
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "week": "2026-05-03",
+      "unique_interactions": 392,
+      "avg_score": 98.5
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "week": "2026-05-10",
+      "unique_interactions": 119,
+      "avg_score": 98.5
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "week": "2026-04-26",
+      "unique_interactions": 18592,
+      "avg_score": 38.0
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "week": "2026-04-26",
+      "unique_interactions": 32426,
+      "avg_score": 74.8
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "week": "2026-05-03",
+      "unique_interactions": 146775,
+      "avg_score": 74.8
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "week": "2026-05-10",
+      "unique_interactions": 151821,
+      "avg_score": 74.7
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "week": "2026-05-17",
+      "unique_interactions": 61297,
+      "avg_score": 74.7
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "week": "2026-05-17",
+      "unique_interactions": 879,
+      "avg_score": 77.4
+    }
+  ],
+  "kpiWeeklyTrends": [
+    {
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "week": "2026-06-14",
+      "avg_score_pct": 34.1
+    },
+    {
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "week": "2026-06-21",
+      "avg_score_pct": 26.2
+    },
+    {
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "week": "2026-06-28",
+      "avg_score_pct": 25.7
+    },
+    {
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "week": "2026-07-05",
+      "avg_score_pct": 22.8
+    },
+    {
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "week": "2026-07-12",
+      "avg_score_pct": 23.7
+    },
+    {
+      "kpi_name": "Call Closure Technique Adoption",
+      "week": "2026-06-14",
+      "avg_score_pct": 22.2
+    },
+    {
+      "kpi_name": "Call Closure Technique Adoption",
+      "week": "2026-06-21",
+      "avg_score_pct": 30.0
+    },
+    {
+      "kpi_name": "Call Closure Technique Adoption",
+      "week": "2026-06-28",
+      "avg_score_pct": 29.2
+    },
+    {
+      "kpi_name": "Call Closure Technique Adoption",
+      "week": "2026-07-05",
+      "avg_score_pct": 27.8
+    },
+    {
+      "kpi_name": "Call Closure Technique Adoption",
+      "week": "2026-07-12",
+      "avg_score_pct": 27.5
+    },
+    {
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "week": "2026-06-14",
+      "avg_score_pct": 28.2
+    },
+    {
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "week": "2026-06-21",
+      "avg_score_pct": 25.7
+    },
+    {
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "week": "2026-06-28",
+      "avg_score_pct": 24.3
+    },
+    {
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "week": "2026-07-05",
+      "avg_score_pct": 24.0
+    },
+    {
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "week": "2026-07-12",
+      "avg_score_pct": 24.5
+    },
+    {
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "week": "2026-06-14",
+      "avg_score_pct": 27.0
+    },
+    {
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "week": "2026-06-21",
+      "avg_score_pct": 29.4
+    },
+    {
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "week": "2026-06-28",
+      "avg_score_pct": 28.8
+    },
+    {
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "week": "2026-07-05",
+      "avg_score_pct": 26.6
+    },
+    {
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "week": "2026-07-12",
+      "avg_score_pct": 24.5
+    },
+    {
+      "kpi_name": "Reference Account Opening Inquiry",
+      "week": "2026-06-14",
+      "avg_score_pct": 14.2
+    },
+    {
+      "kpi_name": "Reference Account Opening Inquiry",
+      "week": "2026-06-21",
+      "avg_score_pct": 15.1
+    },
+    {
+      "kpi_name": "Reference Account Opening Inquiry",
+      "week": "2026-06-28",
+      "avg_score_pct": 14.6
+    },
+    {
+      "kpi_name": "Reference Account Opening Inquiry",
+      "week": "2026-07-05",
+      "avg_score_pct": 14.4
+    },
+    {
+      "kpi_name": "Reference Account Opening Inquiry",
+      "week": "2026-07-12",
+      "avg_score_pct": 14.6
+    }
+  ],
+  "scoreDistributionByProfile": [
+    {
+      "profile_name": "Branch Profile 1",
+      "score_band": "0-40",
+      "interactions": 52
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "score_band": "40-60",
+      "interactions": 71606
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "score_band": "60-70",
+      "interactions": 289317
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "score_band": "70-80",
+      "interactions": 409108
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "score_band": "80-90",
+      "interactions": 247917
+    },
+    {
+      "profile_name": "Branch Profile 1",
+      "score_band": "90-100",
+      "interactions": 159841
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "score_band": "0-40",
+      "interactions": 731828
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "score_band": "40-60",
+      "interactions": 60937
+    },
+    {
+      "profile_name": "HSL FINAL profile",
+      "score_band": "90-100",
+      "interactions": 3780
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "score_band": "0-40",
+      "interactions": 340365
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "score_band": "40-60",
+      "interactions": 30466
+    },
+    {
+      "profile_name": "HSL_RM_QA_Profile",
+      "score_band": "90-100",
+      "interactions": 79
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "score_band": "80-90",
+      "interactions": 48
+    },
+    {
+      "profile_name": "QA_compliance_profile_1",
+      "score_band": "90-100",
+      "interactions": 350
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "score_band": "0-40",
+      "interactions": 348248
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "score_band": "40-60",
+      "interactions": 41883
+    },
+    {
+      "profile_name": "RM_QA_PROFILE",
+      "score_band": "60-70",
+      "interactions": 293
+    },
+    {
+      "profile_name": "compliance_5pm_may19",
+      "score_band": "90-100",
+      "interactions": 72
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "score_band": "70-80",
+      "interactions": 7
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "score_band": "80-90",
+      "interactions": 7
+    },
+    {
+      "profile_name": "compliance_5pm_may7",
+      "score_band": "90-100",
+      "interactions": 495
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "score_band": "0-40",
+      "interactions": 10841
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "score_band": "40-60",
+      "interactions": 6465
+    },
+    {
+      "profile_name": "rm/qa profile",
+      "score_band": "60-70",
+      "interactions": 1286
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "score_band": "0-40",
+      "interactions": 6
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "score_band": "40-60",
+      "interactions": 32870
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "score_band": "60-70",
+      "interactions": 113828
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "score_band": "70-80",
+      "interactions": 123360
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "score_band": "80-90",
+      "interactions": 73012
+    },
+    {
+      "profile_name": "rm/qa profile 2",
+      "score_band": "90-100",
+      "interactions": 49243
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "score_band": "40-60",
+      "interactions": 49
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "score_band": "60-70",
+      "interactions": 172
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "score_band": "70-80",
+      "interactions": 323
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "score_band": "80-90",
+      "interactions": 189
+    },
+    {
+      "profile_name": "rm/qa profile 3",
+      "score_band": "90-100",
+      "interactions": 146
+    }
+  ],
+  "crossQpKpiComparison": [
+    {
+      "kpi_name": "IPO/SGB Mutual Fund Pitch",
+      "num_profiles": 7,
+      "overall_avg": 44.2,
+      "score_spread": 83.0
+    },
+    {
+      "kpi_name": "Language Adherence",
+      "num_profiles": 7,
+      "overall_avg": 68.3,
+      "score_spread": 80.6
+    },
+    {
+      "kpi_name": "Service Call Notification",
+      "num_profiles": 7,
+      "overall_avg": 41.8,
+      "score_spread": 64.4
+    },
+    {
+      "kpi_name": "Invest Right App Pitch",
+      "num_profiles": 7,
+      "overall_avg": 35.8,
+      "score_spread": 63.5
+    },
+    {
+      "kpi_name": "Greeting at Call Start",
+      "num_profiles": 7,
+      "overall_avg": 70.3,
+      "score_spread": 55.4
+    },
+    {
+      "kpi_name": "Product Benefit Explained",
+      "num_profiles": 7,
+      "overall_avg": 41.9,
+      "score_spread": 45.2
+    },
+    {
+      "kpi_name": "Product Pitch Effectiveness",
+      "num_profiles": 7,
+      "overall_avg": 47.1,
+      "score_spread": 43.6
+    },
+    {
+      "kpi_name": "Hold Procedure Compliance",
+      "num_profiles": 7,
+      "overall_avg": 75.2,
+      "score_spread": 42.8
+    },
+    {
+      "kpi_name": "Objection Handling Effectiveness",
+      "num_profiles": 7,
+      "overall_avg": 79.9,
+      "score_spread": 25.8
+    },
+    {
+      "kpi_name": "Agent Rebuttal Effectiveness",
+      "num_profiles": 7,
+      "overall_avg": 77.7,
+      "score_spread": 21.7
+    },
+    {
+      "kpi_name": "Cross-sell Pitch Discussion",
+      "num_profiles": 7,
+      "overall_avg": 20.0,
+      "score_spread": 18.7
+    },
+    {
+      "kpi_name": "Callback/Follow-up Timing Setup",
+      "num_profiles": 7,
+      "overall_avg": 32.3,
+      "score_spread": 17.0
+    },
+    {
+      "kpi_name": "Reference Account Opening Inquiry",
+      "num_profiles": 7,
+      "overall_avg": 8.6,
+      "score_spread": 16.7
+    },
+    {
+      "kpi_name": "Agent Introduction Proper",
+      "num_profiles": 7,
+      "overall_avg": 35.4,
+      "score_spread": 15.0
+    },
+    {
+      "kpi_name": "Client Needs Insight Gathered",
+      "num_profiles": 7,
+      "overall_avg": 45.0,
+      "score_spread": 11.4
+    },
+    {
+      "kpi_name": "Client Understanding Depth",
+      "num_profiles": 7,
+      "overall_avg": 49.1,
+      "score_spread": 9.0
+    },
+    {
+      "kpi_name": "Agent Call Closing Quality",
+      "num_profiles": 7,
+      "overall_avg": 60.2,
+      "score_spread": 8.6
+    },
+    {
+      "kpi_name": "Agent Personalization (Customer Name Mentioned)",
+      "num_profiles": 7,
+      "overall_avg": 25.8,
+      "score_spread": 8.2
+    },
+    {
+      "kpi_name": "Expressive Empathy/Sympathy/Apology",
+      "num_profiles": 7,
+      "overall_avg": 27.9,
+      "score_spread": 6.9
+    },
+    {
+      "kpi_name": "Call Closure Technique Adoption",
+      "num_profiles": 7,
+      "overall_avg": 31.7,
+      "score_spread": 5.2
+    },
+    {
+      "kpi_name": "RM Active Listening & Acknowledgment",
+      "num_profiles": 7,
+      "overall_avg": 89.8,
+      "score_spread": 4.7
+    },
+    {
+      "kpi_name": "Agent Speech Clarity & Pace",
+      "num_profiles": 7,
+      "overall_avg": 98.5,
+      "score_spread": 1.1
+    },
+    {
+      "kpi_name": "Professional Tone Check",
+      "num_profiles": 7,
+      "overall_avg": 99.3,
+      "score_spread": 0.6
+    },
+    {
+      "kpi_name": "UPI/Payment ID Request",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 100.0
+    },
+    {
+      "kpi_name": "RM Digital Account Opening",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 99.9
+    },
+    {
+      "kpi_name": "RM Brokerage Prompt",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 99.7
+    },
+    {
+      "kpi_name": "RM/Agent Contest & Personal Interest Mention",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 99.6
+    },
+    {
+      "kpi_name": "Unauthorized Information Disclosure",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 99.6
+    },
+    {
+      "kpi_name": "Meaningless Share Pitch",
+      "num_profiles": 5,
+      "overall_avg": 59.7,
+      "score_spread": 99.0
+    },
+    {
+      "kpi_name": "Login ID/Credentials Provided?",
+      "num_profiles": 5,
+      "overall_avg": 59.9,
+      "score_spread": 99.0
+    },
+    {
+      "kpi_name": "Account Login Attempt",
+      "num_profiles": 5,
+      "overall_avg": 60.1,
+      "score_spread": 99.0
+    },
+    {
+      "kpi_name": "Agent Silent Calls",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 98.4
+    },
+    {
+      "kpi_name": "Misselling Attempt",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 98.4
+    },
+    {
+      "kpi_name": "Job Inquiry Handling",
+      "num_profiles": 5,
+      "overall_avg": 59.8,
+      "score_spread": 98.1
+    },
+    {
+      "kpi_name": "Agent Silent Call",
+      "num_profiles": 5,
+      "overall_avg": 60.1,
+      "score_spread": 97.9
+    },
+    {
+      "kpi_name": "Misleading Product/Guarantee Claims",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 97.4
+    },
+    {
+      "kpi_name": "Agent Personal Contact Sharing",
+      "num_profiles": 5,
+      "overall_avg": 59.7,
+      "score_spread": 97.0
+    },
+    {
+      "kpi_name": "Market-Linked Return Assurance",
+      "num_profiles": 5,
+      "overall_avg": 60.0,
+      "score_spread": 96.9
+    },
+    {
+      "kpi_name": "Portfolio Disclosure Without Verification",
+      "num_profiles": 5,
+      "overall_avg": 60.7,
+      "score_spread": 90.5
+    },
+    {
+      "kpi_name": "Self-Researched Recommendations",
+      "num_profiles": 5,
+      "overall_avg": 59.8,
+      "score_spread": 87.3
+    },
+    {
+      "kpi_name": "UPSI Disclosure Violation",
+      "num_profiles": 3,
+      "overall_avg": 33.4,
+      "score_spread": 99.9
+    },
+    {
+      "kpi_name": "Client Fund Misappropriation/Sharing",
+      "num_profiles": 3,
+      "overall_avg": 33.4,
+      "score_spread": 99.9
+    },
+    {
+      "kpi_name": "Unauthorized Client Trades",
+      "num_profiles": 3,
+      "overall_avg": 33.4,
+      "score_spread": 99.9
+    },
+    {
+      "kpi_name": "Conflict of Interest Disclosure",
+      "num_profiles": 3,
+      "overall_avg": 33.4,
+      "score_spread": 99.7
+    },
+    {
+      "kpi_name": "RM Unauthorized Access",
+      "num_profiles": 3,
+      "overall_avg": 33.5,
+      "score_spread": 99.2
+    },
+    {
+      "kpi_name": "Unapproved Research Promotion",
+      "num_profiles": 3,
+      "overall_avg": 33.6,
+      "score_spread": 99.0
+    },
+    {
+      "kpi_name": "Client Trade Consent & Authorization",
+      "num_profiles": 3,
+      "overall_avg": 34.4,
+      "score_spread": 98.5
+    },
+    {
+      "kpi_name": "RM F&O Misselling/Disclosure",
+      "num_profiles": 3,
+      "overall_avg": 34.8,
+      "score_spread": 95.2
+    },
+    {
+      "kpi_name": "Unregistered Client Communication",
+      "num_profiles": 3,
+      "overall_avg": 96.6,
+      "score_spread": 3.6
+    },
+    {
+      "kpi_name": "Unauthorized Access & Client Credentials",
+      "num_profiles": 3,
+      "overall_avg": 99.0,
+      "score_spread": 2.0
+    },
+    {
+      "kpi_name": "Research Integrity & External Recommendations",
+      "num_profiles": 3,
+      "overall_avg": 99.3,
+      "score_spread": 1.6
+    },
+    {
+      "kpi_name": "F/O Misselling",
+      "num_profiles": 3,
+      "overall_avg": 99.3,
+      "score_spread": 1.3
+    },
+    {
+      "kpi_name": "Insurance missell",
+      "num_profiles": 3,
+      "overall_avg": 99.5,
+      "score_spread": 1.1
+    },
+    {
+      "kpi_name": "Unauthorized Trading Activities",
+      "num_profiles": 3,
+      "overall_avg": 99.8,
+      "score_spread": 0.6
+    },
+    {
+      "kpi_name": "Conflict of Interest & Personal Business Activities",
+      "num_profiles": 3,
+      "overall_avg": 99.8,
+      "score_spread": 0.6
+    },
+    {
+      "kpi_name": "Financial Misconduct & Client Fund Misuse",
+      "num_profiles": 3,
+      "overall_avg": 99.9,
+      "score_spread": 0.4
+    },
+    {
+      "kpi_name": "Insider Trading & Unpublished Information",
+      "num_profiles": 3,
+      "overall_avg": 99.9,
+      "score_spread": 0.4
+    }
+  ],
+  "queryMetadata": {
+    "queriedAt": "2026-07-19",
+    "database": "CQA ClickHouse - cqa_hsl_adfd77e4f9",
+    "database_id": 5,
+    "notes": "All data is all-time unless noted. Queried 2026-07-19. Contains: profile summaries, category performance, KPI scores per profile, weekly trends, score distributions, cross-QP KPI comparison, and KPI weekly trends for Branch Profile 1."
+  }
+}

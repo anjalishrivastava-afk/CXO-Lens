@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import Icon from './Icon';
 import SimpleBarChart from './SimpleBarChart';
 import { QpInteractionMix, QpScoreDistribution } from './QpDistributionChart';
@@ -16,6 +16,12 @@ import {
   trackQpAnalyticsEscalationViewed,
   trackQpAnalyticsKpiBreakdownViewed,
 } from '../analytics';
+import { getCqaHostContext } from '../cqaHostContext';
+import { QP_AGENT_PROFILE, getQpAgents, getQpAgentDetail } from '../qpAgentData';
+import {
+  Accordion, AccordionSummary, AccordionDetails,
+  Alert, Box, Chip, Divider, Paper, Stack, Typography,
+} from '@exotel-npm-dev/signal-design-system';
 
 function QpSectionHeader({ title, caption, heading }) {
   return (
@@ -240,9 +246,502 @@ function CoachingInsightsPanel({ profileLabel, aiInsights, escalations, escRef }
   );
 }
 
-function ChartCard({ title, subtitle, headerRight, children, className = '' }) {
+/* ── QP-scoped agent insight helpers ──────────────────── */
+
+function qpScoreSemantic(score) {
+  if (score >= 82) return 'success';
+  if (score >= 70) return 'warning';
+  return 'error';
+}
+
+function QpAgentAreasToImprove({ areas }) {
+  const [expandedArea, setExpandedArea] = useState(null);
+  const [copied, setCopied] = useState(null);
+  const copyTimerRef = useRef(null);
+
+  const handleCopy = (e, i, text) => {
+    e.stopPropagation();
+    if (navigator.clipboard) navigator.clipboard.writeText(text);
+    setCopied(i);
+    clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCopied(null), 1600);
+  };
+
   return (
-    <div className={`section-card${className ? ` ${className}` : ''}`}>
+    <Box sx={{ px: 3, py: 2 }}>
+      <Typography variant="title3" sx={{ mb: 0.5 }}>Areas Affecting QP Score</Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
+        These areas are pulling down the overall QP score. Click to expand coaching guidance.
+      </Typography>
+      {areas.map((area, i) => {
+        const isExpanded = expandedArea === i;
+        const below = area.belowTeamAvgBy > 0;
+        return (
+          <Accordion key={area.kpi} expanded={isExpanded}
+            onChange={() => setExpandedArea(isExpanded ? null : i)}
+            disableGutters elevation={0} square
+            sx={{
+              border: '1px solid', borderColor: 'divider',
+              '&:not(:last-child)': { borderBottom: 0 },
+              '&::before': { display: 'none' },
+            }}>
+            <AccordionSummary>
+              <Stack direction="row" alignItems="center" spacing={1} sx={{ flex: 1, mr: 1 }}>
+                <Box sx={{
+                  width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
+                  bgcolor: below ? 'error.main' : 'warning.main',
+                }} />
+                <Typography variant="label2" sx={{ flex: 1 }}>{area.kpi}</Typography>
+                <Chip label={area.score} variant="tonal" color={below ? 'error' : 'warning'} size="small" />
+                <Typography variant="caption" color="text.secondary">team avg {area.teamAvg}</Typography>
+                {below && (
+                  <Chip label={`${area.belowTeamAvgBy}% below`} variant="tonal" color="error" size="small" />
+                )}
+              </Stack>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Stack spacing={2}>
+                <Paper variant="outlined" sx={{ p: 2 }}>
+                  <Typography variant="label2" sx={{ mb: 0.5 }}>What this means for your QP score</Typography>
+                  <Typography variant="body2" color="text.secondary">{area.whatThisMeans}</Typography>
+                </Paper>
+                <Paper variant="outlined" sx={{ p: 2 }}>
+                  <Typography variant="label2" sx={{ mb: 0.5 }}>Highlights from calls</Typography>
+                  <Typography variant="body2" color="text.secondary">{area.highlightsFromCalls}</Typography>
+                </Paper>
+                <Paper variant="outlined" sx={{
+                  p: 2, bgcolor: 'background.paper',
+                  borderColor: 'primary.main', borderLeftWidth: 4,
+                }}>
+                  <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1 }}>
+                    <Typography variant="label2">Say this on your next call</Typography>
+                    <Box onClick={(e) => handleCopy(e, i, area.sayThisOnNextCall)}
+                      sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 0.5,
+                        color: copied === i ? 'success.main' : 'primary.main',
+                        fontSize: 12, fontWeight: 600 }}>
+                      <Icon name={copied === i ? 'check' : 'content_copy'} />
+                      {copied === i ? 'Copied!' : 'Copy'}
+                    </Box>
+                  </Stack>
+                  <Typography variant="body2" sx={{ fontStyle: 'italic', color: 'text.secondary' }}>
+                    {area.sayThisOnNextCall}
+                  </Typography>
+                </Paper>
+              </Stack>
+            </AccordionDetails>
+          </Accordion>
+        );
+      })}
+    </Box>
+  );
+}
+
+function QpAgentSelfView({ qpId, period }) {
+  if (qpId !== QP_AGENT_PROFILE.id) return null;
+
+  // In production, this would come from getCqaHostContext().userId
+  // For demo, pick the first agent in the middle of the pack
+  const ctx = getCqaHostContext();
+  const agentId = ctx.userId || 'H18047';
+  const detail = getQpAgentDetail(agentId, period);
+
+  if (!detail) {
+    return (
+      <Paper elevation={0} sx={{ mt: 3, p: 4, textAlign: 'center', bgcolor: 'surface.elevation1', borderRadius: 2 }}>
+        <Typography variant="title3" color="text.secondary">
+          No QP evaluation data found for your agent ID
+        </Typography>
+      </Paper>
+    );
+  }
+
+  return (
+    <Paper elevation={0} sx={{ mt: 3, bgcolor: 'surface.elevation1', borderRadius: 2, overflow: 'hidden' }}>
+      <Box sx={{ px: 3, pt: 3, pb: 1 }}>
+        <Stack direction="row" alignItems="center" spacing={1.5}>
+          <Typography variant="title2" component="h2">Your QP Performance</Typography>
+          <Chip label={`${detail.score}%`} variant="tonal" color={qpScoreSemantic(detail.score)} />
+        </Stack>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          Your performance on "{QP_AGENT_PROFILE.label}" quality profile
+        </Typography>
+      </Box>
+
+      <Divider sx={{ mx: 3, my: 1 }} />
+
+      {/* Priority */}
+      <Box sx={{ px: 3, py: 1.5 }}>
+        <Alert severity={qpScoreSemantic(detail.score) === 'success' ? 'success' : 'warning'} variant="outlined">
+          <Typography variant="body2">
+            <strong>Your Focus:</strong> {detail.priority}
+          </Typography>
+        </Alert>
+      </Box>
+
+      {/* Score overview */}
+      <Box sx={{ px: 3, py: 1.5 }}>
+        <div className="kpi-grid">
+          <MetricCard label="Your QP Score" value={`${detail.score}%`} valueColor={scoreColor(detail.score)}
+            sub={`Your score on "${QP_AGENT_PROFILE.label}"`}
+            delta={{ value: detail.delta, suffix: 'pp' }} />
+          <MetricCard label="Your QP Rank" value={`#${detail.rank} of ${QP_AGENT_PROFILE.totalAgents}`}
+            sub="Your position among all agents on this QP" />
+          <MetricCard label="Calls Analyzed" value={detail.calls}
+            sub="Total evaluations against this quality profile" />
+        </div>
+      </Box>
+
+      <Divider sx={{ mx: 3 }} />
+
+      {/* Good Job */}
+      <Box sx={{ px: 3, py: 2 }}>
+        <Typography variant="title3" sx={{ mb: 1.5 }}>Performing Well</Typography>
+        <Paper variant="outlined" sx={{ p: 2, borderColor: 'success.main', borderLeftWidth: 4 }}>
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+            <Icon name="verified" style={{ color: 'var(--green-text)' }} />
+            <Typography variant="label1">{detail.goodJob.kpi}</Typography>
+            <Chip label={detail.goodJob.score} variant="tonal" color="success" size="small" />
+            <Typography variant="caption" color="text.secondary">team avg {detail.goodJob.teamAvg}</Typography>
+          </Stack>
+          <Typography variant="body2" color="text.secondary">{detail.goodJob.text}</Typography>
+        </Paper>
+      </Box>
+
+      <Divider sx={{ mx: 3 }} />
+
+      {/* Areas to Improve */}
+      {detail.areasToImprove.length > 0 && (
+        <QpAgentAreasToImprove areas={detail.areasToImprove} />
+      )}
+    </Paper>
+  );
+}
+
+function QpAgentInsightsPanel({ qpId, period, onOpenAgent, role }) {
+  if (qpId !== QP_AGENT_PROFILE.id) return null;
+
+  const data = getQpAgents(period);
+  const { agents, avgScore, totalAgents, aboveAvg, belowAvg,
+    topAgents, bottomAgents, priority, strength, previousFocus,
+    coachingRecommendations, agentsNeedingAttention } = data;
+
+  const bandCounts = useMemo(() => {
+    const bands = [
+      { label: '90–100%', min: 90, max: 101, semantic: 'success' },
+      { label: '80–90%', min: 80, max: 90, semantic: 'success' },
+      { label: '70–80%', min: 70, max: 80, semantic: 'warning' },
+      { label: '60–70%', min: 60, max: 70, semantic: 'warning' },
+      { label: '<60%', min: 0, max: 60, semantic: 'error' },
+    ];
+    return bands.map((b) => ({
+      ...b,
+      count: agents.filter((a) => a.score >= b.min && a.score < b.max).length,
+    }));
+  }, [agents]);
+
+  return (
+    <Paper elevation={0} sx={{ mt: 3, p: 0, bgcolor: 'surface.elevation1', borderRadius: 2 }}>
+      <Box sx={{ px: 3, pt: 3, pb: 1 }}>
+        <Typography variant="title2" component="h2">
+          Agent Performance on this QP
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          {role === 'admin' || role === 'superadmin'
+            ? `Organization-wide: ${totalAgents} agents evaluated on "${QP_AGENT_PROFILE.label}"`
+            : `Your team: ${totalAgents} agents evaluated on "${QP_AGENT_PROFILE.label}"`}
+        </Typography>
+      </Box>
+
+      <Divider sx={{ mx: 3, my: 1 }} />
+
+      {/* Banners */}
+      <Stack spacing={1.5} sx={{ px: 3, py: 1.5 }}>
+        <Alert severity="info" variant="outlined">
+          <Typography variant="body2">
+            <strong>Previous Focus:</strong> {previousFocus.kpi} — {previousFocus.text}
+          </Typography>
+        </Alert>
+        <Alert severity="error" variant="outlined">
+          <Typography variant="body2">
+            <strong>Priority:</strong> {priority}
+          </Typography>
+        </Alert>
+        <Alert severity="success" variant="outlined">
+          <Typography variant="body2">
+            <strong>Strength:</strong> {strength}
+          </Typography>
+        </Alert>
+      </Stack>
+
+      {/* QP Score Overview */}
+      <Box sx={{ px: 3, py: 1.5 }}>
+        <div className="kpi-grid">
+          <MetricCard label="Total Agents" value={totalAgents} sub="Agents evaluated under this quality profile" />
+          <MetricCard label="QP Avg Score" value={`${avgScore}%`} valueColor={scoreColor(avgScore)}
+            sub="Mean score across all agents on this QP" />
+          <MetricCard label="Above QP Average" value={aboveAvg}
+            sub={`${Math.round((aboveAvg / totalAgents) * 100)}% of agents scoring above ${avgScore}%`} />
+          <MetricCard label="Below QP Average" value={belowAvg}
+            valueColor={belowAvg > totalAgents / 2 ? 'var(--red-text)' : undefined}
+            sub={`${Math.round((belowAvg / totalAgents) * 100)}% of agents need coaching on this QP`} />
+        </div>
+      </Box>
+
+      <Divider sx={{ mx: 3 }} />
+
+      {/* Collapsible sections */}
+      <Box sx={{ px: 1 }}>
+        {/* Score Distribution */}
+        <Accordion defaultExpanded>
+          <AccordionSummary>
+            <Typography variant="title3">QP Score Distribution</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Agent distribution by quality profile score band
+            </Typography>
+            <Stack spacing={1}>
+              {bandCounts.map((band) => (
+                <Stack key={band.label} direction="row" alignItems="center" spacing={1.5}>
+                  <Typography variant="body2" sx={{ width: 70, textAlign: 'right', flexShrink: 0 }}>
+                    {band.label}
+                  </Typography>
+                  <Box sx={{ flex: 1, height: 24, bgcolor: 'action.hover', borderRadius: 1, overflow: 'hidden' }}>
+                    <Box sx={{
+                      height: '100%',
+                      width: `${(band.count / totalAgents) * 100}%`,
+                      bgcolor: band.semantic === 'success' ? 'success.main'
+                        : band.semantic === 'warning' ? 'warning.main' : 'error.main',
+                      borderRadius: 1,
+                      transition: 'width 0.4s ease',
+                      minWidth: band.count > 0 ? 4 : 0,
+                    }} />
+                  </Box>
+                  <Chip
+                    label={`${band.count} agent${band.count !== 1 ? 's' : ''}`}
+                    variant="tonal"
+                    color={band.semantic}
+                    size="small"
+                  />
+                </Stack>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+
+        {/* Top / Bottom Agents */}
+        <Accordion defaultExpanded>
+          <AccordionSummary>
+            <Typography variant="title3">Top & Bottom Agents</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Ranked by QP score — click an agent to see their detail
+            </Typography>
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
+              {/* Top 5 */}
+              <Paper variant="outlined" sx={{ flex: 1, p: 0, overflow: 'hidden' }}>
+                <Box sx={{ px: 2, py: 1.5, bgcolor: 'success.main', color: 'success.contrastText' }}>
+                  <Typography variant="label1">Top 5 Agents</Typography>
+                </Box>
+                {topAgents.map((a) => (
+                  <Box key={a.agentId}
+                    onClick={() => onOpenAgent(a.agentId)}
+                    sx={{
+                      px: 2, py: 1, display: 'flex', alignItems: 'center', gap: 1.5,
+                      cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' },
+                      borderBottom: '1px solid', borderColor: 'divider',
+                    }}>
+                    <Typography variant="body2" sx={{ fontWeight: 600, flex: 1 }}>{a.agentId}</Typography>
+                    <Chip label={`${a.score}%`} variant="tonal" color="success" size="small" />
+                    <Typography variant="caption" color="text.secondary">{a.calls} calls</Typography>
+                    <Typography variant="caption" color="text.secondary">#{a.rank}</Typography>
+                  </Box>
+                ))}
+              </Paper>
+
+              {/* Bottom 5 */}
+              <Paper variant="outlined" sx={{ flex: 1, p: 0, overflow: 'hidden' }}>
+                <Box sx={{ px: 2, py: 1.5, bgcolor: 'error.main', color: 'error.contrastText' }}>
+                  <Typography variant="label1">Bottom 5 Agents</Typography>
+                </Box>
+                {bottomAgents.map((a) => (
+                  <Box key={a.agentId}
+                    onClick={() => onOpenAgent(a.agentId)}
+                    sx={{
+                      px: 2, py: 1, display: 'flex', alignItems: 'center', gap: 1.5,
+                      cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' },
+                      borderBottom: '1px solid', borderColor: 'divider',
+                    }}>
+                    <Typography variant="body2" sx={{ fontWeight: 600, flex: 1 }}>{a.agentId}</Typography>
+                    <Chip label={`${a.score}%`} variant="tonal" color="error" size="small" />
+                    <Typography variant="caption" color="text.secondary">{a.calls} calls</Typography>
+                    <Typography variant="caption" color="text.secondary">#{a.rank}</Typography>
+                  </Box>
+                ))}
+              </Paper>
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+
+        {/* Coaching Recommendations */}
+        <Accordion>
+          <AccordionSummary>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Typography variant="title3">Coaching Recommendations</Typography>
+              <Chip label={`${coachingRecommendations.length}`} variant="tonal" color="primary" size="small" />
+            </Stack>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Stack spacing={1.5}>
+              {coachingRecommendations.map((c) => (
+                <Paper key={c.priority} variant="outlined" sx={{ p: 2 }}>
+                  <Stack direction="row" spacing={1.5} alignItems="flex-start">
+                    <Chip label={c.priority} variant="tonal" color={c.priority === 1 ? 'error' : 'warning'} size="small"
+                      sx={{ minWidth: 28, justifyContent: 'center' }} />
+                    <Box>
+                      <Typography variant="label2" sx={{ mb: 0.5 }}>{c.kpi}</Typography>
+                      <Typography variant="body2" color="text.secondary">{c.text}</Typography>
+                    </Box>
+                  </Stack>
+                </Paper>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+
+        {/* Agents Needing Attention */}
+        <Accordion>
+          <AccordionSummary>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Typography variant="title3">Agents Needing Attention</Typography>
+              <Chip label={`${agentsNeedingAttention.length}`} variant="tonal" color="error" size="small" />
+            </Stack>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Agents with the lowest QP scores — click to view their performance detail
+            </Typography>
+            <Stack spacing={1}>
+              {agentsNeedingAttention.map((a) => (
+                <Paper key={a.agentId} variant="outlined"
+                  onClick={() => onOpenAgent(a.agentId)}
+                  sx={{ p: 2, cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' } }}>
+                  <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 1 }}>
+                    <Box sx={{
+                      width: 36, height: 36, borderRadius: '50%', display: 'flex',
+                      alignItems: 'center', justifyContent: 'center',
+                      bgcolor: 'error.main', color: 'error.contrastText',
+                      fontSize: 12, fontWeight: 700,
+                    }}>
+                      {a.agentId.slice(0, 2)}
+                    </Box>
+                    <Typography variant="label1" sx={{ flex: 1 }}>{a.agentId}</Typography>
+                    <Chip label={`${a.score}%`} variant="tonal" color="error" size="small" />
+                    <Typography variant="body2" color="text.secondary">{a.calls} calls</Typography>
+                  </Stack>
+                  <Typography variant="body2" color="text.secondary">{a.text}</Typography>
+                </Paper>
+              ))}
+            </Stack>
+          </AccordionDetails>
+        </Accordion>
+      </Box>
+    </Paper>
+  );
+}
+
+function QpAgentDetailView({ agentId, period, onBack }) {
+  const detail = getQpAgentDetail(agentId, period);
+  if (!detail) {
+    return (
+      <Paper elevation={0} sx={{ p: 4, textAlign: 'center', bgcolor: 'surface.elevation1', borderRadius: 2 }}>
+        <Typography variant="title3" color="text.secondary">Agent not found</Typography>
+      </Paper>
+    );
+  }
+
+  const semantic = qpScoreSemantic(detail.score);
+
+  return (
+    <Paper elevation={0} sx={{ bgcolor: 'surface.elevation1', borderRadius: 2, overflow: 'hidden' }}>
+      {/* Agent Header */}
+      <Box sx={{ px: 3, py: 2.5, display: 'flex', alignItems: 'center', gap: 2 }}>
+        <Box onClick={onBack}
+          sx={{ cursor: 'pointer', display: 'flex', alignItems: 'center', p: 0.5, borderRadius: 1,
+            '&:hover': { bgcolor: 'action.hover' } }}>
+          <Icon name="arrow_back" />
+        </Box>
+        <Box sx={{ flex: 1 }}>
+          <Stack direction="row" alignItems="center" spacing={1.5}>
+            <Typography variant="title2" component="h2">{agentId}</Typography>
+            <Chip label={`${detail.score}%`} variant="tonal" color={semantic} />
+            <Chip label={`Rank #${detail.rank}`} variant="tonal" color="info" size="small" />
+          </Stack>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            {detail.calls} calls analyzed on "{QP_AGENT_PROFILE.label}" ·
+            {detail.delta > 0 ? ' +' : ' '}{detail.delta}% vs prev period
+          </Typography>
+        </Box>
+      </Box>
+
+      <Divider />
+
+      {/* Priority Banner */}
+      <Box sx={{ px: 3, py: 1.5 }}>
+        <Alert severity={semantic === 'success' ? 'success' : 'warning'} variant="outlined">
+          <Typography variant="body2">
+            <strong>QP Focus:</strong> {detail.priority}
+          </Typography>
+        </Alert>
+      </Box>
+
+      {/* QP Score Overview */}
+      <Box sx={{ px: 3, py: 1.5 }}>
+        <div className="kpi-grid">
+          <MetricCard label="QP Score" value={`${detail.score}%`} valueColor={scoreColor(detail.score)}
+            sub={`Score on "${QP_AGENT_PROFILE.label}" quality profile`} />
+          <MetricCard label="QP Rank" value={`#${detail.rank} of ${QP_AGENT_PROFILE.totalAgents}`}
+            sub="Position among all agents on this QP" />
+          <MetricCard label="Calls Analyzed" value={detail.calls}
+            sub="Total evaluations against this quality profile" />
+        </div>
+      </Box>
+
+      <Divider sx={{ mx: 3 }} />
+
+      {/* Good Job - QP perspective */}
+      <Box sx={{ px: 3, py: 2 }}>
+        <Typography variant="title3" sx={{ mb: 1.5 }}>Performing Well</Typography>
+        <Paper variant="outlined" sx={{
+          p: 2, borderColor: 'success.main', borderLeftWidth: 4,
+          bgcolor: 'background.paper',
+        }}>
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+            <Icon name="verified" style={{ color: 'var(--green-text)' }} />
+            <Typography variant="label1">{detail.goodJob.kpi}</Typography>
+            <Chip label={detail.goodJob.score} variant="tonal" color="success" size="small" />
+            <Typography variant="caption" color="text.secondary">
+              team avg {detail.goodJob.teamAvg}
+            </Typography>
+          </Stack>
+          <Typography variant="body2" color="text.secondary">{detail.goodJob.text}</Typography>
+        </Paper>
+      </Box>
+
+      <Divider sx={{ mx: 3 }} />
+
+      {/* Areas to Improve - QP perspective */}
+      {detail.areasToImprove.length > 0 && (
+        <QpAgentAreasToImprove areas={detail.areasToImprove} />
+      )}
+    </Paper>
+  );
+}
+
+const ChartCard = forwardRef(function ChartCard({ title, subtitle, headerRight, children, className = '' }, ref) {
+  return (
+    <div ref={ref} className={`section-card${className ? ` ${className}` : ''}`}>
       <div className="section-card-header chart-card-header">
         <div>
           <div className="section-card-title">{title}</div>
@@ -253,7 +752,7 @@ function ChartCard({ title, subtitle, headerRight, children, className = '' }) {
       <div className="section-card-body">{children}</div>
     </div>
   );
-}
+});
 
 function SeverityBadge({ severity }) {
   if (severity === 'critical') return <span className="improve-badge below">Critical</span>;
@@ -469,20 +968,13 @@ function AllProfilesView({ period, onOpenProfile }) {
     topPriorityAlert,
     unusedProfiles,
     aiInsightRows,
-    summaryTable,
     interactionMix,
     scoreDistribution,
     distributionInsight,
   } = data;
 
-  const [priorityFilters, setPriorityFilters] = useState(EMPTY_TABLE_FILTERS);
-
   const aiRef = useRef(null);
   const distRef = useRef(null);
-
-  useEffect(() => {
-    setPriorityFilters(EMPTY_TABLE_FILTERS);
-  }, [period]);
 
   useIntersectionOnce(
     aiRef,
@@ -513,24 +1005,6 @@ function AllProfilesView({ period, onOpenProfile }) {
     [period, metrics.totalScore],
   );
 
-  const sortedInsights = [...aiInsightRows].sort((a, b) => {
-    const order = { critical: 0, attention: 1, healthy: 2, unused: 3 };
-    return (order[a.severity] ?? 4) - (order[b.severity] ?? 4);
-  });
-
-  const summaryById = useMemo(
-    () => new Map(summaryTable.map((row) => [row.id, row])),
-    [summaryTable],
-  );
-
-  const filteredInsights = useMemo(() => {
-    return sortedInsights.filter((row) => {
-      if (priorityFilters.status !== 'all' && row.severity !== priorityFilters.status) return false;
-      if (!matchesScoreRange(row.avgScore, priorityFilters.scoreMin, priorityFilters.scoreMax)) return false;
-      return matchesSearch(priorityFilters.search, row.name, row.summary, row.alert);
-    });
-  }, [sortedInsights, priorityFilters]);
-
   return (
     <>
       <div>
@@ -558,27 +1032,23 @@ function AllProfilesView({ period, onOpenProfile }) {
         </div>
       </div>
 
+      {/* Charts side by side */}
       <div className="rank-tables-grid chart-card-grid">
-        <ChartCard
-          title="QP Interaction Mix"
-          subtitle="Each profile's share of Total Unique Interactions — ranked by matched calls, scroll inside the chart (5 visible at a time)"
-        >
-          <QpInteractionMix rows={interactionMix} totalUnique={metrics.uniqueInteractions} />
+        <ChartCard title="Interactions Distribution">
+          <QpInteractionMix rows={interactionMix} totalUnique={metrics.uniqueInteractions} onOpenProfile={onOpenProfile} insight={data.interactionInsight} />
         </ChartCard>
 
-        <div ref={distRef}>
-          <ChartCard title="Score Distribution" subtitle="Quality profiles grouped by their own avg score — sized by number of profiles, not call volume">
-            <QpScoreDistribution
-              bands={scoreDistribution}
-              insight={distributionInsight}
-              avgScore={metrics.totalScore}
-            />
-          </ChartCard>
-        </div>
+        <ChartCard title="Score Distribution" className="chart-card--dist" ref={distRef}>
+          <QpScoreDistribution
+            bands={scoreDistribution}
+            insight={distributionInsight}
+            avgScore={metrics.totalScore}
+          />
+        </ChartCard>
       </div>
 
+      {/* Priority alerts */}
       <div ref={aiRef}>
-        <QpSectionHeader title="Priority Highlights" />
         <div className="top-cards-row" style={{ marginBottom: 12 }}>
           <div className="info-card focus" style={{ flex: '1 1 100%' }}>
             <div className="info-card-text">{crossQpHeadline}</div>
@@ -611,91 +1081,6 @@ function AllProfilesView({ period, onOpenProfile }) {
             </div>
           </div>
         )}
-
-        <QpTableToolbar
-          search={priorityFilters.search}
-          onSearchChange={(search) => setPriorityFilters((f) => ({ ...f, search }))}
-          status={priorityFilters.status}
-          onStatusChange={(status) => setPriorityFilters((f) => ({ ...f, status }))}
-          scoreMin={priorityFilters.scoreMin}
-          scoreMax={priorityFilters.scoreMax}
-          onScoreMinChange={(scoreMin) => setPriorityFilters((f) => ({ ...f, scoreMin }))}
-          onScoreMaxChange={(scoreMax) => setPriorityFilters((f) => ({ ...f, scoreMax }))}
-          showStatus
-          searchPlaceholder="Search profile or insight…"
-        />
-
-        <ScrollableTable
-          totalRows={filteredInsights.length}
-          visibleRows={5}
-          bodyClassName="qp-table-scroll-body--tall"
-          head={(
-            <div className="roster-grid-row roster-head qp-ai-insight-head">
-              <span>Status</span>
-              <span>Profile</span>
-              <span>Avg Score</span>
-              <span>Interactions Matched</span>
-              <span>AI Insight</span>
-              <span aria-hidden="true" />
-            </div>
-          )}
-        >
-          {filteredInsights.length === 0 ? (
-            <div className="qp-table-empty">No profiles match the current filters.</div>
-          ) : filteredInsights.map((row) => {
-            const clickable = row.severity !== 'unused';
-            const summary = summaryById.get(row.id);
-            const matched = summary?.matched ?? 0;
-
-            return (
-              <div
-                key={row.id}
-                className={`roster-grid-row roster-row qp-ai-insight-row${clickable ? '' : ' qp-ai-insight-row--disabled'}`}
-                onClick={() => clickable && onOpenProfile(row.id, 'ai_insight_row')}
-                onKeyDown={(e) => clickable && e.key === 'Enter' && onOpenProfile(row.id, 'ai_insight_row')}
-                role={clickable ? 'button' : undefined}
-                tabIndex={clickable ? 0 : undefined}
-                title={clickable ? `Open ${row.name}` : undefined}
-              >
-                <span>
-                  <SeverityBadge severity={row.severity} />
-                </span>
-                <span className="roster-agent-name">{row.name}</span>
-                <span className="rank-score" style={{ color: scoreColor(row.avgScore), width: 'auto' }}>
-                  {row.avgScore != null ? `${row.avgScore}%` : '—'}
-                </span>
-                <div className="qp-match-cell">
-                  {matched > 0 ? (
-                    <>
-                      <span className="roster-calls">
-                        {matched.toLocaleString()} / {metrics.uniqueInteractions.toLocaleString()} (
-                        {matchedSharePct(matched, metrics.uniqueInteractions)}%)
-                      </span>
-                      <div className="weak-bar-track qp-match-bar">
-                        <div
-                          className="weak-bar-fill"
-                          style={{
-                            width: `${matchedSharePct(matched, metrics.uniqueInteractions)}%`,
-                            background: 'var(--accent)',
-                          }}
-                        />
-                      </div>
-                    </>
-                  ) : (
-                    '—'
-                  )}
-                </div>
-                <span className="qp-ai-insight-summary" title={row.summary}>
-                  {row.summary}
-                  {row.alert && <span className="improve-badge below qp-ai-insight-alert">{row.alert}</span>}
-                </span>
-                <span className="qp-ai-insight-chevron">
-                  {clickable && <Icon name="chevron_right" />}
-                </span>
-              </div>
-            );
-          })}
-        </ScrollableTable>
       </div>
     </>
   );
@@ -752,13 +1137,14 @@ const PERIOD_TREND_LABELS = {
   month: 'Last 30 Days',
 };
 
-function PerQpView({ qpId, period }) {
+function PerQpView({ qpId, period, role }) {
   const profile = getQpProfile(qpId);
   const data = getQpData(qpId, period);
   const { metrics, aiInsights, escalations, topIntents, kpis, smarterAssignment, scoreTrend } = data;
   const aiRef = useRef(null);
   const kpiRef = useRef(null);
   const escRef = useRef(null);
+  const [selectedAgent, setSelectedAgent] = useState(null);
 
   useIntersectionOnce(
     aiRef,
@@ -831,6 +1217,17 @@ function PerQpView({ qpId, period }) {
   }
 
   const dailyTrend = buildDailyScoreTrend(scoreTrend, 30);
+
+  if (selectedAgent) {
+    return (
+      <QpAgentDetailView
+        agentId={selectedAgent}
+        period={period}
+        onBack={() => { setSelectedAgent(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+      />
+    );
+  }
+
   const highlightCount = period === 'yesterday' ? 1 : period === 'week' ? 7 : dailyTrend.length;
   const highlightStart = Math.max(dailyTrend.length - highlightCount, 0);
   const highlightRange = dailyTrend.length ? [highlightStart, dailyTrend.length - 1] : null;
@@ -944,11 +1341,28 @@ function PerQpView({ qpId, period }) {
           </div>
         </div>
       )}
+
+      {/* Agent-Level Insights — role-aware */}
+      {role === 'agent' ? (
+        <QpAgentSelfView qpId={qpId} period={period} />
+      ) : (
+        <QpAgentInsightsPanel
+          qpId={qpId}
+          period={period}
+          role={role}
+          onOpenAgent={(agentId) => setSelectedAgent(agentId)}
+        />
+      )}
     </>
   );
 }
 
 export default function QpInsightsView({ tab, qpId, period, onProfileDrill, onBackToPortfolio, showBackToPortfolio }) {
+  const hostCtx = useMemo(() => getCqaHostContext(), []);
+  const [devRole, setDevRole] = useState(null);
+  const activeRole = devRole || hostCtx.role;
+  const isDev = import.meta.env.DEV;
+
   const handleOpenProfile = (profileId, source) => {
     onProfileDrill?.(profileId, source);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -971,13 +1385,35 @@ export default function QpInsightsView({ tab, qpId, period, onProfileDrill, onBa
             totalUnique={getAllProfilesData(period).metrics.uniqueInteractions}
             onBack={handleBackToOverview}
           />
-          <PerQpView qpId={qpId} period={period} />
+          <PerQpView qpId={qpId} period={period} role={activeRole} />
         </>
       ) : (
         <>
           <ViewScopeBanner variant="profile" profileName={getQpProfile(qpId).label} />
-          <PerQpView qpId={qpId} period={period} />
+          <PerQpView qpId={qpId} period={period} role={activeRole} />
         </>
+      )}
+
+      {isDev && (
+        <div style={{
+          position: 'fixed', bottom: 16, right: 16, zIndex: 9999,
+          background: '#fff', borderRadius: 12, padding: '8px 14px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.18)', display: 'flex', alignItems: 'center', gap: 8,
+          border: '1px solid #e0e0e0',
+        }}>
+          <span style={{ fontSize: 12, color: '#666', marginRight: 4 }}>View as:</span>
+          {['admin', 'supervisor', 'agent'].map((r) => (
+            <button key={r} onClick={() => setDevRole(r)}
+              style={{
+                padding: '4px 12px', borderRadius: 16, fontSize: 12, fontWeight: 600,
+                cursor: 'pointer', border: 'none', transition: 'all 0.15s',
+                background: activeRole === r ? '#1976d2' : '#f0f0f0',
+                color: activeRole === r ? '#fff' : '#333',
+              }}>
+              {r}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );

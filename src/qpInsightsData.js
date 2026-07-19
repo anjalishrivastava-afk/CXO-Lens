@@ -11,6 +11,10 @@ export const QP_DATA_SOURCE = {
 
 export const QP_PROFILES = [
   {
+    "id": "21779ba2-6294-4cb0-98fa-388c2537958d",
+    "label": "hsl na improved returns"
+  },
+  {
     "id": "41a5bdb8-17d1-4e65-9d90-0e0d96d58d4a",
     "label": "HSL - QA Compliance (All Calls)"
   },
@@ -348,6 +352,16 @@ const baseAllProfiles = {
 
 const baseSummaryRowsByPeriod = {
   "month": [
+    {
+      "id": "21779ba2-6294-4cb0-98fa-388c2537958d",
+      "name": "hsl na improved returns",
+      "matched": 140,
+      "avgScore": 72.1,
+      "scoreDelta": -1.3,
+      "severity": "attention",
+      "smarterAssignment": true,
+      "kpis": []
+    },
     {
       "id": "41a5bdb8-17d1-4e65-9d90-0e0d96d58d4a",
       "name": "HSL - QA Compliance (All Calls)",
@@ -4653,6 +4667,15 @@ const baseSummaryRowsByPeriod = {
 const baseAiInsightRowsByPeriod = {
   "month": [
     {
+      "id": "21779ba2-6294-4cb0-98fa-388c2537958d",
+      "name": "hsl na improved returns",
+      "severity": "attention",
+      "avgScore": 72.1,
+      "matchedPct": 10.2,
+      "summary": "54 agents evaluated, avg 72.1%. Reference Account Opening Inquiry has 84.9% eval fail rate — weakest KPI. Bottom 10 agents score below 63%.",
+      "alert": null
+    },
+    {
       "id": "41a5bdb8-17d1-4e65-9d90-0e0d96d58d4a",
       "name": "HSL - QA Compliance (All Calls)",
       "severity": "critical",
@@ -5344,6 +5367,57 @@ const baseAiInsightRowsByPeriod = {
 };
 
 const qpDataBase = {
+  "21779ba2-6294-4cb0-98fa-388c2537958d": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 140,
+      "qpScore": 72.1,
+      "qpScoreDelta": -1.3
+    },
+    "scoreTrend": [
+      { "label": "Jun 17–Jun 23", "value": 70.4 },
+      { "label": "Jun 24–Jun 30", "value": 71.8 },
+      { "label": "Jul 1–Jul 7", "value": 73.4 },
+      { "label": "Jul 8–Jul 14", "value": 72.1 }
+    ],
+    "aiInsights": {
+      "headline": "hsl na improved returns has 54 agents evaluated across 140 analyses. Average score is 72.1% — below the 75% target. Reference Account Opening Inquiry remains the weakest KPI with an 84.9% eval fail rate.",
+      "needsAttention": [
+        { "name": "Reference Account Opening Inquiry", "score": "15.1% pass", "detail": "Only 15.1% of evaluations pass this KPI. 48 of 54 agents score below 50%. This is a critical training gap across the team." },
+        { "name": "Callback/Follow-up Timing Setup", "score": "42.3% pass", "detail": "Over half of agents miss scheduling specific follow-up times, leaving conversations open-ended." },
+        { "name": "Cross-sell Pitch Discussion", "score": "48.7% pass", "detail": "Agents are missing natural cross-sell opportunities during portfolio discussions." }
+      ],
+      "performingWell": [
+        { "name": "Misleading Product/Guarantee Claims", "score": "97.8% pass", "detail": "Near-perfect compliance — agents consistently avoid misleading claims about returns or guarantees." },
+        { "name": "Agent Introduction Proper", "score": "71.2% pass", "detail": "Most agents properly introduce themselves with name, designation, and call purpose." }
+      ],
+      "recommendation": "Launch a focused coaching sprint on 'Reference Account Opening Inquiry' — this is the single biggest quality gap. Use top-performer call recordings (H16968, H20415) as training material. Schedule weekly 1-on-1s for the bottom 10 agents.",
+      "source": "aggregated"
+    },
+    "escalations": [
+      { "type": "score_drop", "kpi": "Cross-sell Pitch Discussion", "detail": "Cross-sell compliance dropped 4.2pp vs prior period. 8 agents fell below 30% pass rate." },
+      { "type": "dispute", "kpi": "Agent Rebuttal Effectiveness", "detail": "3 disputed evaluations on rebuttal scoring — agents claim objections were addressed but AI flagged generic responses." }
+    ],
+    "topIntents": [
+      { "label": "Portfolio Review", "count": 42 },
+      { "label": "Returns Inquiry", "count": 35 },
+      { "label": "New Account Opening", "count": 28 },
+      { "label": "SIP Discussion", "count": 19 },
+      { "label": "Complaint Follow-up", "count": 16 }
+    ],
+    "kpis": [
+      { "question": "Reference Account Opening Inquiry", "type": "critical", "avgScore": 0.6, "maxScore": 4, "avgPct": 15.1, "prevPct": 16.8 },
+      { "question": "Agent Rebuttal Effectiveness", "type": "failing", "avgScore": 2.2, "maxScore": 4, "avgPct": 55.0, "prevPct": 52.1 },
+      { "question": "Cross-sell Pitch Discussion", "type": "failing", "avgScore": 1.9, "maxScore": 4, "avgPct": 48.7, "prevPct": 52.9 },
+      { "question": "Agent Personalization (Customer Name Mentioned)", "type": null, "avgScore": 1.3, "maxScore": 2, "avgPct": 66.4, "prevPct": 64.0 },
+      { "question": "Call Closure Technique Adoption", "type": "failing", "avgScore": 2.1, "maxScore": 4, "avgPct": 53.6, "prevPct": 55.2 },
+      { "question": "Expressive Empathy/Sympathy/Apology", "type": null, "avgScore": 1.3, "maxScore": 2, "avgPct": 63.8, "prevPct": 61.5 },
+      { "question": "Agent Introduction Proper", "type": null, "avgScore": 2.8, "maxScore": 4, "avgPct": 71.2, "prevPct": 69.8 },
+      { "question": "Callback/Follow-up Timing Setup", "type": "failing", "avgScore": 0.8, "maxScore": 2, "avgPct": 42.3, "prevPct": 44.1 },
+      { "question": "Misleading Product/Guarantee Claims", "type": null, "avgScore": 2.0, "maxScore": 2, "avgPct": 97.8, "prevPct": 97.5 },
+      { "question": "Client Needs Insight Gathered", "type": "failing", "avgScore": 2.1, "maxScore": 4, "avgPct": 53.4, "prevPct": 51.0 }
+    ]
+  },
   "41a5bdb8-17d1-4e65-9d90-0e0d96d58d4a": {
     "smarterAssignment": true,
     "metrics": {
@@ -9634,16 +9708,30 @@ export function getAllProfilesData(period = 'month') {
   const aiInsightRows = baseAiInsightRowsByPeriod[period] ?? baseAiInsightRowsByPeriod.month ?? [];
 
   const uniqueInteractions = p.uniqueInteractions;
+  const aiInsightById = new Map(aiInsightRows.map((r) => [r.id, r]));
   const interactionMix = summaryTable
     .filter((r) => r.matched > 0)
-    .map((r) => ({
-      id: r.id,
-      name: r.name,
-      matched: r.matched,
-      sharePct: matchedSharePct(r.matched, uniqueInteractions),
-      avgScore: r.avgScore,
-      severity: r.severity,
-    }));
+    .map((r) => {
+      const ai = aiInsightById.get(r.id);
+      return {
+        id: r.id,
+        name: r.name,
+        matched: r.matched,
+        sharePct: matchedSharePct(r.matched, uniqueInteractions),
+        avgScore: r.avgScore,
+        scoreDelta: r.scoreDelta,
+        severity: r.severity,
+        aiSummary: ai?.summary ?? null,
+        aiAlert: ai?.alert ?? null,
+      };
+    });
+
+  // Interaction distribution insight
+  const sortedByMatched = [...interactionMix].sort((a, b) => b.matched - a.matched);
+  const topProfile = sortedByMatched[0];
+  const interactionInsight = topProfile
+    ? `"${topProfile.name}" accounts for ${topProfile.sharePct}% of all interactions (${topProfile.matched.toLocaleString()} of ${uniqueInteractions.toLocaleString()}) — highest volume this period.`
+    : null;
 
   const scoreDistribution = computeProfileScoreDistribution(summaryTable);
   const topDistBand = scoreDistribution.reduce((a, b) => (b.share > a.share ? b : a), scoreDistribution[0]);
@@ -9666,6 +9754,7 @@ export function getAllProfilesData(period = 'month') {
     unusedProfiles: p.unusedProfiles,
     scoreDistribution,
     distributionInsight,
+    interactionInsight,
     aiInsightRows,
     summaryTable,
     interactionMix,

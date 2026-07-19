@@ -1739,7 +1739,7 @@ select {
 /* Chart cards size to their own content instead of stretching to match the
    tallest sibling — avoids empty whitespace under the shorter chart. */
 .chart-card-grid {
-  align-items: start;
+  align-items: stretch;
 }
 
 .rank-table-card {
@@ -4001,7 +4001,385 @@ select {
   max-width: 280px;
 }
 
-/* QP Interaction Mix — ranked horizontal bars */
+/* ═══════════════════════════════════════════════════════════
+   QP Interaction Mix — visual distribution bars
+   ═══════════════════════════════════════════════════════════ */
+
+.qp-sev-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Insight one-liner */
+.qp-mix-dist-insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  padding: 8px 10px;
+  background: var(--surface-alt, rgba(0,0,0,0.03));
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.qp-mix-dist-insight .msr {
+  font-size: 16px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Stacked overview — one proportional bar at the top */
+.qp-mix-dist-stacked {
+  display: flex;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  gap: 1px;
+  margin-bottom: 12px;
+}
+
+.qp-mix-dist-stacked-seg {
+  min-width: 2px;
+  transition: opacity 0.15s;
+}
+
+.qp-mix-dist:hover .qp-mix-dist-stacked-seg {
+  opacity: 0.7;
+}
+
+.qp-mix-dist:hover .qp-mix-dist-stacked-seg:hover {
+  opacity: 1;
+}
+
+/* Profile rows */
+.qp-mix-dist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.qp-mix-dist-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 120px;
+  gap: 10px;
+  align-items: center;
+  padding: 4px 0;
+  transition: background 0.1s;
+  border-radius: 4px;
+}
+
+.qp-mix-dist-row--click {
+  cursor: pointer;
+}
+
+.qp-mix-dist-row--click:hover {
+  background: var(--hover-bg, rgba(0,0,0,0.03));
+}
+
+.qp-mix-dist-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.qp-mix-dist-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qp-mix-dist-bar-area {
+  min-width: 0;
+}
+
+.qp-mix-dist-bar-track {
+  height: 14px;
+  background: var(--surface-alt, rgba(0,0,0,0.05));
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.qp-mix-dist-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.qp-mix-dist-stats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.qp-mix-dist-count {
+  font-weight: 600;
+  color: var(--text);
+  min-width: 32px;
+  text-align: right;
+}
+
+.qp-mix-dist-pct {
+  color: var(--text-muted);
+  font-weight: 500;
+  min-width: 32px;
+  text-align: right;
+}
+
+.qp-mix-dist-score {
+  font-weight: 600;
+  min-width: 36px;
+  text-align: right;
+}
+
+.qp-mix-dist-footer {
+  padding-top: 8px;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-light, rgba(0,0,0,0.06));
+}
+
+@media (max-width: 768px) {
+  .qp-mix-dist-row {
+    grid-template-columns: 120px 1fr 90px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   Score Distribution v2 — horizontal band chart
+   ═══════════════════════════════════════════════════════════ */
+
+.qp-dist-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.qp-dist-v2-insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  padding: 8px 10px;
+  background: var(--surface-alt, rgba(0,0,0,0.03));
+  border-radius: 6px;
+}
+.qp-dist-v2-insight .msr {
+  font-size: 16px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Stacked proportional bar */
+.qp-dist-v2-stacked {
+  display: flex;
+  height: 28px;
+  border-radius: 6px;
+  overflow: hidden;
+  gap: 1px;
+}
+
+.qp-dist-v2-stacked-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.15s, filter 0.15s;
+  min-width: 0;
+}
+
+.qp-dist-v2-stacked-seg:hover {
+  filter: brightness(1.1);
+}
+
+.qp-dist-v2-stacked-seg.is-active {
+  filter: brightness(1.15);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5);
+}
+
+.qp-dist-v2-stacked-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Band rows */
+.qp-dist-v2-bands {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.qp-dist-v2-band-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.qp-dist-v2-band-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 80px 24px;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.06));
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.qp-dist-v2-band-row:hover {
+  background: var(--hover-bg, rgba(0,0,0,0.03));
+}
+
+.qp-dist-v2-band-row.is-expanded {
+  background: var(--hover-bg, rgba(0,0,0,0.03));
+}
+
+.qp-dist-v2-band-row.is-empty {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.qp-dist-v2-band-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.qp-dist-v2-band-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.qp-dist-v2-avg-tag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.qp-dist-v2-band-bar-wrap {
+  height: 8px;
+  background: var(--surface-alt, rgba(0,0,0,0.06));
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.qp-dist-v2-band-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.qp-dist-v2-band-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: right;
+}
+
+.qp-dist-v2-band-share {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.qp-dist-v2-band-expand {
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+.qp-dist-v2-band-expand.open {
+  transform: rotate(180deg);
+}
+
+/* Expanded profile chips */
+.qp-dist-v2-band-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 12px 12px 38px;
+  background: var(--surface-alt, rgba(0,0,0,0.02));
+  border-bottom: 1px solid var(--border-light, rgba(0,0,0,0.06));
+}
+
+.qp-dist-v2-profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.qp-dist-v2-profile-name {
+  color: var(--text);
+  font-weight: 500;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qp-dist-v2-profile-score {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.qp-dist-v2-avg-line {
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .qp-mix-v2-head,
+  .qp-mix-v2-row {
+    grid-template-columns: 1fr 1fr 60px;
+  }
+  .qp-mix-v2-col-insight,
+  .qp-mix-v2-head .qp-mix-v2-col-insight {
+    display: none;
+  }
+  .qp-mix-v2-chevron {
+    display: none;
+  }
+  .qp-dist-v2-band-row {
+    grid-template-columns: 90px 1fr 60px 20px;
+  }
+}
+
+
+/* QP Interaction Mix — ranked horizontal bars (legacy) */
 .qp-mix-chart {
   display: flex;
   flex-direction: column;
@@ -4635,5 +5013,90 @@ select {
   .qp-kpi-head span:nth-child(n + 5),
   .qp-kpi-row span:nth-child(n + 5) {
     display: none;
+  }
+}
+
+/* ── QP Agent Distribution Bars ─────────────────────────── */
+
+.qp-agent-dist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qp-agent-dist-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  align-items: center;
+  gap: 12px;
+}
+
+.qp-agent-dist-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  text-align: right;
+}
+
+.qp-agent-dist-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── QP Agent Detail KPI Table ──────────────────────────── */
+
+.qp-agent-kpi-head,
+.qp-agent-kpi-row {
+  grid-template-columns: 2fr 0.7fr 0.7fr 1fr;
+}
+
+.qp-agent-kpi-row {
+  cursor: default;
+}
+
+.qp-agent-kpi-row:hover {
+  background: var(--surface-hover);
+}
+
+/* ── QP Agent Section Heading ───────────────────────────── */
+
+.qp-agent-section-divider {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.qp-agent-section-divider .section-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qp-agent-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .qp-agent-dist-row {
+    grid-template-columns: 60px 1fr 70px;
+    gap: 8px;
+  }
+
+  .qp-agent-dist-label {
+    font-size: 12px;
+  }
+
+  .qp-agent-kpi-head,
+  .qp-agent-kpi-row {
+    grid-template-columns: 1.5fr 0.6fr 0.6fr 0.8fr;
   }
 }

@@ -1,12 +1,146 @@
 import { useMemo, useState } from 'react';
 import Icon from './Icon';
 
+/* ── severity helpers ── */
 const SEVERITY_COLOR = {
   critical: 'var(--red)',
   attention: 'var(--yellow)',
   healthy: 'var(--green)',
   unused: 'var(--text-muted)',
 };
+
+const SEVERITY_LABEL = {
+  critical: 'Critical',
+  attention: 'Attention',
+  healthy: 'Healthy',
+  unused: 'Unused',
+};
+
+function severityDot(severity) {
+  return (
+    <span
+      className="qp-sev-dot"
+      style={{ background: SEVERITY_COLOR[severity] ?? 'var(--text-muted)' }}
+      title={SEVERITY_LABEL[severity] ?? severity}
+    />
+  );
+}
+
+/* ── score color ── */
+function scoreColor(score) {
+  if (score == null) return 'var(--text-muted)';
+  if (score >= 80) return 'var(--green)';
+  if (score >= 65) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+/* ── delta formatting ── */
+function formatDelta(val) {
+  if (val == null) return null;
+  const sign = val > 0 ? '+' : '';
+  return `${sign}${val}pp`;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   QP Interaction Mix — visual distribution bars
+   Full-width proportional bars showing how interactions spread across QPs
+   ══════════════════════════════════════════════════════════════════ */
+
+export function QpInteractionMix({ rows, totalUnique, onOpenProfile, insight }) {
+  const sorted = useMemo(
+    () => [...rows].sort((a, b) => b.matched - a.matched || b.sharePct - a.sharePct),
+    [rows],
+  );
+
+  if (!sorted.length) return null;
+
+  const maxMatched = sorted[0]?.matched ?? 1;
+
+  return (
+    <div className="qp-mix-dist">
+      {/* Insight one-liner */}
+      {insight && (
+        <div className="qp-mix-dist-insight">
+          <Icon name="auto_awesome" />
+          <span>{insight}</span>
+        </div>
+      )}
+
+      {/* Stacked overview bar — shows proportional distribution at a glance */}
+      <div className="qp-mix-dist-stacked">
+        {sorted.map((row) => (
+          <div
+            key={row.id}
+            className="qp-mix-dist-stacked-seg"
+            style={{
+              flex: `${row.matched} 0 0%`,
+              background: SEVERITY_COLOR[row.severity] ?? 'var(--accent)',
+            }}
+            title={`${row.name}: ${row.matched.toLocaleString()} (${row.sharePct}%)`}
+          />
+        ))}
+      </div>
+
+      {/* Individual profile bars */}
+      <div className="qp-mix-dist-list qp-table-scroll-body">
+        {sorted.map((row) => {
+          const widthPct = Math.max(3, Math.round((row.matched / maxMatched) * 100));
+          const clickable = row.severity !== 'unused' && onOpenProfile;
+
+          return (
+            <div
+              key={row.id}
+              className={`qp-mix-dist-row${clickable ? ' qp-mix-dist-row--click' : ''}`}
+              onClick={() => clickable && onOpenProfile(row.id, 'interaction_mix')}
+              role={clickable ? 'button' : undefined}
+              tabIndex={clickable ? 0 : undefined}
+              onKeyDown={(e) => clickable && e.key === 'Enter' && onOpenProfile(row.id, 'interaction_mix')}
+            >
+              {/* Left: name + severity dot */}
+              <div className="qp-mix-dist-label">
+                {severityDot(row.severity)}
+                <span className="qp-mix-dist-name" title={row.name}>{row.name}</span>
+              </div>
+
+              {/* Center: proportional bar */}
+              <div className="qp-mix-dist-bar-area">
+                <div className="qp-mix-dist-bar-track">
+                  <div
+                    className="qp-mix-dist-bar"
+                    style={{
+                      width: `${widthPct}%`,
+                      background: SEVERITY_COLOR[row.severity] ?? 'var(--accent)',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Right: stats */}
+              <div className="qp-mix-dist-stats">
+                <span className="qp-mix-dist-count">{row.matched.toLocaleString()}</span>
+                <span className="qp-mix-dist-pct">{row.sharePct}%</span>
+                <span className="qp-mix-dist-score" style={{ color: scoreColor(row.avgScore) }}>
+                  {row.avgScore != null ? `${row.avgScore}%` : '—'}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <div className="qp-mix-dist-footer">
+        {sorted.length} profile{sorted.length !== 1 ? 's' : ''} · {totalUnique.toLocaleString()} unique interactions
+      </div>
+    </div>
+  );
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   Score Distribution — horizontal grouped band chart
+   Shows which QPs fall into which score band
+   ══════════════════════════════════════════════════════════════════ */
 
 const BAND_COLORS = {
   '<60%': 'var(--red)',
@@ -19,278 +153,115 @@ const BAND_COLORS = {
 
 const BAND_ORDER = ['<60%', '60–70%', '70–75%', '75–80%', '80–85%', '85–100%'];
 
-function bandSortIndex(band) {
-  const idx = BAND_ORDER.indexOf(band);
-  return idx === -1 ? BAND_ORDER.length : idx;
-}
-
 function bandColor(band) {
   return BAND_COLORS[band] ?? 'var(--accent)';
 }
 
-function bandContainsAvg(band, avgScore) {
-  if (avgScore == null) return false;
-  if (band === '<60%') return avgScore < 60;
-  const parts = band.replace(/%/g, '').split('–');
-  if (parts.length !== 2) return false;
-  const lo = Number(parts[0]);
-  const hi = Number(parts[1]);
-  return avgScore >= lo && (band.endsWith('100%') ? avgScore <= hi : avgScore < hi);
-}
+export function QpScoreDistribution({ bands, insight, avgScore }) {
+  const [expandedBand, setExpandedBand] = useState(null);
 
-function polarToCartesian(cx, cy, r, angleDeg) {
-  const angleRad = ((angleDeg - 90) * Math.PI) / 180;
-  return {
-    x: cx + r * Math.cos(angleRad),
-    y: cy + r * Math.sin(angleRad),
-  };
-}
-
-function describeDonutSlice(cx, cy, innerR, outerR, startAngle, endAngle) {
-  const startOuter = polarToCartesian(cx, cy, outerR, endAngle);
-  const endOuter = polarToCartesian(cx, cy, outerR, startAngle);
-  const startInner = polarToCartesian(cx, cy, innerR, startAngle);
-  const endInner = polarToCartesian(cx, cy, innerR, endAngle);
-  const largeArc = endAngle - startAngle <= 180 ? 0 : 1;
-
-  return [
-    `M ${startOuter.x} ${startOuter.y}`,
-    `A ${outerR} ${outerR} 0 ${largeArc} 0 ${endOuter.x} ${endOuter.y}`,
-    `L ${startInner.x} ${startInner.y}`,
-    `A ${innerR} ${innerR} 0 ${largeArc} 1 ${endInner.x} ${endInner.y}`,
-    'Z',
-  ].join(' ');
-}
-
-function barWidth(matched, maxMatched) {
-  if (!maxMatched || !matched) return 0;
-  const ratio = Math.sqrt(matched) / Math.sqrt(maxMatched);
-  return Math.max(8, Math.round(ratio * 100));
-}
-
-export function QpInteractionMix({ rows, totalUnique }) {
-  const sorted = useMemo(
-    () => [...rows].sort((a, b) => b.matched - a.matched || b.sharePct - a.sharePct),
-    [rows],
+  const orderedBands = useMemo(
+    () => [...bands].sort((a, b) => BAND_ORDER.indexOf(a.band) - BAND_ORDER.indexOf(b.band)),
+    [bands],
   );
 
-  if (!sorted.length) return null;
-
-  const maxMatched = sorted[0]?.matched ?? 1;
-  const top = sorted[0];
+  const maxCount = Math.max(...orderedBands.map((b) => b.count), 1);
+  const totalProfiles = orderedBands.reduce((s, b) => s + b.count, 0) || 1;
 
   return (
-    <div className="qp-mix-chart">
-      <div className="qp-mix-summary">
-        <span>
-          <strong>{sorted.length}</strong> active profile{sorted.length === 1 ? '' : 's'}
-        </span>
-        {top && (
-          <>
-            <span className="qp-mix-summary-sep">·</span>
-            <span>
-              Largest share: <strong>{top.name}</strong> ({top.sharePct}%)
-            </span>
-          </>
-        )}
-      </div>
+    <div className="qp-dist-v2">
+      {insight && (
+        <div className="qp-dist-v2-insight">
+          <Icon name="auto_awesome" />
+          <span>{insight}</span>
+        </div>
+      )}
 
-      <div className="qp-mix-rank-list qp-table-scroll-body">
-        {sorted.map((row, index) => (
-          <div key={row.id} className="qp-mix-rank-row">
-            <span className="qp-mix-rank-index">{index + 1}</span>
-            <div className="qp-mix-rank-main">
-              <div className="qp-mix-rank-head">
-                <span className="qp-mix-rank-name" title={row.name}>
-                  {row.name}
-                </span>
-                <span
-                  className="qp-mix-rank-stats chart-hover"
-                  data-tooltip={`Matched calls: ${row.matched.toLocaleString()} (${row.sharePct}% of total unique interactions)`}
-                >
-                  {row.matched.toLocaleString()}
-                </span>
-              </div>
-              <div className="qp-mix-rank-bar-track">
-                <div
-                  className="qp-mix-rank-bar-fill"
-                  style={{
-                    width: `${barWidth(row.matched, maxMatched)}%`,
-                    background: SEVERITY_COLOR[row.severity] ?? 'var(--accent)',
-                  }}
-                />
-              </div>
-            </div>
-            {row.avgScore != null && (
-              <span
-                className="qp-mix-rank-score chart-hover"
-                data-tooltip={`Profile avg score: ${row.avgScore}%`}
-                style={{ color: SEVERITY_COLOR[row.severity] ?? 'var(--text)' }}
-              >
-                {row.avgScore}%
-              </span>
+      {/* Stacked bar overview */}
+      <div className="qp-dist-v2-stacked">
+        {orderedBands.filter(b => b.count > 0).map((band) => (
+          <div
+            key={band.band}
+            className={`qp-dist-v2-stacked-seg${expandedBand === band.band ? ' is-active' : ''}`}
+            style={{
+              flex: `${band.count} 0 0%`,
+              background: bandColor(band.band),
+            }}
+            title={`${band.band}: ${band.count} profile${band.count !== 1 ? 's' : ''} (${band.share}%)`}
+            onClick={() => setExpandedBand(expandedBand === band.band ? null : band.band)}
+          >
+            {band.count >= 1 && (
+              <span className="qp-dist-v2-stacked-label">{band.count}</span>
             )}
           </div>
         ))}
       </div>
 
-      <div className="weak-footnote">
-        Ranked by matched calls · scroll inside the list to see all profiles (5 visible at a time)
-        <br />
-        Total unique interactions: {totalUnique.toLocaleString()}
-      </div>
-    </div>
-  );
-}
+      {/* Band rows */}
+      <div className="qp-dist-v2-bands">
+        {orderedBands.map((band) => {
+          const isExpanded = expandedBand === band.band;
+          const barPct = Math.max(4, Math.round((band.count / maxCount) * 100));
+          const containsAvg = avgScore != null && (
+            band.band === '<60%' ? avgScore < 60 :
+            (() => {
+              const parts = band.band.replace(/%/g, '').split('–');
+              if (parts.length !== 2) return false;
+              return avgScore >= Number(parts[0]) && (band.band.endsWith('100%') ? avgScore <= Number(parts[1]) : avgScore < Number(parts[1]));
+            })()
+          );
 
-export function QpScoreDistribution({ bands, insight, avgScore }) {
-  const [hoverBand, setHoverBand] = useState(null);
-  const orderedBands = useMemo(
-    () => [...bands].sort((a, b) => bandSortIndex(a.band) - bandSortIndex(b.band)),
-    [bands],
-  );
-  const topBand = useMemo(
-    () => [...orderedBands].sort((a, b) => b.share - a.share)[0],
-    [orderedBands],
-  );
-  const avgBand = avgScore != null ? orderedBands.find((b) => bandContainsAvg(b.band, avgScore)) : null;
-  const activeSlices = orderedBands.filter((b) => b.count > 0);
-  const totalCount = activeSlices.reduce((sum, b) => sum + b.count, 0) || 1;
-
-  const slices = useMemo(() => {
-    let cursor = 0;
-    return activeSlices.map((band) => {
-      const sweep = (band.count / totalCount) * 360;
-      const start = cursor;
-      const end = cursor + sweep;
-      cursor = end;
-      return { ...band, start, end, mid: start + sweep / 2 };
-    });
-  }, [activeSlices, totalCount]);
-
-  const emphasisBand = hoverBand ?? avgBand?.band ?? topBand?.band;
-  const size = 220;
-  const cx = size / 2;
-  const cy = size / 2;
-  const outerR = 96;
-  const innerR = 58;
-
-  return (
-    <div className="qp-score-dist">
-      {insight && (
-        <div className="dist-insight-chip">
-          <Icon name="auto_awesome" />
-          {insight}
-        </div>
-      )}
-
-      {(avgScore != null || topBand) && (
-        <div className="qp-score-dist-summary">
-          {avgScore != null && (
-            <span>
-              Portfolio avg: <strong>{avgScore}%</strong>
-              {avgBand ? ` (${avgBand.band} band)` : ''}
-            </span>
-          )}
-          {topBand && (
-            <>
-              {avgScore != null && <span className="qp-mix-summary-sep">·</span>}
-              <span>
-                Largest band: <strong>{topBand.band}</strong> ({topBand.share}%)
-              </span>
-            </>
-          )}
-        </div>
-      )}
-
-      <div className="qp-score-dist-pie-wrap">
-        <div className="qp-score-dist-pie">
-          <svg viewBox={`0 0 ${size} ${size}`} className="qp-score-dist-svg" aria-hidden="true">
-            {slices.map((slice) => {
-              const isEmphasis = emphasisBand === slice.band;
-              const isAvgBand = bandContainsAvg(slice.band, avgScore);
-              const isTopBand = topBand?.band === slice.band;
-              return (
-                <path
-                  key={slice.band}
-                  d={describeDonutSlice(cx, cy, innerR, isEmphasis ? outerR + 4 : outerR, slice.start, slice.end)}
-                  fill={bandColor(slice.band)}
-                  className={`qp-score-dist-slice${isEmphasis ? ' is-active' : ''}${isAvgBand ? ' is-avg-band' : ''}${isTopBand ? ' is-top-band' : ''}`}
-                  onMouseEnter={() => setHoverBand(slice.band)}
-                  onMouseLeave={() => setHoverBand(null)}
-                />
-              );
-            })}
-          </svg>
-          <div className="qp-score-dist-pie-center">
-            {hoverBand ? (
-              <>
-                <span className="qp-score-dist-pie-value">{orderedBands.find((b) => b.band === hoverBand)?.share}%</span>
-                <span className="qp-score-dist-pie-label">{hoverBand}</span>
-              </>
-            ) : avgScore != null ? (
-              <>
-                <span className="qp-score-dist-pie-value">{avgScore}%</span>
-                <span className="qp-score-dist-pie-label">Portfolio avg</span>
-              </>
-            ) : (
-              <>
-                <span className="qp-score-dist-pie-value">{topBand?.share ?? 0}%</span>
-                <span className="qp-score-dist-pie-label">Largest band</span>
-              </>
-            )}
-          </div>
-          {hoverBand && (() => {
-            const band = orderedBands.find((b) => b.band === hoverBand);
-            if (!band) return null;
-            const names = band.profiles ?? [];
-            const shown = names.slice(0, 5);
-            const extra = names.length - shown.length;
-            return (
-              <div className="qp-score-dist-tooltip">
-                <div>
-                  {band.band}: {band.count.toLocaleString()} quality profile{band.count === 1 ? '' : 's'} ({band.share}%)
+          return (
+            <div key={band.band} className="qp-dist-v2-band-group">
+              <div
+                className={`qp-dist-v2-band-row${isExpanded ? ' is-expanded' : ''}${containsAvg ? ' is-avg' : ''}${band.count === 0 ? ' is-empty' : ''}`}
+                onClick={() => band.count > 0 && setExpandedBand(isExpanded ? null : band.band)}
+              >
+                <span className="qp-dist-v2-band-label">
+                  <span className="qp-dist-v2-band-dot" style={{ background: bandColor(band.band) }} />
+                  {band.band}
+                  {containsAvg && <span className="qp-dist-v2-avg-tag">avg</span>}
+                </span>
+                <div className="qp-dist-v2-band-bar-wrap">
+                  <div
+                    className="qp-dist-v2-band-bar"
+                    style={{ width: `${barPct}%`, background: bandColor(band.band) }}
+                  />
                 </div>
-                {shown.length > 0 && (
-                  <ul className="qp-score-dist-tooltip-names">
-                    {shown.map((pr) => (
-                      <li key={pr.id}>{pr.name}</li>
-                    ))}
-                    {extra > 0 && <li>+{extra} more</li>}
-                  </ul>
+                <span className="qp-dist-v2-band-count">
+                  {band.count} <span className="qp-dist-v2-band-share">({band.share}%)</span>
+                </span>
+                {band.count > 0 && (
+                  <span className={`qp-dist-v2-band-expand${isExpanded ? ' open' : ''}`}>
+                    <Icon name="expand_more" />
+                  </span>
                 )}
               </div>
-            );
-          })()}
-        </div>
 
-        <div className="dist-legend qp-score-dist-legend">
-          {orderedBands.map((band) => {
-            const isEmphasis = emphasisBand === band.band;
-            return (
-              <button
-                key={band.band}
-                type="button"
-                className={`dist-legend-item qp-score-dist-legend-item${isEmphasis ? ' is-active' : ''}${band.count === 0 ? ' is-empty' : ''}`}
-                onMouseEnter={() => band.count > 0 && setHoverBand(band.band)}
-                onMouseLeave={() => setHoverBand(null)}
-                onFocus={() => band.count > 0 && setHoverBand(band.band)}
-                onBlur={() => setHoverBand(null)}
-              >
-                <span className="dist-legend-dot" style={{ background: bandColor(band.band) }} />
-                <span className="dist-legend-label">{band.band}</span>
-                <span className="dist-legend-count">
-                  {band.count.toLocaleString()} ({band.share}%)
-                </span>
-              </button>
-            );
-          })}
-        </div>
+              {/* Expanded: show profile names */}
+              {isExpanded && band.profiles?.length > 0 && (
+                <div className="qp-dist-v2-band-profiles">
+                  {band.profiles.map((pr) => (
+                    <div key={pr.id} className="qp-dist-v2-profile-chip">
+                      <span className="qp-dist-v2-profile-name">{pr.name}</span>
+                      <span className="qp-dist-v2-profile-score" style={{ color: scoreColor(pr.avgScore) }}>
+                        {pr.avgScore}%
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      <div className="weak-footnote">
-        Hover a slice or legend item to see band details · center shows portfolio average
-      </div>
+      {/* Portfolio avg callout */}
+      {avgScore != null && (
+        <div className="qp-dist-v2-avg-line">
+          Portfolio avg: <strong>{avgScore}%</strong>
+        </div>
+      )}
     </div>
   );
 }
