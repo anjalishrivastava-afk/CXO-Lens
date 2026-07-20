@@ -7,6 +7,7 @@ import {
   getAllProfilesData,
   getQpData,
   getQpProfile,
+  getQpLensInsights,
   analysisSharePct,
   matchedSharePct,
 } from '../qpInsightsData';
@@ -960,18 +961,240 @@ function QpTableToolbar({
     </div>
   );
 }
+
+/* ───── QP-Lens Insight Components ───── */
+
+function scoreFillColor(v) {
+  if (v == null) return undefined;
+  if (v >= 75) return 'var(--green)';
+  if (v >= 50) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+function QpHealthCard({ card }) {
+  const statusColor = card.status === 'healthy' ? 'success' : card.status === 'attention' ? 'warning' : 'error';
+  return (
+    <Paper
+      variant="outlined"
+      sx={{
+        p: 2,
+        borderRadius: 2,
+        borderLeft: 4,
+        borderLeftColor: `${statusColor}.main`,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1.5,
+        bgcolor: 'surface.elevation2',
+        overflow: 'hidden',
+        minWidth: 0,
+        '&:hover': { boxShadow: 1 },
+      }}
+    >
+      <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <Typography variant="title2" noWrap sx={{ flex: 1, minWidth: 0 }} title={card.name}>{card.name}</Typography>
+        {card.active && <Chip label="LIVE" variant="tonal" color="success" size="small" />}
+      </Stack>
+
+      <Stack direction="row" alignItems="baseline" spacing={1}>
+        <Typography variant="h4" sx={{ color: scoreFillColor(card.score) }}>{card.score}%</Typography>
+        {card.trendDelta != null && (
+          <Typography variant="body3" sx={{ color: card.trendDelta >= 0 ? 'success.main' : 'error.main' }}>
+            {card.trendDelta >= 0 ? '↑' : '↓'}{Math.abs(card.trendDelta)}pp
+          </Typography>
+        )}
+      </Stack>
+
+      <Stack direction="row" spacing={1}>
+        <Chip label={`${card.volumeLabel} evals`} size="small" variant="outlined" />
+        <Chip label={`${card.kpiCount} KPIs`} size="small" variant="outlined" />
+      </Stack>
+
+      <Divider />
+
+      <Stack spacing={0.5} sx={{ minWidth: 0 }}>
+        <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minWidth: 0 }}>
+          <Chip label="Weak" size="small" variant="tonal" color="error" sx={{ flexShrink: 0 }} />
+          <Typography variant="body3" noWrap sx={{ flex: 1, minWidth: 0 }} title={card.weakestCat}>{card.weakestCat}</Typography>
+          <Typography variant="label1" sx={{ flexShrink: 0, color: scoreFillColor(card.weakestScore) }}>{card.weakestScore}%</Typography>
+        </Stack>
+        <Stack direction="row" alignItems="center" spacing={0.5} sx={{ minWidth: 0 }}>
+          <Chip label="Top" size="small" variant="tonal" color="success" sx={{ flexShrink: 0 }} />
+          <Typography variant="body3" noWrap sx={{ flex: 1, minWidth: 0 }} title={card.bestCat}>{card.bestCat}</Typography>
+          <Typography variant="label1" sx={{ flexShrink: 0, color: scoreFillColor(card.bestScore) }}>{card.bestScore}%</Typography>
+        </Stack>
+      </Stack>
+    </Paper>
+  );
+}
+
+function NarrativeInsightCard({ insight }) {
+  const severityColor = { high: 'error', medium: 'warning', low: 'success' };
+  const severityLabel = { high: 'High Priority', medium: 'Medium', low: 'Low' };
+  const borderColor = { high: 'error.main', medium: 'warning.main', low: 'success.main' };
+
+  return (
+    <Paper
+      variant="outlined"
+      sx={{
+        borderRadius: 2,
+        borderTop: 3,
+        borderTopColor: borderColor[insight.severity],
+        bgcolor: 'surface.elevation2',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Header */}
+      <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ px: 2.5, pt: 2, pb: 1.5 }}>
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Icon name={insight.icon} />
+          <Typography variant="title2">{insight.title}</Typography>
+        </Stack>
+        <Chip label={severityLabel[insight.severity]} variant="tonal" color={severityColor[insight.severity]} size="small" />
+      </Stack>
+
+      {/* Key Metrics */}
+      {insight.metrics && (
+        <Stack
+          direction="row"
+          spacing={0}
+          sx={{ mx: 2.5, mb: 2, borderRadius: 1.5, overflow: 'hidden', border: 1, borderColor: 'divider' }}
+        >
+          {insight.metrics.map((m, i) => (
+            <Box
+              key={m.label}
+              sx={{
+                flex: 1,
+                py: 1.5,
+                px: 2,
+                textAlign: 'center',
+                borderRight: i < insight.metrics.length - 1 ? 1 : 0,
+                borderColor: 'divider',
+                bgcolor: 'surface.elevation1',
+              }}
+            >
+              <Typography variant="h5" sx={{ mb: 0.25 }}>{m.value}</Typography>
+              <Typography variant="label1" color="text.secondary">{m.label}</Typography>
+              {m.sub && <Typography variant="body3" color="text.secondary" sx={{ mt: 0.25 }}>{m.sub}</Typography>}
+            </Box>
+          ))}
+        </Stack>
+      )}
+
+      {/* AI-Powered Insight Narrative */}
+      <Box sx={{ mx: 2.5, mb: 2, p: 2, borderRadius: 1.5, bgcolor: 'surface.elevation1' }}>
+        <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 1 }}>
+          <Icon name="auto_awesome" style={{ fontSize: 14 }} />
+          <Typography variant="label1" color="text.secondary">AI-Powered Insight</Typography>
+        </Stack>
+        <Typography variant="body2" color="text.primary">{insight.narrative}</Typography>
+      </Box>
+
+      {/* Data Visualization — horizontal bar chart for dataPoints */}
+      {insight.dataPoints && (
+        <Stack spacing={1} sx={{ mx: 2.5, mb: 2 }}>
+          {insight.dataPoints.map((d) => (
+            <Stack key={d.name} direction="row" alignItems="center" spacing={1.5}>
+              <Typography variant="body3" noWrap sx={{ width: 120, minWidth: 120, textAlign: 'right' }} title={d.name}>{d.name}</Typography>
+              <Box sx={{ flex: 1, position: 'relative' }}>
+                <Box sx={{ height: 8, borderRadius: 4, bgcolor: 'action.hover', overflow: 'hidden' }}>
+                  <Box
+                    sx={{
+                      height: '100%',
+                      width: `${d.score}%`,
+                      borderRadius: 4,
+                      bgcolor: d.type === 'strong' ? 'success.main' : d.type === 'weak' ? 'error.main' : 'primary.main',
+                    }}
+                  />
+                </Box>
+              </Box>
+              <Typography variant="label1" sx={{ width: 40, textAlign: 'right', color: scoreFillColor(d.score) }}>{d.score}%</Typography>
+            </Stack>
+          ))}
+        </Stack>
+      )}
+
+      {/* Trend visualization for trendData */}
+      {insight.trendData && (
+        <Box sx={{ mx: 2.5, mb: 2 }}>
+          <Stack direction="row" spacing={2} sx={{ mb: 1.5 }}>
+            {[
+              { label: 'Personalization', color: 'error.main' },
+              { label: 'Cross-sell', color: 'warning.main' },
+              { label: 'Empathy', color: 'primary.main' },
+            ].map((l) => (
+              <Stack key={l.label} direction="row" alignItems="center" spacing={0.5}>
+                <Box sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: l.color }} />
+                <Typography variant="body3" color="text.secondary">{l.label}</Typography>
+              </Stack>
+            ))}
+          </Stack>
+          <Stack spacing={1}>
+            {insight.trendData.map((d) => (
+              <Stack key={d.week} direction="row" alignItems="center" spacing={1.5}>
+                <Typography variant="body3" sx={{ width: 56, minWidth: 56 }}>{d.week}</Typography>
+                <Stack spacing={0.5} sx={{ flex: 1 }}>
+                  <Box sx={{ height: 6, borderRadius: 3, bgcolor: 'error.main', width: `${d.personalization}%` }} title={`${d.personalization}%`} />
+                  <Box sx={{ height: 6, borderRadius: 3, bgcolor: 'warning.main', width: `${d.crossSell}%` }} title={`${d.crossSell}%`} />
+                  <Box sx={{ height: 6, borderRadius: 3, bgcolor: 'primary.main', width: `${d.empathy}%` }} title={`${d.empathy}%`} />
+                </Stack>
+              </Stack>
+            ))}
+          </Stack>
+        </Box>
+      )}
+
+      {/* Volume + Score dual chart */}
+      {insight.weeklyVolume && (() => {
+        const maxVol = Math.max(...insight.weeklyVolume.map((v) => v.volume));
+        return (
+          <Box sx={{ mx: 2.5, mb: 2, display: 'flex', gap: 0.5, alignItems: 'flex-end', height: 140 }}>
+            {insight.weeklyVolume.map((d) => (
+              <Box key={d.week} sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
+                <Box sx={{ flex: 1, width: '60%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+                  <Box
+                    sx={{
+                      width: '100%',
+                      height: `${(d.volume / maxVol) * 100}%`,
+                      minHeight: 4,
+                      bgcolor: 'primary.main',
+                      borderRadius: '4px 4px 0 0',
+                      opacity: 0.7,
+                    }}
+                    title={`${(d.volume / 1000).toFixed(0)}K interactions`}
+                  />
+                </Box>
+                <Typography variant="label1" color="text.primary" sx={{ mt: 0.5 }}>{d.score}%</Typography>
+                <Typography variant="body3" color="text.secondary">{d.week.split(' ')[0]}</Typography>
+              </Box>
+            ))}
+          </Box>
+        );
+      })()}
+
+      {/* Recommendation */}
+      <Alert severity="info" variant="standard" sx={{ mx: 2.5, mb: 2.5, borderRadius: 1.5 }}>
+        <Stack spacing={0.5}>
+          <Typography variant="label2">Recommendation</Typography>
+          <Typography variant="body2">{insight.recommendation}</Typography>
+        </Stack>
+      </Alert>
+    </Paper>
+  );
+}
+
 function AllProfilesView({ period, onOpenProfile }) {
   const data = getAllProfilesData(period);
   const {
     metrics,
     crossQpHeadline,
-    topPriorityAlert,
     unusedProfiles,
     aiInsightRows,
     interactionMix,
     scoreDistribution,
     distributionInsight,
   } = data;
+
+  const qpLens = useMemo(() => getQpLensInsights(), []);
 
   const aiRef = useRef(null);
   const distRef = useRef(null);
@@ -1047,40 +1270,28 @@ function AllProfilesView({ period, onOpenProfile }) {
         </ChartCard>
       </div>
 
-      {/* Priority alerts */}
+      {/* ── QP-Lens Insights ── */}
       <div ref={aiRef}>
-        <div className="top-cards-row" style={{ marginBottom: 12 }}>
-          <div className="info-card focus" style={{ flex: '1 1 100%' }}>
-            <div className="info-card-text">{crossQpHeadline}</div>
-          </div>
-        </div>
+        <QpSectionHeader title="QP-Lens Insights" caption="AI-powered analysis across quality profiles" />
 
-        {topPriorityAlert && (
-          <div className="top-cards-row" style={{ marginBottom: 12 }}>
-            <div className="info-card priority" style={{ flex: '1 1 100%' }}>
-              <div className="info-card-heading-row">
-                <Icon name="priority_high" />
-                <span className="info-card-title">Top Priority</span>
-              </div>
-              <div className="info-card-text">{topPriorityAlert}</div>
-            </div>
-          </div>
-        )}
+        {/* QP Health Cards */}
+        <Box sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' },
+          gap: 2,
+          mb: 3,
+        }}>
+          {qpLens.healthCards.map((card) => (
+            <QpHealthCard key={card.id} card={card} />
+          ))}
+        </Box>
 
-        {unusedProfiles.length > 0 && (
-          <div className="top-cards-row" style={{ marginBottom: 12 }}>
-            <div className="info-card priority" style={{ flex: '1 1 100%' }}>
-              <div className="info-card-heading-row">
-                <Icon name="warning" />
-                <span className="info-card-title">Unused Profiles</span>
-              </div>
-              <div className="info-card-text">
-                {unusedProfiles.length} profile{unusedProfiles.length > 1 ? 's' : ''} with zero matched interactions:{' '}
-                {unusedProfiles.map((p) => p.name).join(', ')}. Verify smarter assignment rules.
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Narrative Insight Cards — CXO Lens style */}
+        <Stack spacing={2.5}>
+          {qpLens.narrativeInsights.map((insight) => (
+            <NarrativeInsightCard key={insight.id} insight={insight} />
+          ))}
+        </Stack>
       </div>
     </>
   );

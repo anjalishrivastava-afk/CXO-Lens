@@ -9814,3 +9814,127 @@ export function formatDelta(value, suffix = '') {
   const up = value >= 0;
   return { up, text: `${up ? '+' : ''}${value}${suffix}` };
 }
+
+/* ────────────────────────────────────────────────────────
+   QP-Lens Insights — cross-profile patterns for admin view
+   Pre-computed from ClickHouse data (docs/clickhouse-qp-data.json)
+   ──────────────────────────────────────────────────────── */
+
+const qpHealthData = [
+  { id: 'b1069975-1ea2-4f51-bf7e-35b9e8940025', name: 'Branch Profile 1', score: 76.2, volume: 1177841, kpiCount: 49, catCount: 11, weakestCat: 'Reference Check / Additional Product', weakestScore: 39.5, bestCat: 'QA Compliance', bestScore: 99.6, trend: 'declining', trendDelta: -0.4, active: true },
+  { id: '3e2c8cf9-7c54-433d-8fff-e7a093f711cb', name: 'HSL FINAL profile', score: 18.5, volume: 796545, kpiCount: 23, catCount: 9, weakestCat: 'Promotion of Invest right app', weakestScore: 2.6, bestCat: 'Communication skills', bestScore: 63.7, trend: 'stable', trendDelta: null, active: false },
+  { id: '56a1a026-35a7-45fe-97de-d28da2ff25ea', name: 'rm/qa profile 2', score: 74.7, volume: 392319, kpiCount: 48, catCount: 9, weakestCat: 'Reference Check / Additional Product', weakestScore: 32.7, bestCat: 'Main contents of the Product', bestScore: 96.4, trend: 'stable', trendDelta: null, active: false },
+  { id: 'cc677238-58cc-49c3-867a-aca35f4c98a8', name: 'RM_QA_PROFILE', score: 20.2, volume: 390428, kpiCount: 48, catCount: 9, weakestCat: 'Main contents of the Product', weakestScore: 3.4, bestCat: 'Communication skills', bestScore: 66.2, trend: 'stable', trendDelta: null, active: false },
+  { id: '07d2be32-30c1-4b72-80ec-57b5408a351e', name: 'HSL_RM_QA_Profile', score: 18.7, volume: 370910, kpiCount: 23, catCount: 9, weakestCat: 'Promotion of Invest right app', weakestScore: 2.7, bestCat: 'Communication skills', bestScore: 65.7, trend: 'stable', trendDelta: null, active: false },
+  { id: '2eb13f37-7065-48a5-a378-1bd145c75cd0', name: 'compliance_5pm_may7', score: 98.5, volume: 511, kpiCount: 9, catCount: 9, weakestCat: 'Unregistered Client Communication', weakestScore: 94.9, bestCat: 'Insurance missell', bestScore: 100.0, trend: 'stable', trendDelta: null, active: false },
+  { id: 'b3f70a61-d0cd-441c-8bb2-a0a65080e2db', name: 'QA_compliance_profile_1', score: 97.0, volume: 404, kpiCount: 8, catCount: 8, weakestCat: 'Misleading Sales Practices & Risk Disclosure', weakestScore: 91.3, bestCat: 'Financial Misconduct & Client Fund Misuse', bestScore: 100.0, trend: 'stable', trendDelta: null, active: false },
+];
+
+// CXO-Lens-style narrative insights — derived from cross-dimensional data analysis
+const qpNarrativeInsights = [
+  {
+    id: 'compliance-vs-engagement',
+    severity: 'high',
+    icon: 'shield',
+    title: 'Compliance Excellence Masks Engagement Gaps',
+    narrative: '27 of 49 KPIs in the active profile score above 95% — your agents are strongly compliant. But 5 KPIs score below 35%, all related to customer engagement and sales effectiveness. The 60pp gap between the best category (QA Compliance at 99.6%) and worst (Reference Check at 39.5%) reveals a two-tier quality profile: agents follow rules but struggle with proactive customer interactions.',
+    metrics: [
+      { label: 'Strong KPIs (>95%)', value: '27', sub: 'of 49 total' },
+      { label: 'Weak KPIs (<35%)', value: '5', sub: 'all engagement' },
+      { label: 'Category Spread', value: '60pp', sub: 'best vs worst' },
+    ],
+    dataPoints: [
+      { name: 'QA Compliance', score: 99.6, type: 'strong' },
+      { name: 'Business Compliance', score: 98.5, type: 'strong' },
+      { name: 'Communication Skills', score: 84.5, type: 'ok' },
+      { name: 'Customer Profiling', score: 49.5, type: 'weak' },
+      { name: 'Follow Up', score: 41.0, type: 'weak' },
+      { name: 'Reference Check', score: 39.5, type: 'weak' },
+    ],
+    recommendation: 'The compliance foundation is solid — coaching effort should shift entirely to engagement behaviors. Focus training on cross-selling, empathy expression, and follow-up commitment rather than compliance refreshers.',
+  },
+  {
+    id: 'personalization-decline',
+    severity: 'high',
+    icon: 'trending_down',
+    title: 'Agent Personalization is in Active Decline',
+    narrative: '"Agent Personalization (Customer Name Mentioned)" has dropped from 34.1% to 23.7% over the past 5 weeks — a 10pp regression. This isn\'t an isolated dip: Cross-sell Pitch (-2.7pp) and Empathy Expression (-2.6pp) are also declining in the same period. Three soft-skill KPIs declining simultaneously suggests a systemic shift — possibly coaching fatigue, changed agent pool, or deprioritized training.',
+    metrics: [
+      { label: 'Personalization', value: '-10pp', sub: '5-week decline' },
+      { label: 'Cross-sell Pitch', value: '-2.7pp', sub: 'same period' },
+      { label: 'Empathy Expression', value: '-2.6pp', sub: 'same period' },
+    ],
+    trendData: [
+      { week: 'Jun 14', personalization: 34.1, crossSell: 28.2, empathy: 27.0 },
+      { week: 'Jun 21', personalization: 26.2, crossSell: 25.7, empathy: 29.4 },
+      { week: 'Jun 28', personalization: 25.7, crossSell: 24.3, empathy: 28.8 },
+      { week: 'Jul 5', personalization: 22.8, crossSell: 24.0, empathy: 26.6 },
+      { week: 'Jul 12', personalization: 23.7, crossSell: 24.5, empathy: 24.5 },
+    ],
+    recommendation: 'Investigate whether recent onboarding batches, shift changes, or training schedule gaps correlate with the decline. Consider call-listening sessions focused specifically on personalization behaviors to identify root cause.',
+  },
+  {
+    id: 'category-drag',
+    severity: 'medium',
+    icon: 'target',
+    title: 'Three Categories Hold Back the Entire Score',
+    narrative: 'Branch Profile 1 scores 76.2% overall, but 3 of its 11 categories are below 50%: Reference Check (39.5%), Follow Up (41.0%), and Customer Profiling (49.5%). These represent proactive sales behaviors — not reactive compliance. If these three categories improved to just 65%, the weighted profile score would lift by ~2.7pp. This is the highest-ROI coaching lever available.',
+    metrics: [
+      { label: 'Categories <50%', value: '3', sub: 'of 11 total' },
+      { label: 'Score Lift Potential', value: '+2.7pp', sub: 'if improved to 65%' },
+      { label: 'Lowest Category', value: '39.5%', sub: 'Reference Check' },
+    ],
+    dataPoints: [
+      { name: 'Reference Check / Additional Product', score: 39.5, type: 'weak' },
+      { name: 'Follow Up', score: 41.0, type: 'weak' },
+      { name: 'Customer Profiling / Probing', score: 49.5, type: 'weak' },
+      { name: 'Introduction & Greetings', score: 63.8, type: 'ok' },
+      { name: 'Product Pitching', score: 73.0, type: 'ok' },
+      { name: 'Main Contents', score: 93.8, type: 'strong' },
+      { name: 'Business Compliance', score: 98.5, type: 'strong' },
+      { name: 'QA Compliance', score: 99.6, type: 'strong' },
+    ],
+    recommendation: 'Create targeted micro-coaching modules for Reference Check, Follow Up, and Customer Profiling. These are not awareness issues — agents know the behaviors exist but aren\'t executing them consistently.',
+  },
+  {
+    id: 'volume-growth',
+    severity: 'low',
+    icon: 'trending_up',
+    title: 'Evaluation Volume is Growing While Quality Holds',
+    narrative: 'Weekly evaluation volume grew from 92K to 157K interactions over the measurement period — a 38% increase. Despite this growth, scores have held remarkably steady between 75.5% and 76.6%. The quality framework is scaling well: more calls are being evaluated without quality degradation. This stability under load validates the current QP configuration.',
+    metrics: [
+      { label: 'Volume Growth', value: '+38%', sub: '92K → 157K/week' },
+      { label: 'Score Stability', value: '±0.5pp', sub: '75.5% – 76.6%' },
+      { label: 'Total Evaluated', value: '1.18M', sub: 'interactions' },
+    ],
+    weeklyVolume: [
+      { week: 'May 17', volume: 92659, score: 76.6 },
+      { week: 'May 24', volume: 118540, score: 76.3 },
+      { week: 'May 31', volume: 137887, score: 76.5 },
+      { week: 'Jun 7', volume: 145363, score: 76.6 },
+      { week: 'Jun 14', volume: 152192, score: 76.4 },
+      { week: 'Jun 21', volume: 113152, score: 76.2 },
+      { week: 'Jun 28', volume: 125873, score: 76.1 },
+      { week: 'Jul 5', volume: 134940, score: 75.7 },
+      { week: 'Jul 12', volume: 157235, score: 75.5 },
+    ],
+    recommendation: 'Quality is holding at scale — consider raising the bar. Set a target of 80% profile score for the next quarter and focus coaching resources on the three weak categories identified above.',
+  },
+];
+
+export function getQpLensInsights() {
+  const healthCards = qpHealthData.map((p) => ({
+    ...p,
+    status: p.score >= 75 ? 'healthy' : p.score >= 50 ? 'attention' : 'critical',
+    volumeLabel: p.volume >= 1000000
+      ? `${(p.volume / 1000000).toFixed(1)}M`
+      : p.volume >= 1000
+        ? `${(p.volume / 1000).toFixed(0)}K`
+        : String(p.volume),
+  }));
+
+  return {
+    healthCards,
+    narrativeInsights: qpNarrativeInsights,
+  };
+}
