@@ -48,10 +48,11 @@ Auto-generated alerts about QP-level patterns:
 - `quality_profiles`: Profile metadata
 - Weekly bucketing via `toStartOfWeek(created_at)` for trends
 
-## Key Real Data Findings (cx demo tenant)
-- 11 profiles with data (all time), only "Branch Profile 1" active last 30 days
-- Branch Profile 1: 531K evals, 49 scored KPIs, 11 categories
+## Key Real Data Findings (HSL ClickHouse — docs/clickhouse-qp-data.json)
+- 11 profiles with data (all time); "Branch Profile 1" is the primary LIVE profile
+- Branch Profile 1: **1.18M** unique interactions, 49 scored KPIs, 11 categories (queried 2026-07-19)
 - Category scores range: 39.5% (Reference Check) to 99.6% (QA Compliance)
-- Weekly trend shows slow decline: 76.2% → 75.5% over 4 weeks
-- Agent Personalization dropped 10pp in 4 weeks — fastest declining KPI
-- Score distribution: 61% of interactions in 60-80% band
+- Weekly trend shows slow decline: 76.2% → 75.5% over recent weeks
+- Agent Personalization dropped ~10pp in 5 weeks — fastest declining KPI
+- Score distribution: ~59% of interactions in 60–80% band
+- Weekly volume grew 92K → 157K (~70%); scores stayed within 75.5–76.6%

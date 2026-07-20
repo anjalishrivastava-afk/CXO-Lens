@@ -1,9 +1,13 @@
-// Agent-level data for QP Analytics — "hsl na improved returns" quality profile.
-// Source: ClickHouse query on profile_id 21779ba2-6294-4cb0-98fa-388c2537958d
-// Generated: 2026-07-19
+// Agent-level data for QP Analytics.
+// hsl: ClickHouse profile_id 21779ba2-6294-4cb0-98fa-388c2537958d (2026-07-19)
+// Branch Profile 1: illustrative prototype roster (~76% avg) — no per-agent rows in clickhouse dump
 
+export const HSL_AGENT_PROFILE_ID = '21779ba2-6294-4cb0-98fa-388c2537958d';
+export const BRANCH_PROFILE_1_ID = 'b1069975-1ea2-4f51-bf7e-35b9e8940025';
+
+/** @deprecated Prefer getQpAgentProfile(qpId). Kept for hsl default. */
 export const QP_AGENT_PROFILE = {
-  id: '21779ba2-6294-4cb0-98fa-388c2537958d',
+  id: HSL_AGENT_PROFILE_ID,
   label: 'hsl na improved returns',
   profileAvgScore: 72.1,
   totalAgents: 54,
@@ -23,8 +27,7 @@ export const QP_AGENT_KPIS = [
   { id: 'client_needs', name: 'Client Needs Insight Gathered', maxScore: 4, type: 'YES/NO' },
 ];
 
-// Raw agent data from ClickHouse
-const RAW_AGENTS = [
+const HSL_RAW_AGENTS = [
   { agentId: 'H20415', calls: 2, score: 97.5 },
   { agentId: 'H16968', calls: 2, score: 98.5 },
   { agentId: 'H5047', calls: 2, score: 95.0 },
@@ -81,7 +84,58 @@ const RAW_AGENTS = [
   { agentId: 'H19157', calls: 2, score: 50.0 },
 ];
 
-// Deterministic seeded random for consistent KPI generation
+// Prototype roster — band mix mirrors Branch Profile 1 ClickHouse score distribution (majority 60–80)
+const BRANCH_RAW_AGENTS = [
+  { agentId: 'BP0001', calls: 2, score: 48 },
+  { agentId: 'BP0002', calls: 2, score: 55 },
+  { agentId: 'BP0003', calls: 4, score: 58 },
+  { agentId: 'BP0004', calls: 3, score: 61 },
+  { agentId: 'BP0005', calls: 2, score: 62 },
+  { agentId: 'BP0006', calls: 2, score: 63 },
+  { agentId: 'BP0007', calls: 2, score: 64 },
+  { agentId: 'BP0008', calls: 4, score: 65 },
+  { agentId: 'BP0009', calls: 3, score: 66 },
+  { agentId: 'BP0010', calls: 2, score: 67 },
+  { agentId: 'BP0011', calls: 2, score: 67.5 },
+  { agentId: 'BP0012', calls: 2, score: 68 },
+  { agentId: 'BP0013', calls: 4, score: 68.5 },
+  { agentId: 'BP0014', calls: 3, score: 69 },
+  { agentId: 'BP0015', calls: 2, score: 69.5 },
+  { agentId: 'BP0016', calls: 2, score: 70 },
+  { agentId: 'BP0017', calls: 2, score: 71 },
+  { agentId: 'BP0018', calls: 4, score: 72 },
+  { agentId: 'BP0019', calls: 3, score: 72.5 },
+  { agentId: 'BP0020', calls: 2, score: 73 },
+  { agentId: 'BP0021', calls: 2, score: 73.5 },
+  { agentId: 'BP0022', calls: 2, score: 74 },
+  { agentId: 'BP0023', calls: 4, score: 74.5 },
+  { agentId: 'BP0024', calls: 3, score: 75 },
+  { agentId: 'BP0025', calls: 2, score: 75.5 },
+  { agentId: 'BP0026', calls: 2, score: 76 },
+  { agentId: 'BP0027', calls: 2, score: 76.5 },
+  { agentId: 'BP0028', calls: 4, score: 77 },
+  { agentId: 'BP0029', calls: 3, score: 77.5 },
+  { agentId: 'BP0030', calls: 2, score: 78 },
+  { agentId: 'BP0031', calls: 2, score: 78.5 },
+  { agentId: 'BP0032', calls: 2, score: 79 },
+  { agentId: 'BP0033', calls: 4, score: 80.5 },
+  { agentId: 'BP0034', calls: 3, score: 81 },
+  { agentId: 'BP0035', calls: 2, score: 82 },
+  { agentId: 'BP0036', calls: 2, score: 83 },
+  { agentId: 'BP0037', calls: 2, score: 84 },
+  { agentId: 'BP0038', calls: 4, score: 85 },
+  { agentId: 'BP0039', calls: 3, score: 86 },
+  { agentId: 'BP0040', calls: 2, score: 87 },
+  { agentId: 'BP0041', calls: 2, score: 88 },
+  { agentId: 'BP0042', calls: 2, score: 88.5 },
+  { agentId: 'BP0043', calls: 4, score: 89 },
+  { agentId: 'BP0044', calls: 3, score: 91 },
+  { agentId: 'BP0045', calls: 2, score: 93 },
+  { agentId: 'BP0046', calls: 2, score: 95 },
+  { agentId: 'BP0047', calls: 2, score: 97 },
+  { agentId: 'BP0048', calls: 4, score: 98.5 },
+];
+
 function seededRandom(seed) {
   let s = seed;
   return function () {
@@ -99,91 +153,20 @@ function hashString(str) {
   return Math.abs(hash);
 }
 
-// KPI target pass rates by overall score tier.
-// Each entry: [kpiId, basePctForHigh, basePctForMid, basePctForLow]
-// "Reference Account Opening Inquiry" is weakest overall; "Misleading Claims" is strongest.
+// KPI target pass rates by overall score tier (aligned to Branch Profile / hsl weak engagement KPIs)
 const KPI_DIFFICULTY = {
-  ref_account_opening:    { high: 0.40, mid: 0.15, low: 0.05 },   // weakest overall
+  ref_account_opening: { high: 0.40, mid: 0.15, low: 0.05 },
   rebuttal_effectiveness: { high: 0.85, mid: 0.60, low: 0.35 },
-  cross_sell_pitch:       { high: 0.80, mid: 0.55, low: 0.30 },
-  personalization:        { high: 0.90, mid: 0.70, low: 0.45 },
-  call_closure:           { high: 0.82, mid: 0.58, low: 0.32 },
-  empathy:                { high: 0.88, mid: 0.65, low: 0.40 },
-  introduction:           { high: 0.92, mid: 0.72, low: 0.50 },
-  callback_setup:         { high: 0.78, mid: 0.52, low: 0.28 },
-  misleading_claims:      { high: 1.00, mid: 0.98, low: 0.92 },   // compliance, nearly always passes
-  client_needs:           { high: 0.83, mid: 0.58, low: 0.33 },
+  cross_sell_pitch: { high: 0.80, mid: 0.55, low: 0.30 },
+  personalization: { high: 0.90, mid: 0.70, low: 0.45 },
+  call_closure: { high: 0.82, mid: 0.58, low: 0.32 },
+  empathy: { high: 0.88, mid: 0.65, low: 0.40 },
+  introduction: { high: 0.92, mid: 0.72, low: 0.50 },
+  callback_setup: { high: 0.78, mid: 0.52, low: 0.28 },
+  misleading_claims: { high: 1.00, mid: 0.98, low: 0.92 },
+  client_needs: { high: 0.83, mid: 0.58, low: 0.33 },
 };
 
-function computeAgentKpis(agent) {
-  const rng = seededRandom(hashString(agent.agentId) + 42);
-  const score = agent.score;
-  const tier = score >= 85 ? 'high' : score >= 70 ? 'mid' : 'low';
-
-  return QP_AGENT_KPIS.map((kpi) => {
-    const basePct = KPI_DIFFICULTY[kpi.id][tier];
-    // Add some agent-specific variance
-    const variance = (rng() - 0.5) * 0.20;
-    let passPct = Math.min(1, Math.max(0, basePct + variance));
-
-    // For YES/NO KPIs with multiple calls, compute score as fraction
-    const totalEvals = agent.calls;
-    const passed = Math.round(passPct * totalEvals);
-    const rawScore = (passed / totalEvals) * kpi.maxScore;
-    const kpiScore = Math.round(rawScore * 100) / 100;
-    const pct = Math.round((kpiScore / kpi.maxScore) * 1000) / 10;
-
-    return {
-      id: kpi.id,
-      name: kpi.name,
-      score: kpiScore,
-      maxScore: kpi.maxScore,
-      pct,
-      passed,
-      totalEvals,
-    };
-  });
-}
-
-// Precompute all agent KPIs
-const AGENT_KPI_MAP = {};
-RAW_AGENTS.forEach((a) => {
-  AGENT_KPI_MAP[a.agentId] = computeAgentKpis(a);
-});
-
-// Compute team averages per KPI
-function computeTeamAvgs() {
-  const sums = {};
-  const counts = {};
-  QP_AGENT_KPIS.forEach((kpi) => {
-    sums[kpi.id] = 0;
-    counts[kpi.id] = 0;
-  });
-  RAW_AGENTS.forEach((a) => {
-    const kpis = AGENT_KPI_MAP[a.agentId];
-    kpis.forEach((k) => {
-      sums[k.id] += k.pct;
-      counts[k.id] += 1;
-    });
-  });
-  const avgs = {};
-  QP_AGENT_KPIS.forEach((kpi) => {
-    avgs[kpi.id] = Math.round((sums[kpi.id] / counts[kpi.id]) * 100) / 100;
-  });
-  return avgs;
-}
-
-const TEAM_AVGS = computeTeamAvgs();
-
-// Sort agents by score descending
-const SORTED_AGENTS = [...RAW_AGENTS].sort((a, b) => b.score - a.score);
-
-// Compute profile avg
-const PROFILE_AVG = Math.round(
-  (RAW_AGENTS.reduce((s, a) => s + a.score, 0) / RAW_AGENTS.length) * 10
-) / 10;
-
-// KPI coaching descriptions for agent-level detail
 const KPI_COACHING = {
   ref_account_opening: {
     whatThisMeans: 'This means you help customers who want to open a new account by proactively inquiring about their existing accounts, referrals, or onboarding status. This gives you context to pitch the right products.',
@@ -247,15 +230,126 @@ const KPI_COACHING = {
   },
 };
 
+function computeAgentKpis(agent) {
+  const rng = seededRandom(hashString(agent.agentId) + 42);
+  const score = agent.score;
+  const tier = score >= 85 ? 'high' : score >= 70 ? 'mid' : 'low';
+
+  return QP_AGENT_KPIS.map((kpi) => {
+    const basePct = KPI_DIFFICULTY[kpi.id][tier];
+    const variance = (rng() - 0.5) * 0.20;
+    let passPct = Math.min(1, Math.max(0, basePct + variance));
+    const totalEvals = agent.calls;
+    const passed = Math.round(passPct * totalEvals);
+    const rawScore = (passed / totalEvals) * kpi.maxScore;
+    const kpiScore = Math.round(rawScore * 100) / 100;
+    const pct = Math.round((kpiScore / kpi.maxScore) * 1000) / 10;
+
+    return {
+      id: kpi.id,
+      name: kpi.name,
+      score: kpiScore,
+      maxScore: kpi.maxScore,
+      pct,
+      passed,
+      totalEvals,
+    };
+  });
+}
+
+function buildProfileBundle(meta, rawAgents, previousFocusKpi, previousFocusText) {
+  const agentKpiMap = {};
+  rawAgents.forEach((a) => {
+    agentKpiMap[a.agentId] = computeAgentKpis(a);
+  });
+
+  const sums = {};
+  const counts = {};
+  QP_AGENT_KPIS.forEach((kpi) => {
+    sums[kpi.id] = 0;
+    counts[kpi.id] = 0;
+  });
+  rawAgents.forEach((a) => {
+    agentKpiMap[a.agentId].forEach((k) => {
+      sums[k.id] += k.pct;
+      counts[k.id] += 1;
+    });
+  });
+  const teamAvgs = {};
+  QP_AGENT_KPIS.forEach((kpi) => {
+    teamAvgs[kpi.id] = Math.round((sums[kpi.id] / counts[kpi.id]) * 100) / 100;
+  });
+
+  const sortedAgents = [...rawAgents].sort((a, b) => b.score - a.score);
+  const profileAvg = Math.round(
+    (rawAgents.reduce((s, a) => s + a.score, 0) / rawAgents.length) * 10
+  ) / 10;
+
+  return {
+    ...meta,
+    rawAgents,
+    agentKpiMap,
+    teamAvgs,
+    sortedAgents,
+    profileAvg,
+    previousFocus: { kpi: previousFocusKpi, text: previousFocusText },
+  };
+}
+
+const PROFILE_BUNDLES = {
+  [HSL_AGENT_PROFILE_ID]: buildProfileBundle(
+    {
+      id: HSL_AGENT_PROFILE_ID,
+      label: 'hsl na improved returns',
+      totalAnalyses: 140,
+    },
+    HSL_RAW_AGENTS,
+    'Reference Account Opening Inquiry',
+    "Previous period's focus was 'Reference Account Opening Inquiry' — check if targeted coaching has moved the needle. Current eval fail rate remains high, suggesting further intervention is needed.",
+  ),
+  [BRANCH_PROFILE_1_ID]: buildProfileBundle(
+    {
+      id: BRANCH_PROFILE_1_ID,
+      label: 'Branch Profile 1',
+      totalAnalyses: 1177841,
+    },
+    BRANCH_RAW_AGENTS,
+    'Agent Personalization (Customer Name Mentioned)',
+    "Previous period's focus was personalization and soft skills — Personalization has since dropped further (−10pp over 5 weeks). Escalate coaching on name usage, empathy, and cross-sell.",
+  ),
+};
+
+export function getQpAgentProfile(qpId) {
+  const b = PROFILE_BUNDLES[qpId];
+  if (!b) return null;
+  return {
+    id: b.id,
+    label: b.label,
+    profileAvgScore: b.profileAvg,
+    totalAgents: b.rawAgents.length,
+    totalAnalyses: b.totalAnalyses,
+  };
+}
+
+export function hasQpAgentData(qpId) {
+  return Boolean(PROFILE_BUNDLES[qpId]);
+}
+
 /**
- * Get all agents for a given period.
+ * Get all agents for a given period and quality profile.
  * @param {'yesterday'|'week'|'month'} period
+ * @param {string} [qpId]
  */
-export function getQpAgents(period) {
-  const agents = SORTED_AGENTS.map((a, idx) => {
-    const kpis = AGENT_KPI_MAP[a.agentId];
+export function getQpAgents(period, qpId = HSL_AGENT_PROFILE_ID) {
+  const bundle = PROFILE_BUNDLES[qpId];
+  if (!bundle) return null;
+
+  const { rawAgents, agentKpiMap, teamAvgs, sortedAgents, profileAvg, previousFocus } = bundle;
+
+  const agents = sortedAgents.map((a, idx) => {
+    const kpis = agentKpiMap[a.agentId];
     const delta = idx < 10 ? +(Math.random() * 3 - 1).toFixed(1) :
-      idx > 40 ? +(Math.random() * -4).toFixed(1) :
+      idx > sortedAgents.length - 10 ? +(Math.random() * -4).toFixed(1) :
         +(Math.random() * 4 - 2).toFixed(1);
     return {
       agentId: a.agentId,
@@ -268,24 +362,23 @@ export function getQpAgents(period) {
         score: k.score,
         maxScore: k.maxScore,
         pct: k.pct,
-        teamAvg: TEAM_AVGS[k.id],
-        belowTeamAvg: k.pct < TEAM_AVGS[k.id],
+        teamAvg: teamAvgs[k.id],
+        belowTeamAvg: k.pct < teamAvgs[k.id],
       })),
     };
   });
 
-  const avgScore = PROFILE_AVG;
+  const avgScore = profileAvg;
   const totalAgents = agents.length;
   const aboveAvg = agents.filter((a) => a.score >= avgScore).length;
   const belowAvg = totalAgents - aboveAvg;
 
-  // Compute weak KPIs (by eval fail rate across all agents)
   const kpiFailStats = QP_AGENT_KPIS.map((kpi) => {
     let totalEvals = 0;
     let totalFails = 0;
     let agentsBelowThreshold = 0;
-    RAW_AGENTS.forEach((a) => {
-      const agentKpi = AGENT_KPI_MAP[a.agentId].find((k) => k.id === kpi.id);
+    rawAgents.forEach((a) => {
+      const agentKpi = agentKpiMap[a.agentId].find((k) => k.id === kpi.id);
       totalEvals += agentKpi.totalEvals;
       totalFails += agentKpi.totalEvals - agentKpi.passed;
       if (agentKpi.pct < 50) agentsBelowThreshold++;
@@ -316,9 +409,7 @@ export function getQpAgents(period) {
     rank: a.rank,
   }));
 
-  // Weakest KPI for priority banner
   const worstKpi = kpiFailStats[0];
-  // Strongest KPI for strength banner
   const strongestKpi = kpiFailStats[kpiFailStats.length - 1];
   const strongPassRate = Math.round((100 - strongestKpi.evalFailPct) * 10) / 10;
 
@@ -329,12 +420,6 @@ export function getQpAgents(period) {
   const strength = `The team demonstrates strong performance in '${strongestKpi.name}', ` +
     `achieving a ${strongPassRate}% pass rate. This indicates strong compliance adherence across the team.`;
 
-  const previousFocus = {
-    kpi: 'Reference Account Opening Inquiry',
-    text: "Previous period's focus was 'Reference Account Opening Inquiry' — check if targeted coaching has moved the needle. Current eval fail rate remains high, suggesting further intervention is needed.",
-  };
-
-  // Coaching recommendations
   const coachingRecommendations = [];
   kpiFailStats.forEach((kpi, idx) => {
     if (kpi.evalFailPct > 30) {
@@ -355,9 +440,7 @@ export function getQpAgents(period) {
     });
   }
 
-  // Agents needing attention (bottom 10)
   const agentsNeedingAttention = agents.slice(-10).reverse().map((a) => {
-    // Find the agent's weakest KPI
     const worstAgentKpi = [...a.kpis].sort((x, y) => x.pct - y.pct)[0];
     const unhappyPct = Math.round((1 - a.score / 100) * 100);
     return {
@@ -395,13 +478,18 @@ export function getQpAgents(period) {
  * Get detailed view for a single agent.
  * @param {string} agentId
  * @param {'yesterday'|'week'|'month'} period
+ * @param {string} [qpId]
  */
-export function getQpAgentDetail(agentId, period) {
-  const agent = RAW_AGENTS.find((a) => a.agentId === agentId);
+export function getQpAgentDetail(agentId, period, qpId = HSL_AGENT_PROFILE_ID) {
+  const bundle = PROFILE_BUNDLES[qpId];
+  if (!bundle) return null;
+
+  const { rawAgents, agentKpiMap, teamAvgs, sortedAgents } = bundle;
+  const agent = rawAgents.find((a) => a.agentId === agentId);
   if (!agent) return null;
 
-  const rank = SORTED_AGENTS.findIndex((a) => a.agentId === agentId) + 1;
-  const agentKpis = AGENT_KPI_MAP[agentId];
+  const rank = sortedAgents.findIndex((a) => a.agentId === agentId) + 1;
+  const agentKpis = agentKpiMap[agentId];
   const delta = +(Math.sin(hashString(agentId)) * 3).toFixed(1);
 
   const kpis = agentKpis.map((k) => ({
@@ -409,11 +497,10 @@ export function getQpAgentDetail(agentId, period) {
     score: k.score,
     maxScore: k.maxScore,
     pct: k.pct,
-    teamAvg: TEAM_AVGS[k.id],
-    belowTeamAvg: k.pct < TEAM_AVGS[k.id],
+    teamAvg: teamAvgs[k.id],
+    belowTeamAvg: k.pct < teamAvgs[k.id],
   }));
 
-  // Best KPI for "Good Job"
   const sortedByPct = [...kpis].sort((a, b) => b.pct - a.pct);
   const bestKpi = sortedByPct[0];
 
@@ -427,7 +514,6 @@ export function getQpAgentDetail(agentId, period) {
         : `is close to the team average of ${bestKpi.teamAvg}%. This is a solid area for you — maintain this consistency.`),
   };
 
-  // Weak KPIs for "Areas to Improve"
   const weakKpis = sortedByPct
     .filter((k) => k.pct < 75 || k.belowTeamAvg)
     .sort((a, b) => a.pct - b.pct)
@@ -450,7 +536,6 @@ export function getQpAgentDetail(agentId, period) {
     };
   });
 
-  // Priority text
   const worstKpi = areasToImprove.length > 0 ? areasToImprove[0] : null;
   const priorityText = worstKpi
     ? `Focus on '${worstKpi.kpi}' — you scored ${worstKpi.score} vs. a team average of ${worstKpi.teamAvg}. ` +

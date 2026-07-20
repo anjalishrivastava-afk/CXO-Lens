@@ -8,6 +8,8 @@ import {
   getQpData,
   getQpProfile,
   getQpLensInsights,
+  getQpLensInsightsForProfile,
+  getPortfolioQpLensInsights,
   analysisSharePct,
   matchedSharePct,
 } from '../qpInsightsData';
@@ -18,7 +20,7 @@ import {
   trackQpAnalyticsKpiBreakdownViewed,
 } from '../analytics';
 import { getCqaHostContext } from '../cqaHostContext';
-import { QP_AGENT_PROFILE, getQpAgents, getQpAgentDetail } from '../qpAgentData';
+import { getQpAgentProfile, getQpAgents, getQpAgentDetail } from '../qpAgentData';
 import {
   Accordion, AccordionSummary, AccordionDetails,
   Alert, Box, Chip, Divider, Paper, Stack, Typography,
@@ -338,13 +340,15 @@ function QpAgentAreasToImprove({ areas }) {
 }
 
 function QpAgentSelfView({ qpId, period }) {
-  if (qpId !== QP_AGENT_PROFILE.id) return null;
+  const agentProfile = getQpAgentProfile(qpId);
+  if (!agentProfile) return null;
 
   // In production, this would come from getCqaHostContext().userId
-  // For demo, pick the first agent in the middle of the pack
+  // For demo, pick a mid-pack agent for the selected profile
   const ctx = getCqaHostContext();
-  const agentId = ctx.userId || 'H18047';
-  const detail = getQpAgentDetail(agentId, period);
+  const fallbackAgentId = agentProfile.label === 'Branch Profile 1' ? 'BP0024' : 'H18047';
+  const agentId = ctx.userId || fallbackAgentId;
+  const detail = getQpAgentDetail(agentId, period, qpId);
 
   if (!detail) {
     return (
@@ -364,7 +368,7 @@ function QpAgentSelfView({ qpId, period }) {
           <Chip label={`${detail.score}%`} variant="tonal" color={qpScoreSemantic(detail.score)} />
         </Stack>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-          Your performance on "{QP_AGENT_PROFILE.label}" quality profile
+          Your performance on "{agentProfile.label}" quality profile
         </Typography>
       </Box>
 
@@ -383,9 +387,9 @@ function QpAgentSelfView({ qpId, period }) {
       <Box sx={{ px: 3, py: 1.5 }}>
         <div className="kpi-grid">
           <MetricCard label="Your QP Score" value={`${detail.score}%`} valueColor={scoreColor(detail.score)}
-            sub={`Your score on "${QP_AGENT_PROFILE.label}"`}
+            sub={`Your score on "${agentProfile.label}"`}
             delta={{ value: detail.delta, suffix: 'pp' }} />
-          <MetricCard label="Your QP Rank" value={`#${detail.rank} of ${QP_AGENT_PROFILE.totalAgents}`}
+          <MetricCard label="Your QP Rank" value={`#${detail.rank} of ${agentProfile.totalAgents}`}
             sub="Your position among all agents on this QP" />
           <MetricCard label="Calls Analyzed" value={detail.calls}
             sub="Total evaluations against this quality profile" />
@@ -419,9 +423,12 @@ function QpAgentSelfView({ qpId, period }) {
 }
 
 function QpAgentInsightsPanel({ qpId, period, onOpenAgent, role }) {
-  if (qpId !== QP_AGENT_PROFILE.id) return null;
+  const agentProfile = getQpAgentProfile(qpId);
+  if (!agentProfile) return null;
 
-  const data = getQpAgents(period);
+  const data = getQpAgents(period, qpId);
+  if (!data) return null;
+
   const { agents, avgScore, totalAgents, aboveAvg, belowAvg,
     topAgents, bottomAgents, priority, strength, previousFocus,
     coachingRecommendations, agentsNeedingAttention } = data;
@@ -448,8 +455,8 @@ function QpAgentInsightsPanel({ qpId, period, onOpenAgent, role }) {
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
           {role === 'admin' || role === 'superadmin'
-            ? `Organization-wide: ${totalAgents} agents evaluated on "${QP_AGENT_PROFILE.label}"`
-            : `Your team: ${totalAgents} agents evaluated on "${QP_AGENT_PROFILE.label}"`}
+            ? `Organization-wide: ${totalAgents} agents evaluated on "${agentProfile.label}"`
+            : `Your team: ${totalAgents} agents evaluated on "${agentProfile.label}"`}
         </Typography>
       </Box>
 
@@ -652,9 +659,10 @@ function QpAgentInsightsPanel({ qpId, period, onOpenAgent, role }) {
   );
 }
 
-function QpAgentDetailView({ agentId, period, onBack }) {
-  const detail = getQpAgentDetail(agentId, period);
-  if (!detail) {
+function QpAgentDetailView({ agentId, period, qpId, onBack }) {
+  const agentProfile = getQpAgentProfile(qpId);
+  const detail = getQpAgentDetail(agentId, period, qpId);
+  if (!detail || !agentProfile) {
     return (
       <Paper elevation={0} sx={{ p: 4, textAlign: 'center', bgcolor: 'surface.elevation1', borderRadius: 2 }}>
         <Typography variant="title3" color="text.secondary">Agent not found</Typography>
@@ -680,7 +688,7 @@ function QpAgentDetailView({ agentId, period, onBack }) {
             <Chip label={`Rank #${detail.rank}`} variant="tonal" color="info" size="small" />
           </Stack>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-            {detail.calls} calls analyzed on "{QP_AGENT_PROFILE.label}" ·
+            {detail.calls} calls analyzed on "{agentProfile.label}" ·
             {detail.delta > 0 ? ' +' : ' '}{detail.delta}% vs prev period
           </Typography>
         </Box>
@@ -701,8 +709,8 @@ function QpAgentDetailView({ agentId, period, onBack }) {
       <Box sx={{ px: 3, py: 1.5 }}>
         <div className="kpi-grid">
           <MetricCard label="QP Score" value={`${detail.score}%`} valueColor={scoreColor(detail.score)}
-            sub={`Score on "${QP_AGENT_PROFILE.label}" quality profile`} />
-          <MetricCard label="QP Rank" value={`#${detail.rank} of ${QP_AGENT_PROFILE.totalAgents}`}
+            sub={`Score on "${agentProfile.label}" quality profile`} />
+          <MetricCard label="QP Rank" value={`#${detail.rank} of ${agentProfile.totalAgents}`}
             sub="Position among all agents on this QP" />
           <MetricCard label="Calls Analyzed" value={detail.calls}
             sub="Total evaluations against this quality profile" />
@@ -971,11 +979,62 @@ function scoreFillColor(v) {
   return 'var(--red)';
 }
 
-function QpHealthCard({ card }) {
+/** Compact weekly score sparkline from ClickHouse weeklyTrends (≤6 points). */
+function QpScoreSparkline({ series, color }) {
+  if (!series || series.length < 2) return null;
+  const w = 88;
+  const h = 28;
+  const pad = 2;
+  const scores = series.map((p) => p.score);
+  const min = Math.min(...scores);
+  const max = Math.max(...scores);
+  const span = Math.max(max - min, 1);
+  const pts = series.map((p, i) => {
+    const x = pad + (i / (series.length - 1)) * (w - pad * 2);
+    const y = pad + (1 - (p.score - min) / span) * (h - pad * 2);
+    return `${x},${y}`;
+  }).join(' ');
+  const title = series.map((p) => `${p.week}: ${p.score}%`).join(' · ');
+
+  return (
+    <Box
+      component="svg"
+      viewBox={`0 0 ${w} ${h}`}
+      width={w}
+      height={h}
+      title={title}
+      sx={{ display: 'block', flexShrink: 0, overflow: 'visible' }}
+      aria-hidden
+    >
+      <polyline
+        fill="none"
+        stroke={color || 'currentColor'}
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        points={pts}
+      />
+      {series.map((p, i) => {
+        const x = pad + (i / (series.length - 1)) * (w - pad * 2);
+        const y = pad + (1 - (p.score - min) / span) * (h - pad * 2);
+        return <circle key={p.week} cx={x} cy={y} r={i === series.length - 1 ? 2.25 : 1.5} fill={color || 'currentColor'} />;
+      })}
+    </Box>
+  );
+}
+
+function QpHealthCard({ card, onOpenProfile }) {
   const statusColor = card.status === 'healthy' ? 'success' : card.status === 'attention' ? 'warning' : 'error';
+  const clickable = Boolean(onOpenProfile);
+  const sparkColor = scoreFillColor(card.score);
+
   return (
     <Paper
       variant="outlined"
+      role={clickable ? 'button' : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onClick={() => clickable && onOpenProfile(card.id, 'health_card')}
+      onKeyDown={(e) => clickable && e.key === 'Enter' && onOpenProfile(card.id, 'health_card')}
       sx={{
         p: 2,
         borderRadius: 2,
@@ -987,21 +1046,24 @@ function QpHealthCard({ card }) {
         bgcolor: 'surface.elevation2',
         overflow: 'hidden',
         minWidth: 0,
+        cursor: clickable ? 'pointer' : 'default',
         '&:hover': { boxShadow: 1 },
       }}
     >
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Typography variant="title2" noWrap sx={{ flex: 1, minWidth: 0 }} title={card.name}>{card.name}</Typography>
-        {card.active && <Chip label="LIVE" variant="tonal" color="success" size="small" />}
       </Stack>
 
-      <Stack direction="row" alignItems="baseline" spacing={1}>
-        <Typography variant="h4" sx={{ color: scoreFillColor(card.score) }}>{card.score}%</Typography>
-        {card.trendDelta != null && (
-          <Typography variant="body3" sx={{ color: card.trendDelta >= 0 ? 'success.main' : 'error.main' }}>
-            {card.trendDelta >= 0 ? '↑' : '↓'}{Math.abs(card.trendDelta)}pp
-          </Typography>
-        )}
+      <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={1}>
+        <Stack direction="row" alignItems="baseline" spacing={1}>
+          <Typography variant="h4" sx={{ color: sparkColor }}>{card.score}%</Typography>
+          {card.trendDelta != null && (
+            <Typography variant="body3" sx={{ color: card.trendDelta >= 0 ? 'success.main' : 'error.main' }}>
+              {card.trendDelta >= 0 ? '↑' : '↓'}{Math.abs(card.trendDelta)}pp
+            </Typography>
+          )}
+        </Stack>
+        <QpScoreSparkline series={card.scoreSeries} color={sparkColor} />
       </Stack>
 
       <Stack direction="row" spacing={1}>
@@ -1027,10 +1089,24 @@ function QpHealthCard({ card }) {
   );
 }
 
-function NarrativeInsightCard({ insight }) {
-  const severityColor = { high: 'error', medium: 'warning', low: 'success' };
-  const severityLabel = { high: 'High Priority', medium: 'Medium', low: 'Low' };
-  const borderColor = { high: 'error.main', medium: 'warning.main', low: 'success.main' };
+function NarrativeInsightCard({ insight, onOpenProfile, onScrollUnused }) {
+  const severityColor = { high: 'error', medium: 'warning', low: 'info' };
+  const severityLabel = { high: 'High Priority', medium: 'Medium', low: 'Observation' };
+  const borderColor = { high: 'error.main', medium: 'warning.main', low: 'info.main' };
+  const ctaAction = insight.ctaAction || (insight.ctaProfileId ? 'open_profile' : null);
+  const canCta = ctaAction === 'scroll_unused'
+    ? Boolean(onScrollUnused)
+    : ctaAction === 'open_profile' && Boolean(insight.ctaProfileId && onOpenProfile);
+
+  const handleCta = () => {
+    if (ctaAction === 'scroll_unused') {
+      onScrollUnused?.();
+      return;
+    }
+    if (ctaAction === 'open_profile' && insight.ctaProfileId) {
+      onOpenProfile(insight.ctaProfileId, 'portfolio_insight');
+    }
+  };
 
   return (
     <Paper
@@ -1072,9 +1148,17 @@ function NarrativeInsightCard({ insight }) {
                 bgcolor: 'surface.elevation1',
               }}
             >
-              <Typography variant="h5" sx={{ mb: 0.25 }}>{m.value}</Typography>
-              <Typography variant="label1" color="text.secondary">{m.label}</Typography>
-              {m.sub && <Typography variant="body3" color="text.secondary" sx={{ mt: 0.25 }}>{m.sub}</Typography>}
+              <Typography variant="h5" sx={{ mb: 0.5 }}>{m.value}</Typography>
+              <Stack spacing={0.25} alignItems="center">
+                <Typography variant="label1" color="text.secondary" component="div" display="block">
+                  {m.label}
+                </Typography>
+                {m.sub && (
+                  <Typography variant="body3" color="text.secondary" component="div" display="block">
+                    {m.sub}
+                  </Typography>
+                )}
+              </Stack>
             </Box>
           ))}
         </Stack>
@@ -1092,9 +1176,17 @@ function NarrativeInsightCard({ insight }) {
       {/* Data Visualization — horizontal bar chart for dataPoints */}
       {insight.dataPoints && (
         <Stack spacing={1} sx={{ mx: 2.5, mb: 2 }}>
+          {insight.dataPointsTitle && (
+            <Typography variant="label1" color="text.secondary">{insight.dataPointsTitle}</Typography>
+          )}
           {insight.dataPoints.map((d) => (
             <Stack key={d.name} direction="row" alignItems="center" spacing={1.5}>
-              <Typography variant="body3" noWrap sx={{ width: 120, minWidth: 120, textAlign: 'right' }} title={d.name}>{d.name}</Typography>
+              <Stack direction="row" alignItems="center" spacing={0.75} sx={{ width: 200, minWidth: 200, justifyContent: 'flex-end' }}>
+                {d.level && (
+                  <Chip label={d.level} size="small" variant="tonal" color="info" sx={{ flexShrink: 0, height: 20, '& .MuiChip-label': { px: 0.75, fontSize: 10 } }} />
+                )}
+                <Typography variant="body3" noWrap sx={{ flex: 1, minWidth: 0, textAlign: 'right' }} title={d.name}>{d.name}</Typography>
+              </Stack>
               <Box sx={{ flex: 1, position: 'relative' }}>
                 <Box sx={{ height: 8, borderRadius: 4, bgcolor: 'action.hover', overflow: 'hidden' }}>
                   <Box
@@ -1163,8 +1255,8 @@ function NarrativeInsightCard({ insight }) {
                     title={`${(d.volume / 1000).toFixed(0)}K interactions`}
                   />
                 </Box>
-                <Typography variant="label1" color="text.primary" sx={{ mt: 0.5 }}>{d.score}%</Typography>
-                <Typography variant="body3" color="text.secondary">{d.week.split(' ')[0]}</Typography>
+                <Typography variant="label1" color="text.primary" component="div" display="block" sx={{ mt: 0.5 }}>{d.score}%</Typography>
+                <Typography variant="body3" color="text.secondary" component="div" display="block">{d.week.split(' ')[0]}</Typography>
               </Box>
             ))}
           </Box>
@@ -1172,12 +1264,25 @@ function NarrativeInsightCard({ insight }) {
       })()}
 
       {/* Recommendation */}
-      <Alert severity="info" variant="standard" sx={{ mx: 2.5, mb: 2.5, borderRadius: 1.5 }}>
+      <Alert severity="info" variant="standard" sx={{ mx: 2.5, mb: canCta ? 1.5 : 2.5, borderRadius: 1.5 }}>
         <Stack spacing={0.5}>
           <Typography variant="label2">Recommendation</Typography>
           <Typography variant="body2">{insight.recommendation}</Typography>
         </Stack>
       </Alert>
+
+      {canCta && (
+        <Box sx={{ px: 2.5, pb: 2.5 }}>
+          <Chip
+            label={insight.ctaLabel || 'Open in By Profile'}
+            variant="tonal"
+            color="primary"
+            clickable
+            onClick={handleCta}
+            sx={{ cursor: 'pointer' }}
+          />
+        </Box>
+      )}
     </Paper>
   );
 }
@@ -1195,6 +1300,10 @@ function AllProfilesView({ period, onOpenProfile }) {
   } = data;
 
   const qpLens = useMemo(() => getQpLensInsights(), []);
+  const portfolioNarratives = useMemo(
+    () => getPortfolioQpLensInsights(period).narrativeInsights,
+    [period],
+  );
 
   const aiRef = useRef(null);
   const distRef = useRef(null);
@@ -1272,7 +1381,7 @@ function AllProfilesView({ period, onOpenProfile }) {
 
       {/* ── QP-Lens Insights ── */}
       <div ref={aiRef}>
-        <QpSectionHeader title="QP-Lens Insights" caption="AI-powered analysis across quality profiles" />
+        <QpSectionHeader title="QP Health" caption="Score, volume, and category extremes per quality profile" />
 
         {/* QP Health Cards */}
         <Box sx={{
@@ -1282,16 +1391,31 @@ function AllProfilesView({ period, onOpenProfile }) {
           mb: 3,
         }}>
           {qpLens.healthCards.map((card) => (
-            <QpHealthCard key={card.id} card={card} />
+            <QpHealthCard
+              key={card.id}
+              card={card}
+              onOpenProfile={onOpenProfile}
+            />
           ))}
         </Box>
 
-        {/* Narrative Insight Cards — CXO Lens style */}
-        <Stack spacing={2.5}>
-          {qpLens.narrativeInsights.map((insight) => (
-            <NarrativeInsightCard key={insight.id} insight={insight} />
-          ))}
-        </Stack>
+        {portfolioNarratives.length > 0 && (
+          <>
+            <QpSectionHeader
+              title="Portfolio Insights"
+              caption="Cross-QP patterns from health, volume mix, and score bands"
+            />
+            <Stack spacing={2.5}>
+              {portfolioNarratives.map((insight) => (
+                <NarrativeInsightCard
+                  key={insight.id}
+                  insight={insight}
+                  onOpenProfile={insight.ctaProfileId ? onOpenProfile : undefined}
+                />
+              ))}
+            </Stack>
+          </>
+        )}
       </div>
     </>
   );
@@ -1352,6 +1476,7 @@ function PerQpView({ qpId, period, role }) {
   const profile = getQpProfile(qpId);
   const data = getQpData(qpId, period);
   const { metrics, aiInsights, escalations, topIntents, kpis, smarterAssignment, scoreTrend } = data;
+  const profileNarratives = useMemo(() => getQpLensInsightsForProfile(qpId), [qpId]);
   const aiRef = useRef(null);
   const kpiRef = useRef(null);
   const escRef = useRef(null);
@@ -1434,6 +1559,7 @@ function PerQpView({ qpId, period, role }) {
       <QpAgentDetailView
         agentId={selectedAgent}
         period={period}
+        qpId={qpId}
         onBack={() => { setSelectedAgent(null); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
       />
     );
@@ -1563,6 +1689,21 @@ function PerQpView({ qpId, period, role }) {
           role={role}
           onOpenAgent={(agentId) => setSelectedAgent(agentId)}
         />
+      )}
+
+      {/* Additive Profile Insights (ClickHouse narratives) — leave existing By Profile UI above untouched */}
+      {profileNarratives.length > 0 && (
+        <div>
+          <QpSectionHeader
+            title="Profile Insights"
+            caption="AI-powered analysis for this quality profile"
+          />
+          <Stack spacing={2.5}>
+            {profileNarratives.map((insight) => (
+              <NarrativeInsightCard key={insight.id} insight={insight} />
+            ))}
+          </Stack>
+        </div>
       )}
     </>
   );

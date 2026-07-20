@@ -113,6 +113,10 @@ export const QP_PROFILES = [
   {
     "id": "1b69e9cc-4a60-4459-a193-b35dc31f2b6a",
     "label": "v10Bluedart_Final"
+  },
+  {
+    "id": "b1069975-1ea2-4f51-bf7e-35b9e8940025",
+    "label": "Branch Profile 1"
   }
 ];
 
@@ -5367,6 +5371,67 @@ const baseAiInsightRowsByPeriod = {
 };
 
 const qpDataBase = {
+  // ClickHouse-backed prototype profile (docs/clickhouse-qp-data.json) — full By Profile stack + narrative insights
+  "b1069975-1ea2-4f51-bf7e-35b9e8940025": {
+    "smarterAssignment": true,
+    "metrics": {
+      "analysisCount": 1177841,
+      "qpScore": 76.2,
+      "qpScoreDelta": -0.4
+    },
+    "scoreTrend": [
+      { "label": "May 17–May 23", "value": 76.6 },
+      { "label": "May 24–May 30", "value": 76.3 },
+      { "label": "May 31–Jun 6", "value": 76.5 },
+      { "label": "Jun 7–Jun 13", "value": 76.6 },
+      { "label": "Jun 14–Jun 20", "value": 76.4 },
+      { "label": "Jun 21–Jun 27", "value": 76.2 },
+      { "label": "Jun 28–Jul 4", "value": 76.1 },
+      { "label": "Jul 5–Jul 11", "value": 75.7 },
+      { "label": "Jul 12–Jul 18", "value": 75.5 }
+    ],
+    "aiInsights": {
+      "headline": "Branch Profile 1 averages 76.2% across 1.18M evaluations and 48 prototype agents. Reference Account Opening Inquiry remains the weakest KPI at 15.4%.",
+      "needsAttention": [
+        { "name": "Reference Account Opening Inquiry", "score": "15.4% pass", "detail": "Lowest KPI — agents rarely inquire about referral or existing-account context during onboarding conversations." },
+        { "name": "Cross-sell Pitch Discussion", "score": "26.0% pass", "detail": "Cross-sell opportunities are missed on most evaluated interactions." },
+        { "name": "Agent Personalization (Customer Name Mentioned)", "score": "26.5% pass", "detail": "Personalization has declined ~10pp over 5 weeks — systemic soft-skill gap." }
+      ],
+      "performingWell": [
+        { "name": "Financial Misconduct & Client Fund Misuse", "score": "100% pass", "detail": "Near-perfect compliance on fund misuse checks." },
+        { "name": "QA Compliance", "score": "99.6%", "detail": "Rule adherence across the profile is excellent." }
+      ],
+      "recommendation": "Shift coaching from compliance refreshers to engagement behaviors — Reference Check, Cross-sell, and Personalization. See Profile Insights below for the full breakdown.",
+      "source": "clickhouse"
+    },
+    "escalations": [
+      { "type": "score_drop", "kpi": "Agent Personalization (Customer Name Mentioned)", "detail": "Personalization dropped from 34.1% to 23.7% over 5 weeks (−10.4pp). Cross-sell (−3.7pp) and Empathy (−2.5pp) declined in the same window." }
+    ],
+    "topIntents": [
+      { "label": "Portfolio Review", "count": 284120 },
+      { "label": "Account Opening", "count": 196450 },
+      { "label": "Follow-up / Callback", "count": 152880 },
+      { "label": "Cross-sell Pitch", "count": 118340 },
+      { "label": "Complaint Follow-up", "count": 89210 }
+    ],
+    "kpis": [
+      { "question": "Reference Account Opening Inquiry", "type": "critical", "avgScore": 0.6, "maxScore": 4, "avgPct": 15.4, "prevPct": 14.4 },
+      { "question": "Cross-sell Pitch Discussion", "type": "critical", "avgScore": 1.0, "maxScore": 4, "avgPct": 26.0, "prevPct": 24.0 },
+      { "question": "Agent Personalization (Customer Name Mentioned)", "type": "critical", "avgScore": 0.5, "maxScore": 2, "avgPct": 26.5, "prevPct": 22.8 },
+      { "question": "Expressive Empathy/Sympathy/Apology", "type": "critical", "avgScore": 0.6, "maxScore": 2, "avgPct": 29.5, "prevPct": 26.6 },
+      { "question": "Call Closure Technique Adoption", "type": "critical", "avgScore": 1.2, "maxScore": 4, "avgPct": 30.0, "prevPct": 27.8 },
+      { "question": "Agent Introduction Proper", "type": "failing", "avgScore": 1.5, "maxScore": 4, "avgPct": 36.7, "prevPct": null },
+      { "question": "Callback/Follow-up Timing Setup", "type": "failing", "avgScore": 0.8, "maxScore": 2, "avgPct": 41.0, "prevPct": null },
+      { "question": "Client Needs Insight Gathered", "type": "failing", "avgScore": 1.9, "maxScore": 4, "avgPct": 47.9, "prevPct": null },
+      { "question": "Product Benefit Explained", "type": "failing", "avgScore": 2.0, "maxScore": 4, "avgPct": 50.9, "prevPct": null },
+      { "question": "Client Understanding Depth", "type": "failing", "avgScore": 2.0, "maxScore": 4, "avgPct": 51.0, "prevPct": null },
+      { "question": "Insider Trading & Unpublished Information", "type": null, "avgScore": 2.0, "maxScore": 2, "avgPct": 99.9, "prevPct": null },
+      { "question": "Conflict of Interest & Personal Business Activities", "type": null, "avgScore": 2.0, "maxScore": 2, "avgPct": 99.9, "prevPct": null },
+      { "question": "Financial Misconduct & Client Fund Misuse", "type": null, "avgScore": 2.0, "maxScore": 2, "avgPct": 100.0, "prevPct": null },
+      { "question": "UPI/Payment ID Request", "type": null, "avgScore": 2.0, "maxScore": 2, "avgPct": 100.0, "prevPct": null },
+      { "question": "RM Digital Account Opening", "type": null, "avgScore": 4.0, "maxScore": 4, "avgPct": 100.0, "prevPct": null }
+    ]
+  },
   "21779ba2-6294-4cb0-98fa-388c2537958d": {
     "smarterAssignment": true,
     "metrics": {
@@ -9762,7 +9827,21 @@ export function getAllProfilesData(period = 'month') {
 }
 
 export function getQpProfile(id) {
-  return QP_PROFILES.find((p) => p.id === id) ?? QP_PROFILES[0];
+  const fromList = QP_PROFILES.find((p) => p.id === id);
+  if (fromList) return fromList;
+  // ClickHouse health cards may not be in the cxdemo QP_PROFILES list
+  const health = qpHealthData.find((p) => p.id === id);
+  if (health) return { id: health.id, label: health.name };
+  return QP_PROFILES[0];
+}
+
+/** Profile dropdown: cxdemo list plus any ClickHouse health QPs missing from it. */
+export function getQpProfilesForSelector() {
+  const seen = new Set(QP_PROFILES.map((p) => p.id));
+  const extras = qpHealthData
+    .filter((p) => !seen.has(p.id))
+    .map((p) => ({ id: p.id, label: p.name }));
+  return [...QP_PROFILES, ...extras];
 }
 
 export function getQpData(id, period = 'month') {
@@ -9821,13 +9900,146 @@ export function formatDelta(value, suffix = '') {
    ──────────────────────────────────────────────────────── */
 
 const qpHealthData = [
-  { id: 'b1069975-1ea2-4f51-bf7e-35b9e8940025', name: 'Branch Profile 1', score: 76.2, volume: 1177841, kpiCount: 49, catCount: 11, weakestCat: 'Reference Check / Additional Product', weakestScore: 39.5, bestCat: 'QA Compliance', bestScore: 99.6, trend: 'declining', trendDelta: -0.4, active: true },
-  { id: '3e2c8cf9-7c54-433d-8fff-e7a093f711cb', name: 'HSL FINAL profile', score: 18.5, volume: 796545, kpiCount: 23, catCount: 9, weakestCat: 'Promotion of Invest right app', weakestScore: 2.6, bestCat: 'Communication skills', bestScore: 63.7, trend: 'stable', trendDelta: null, active: false },
-  { id: '56a1a026-35a7-45fe-97de-d28da2ff25ea', name: 'rm/qa profile 2', score: 74.7, volume: 392319, kpiCount: 48, catCount: 9, weakestCat: 'Reference Check / Additional Product', weakestScore: 32.7, bestCat: 'Main contents of the Product', bestScore: 96.4, trend: 'stable', trendDelta: null, active: false },
-  { id: 'cc677238-58cc-49c3-867a-aca35f4c98a8', name: 'RM_QA_PROFILE', score: 20.2, volume: 390428, kpiCount: 48, catCount: 9, weakestCat: 'Main contents of the Product', weakestScore: 3.4, bestCat: 'Communication skills', bestScore: 66.2, trend: 'stable', trendDelta: null, active: false },
-  { id: '07d2be32-30c1-4b72-80ec-57b5408a351e', name: 'HSL_RM_QA_Profile', score: 18.7, volume: 370910, kpiCount: 23, catCount: 9, weakestCat: 'Promotion of Invest right app', weakestScore: 2.7, bestCat: 'Communication skills', bestScore: 65.7, trend: 'stable', trendDelta: null, active: false },
-  { id: '2eb13f37-7065-48a5-a378-1bd145c75cd0', name: 'compliance_5pm_may7', score: 98.5, volume: 511, kpiCount: 9, catCount: 9, weakestCat: 'Unregistered Client Communication', weakestScore: 94.9, bestCat: 'Insurance missell', bestScore: 100.0, trend: 'stable', trendDelta: null, active: false },
-  { id: 'b3f70a61-d0cd-441c-8bb2-a0a65080e2db', name: 'QA_compliance_profile_1', score: 97.0, volume: 404, kpiCount: 8, catCount: 8, weakestCat: 'Misleading Sales Practices & Risk Disclosure', weakestScore: 91.3, bestCat: 'Financial Misconduct & Client Fund Misuse', bestScore: 100.0, trend: 'stable', trendDelta: null, active: false },
+  {
+    id: 'b1069975-1ea2-4f51-bf7e-35b9e8940025',
+    name: 'Branch Profile 1',
+    score: 76.2,
+    volume: 1177841,
+    kpiCount: 49,
+    catCount: 11,
+    weakestCat: 'Reference Check / Additional Product',
+    weakestScore: 39.5,
+    bestCat: 'QA Compliance',
+    bestScore: 99.6,
+    trend: 'declining',
+    trendDelta: -0.4,
+    scoreSeries: [
+      { week: '2026-06-07', score: 76.6 },
+      { week: '2026-06-14', score: 76.4 },
+      { week: '2026-06-21', score: 76.2 },
+      { week: '2026-06-28', score: 76.1 },
+      { week: '2026-07-05', score: 75.7 },
+      { week: '2026-07-12', score: 75.5 },
+    ],
+  },
+  {
+    id: '3e2c8cf9-7c54-433d-8fff-e7a093f711cb',
+    name: 'HSL FINAL profile',
+    score: 18.5,
+    volume: 796545,
+    kpiCount: 23,
+    catCount: 9,
+    weakestCat: 'Promotion of Invest right app',
+    weakestScore: 2.6,
+    bestCat: 'Communication skills',
+    bestScore: 63.7,
+    trend: 'stable',
+    trendDelta: null,
+    scoreSeries: [
+      { week: '2026-02-01', score: 17.6 },
+      { week: '2026-02-08', score: 18.6 },
+      { week: '2026-02-15', score: 18.6 },
+      { week: '2026-02-22', score: 18.3 },
+      { week: '2026-03-01', score: 18.6 },
+      { week: '2026-03-08', score: 18.5 },
+    ],
+  },
+  {
+    id: '56a1a026-35a7-45fe-97de-d28da2ff25ea',
+    name: 'rm/qa profile 2',
+    score: 74.7,
+    volume: 392319,
+    kpiCount: 48,
+    catCount: 9,
+    weakestCat: 'Reference Check / Additional Product',
+    weakestScore: 32.7,
+    bestCat: 'Main contents of the Product',
+    bestScore: 96.4,
+    trend: 'stable',
+    trendDelta: null,
+    scoreSeries: [
+      { week: '2026-04-26', score: 74.8 },
+      { week: '2026-05-03', score: 74.8 },
+      { week: '2026-05-10', score: 74.7 },
+      { week: '2026-05-17', score: 74.7 },
+    ],
+  },
+  {
+    id: 'cc677238-58cc-49c3-867a-aca35f4c98a8',
+    name: 'RM_QA_PROFILE',
+    score: 20.2,
+    volume: 390428,
+    kpiCount: 48,
+    catCount: 9,
+    weakestCat: 'Main contents of the Product',
+    weakestScore: 3.4,
+    bestCat: 'Communication skills',
+    bestScore: 66.2,
+    trend: 'stable',
+    trendDelta: null,
+    scoreSeries: [
+      { week: '2026-04-05', score: 20.7 },
+      { week: '2026-04-12', score: 20.4 },
+      { week: '2026-04-19', score: 20.0 },
+      { week: '2026-04-26', score: 19.5 },
+    ],
+  },
+  {
+    id: '07d2be32-30c1-4b72-80ec-57b5408a351e',
+    name: 'HSL_RM_QA_Profile',
+    score: 18.7,
+    volume: 370910,
+    kpiCount: 23,
+    catCount: 9,
+    weakestCat: 'Promotion of Invest right app',
+    weakestScore: 2.7,
+    bestCat: 'Communication skills',
+    bestScore: 65.7,
+    trend: 'stable',
+    trendDelta: null,
+    scoreSeries: [
+      { week: '2026-03-08', score: 18.6 },
+      { week: '2026-03-15', score: 18.4 },
+      { week: '2026-03-22', score: 18.4 },
+      { week: '2026-03-29', score: 18.9 },
+      { week: '2026-04-05', score: 19.7 },
+    ],
+  },
+  {
+    id: '2eb13f37-7065-48a5-a378-1bd145c75cd0',
+    name: 'compliance_5pm_may7',
+    score: 98.5,
+    volume: 511,
+    kpiCount: 9,
+    catCount: 9,
+    weakestCat: 'Unregistered Client Communication',
+    weakestScore: 94.9,
+    bestCat: 'Insurance missell',
+    bestScore: 100.0,
+    trend: 'stable',
+    trendDelta: null,
+    scoreSeries: [
+      { week: '2026-05-03', score: 98.5 },
+      { week: '2026-05-10', score: 98.5 },
+    ],
+  },
+  {
+    id: 'b3f70a61-d0cd-441c-8bb2-a0a65080e2db',
+    name: 'QA_compliance_profile_1',
+    score: 97.0,
+    volume: 404,
+    kpiCount: 8,
+    catCount: 8,
+    weakestCat: 'Misleading Sales Practices & Risk Disclosure',
+    weakestScore: 91.3,
+    bestCat: 'Financial Misconduct & Client Fund Misuse',
+    bestScore: 100.0,
+    trend: 'stable',
+    trendDelta: null,
+    scoreSeries: [
+      { week: '2026-05-03', score: 97.1 },
+    ],
+  },
 ];
 
 // CXO-Lens-style narrative insights — derived from cross-dimensional data analysis
@@ -9837,7 +10049,7 @@ const qpNarrativeInsights = [
     severity: 'high',
     icon: 'shield',
     title: 'Compliance Excellence Masks Engagement Gaps',
-    narrative: '27 of 49 KPIs in the active profile score above 95% — your agents are strongly compliant. But 5 KPIs score below 35%, all related to customer engagement and sales effectiveness. The 60pp gap between the best category (QA Compliance at 99.6%) and worst (Reference Check at 39.5%) reveals a two-tier quality profile: agents follow rules but struggle with proactive customer interactions.',
+    narrative: '27 of 49 KPIs in this profile score above 95% — your agents are strongly compliant. But 5 KPIs score below 35%, all related to customer engagement and sales effectiveness. The 60pp gap between the best category (QA Compliance at 99.6%) and worst (Reference Check at 39.5%) reveals a two-tier quality profile: agents follow rules but struggle with proactive customer interactions.',
     metrics: [
       { label: 'Strong KPIs (>95%)', value: '27', sub: 'of 49 total' },
       { label: 'Weak KPIs (<35%)', value: '5', sub: 'all engagement' },
@@ -9846,7 +10058,7 @@ const qpNarrativeInsights = [
     dataPoints: [
       { name: 'QA Compliance', score: 99.6, type: 'strong' },
       { name: 'Business Compliance', score: 98.5, type: 'strong' },
-      { name: 'Communication Skills', score: 84.5, type: 'ok' },
+      { name: 'Communication Skills', score: 75.4, type: 'ok' },
       { name: 'Customer Profiling', score: 49.5, type: 'weak' },
       { name: 'Follow Up', score: 41.0, type: 'weak' },
       { name: 'Reference Check', score: 39.5, type: 'weak' },
@@ -9858,11 +10070,11 @@ const qpNarrativeInsights = [
     severity: 'high',
     icon: 'trending_down',
     title: 'Agent Personalization is in Active Decline',
-    narrative: '"Agent Personalization (Customer Name Mentioned)" has dropped from 34.1% to 23.7% over the past 5 weeks — a 10pp regression. This isn\'t an isolated dip: Cross-sell Pitch (-2.7pp) and Empathy Expression (-2.6pp) are also declining in the same period. Three soft-skill KPIs declining simultaneously suggests a systemic shift — possibly coaching fatigue, changed agent pool, or deprioritized training.',
+    narrative: '"Agent Personalization (Customer Name Mentioned)" has dropped from 34.1% to 23.7% over the past 5 weeks — a 10pp regression. This isn\'t an isolated dip: Cross-sell Pitch (-3.7pp) and Empathy Expression (-2.5pp) are also declining in the same period. Three soft-skill KPIs declining simultaneously suggests a systemic shift — possibly coaching fatigue, changed agent pool, or deprioritized training.',
     metrics: [
       { label: 'Personalization', value: '-10pp', sub: '5-week decline' },
-      { label: 'Cross-sell Pitch', value: '-2.7pp', sub: 'same period' },
-      { label: 'Empathy Expression', value: '-2.6pp', sub: 'same period' },
+      { label: 'Cross-sell Pitch', value: '-3.7pp', sub: 'same period' },
+      { label: 'Empathy Expression', value: '-2.5pp', sub: 'same period' },
     ],
     trendData: [
       { week: 'Jun 14', personalization: 34.1, crossSell: 28.2, empathy: 27.0 },
@@ -9878,19 +10090,19 @@ const qpNarrativeInsights = [
     severity: 'medium',
     icon: 'target',
     title: 'Three Categories Hold Back the Entire Score',
-    narrative: 'Branch Profile 1 scores 76.2% overall, but 3 of its 11 categories are below 50%: Reference Check (39.5%), Follow Up (41.0%), and Customer Profiling (49.5%). These represent proactive sales behaviors — not reactive compliance. If these three categories improved to just 65%, the weighted profile score would lift by ~2.7pp. This is the highest-ROI coaching lever available.',
+    narrative: 'This profile scores 76.2% overall, but 3 of its 11 categories are below 50%: Reference Check (39.5%), Follow Up (41.0%), and Customer Profiling (49.5%). These represent proactive sales behaviors — not reactive compliance. If these three categories improved to just 65%, an equal-weight category model estimates ~+3.7pp lift on the category average (actual profile weighting may differ). This is the highest-ROI coaching lever available.',
     metrics: [
       { label: 'Categories <50%', value: '3', sub: 'of 11 total' },
-      { label: 'Score Lift Potential', value: '+2.7pp', sub: 'if improved to 65%' },
+      { label: 'Score Lift Potential', value: '+3.7pp', sub: 'modeled · if → 65%' },
       { label: 'Lowest Category', value: '39.5%', sub: 'Reference Check' },
     ],
     dataPoints: [
       { name: 'Reference Check / Additional Product', score: 39.5, type: 'weak' },
       { name: 'Follow Up', score: 41.0, type: 'weak' },
       { name: 'Customer Profiling / Probing', score: 49.5, type: 'weak' },
-      { name: 'Introduction & Greetings', score: 63.8, type: 'ok' },
-      { name: 'Product Pitching', score: 73.0, type: 'ok' },
-      { name: 'Main Contents', score: 93.8, type: 'strong' },
+      { name: 'Product Pitching', score: 58.9, type: 'ok' },
+      { name: 'Introduction & Greetings', score: 64.8, type: 'ok' },
+      { name: 'Main Contents', score: 68.8, type: 'ok' },
       { name: 'Business Compliance', score: 98.5, type: 'strong' },
       { name: 'QA Compliance', score: 99.6, type: 'strong' },
     ],
@@ -9901,9 +10113,9 @@ const qpNarrativeInsights = [
     severity: 'low',
     icon: 'trending_up',
     title: 'Evaluation Volume is Growing While Quality Holds',
-    narrative: 'Weekly evaluation volume grew from 92K to 157K interactions over the measurement period — a 38% increase. Despite this growth, scores have held remarkably steady between 75.5% and 76.6%. The quality framework is scaling well: more calls are being evaluated without quality degradation. This stability under load validates the current QP configuration.',
+    narrative: 'Weekly evaluation volume grew from 92K to 157K interactions over the measurement period — a ~70% increase. Despite this growth, scores have held remarkably steady between 75.5% and 76.6%. The quality framework is scaling well: more calls are being evaluated without quality degradation. This stability under load validates the current QP configuration.',
     metrics: [
-      { label: 'Volume Growth', value: '+38%', sub: '92K → 157K/week' },
+      { label: 'Volume Growth', value: '+70%', sub: '92K → 157K/week' },
       { label: 'Score Stability', value: '±0.5pp', sub: '75.5% – 76.6%' },
       { label: 'Total Evaluated', value: '1.18M', sub: 'interactions' },
     ],
@@ -9935,6 +10147,230 @@ export function getQpLensInsights() {
 
   return {
     healthCards,
-    narrativeInsights: qpNarrativeInsights,
+    narrativeInsights: [],
   };
+}
+
+function healthStatus(score) {
+  if (score >= 75) return 'healthy';
+  if (score >= 50) return 'attention';
+  return 'critical';
+}
+
+function formatVolumeShort(volume) {
+  if (volume >= 1000000) return `${(volume / 1000000).toFixed(1)}M`;
+  if (volume >= 1000) return `${Math.round(volume / 1000)}K`;
+  return String(volume);
+}
+
+/**
+ * Portfolio-level QP-lens narratives — join Health × volume × score bands.
+ * Sourced from ClickHouse health cards (same world as QP Health grid).
+ * @param {'yesterday'|'week'|'month'} [period]
+ */
+export function getPortfolioQpLensInsights(period = 'month') {
+  const TREND_ALERT_PP = 3;
+  const cards = qpHealthData.map((p) => ({
+    ...p,
+    status: healthStatus(p.score),
+  }));
+  const totalVol = cards.reduce((s, p) => s + p.volume, 0) || 1;
+  const withShare = cards.map((p) => ({
+    ...p,
+    sharePct: Math.round((p.volume / totalVol) * 1000) / 10,
+  }));
+
+  const unusedProfiles = (baseAllProfiles[period] ?? baseAllProfiles.month).unusedProfiles ?? [];
+  const unusedCount = unusedProfiles.length;
+
+  const critical = withShare.filter((p) => p.status === 'critical');
+  const healthy = withShare.filter((p) => p.status === 'healthy');
+  const criticalVol = critical.reduce((s, p) => s + p.volume, 0);
+  const criticalShare = Math.round((criticalVol / totalVol) * 1000) / 10;
+
+  const topByVolume = [...withShare].sort((a, b) => b.volume - a.volume)[0];
+  const topRisk = [...critical].sort((a, b) => b.volume - a.volume)[0]
+    ?? [...withShare].sort((a, b) => (100 - a.score) * a.volume - (100 - b.score) * b.volume)[0];
+
+  const unweightedAvg = Math.round(
+    (cards.reduce((s, p) => s + p.score, 0) / cards.length) * 10
+  ) / 10;
+  const weightedAvg = Math.round(
+    (cards.reduce((s, p) => s + p.score * p.volume, 0) / totalVol) * 10
+  ) / 10;
+
+  const decliningHighVol = withShare
+    .filter((p) => p.trendDelta != null && p.trendDelta < 0 && Math.abs(p.trendDelta) >= TREND_ALERT_PP && p.sharePct >= 10)
+    .sort((a, b) => a.trendDelta - b.trendDelta)[0];
+
+  const insights = [];
+
+  // 1. Risk × volume — systemic triage when score is catastrophically low
+  if (topRisk) {
+    const isSystemic = topRisk.score < 50;
+    insights.push({
+      id: 'portfolio-risk-volume',
+      severity: 'high',
+      icon: 'priority_high',
+      title: isSystemic
+        ? 'High-Volume QP Looks Systemically Broken'
+        : 'Biggest Quality Risk Sits on High Volume',
+      narrative: isSystemic
+        ? `"${topRisk.name}" averages only ${topRisk.score}% across ${formatVolumeShort(topRisk.volume)} evaluations (${topRisk.sharePct}% of portfolio volume). A score this low is rarely fixed by agent coaching alone — treat it as a quality profile definition, evaluation/scoring logic, or smarter-assignment mismatch until proven otherwise. Profiles below 50% still hold ${criticalShare}% of all volume.`
+        : `"${topRisk.name}" scores ${topRisk.score}% but accounts for ${topRisk.sharePct}% of portfolio evaluation volume (${formatVolumeShort(topRisk.volume)} evals). Profiles scoring below 50% together hold ${criticalShare}% of all volume.`,
+      metrics: [
+        { label: 'Top risk QP', value: `${topRisk.score}%`, sub: topRisk.name },
+        { label: 'Its volume share', value: `${topRisk.sharePct}%`, sub: formatVolumeShort(topRisk.volume) },
+        { label: 'Vol below 50%', value: `${criticalShare}%`, sub: `${critical.length} of ${cards.length} QPs` },
+      ],
+      dataPointsTitle: 'Quality profile scores',
+      dataPoints: [...critical, ...withShare.filter((p) => p.status !== 'critical')]
+        .slice(0, 6)
+        .map((p) => ({
+          name: p.name.length > 22 ? `${p.name.slice(0, 20)}…` : p.name,
+          score: p.score,
+          type: p.status === 'critical' ? 'weak' : p.status === 'healthy' ? 'strong' : 'ok',
+          level: 'Quality profile',
+        })),
+      recommendation: isSystemic
+        ? `Audit "${topRisk.name}" before scheduling coaching: review KPI questions and scoring on weakest category "${topRisk.weakestCat}" (${topRisk.weakestScore}%), check smarter-assignment / which calls land on this profile, and spot-check a few failed evaluations. Only after the profile and routing look sane should supervisors coach agents.`
+        : `Prioritize supervisor coaching on "${topRisk.name}" (weakest category: ${topRisk.weakestCat} at ${topRisk.weakestScore}%).`,
+      ctaProfileId: topRisk.id,
+      ctaAction: 'open_profile',
+      ctaLabel: isSystemic ? `Audit QP · ${topRisk.name}` : `Open ${topRisk.name} · ${topRisk.weakestCat}`,
+    });
+  }
+
+  // 2. Concentration only (unused is a separate hygiene card)
+  if (topByVolume) {
+    insights.push({
+      id: 'portfolio-concentration',
+      severity: topByVolume.sharePct >= 30 ? 'high' : 'medium',
+      icon: 'pie_chart',
+      title: 'Interaction Volume Is Highly Concentrated',
+      narrative: `"${topByVolume.name}" owns ${topByVolume.sharePct}% of all evaluations in this portfolio lens (${formatVolumeShort(topByVolume.volume)} of ${formatVolumeShort(totalVol)}). If this QP dips, org-wide quality moves with it — assign a clear owner and watch it like a single point of failure.`,
+      metrics: [
+        { label: 'Top QP share', value: `${topByVolume.sharePct}%`, sub: topByVolume.name },
+        { label: 'Top QP score', value: `${topByVolume.score}%`, sub: 'profile avg' },
+        { label: 'Evals on top QP', value: formatVolumeShort(topByVolume.volume), sub: 'this period' },
+      ],
+      dataPointsTitle: 'Quality profile volume share (%)',
+      dataPoints: [...withShare]
+        .sort((a, b) => b.sharePct - a.sharePct)
+        .slice(0, 6)
+        .map((p) => ({
+          name: p.name.length > 22 ? `${p.name.slice(0, 20)}…` : p.name,
+          score: p.sharePct,
+          type: p.sharePct >= 25 ? 'weak' : p.sharePct >= 10 ? 'ok' : 'strong',
+          level: 'Quality profile',
+        })),
+      recommendation: `Since this QP drives ${topByVolume.sharePct}% of your volume, a 1% drop here impacts the org more than any other profile. Monitor its weakest categories closely — start with "${topByVolume.weakestCat}" (${topByVolume.weakestScore}%).`,
+      ctaProfileId: topByVolume.id,
+      ctaAction: 'open_profile',
+      ctaLabel: topByVolume.score >= 50
+        ? `Open ${topByVolume.name} · ${topByVolume.weakestCat}`
+        : `Audit QP · ${topByVolume.name}`,
+    });
+  }
+
+  // 3. Polarization — equal-QP avg overstates quality vs volume-weighted
+  insights.push({
+    id: 'portfolio-polarization',
+    severity: 'low',
+    icon: 'call_split',
+    title: 'Equal-QP Average Overstates Portfolio Quality',
+    narrative: `${critical.length} quality profiles score below 50%, while ${healthy.filter((p) => p.score >= 95).length} low-volume compliance-style profiles score 95%+. Averaging each QP equally gives ${unweightedAvg}%, but weighting by evaluation volume gives ${weightedAvg}%. Tiny high-scoring QPs inflate the simple average; most evaluations sit on lower-scoring profiles. Use the volume-weighted figure when judging real customer experience.`,
+    metrics: [
+      { label: 'QPs below 50%', value: String(critical.length), sub: `of ${cards.length} profiles` },
+      { label: 'Vol-weighted avg', value: `${weightedAvg}%`, sub: 'weighted by evals' },
+      { label: 'Equal-QP avg', value: `${unweightedAvg}%`, sub: 'each QP counts as 1' },
+    ],
+    dataPointsTitle: 'Equal-QP avg overstates quality vs volume-weighted',
+    dataPoints: [
+      {
+        name: 'Vol-weighted (by evals)',
+        score: weightedAvg,
+        type: weightedAvg < 50 ? 'weak' : weightedAvg < 75 ? 'ok' : 'strong',
+        level: 'Portfolio',
+      },
+      {
+        name: 'Equal-QP (each QP = 1)',
+        score: unweightedAvg,
+        type: unweightedAvg < 50 ? 'weak' : unweightedAvg < 75 ? 'ok' : 'strong',
+        level: 'Portfolio',
+      },
+    ],
+    recommendation: 'Do not treat equal-QP average as the portfolio health number. Prefer volume-weighted score, then triage high-volume QPs that drag that average down.',
+    ctaProfileId: topRisk?.id,
+    ctaAction: topRisk ? 'open_profile' : undefined,
+    ctaLabel: topRisk ? `Open ${topRisk.name} · triage volume drag` : undefined,
+  });
+
+  // 4. Unused QP hygiene (low severity — admin cleanup, not business risk)
+  if (unusedCount > 0) {
+    const preview = unusedProfiles.slice(0, 4).map((p) => p.name).join(', ');
+    const more = unusedCount > 4 ? ` +${unusedCount - 4} more` : '';
+    const qpIdSet = new Set(QP_PROFILES.map((p) => p.id));
+    const unusedTarget = unusedProfiles.find((p) => qpIdSet.has(p.id)) ?? unusedProfiles[0];
+    insights.push({
+      id: 'portfolio-unused-hygiene',
+      severity: 'low',
+      icon: 'inventory_2',
+      title: 'Unused Quality Profiles Need Cleanup',
+      narrative: `${unusedCount} quality profiles matched zero calls this period (${preview}${more}). This is admin hygiene, not a quality crisis — cluttered unused QPs still increase assignment mistakes.`,
+      metrics: [
+        { label: 'Unused QPs', value: String(unusedCount), sub: 'zero matches' },
+        { label: 'Action', value: 'Review', sub: 'archive or fix rules' },
+        { label: 'Priority', value: 'Hygiene', sub: 'not coaching' },
+      ],
+      recommendation: `Review the ${unusedCount} unused profiles: archive experiments you no longer need, or fix smarter-assignment rules if they should still receive traffic.`,
+      ctaProfileId: unusedTarget?.id,
+      ctaAction: unusedTarget ? 'open_profile' : undefined,
+      ctaLabel: unusedTarget ? `Open unused · ${unusedTarget.name}` : undefined,
+    });
+  }
+
+  // 5. Trend divergence — only when move is material (|Δ| ≥ 3pp)
+  if (decliningHighVol) {
+    insights.push({
+      id: 'portfolio-trend-divergence',
+      severity: 'medium',
+      icon: 'trending_down',
+      title: 'High-Volume QP Is Declining',
+      narrative: `"${decliningHighVol.name}" carries ${decliningHighVol.sharePct}% of portfolio volume and moved ${decliningHighVol.trendDelta}pp — large enough to treat as a real shift, not week-to-week noise. Portfolio averages can look stable while the QP most agents work under erodes.`,
+      metrics: [
+        { label: 'Declining QP', value: `${decliningHighVol.trendDelta}pp`, sub: decliningHighVol.name },
+        { label: 'Volume share', value: `${decliningHighVol.sharePct}%`, sub: formatVolumeShort(decliningHighVol.volume) },
+        { label: 'QP score', value: `${decliningHighVol.score}%`, sub: decliningHighVol.name },
+      ],
+      dataPointsTitle: `Categories in Quality Profile · ${decliningHighVol.name}`,
+      dataPoints: [
+        { name: decliningHighVol.weakestCat, score: decliningHighVol.weakestScore, type: 'weak', level: 'Category' },
+        { name: decliningHighVol.bestCat, score: decliningHighVol.bestScore, type: 'strong', level: 'Category' },
+      ],
+      recommendation: `Open "${decliningHighVol.name}" and focus on weakest category "${decliningHighVol.weakestCat}" (${decliningHighVol.weakestScore}%). Confirm the decline on the sparkline before launching a coaching sprint.`,
+      ctaProfileId: decliningHighVol.id,
+      ctaAction: 'open_profile',
+      ctaLabel: `Open ${decliningHighVol.name} · ${decliningHighVol.weakestCat}`,
+    });
+  }
+
+  return {
+    narrativeInsights: insights,
+    meta: {
+      totalVolume: totalVol,
+      weightedAvg,
+      unweightedAvg,
+      criticalShare,
+      unusedCount,
+    },
+  };
+}
+
+/** Single-QP narrative insights (ClickHouse). Currently Branch Profile 1 only. */
+export function getQpLensInsightsForProfile(profileId) {
+  if (profileId === 'b1069975-1ea2-4f51-bf7e-35b9e8940025') {
+    return qpNarrativeInsights;
+  }
+  return [];
 }

@@ -1,5 +1,5 @@
 import Icon from './Icon';
-import { QP_PROFILES } from '../qpInsightsData';
+import { getQpProfilesForSelector } from '../qpInsightsData';
 
 const PERIOD_DEFS = [
   { key: 'yesterday', label: 'Yesterday' },
@@ -14,6 +14,8 @@ export default function QpFilterBar({
   onPeriodChange,
   showProfileSelector = true,
 }) {
+  const profiles = getQpProfilesForSelector();
+
   return (
     <div className="filter-bar qp-filter-bar">
       <div className="periods">
@@ -32,7 +34,7 @@ export default function QpFilterBar({
           <div className="selector-wrap qp-profile-selector">
             <span className="qp-selector-label">Profile</span>
             <select className="selector" value={qpId} onChange={(e) => onQpChange(e.target.value)}>
-              {QP_PROFILES.map((p) => (
+              {profiles.map((p) => (
                 <option key={p.id} value={p.id}>
                   {p.label}
                 </option>

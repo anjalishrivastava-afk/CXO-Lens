@@ -60,6 +60,8 @@ function QpAnalyticsEmbedApp() {
 
   const handleProfileDrill = (profileId, source) => {
     const profile = getQpProfile(profileId);
+    setQpId(profileId);
+    setQpTab('per-qp');
     trackQpAnalyticsTabSwitched({
       tabType: 'specific_qp',
       profileId: profile.id,
